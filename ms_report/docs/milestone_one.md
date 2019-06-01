@@ -31,15 +31,13 @@ Let us do the counting so that you can do the eating!
 
 ## User Stories
 
-1. As one trying to lose weight, it is difficult to calorie count.
-   do so without having to do up a spreadsheet or a notebook.
+1. There are many recipes which I want to try out while losing weight but don't
+   end up doing so since some of them don't come with nutritional information.
 
-2. As one trying to lose weight, I want to know whether the food I'm about to
-   eat will make me go above my daily caloric intake.
+2. I'd like to know more about the food that I eat on a daily basis.
 
-3. As one trying to lose weight, recipes frequently don't give caloric intake,
-   plus other nutritional information. It is annoying to search up the
-   calories of each ingredient and do the $\text{math}$.
+3. I don't gain weight regardless of how much I eat. I want high calorie
+   recipes that will make me gain weight faster!
 
 ---
 
@@ -52,10 +50,10 @@ well-designed website.
 
 ## Scope
 
-The core functionality of the website will be to allow users to input ingredients
-in specified amounts. The website will then output the total number of calories
-or calories per serving for that dish. Regarding the core functionality, some
-difficulties that we expect to encounter include:
+The core functionality of the website will be to allow users to input
+ingredients in specified amounts. The website will then output the total number 
+of calories or calories per serving for that dish. Regarding the core
+functionality, some difficulties that we expect to encounter include:
 
 1. Pre-processing of nutritional information from public food databases
 2. UX design
@@ -88,7 +86,7 @@ some other features we can implement.
 
 ## How will it work?
 
-**Website:** as expected, `HTML5` and `CSS`
+**Website:** `HTML5` and `CSS`
 
 **Database:** `SQL`
 
@@ -97,7 +95,7 @@ some other features we can implement.
 **User Accounts:** Handled using oAuth 2.0 through Google
 Firebase. This is not required to use the website, but is recommended to get
 more features that we plan to implement by the Refinement stage of the project.
-We will also use Facebook and Google user sign-ins.
+We also plan to implement Facebook and Google user sign-ins.
 
 ---
 
@@ -127,3 +125,4 @@ use-cases, such as the following:
 ## Project Log
 Our project log is documented
 [in this Google Sheet](https://docs.google.com/spreadsheets/d/17kEtNaCyYZzXc2UWd6ss4zXTWQ4-QY7XN3ODB6DpEJs/edit?usp=sharing)
+
