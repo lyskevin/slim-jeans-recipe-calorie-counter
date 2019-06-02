@@ -22,50 +22,95 @@
         
         <form>
             
-            <h2>
-                <span style="display:inline-block; margin-right:100px">
-                    Ingredients:
-                </span>
-                Amount:
-            </h2>
+            <div class="input-container">
+                
+                <h2>Ingredients:</h2>
+                
+                <div class="input">
+                    
+                    <select name="input-ingredient-1">
+                        <option value="none"></option>
+                        <option value="apple">Apple</option>
+                        <option value="orange">Orange</option>
+                        <option value="banana">Banana</option>
+                        <option value="pear">Pear</option>
+                        <option value="durian">Durian</option>
+                    </select>
+                    <br><br>
+                    
+                    <select name="input-ingredient-2">
+                        <option value="none"></option>
+                        <option value="apple">Apple</option>
+                        <option value="orange">Orange</option>
+                        <option value="banana">Banana</option>
+                        <option value="pear">Pear</option>
+                        <option value="durian">Durian</option>
+                    </select>
+                    <br><br>
+                    
+                    <select name="input-ingredient-3">
+                        <option value="none"></option>
+                        <option value="apple">Apple</option>
+                        <option value="orange">Orange</option>
+                        <option value="banana">Banana</option>
+                        <option value="pear">Pear</option>
+                        <option value="durian">Durian</option>
+                    </select>
+                    <br><br>
+                    
+                </div>
             
-            <select name="fruit1" style="display:inline-block; margin-right:100px">
-                <option value="none"></option>
-                <option value="apple">Apple</option>
-                <option value="orange">Orange</option>
-                <option value="banana">Banana</option>
-                <option value="pear">Pear</option>
-                <option value="durian">Durian</option>
-            </select>
+            </div>
             
-            <select name="amount1">
-                <option value="none"></option>
-                <option value="cups">cups</option>
-                <option value="grams">grams</option>
-                <option value="pounds">pounds</option>
-                <option value="ounces">ounces</option>
-                <option value="ml">ml</option>
-            </select>
-            <br><br>
+            <div class="input-container">
+                
+                <h2>Amount:</h2>
+                
+                <div class="input">
+                    
+                    <input type="number" name="amount-1" min="0">
+                    
+                    <select name="input-type-1">
+                        <option value="none"></option>
+                        <option value="cups">cups</option>
+                        <option value="grams">grams</option>
+                        <option value="pounds">pounds</option>
+                        <option value="ounces">ounces</option>
+                        <option value="ml">ml</option>
+                    </select>
+                    
+                    <br><br>
             
-            <select name="fruit2">
-                <option value="none"></option>
-                <option value="apple">Apple</option>
-                <option value="orange">Orange</option>
-                <option value="banana">Banana</option>
-                <option value="pear">Pear</option>
-                <option value="durian">Durian</option>
-            </select>
-            <br><br>
+                    <input type="number" name="amount-2" min="0">
             
-            <select name="fruit3">
-                <option value="none"></option>
-                <option value="apple">Apple</option>
-                <option value="orange">Orange</option>
-                <option value="banana">Banana</option>
-                <option value="pear">Pear</option>
-                <option value="durian">Durian</option>
-            </select>
+                    <select name="input-type-2">
+                        <option value="none"></option>
+                        <option value="cups">cups</option>
+                        <option value="grams">grams</option>
+                        <option value="pounds">pounds</option>
+                        <option value="ounces">ounces</option>
+                        <option value="ml">ml</option>
+                    </select>
+                    <br><br>
+            
+                    <input type="number" name="amount-3" min="0">
+            
+                    <select name="input-type-3">
+                        <option value="none"></option>
+                        <option value="cups">cups</option>
+                        <option value="grams">grams</option>
+                        <option value="pounds">pounds</option>
+                        <option value="ounces">ounces</option>
+                        <option value="ml">ml</option>
+                    </select>
+                    <br><br>
+                    
+                </div>
+                
+            </div>
+            
+            <br>
+            <input type="submit" style="margin-right:10px">(Coming Soon!)
             <br><br>
             
         </form>
@@ -76,7 +121,7 @@
             <img src="images/kevin.jpeg" alt="Kevin" class="developer-image">
             <figcaption>
                 Kevin Lim<br>
-                Full-time glutton<br>
+                Full-Time Glutton<br>
             </figcaption>
         </figure>
         
@@ -84,7 +129,7 @@
             <img src="images/ryan.jpeg" alt="Ryan" class="developer-image">
             <figcaption>
                 Ryan Tan<br>
-                Weeb in disguise<br>
+                BMT Sergeant<br>
             </figcaption>
         </figure>
         
