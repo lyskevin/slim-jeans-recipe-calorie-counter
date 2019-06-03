@@ -4,13 +4,36 @@
     
     <head>
         
-        <!-- Enable Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        
-        <link href="styles.css" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         
         <!-- Open Sans Google font -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+        
+        <!-- Bootstrap CSS CDN -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+        <!-- Custom CSS -->
+        <link href="styles.css" rel="stylesheet">
+        
+        <!-- Font Awesome JS -->
+        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+        
+        <!-- jQuery CDN - Slim version (=without AJAX) -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        
+        <!-- Popper.JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+        
+        <!-- Custom JavaScript -->
+        <script src="scripts.js"></script>
+        
+        <!-- Sidebar Source: https://bootstrapious.com/p/bootstrap-sidebar -->
         
         <title>Slim Jeans Recipe Calorie Counter</title>
         
@@ -18,125 +41,180 @@
     
     <body>
         
-        <h1>Slim Jeans Recipe Calorie Counter</h1>
-        
-        <form>
+        <div class="wrapper">
             
-            <div class="input-container">
+            <!-- Sidebar -->
+            <nav id="sidebar">
                 
-                <h2>Ingredients:</h2>
-                
-                <div class="input">
-                    
-                    <select name="input-ingredient-1">
-                        <option value="none"></option>
-                        <option value="apple">Apple</option>
-                        <option value="orange">Orange</option>
-                        <option value="banana">Banana</option>
-                        <option value="pear">Pear</option>
-                        <option value="durian">Durian</option>
-                    </select>
-                    <br><br>
-                    
-                    <select name="input-ingredient-2">
-                        <option value="none"></option>
-                        <option value="apple">Apple</option>
-                        <option value="orange">Orange</option>
-                        <option value="banana">Banana</option>
-                        <option value="pear">Pear</option>
-                        <option value="durian">Durian</option>
-                    </select>
-                    <br><br>
-                    
-                    <select name="input-ingredient-3">
-                        <option value="none"></option>
-                        <option value="apple">Apple</option>
-                        <option value="orange">Orange</option>
-                        <option value="banana">Banana</option>
-                        <option value="pear">Pear</option>
-                        <option value="durian">Durian</option>
-                    </select>
-                    <br><br>
-                    
+                <div class="sidebar-header">
+                    <h3>Browse</h3>
                 </div>
+        
+                <ul class="list-unstyled components">
+                    
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="#">Recipe Calorie Counter</a>
+                    </li>
+                    
+                    <li>
+                        <a href="#">Daily Goals</a>
+                    </li>
+                    
+                    <li>
+                        <a href="#">Graph Generator</a>
+                    </li>
+                    
+                    <li>
+                        <a href="#">Settings</a>
+                    </li>
+                    
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                    
+                    <li>
+                        <a href="#">Logout</a>
+                    </li>
+                    
+                </ul>
+                
+            </nav>
             
+            <!-- Page Content -->
+            <div id="content" class="content">
+                
+                <h1>Slim Jeans Recipe Calorie Counter</h1>
+                
+                <form>
+            
+                    <div class="input-container">
+                        
+                        <h2>Ingredients:</h2>
+                        
+                        <div class="input">
+                            
+                            <select name="input-ingredient-1">
+                                <option value="none"></option>
+                                <option value="apple">Apple</option>
+                                <option value="orange">Orange</option>
+                                <option value="banana">Banana</option>
+                                <option value="pear">Pear</option>
+                                <option value="durian">Durian</option>
+                            </select>
+                            <br><br>
+                            
+                            <select name="input-ingredient-2">
+                                <option value="none"></option>
+                                <option value="apple">Apple</option>
+                                <option value="orange">Orange</option>
+                                <option value="banana">Banana</option>
+                                <option value="pear">Pear</option>
+                                <option value="durian">Durian</option>
+                            </select>
+                            <br><br>
+                            
+                            <select name="input-ingredient-3">
+                                <option value="none"></option>
+                                <option value="apple">Apple</option>
+                                <option value="orange">Orange</option>
+                                <option value="banana">Banana</option>
+                                <option value="pear">Pear</option>
+                                <option value="durian">Durian</option>
+                            </select>
+                            <br><br>
+                            
+                        </div>
+                    
+                    </div>
+                    
+                    <div class="input-container">
+                        
+                        <h2>Amount:</h2>
+                        
+                        <div class="input">
+                            
+                            <input type="number" name="amount-1" min="0">
+                            
+                            <select name="input-type-1">
+                                <option value="none"></option>
+                                <option value="cups">cups</option>
+                                <option value="grams">grams</option>
+                                <option value="pounds">pounds</option>
+                                <option value="ounces">ounces</option>
+                                <option value="ml">ml</option>
+                            </select>
+                            
+                            <br><br>
+                    
+                            <input type="number" name="amount-2" min="0">
+                    
+                            <select name="input-type-2">
+                                <option value="none"></option>
+                                <option value="cups">cups</option>
+                                <option value="grams">grams</option>
+                                <option value="pounds">pounds</option>
+                                <option value="ounces">ounces</option>
+                                <option value="ml">ml</option>
+                            </select>
+                            <br><br>
+                    
+                            <input type="number" name="amount-3" min="0">
+                    
+                            <select name="input-type-3">
+                                <option value="none"></option>
+                                <option value="cups">cups</option>
+                                <option value="grams">grams</option>
+                                <option value="pounds">pounds</option>
+                                <option value="ounces">ounces</option>
+                                <option value="ml">ml</option>
+                            </select>
+                            <br><br>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <br>
+                    
+                    <button type="button" class="btn btn-primary">Add Ingredient</button>
+                    
+                    <br><br>
+                    
+                    <button type="button" class="btn btn-primary">Submit</button>
+                    
+                    <br><br>
+                    
+                </form>
+                
+                Meet the developers:
+                <br>
+                <figure>
+                    <img src="images/kevin.jpeg" alt="Kevin" class="developer-image">
+                    <figcaption>
+                        Kevin Lim<br>
+                        Full-Time Glutton<br>
+                    </figcaption>
+                </figure>
+                
+                <figure>
+                    <img src="images/ryan.jpeg" alt="Ryan" class="developer-image">
+                    <figcaption>
+                        Ryan Tan<br>
+                        BMT Sergeant<br>
+                    </figcaption>
+                </figure>
+                
             </div>
             
-            <div class="input-container">
-                
-                <h2>Amount:</h2>
-                
-                <div class="input">
-                    
-                    <input type="number" name="amount-1" min="0">
-                    
-                    <select name="input-type-1">
-                        <option value="none"></option>
-                        <option value="cups">cups</option>
-                        <option value="grams">grams</option>
-                        <option value="pounds">pounds</option>
-                        <option value="ounces">ounces</option>
-                        <option value="ml">ml</option>
-                    </select>
-                    
-                    <br><br>
-            
-                    <input type="number" name="amount-2" min="0">
-            
-                    <select name="input-type-2">
-                        <option value="none"></option>
-                        <option value="cups">cups</option>
-                        <option value="grams">grams</option>
-                        <option value="pounds">pounds</option>
-                        <option value="ounces">ounces</option>
-                        <option value="ml">ml</option>
-                    </select>
-                    <br><br>
-            
-                    <input type="number" name="amount-3" min="0">
-            
-                    <select name="input-type-3">
-                        <option value="none"></option>
-                        <option value="cups">cups</option>
-                        <option value="grams">grams</option>
-                        <option value="pounds">pounds</option>
-                        <option value="ounces">ounces</option>
-                        <option value="ml">ml</option>
-                    </select>
-                    <br><br>
-                    
-                </div>
-                
-            </div>
-            
-            <br>
-            <input type="submit" style="margin-right:10px">(Coming Soon!)
-            <br><br>
-            
-        </form>
-        
-        Meet the developers:
-        <br>
-        <figure>
-            <img src="images/kevin.jpeg" alt="Kevin" class="developer-image">
-            <figcaption>
-                Kevin Lim<br>
-                Full-Time Glutton<br>
-            </figcaption>
-        </figure>
-        
-        <figure>
-            <img src="images/ryan.jpeg" alt="Ryan" class="developer-image">
-            <figcaption>
-                Ryan Tan<br>
-                BMT Sergeant<br>
-            </figcaption>
-        </figure>
-        
-        <!-- Enable Bootstrap JavaScript components -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        </div>
         
     </body>
     
