@@ -99,6 +99,14 @@ We also plan to implement Facebook and Google user sign-ins.
 
 ---
 
+## Mock-up
+
+This is an early mock-up of how the website will look like.
+
+![mock-up of website](figures/ms1/mockup.png)
+
+---
+
 ## Extensions <a name="extensions"></a>
 While we hope to make a website that is able to fulfill the
 aim above. We hope to extend the functionality of the app after the core
