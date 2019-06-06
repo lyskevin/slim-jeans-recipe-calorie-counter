@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
   <!-- Open Sans Google font -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
   <!-- Bootstrap CSS CDN -->
@@ -23,35 +23,33 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
   <!-- Custom JavaScript -->
   <script src="../static/scripts.js"></script>
-
   <!-- Sidebar Source: https://bootstrapious.com/p/bootstrap-sidebar -->
-  <title>Contact</title>
+
+  <title>{% block title %}{% endblock %}</title>
 </head>
 
 <body>
   <div class="wrapper">
-    <!-- Page Content -->
-    <div id="content" class="content">
-      Meet the developers:
-      <br>
-      <figure>
-        <img src="../static/images/kevin.jpeg" alt="Kevin" class="developer-image">
-        <figcaption>
-          Kevin Lim<br>
-          Full-Time Glutton<br>
-        </figcaption>
-      </figure>
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h3> Browse</h3>
+      </div>
+      <ul class="list-unstyled components">
+        <li><a href="index">Home</a></li>
+        <li><a href="recipe">Recipe Calorie Counter</a></li>
+        <li><a href="dailygoals">Daily Goals</a></li>
+        <li><a href="graphgen">Graph Generator</a></li>
+        <li><a href="settings">Settings</a></li>
+        <li><a href="about">About</a></li>
+        <li><a href="contact">Contact</a></li>
+        <li><a href="logout">Logout</a></li>
+      </ul>
+    </nav>
 
-      <figure>
-        <img src="../static/images/ryan.jpeg" alt="Ryan" class="developer-image">
-        <figcaption>
-          Ryan Tan<br>
-          BMT Sergeant<br>
-        </figcaption>
-      </figure>
-    </div>
+    <main>
+      {% block main %}{% endblock %}
+    </main>
+
   </div>
-  <script src="../static/nav.js"></script>
 </body>
-
 </html>
