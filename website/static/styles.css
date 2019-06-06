@@ -8,11 +8,6 @@ body {
     text-align: center;
 }
 
-.contact {
-    margin-left: 250px;
-    text-align: center;
-}
-
 figure {
     display: inline-block;
 }
@@ -43,11 +38,6 @@ figcaption {
 .wrapper {
     display: flex;
     width: 100%;
-    align-items: stretch;
-}
-
-.wrapper {
-    display: flex;
     align-items: stretch;
 }
 
