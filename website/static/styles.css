@@ -8,6 +8,11 @@ body {
     text-align: center;
 }
 
+.contact {
+    margin-left: 250px;
+    text-align: center;
+}
+
 figure {
     display: inline-block;
 }
