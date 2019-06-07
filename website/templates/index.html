@@ -1,43 +1,12 @@
+
 {% extends "layout.html" %}
 
 {% block title %}
-  Recipe Calorie Counter
+  Welcome
 {% endblock %}
 
 {% block main %}
-<div id="content" class="content">
-  <h1>Slim Jeans Recipe Calorie Counter</h1>
-
-  <form>
-    <div class="input-container">
-      <h2>Ingredients:</h2>
-      <div class="input">
-        <input type="text" name="ingredient-1" placeholder="Insert ingredients...">
-        <br><br>
-      </div>
-    </div>
-
-    <div class="input-container">
-      <h2>Amount:</h2>
-      <div class="input">
-        <input type="number" name="amount-1" min="0">
-        <select name="input-type-1">
-          <option value="none"></option>
-          <option value="cups">cups</option>
-          <option value="grams">grams</option>
-          <option value="pounds">pounds</option>
-          <option value="ounces">ounces</option>
-          <option value="ml">ml</option>
-        </select>
-        <br><br>
-      </div>
-    </div>
-    <br>
-    <button type="button" class="btn btn-primary">Add Ingredient</button>
-    <button type="reset" class="btn btn-primary">Reset All</button>
-    <br><br>
-    <button type="button" class="btn btn-primary">Submit</button>
-    <br><br>
-  </form>
-</div>
+<p>
+  Welcome to the home-page of the Slim Jeans calorie counter
+</p>
 {% endblock %}
