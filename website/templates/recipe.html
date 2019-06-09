@@ -7,37 +7,73 @@
 {% block main %}
 <div id="content" class="content">
   <h1>Slim Jeans Recipe Calorie Counter</h1>
-
-  <form>
+  <form class="calorie-form" id="calorie-input" name="calorie-input">
     <div class="input-container">
-      <h2>Ingredients:</h2>
-      <div class="input">
-        <input type="text" name="ingredient-1" placeholder="Insert ingredients...">
-        <br><br>
-      </div>
-    </div>
 
-    <div class="input-container">
-      <h2>Amount:</h2>
-      <div class="input">
-        <input type="number" name="amount-1" min="0">
-        <select name="input-type-1">
-          <option value="none"></option>
-          <option value="cups">cups</option>
-          <option value="grams">grams</option>
-          <option value="pounds">pounds</option>
-          <option value="ounces">ounces</option>
-          <option value="ml">ml</option>
-        </select>
-        <br><br>
-      </div>
+      <!-- Input Table for Ingredients and Amount-->
+      <table class="input-table">
+        <thead>
+          <th>Ingredients</th>
+          <th>Amount</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="input">
+                <input type="text" name="ingredient-0" class="input-ingredient">
+              </div>
+            </td>
+            <td>
+              <div class="input">
+                <input type="number" name="amount-0" min="0" class="input-amount">
+              </div>
+            </td>
+            <td>
+              <div class="input">
+                <input type="text" name="unit-0" class="input-unit">
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Add Rows and Submit button-->
+      <input type="button"
+             class="btn btn-primary"
+             value="Add Ingredient"
+             onclick="appendRow('input-table')">
+
+      <input type="button"
+             class="btn btn-primary"
+             value="Delete Ingredient"
+             onclick="deleteLastRow('input-table')">
+
+      <input type="reset"
+             class="btn btn-primary"
+             value="Reset All">
+
+      <button type="submit"
+              class="btn btn-primary"
+              onclick="getInput()">
+              Submit
+      </button>
     </div>
-    <br>
-    <button type="button" class="btn btn-primary">Add Ingredient</button>
-    <button type="reset" class="btn btn-primary">Reset All</button>
-    <br><br>
-    <button type="button" class="btn btn-primary">Submit</button>
-    <br><br>
   </form>
+
+  <h2>How to use it?</h2>
+  <p>
+    It's simple - take any recipe off the internet, and list its ingredients
+    in the form above. The form will spit out the number of calories contained
+    within the recipe.
+  </p>
+
+  <h2>Where do we get our information from?</h2>
+  <p>
+    Our information is obtained directly from the
+    <a href="https://ndb.nal.usda.gov/ndb/">USDA</a>.
+    We have organised the information into our database to give an estimate
+    on the calorie count of any particular recipe.
+  </p>
+
 </div>
 {% endblock %}
