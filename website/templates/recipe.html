@@ -5,60 +5,73 @@
 {% endblock %}
 
 {% block main %}
+<div class="header">
+  <div class="header-text">
+    <h1>Slim Jeans</h1>
+    <h2>Recipe Calorie Counter</h2>
+    <p>
+      Know what you're eating
+    </p>
+  </div>
+  <img src="../static/images/calorie_header3.jpg"
+       alt="header">
+</div>
+
 <div id="content" class="content">
-  <h1>Slim Jeans Recipe Calorie Counter</h1>
-  <form class="calorie-form" id="calorie-input" name="calorie-input">
-    <div class="input-container">
+  <div class="calorie-container">
+    <form class="calorie-form" id="calorie-input" name="calorie-input" method="POST">
+      <div class="input-container">
 
-      <!-- Input Table for Ingredients and Amount-->
-      <table class="input-table">
-        <thead>
-          <th>Ingredients</th>
-          <th>Amount</th>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <div class="input">
-                <input type="text" name="ingredient-0" class="input-ingredient">
-              </div>
-            </td>
-            <td>
-              <div class="input">
-                <input type="number" name="amount-0" min="0" class="input-amount">
-              </div>
-            </td>
-            <td>
-              <div class="input">
-                <input type="text" name="unit-0" class="input-unit">
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        <!-- Input Table for Ingredients and Amount-->
+        <table class="input-table">
+          <thead>
+            <th>Ingredients</th>
+            <th>Amount</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="input">
+                  <input type="text" name="ingredient-0" class="input-ingredient">
+                </div>
+              </td>
+              <td>
+                <div class="input">
+                  <input type="number" name="amount-0" min="0" class="input-amount">
+                </div>
+              </td>
+              <td>
+                <div class="input">
+                  <input type="text" name="unit-0" class="input-unit">
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-      <!-- Add Rows and Submit button-->
-      <input type="button"
-             class="btn btn-primary"
-             value="Add Ingredient"
-             onclick="appendRow('input-table')">
+        <!-- Add Rows and Submit button-->
+        <input type="button"
+               class="btn btn-primary"
+               value="Add Ingredient"
+               onclick="appendRow('input-table')">
 
-      <input type="button"
-             class="btn btn-primary"
-             value="Delete Ingredient"
-             onclick="deleteLastRow('input-table')">
+        <input type="button"
+               class="btn btn-primary"
+               value="Delete Ingredient"
+               onclick="deleteLastRow('input-table')">
 
-      <input type="reset"
-             class="btn btn-primary"
-             value="Reset All">
-
-      <button type="submit"
-              class="btn btn-primary"
-              onclick="getInput()">
-              Submit
-      </button>
-    </div>
-  </form>
+        <input type="reset"
+               class="btn btn-primary"
+               value="Reset All">
+        <br><br>
+        <button type="submit"
+                class="btn btn-primary"
+                onclick="getInput()">
+                Analyze Calories
+        </button>
+      </div>
+    </form>
+  </div>
 
   <h2>How to use it?</h2>
   <p>
@@ -74,6 +87,5 @@
     We have organised the information into our database to give an estimate
     on the calorie count of any particular recipe.
   </p>
-
 </div>
 {% endblock %}
