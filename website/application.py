@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+import sqlite3
+from flask import Flask,jsonify, render_template, g, request
 
 app = Flask(__name__)
 
@@ -29,3 +30,18 @@ def abotu():
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
+
+@app.route("/search")
+def search():
+    query = (request.args.get("q") + "%").upper()
+    connection = sqlite3.connect("static/food.db")
+    cursor = connection.cursor()
+    ingredients = cursor.execute("""SELECT description FROM food
+                                 WHERE description LIKE ?
+                                 ORDER BY description ASC
+                                 LIMIT 10""", (query,))
+    ingredient_list = []
+    for ingredient in ingredients:
+        ingredient_list.append(ingredient[0])
+    return jsonify(ingredient_list)
+
