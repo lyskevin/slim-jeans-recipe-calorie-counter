@@ -31,9 +31,35 @@ function getInput() {
   }
 }
 
-
-$(document).ready(function () {
+// Execute when the DOM is fully loaded
+$(document).ready(function() {
   $('#sidebarCollapse').on('click', function () {
     $('#sidebar').toggleClass('active');
   });
+
+  // Configure typeahead
+  $('#ingredient .typeahead').typeahead({
+    minLength: 1,
+    highlight: false,
+    hint: false
+  },
+  {
+    source: search
+  });
+
 });
+
+// Search database for typeahead's suggestions
+function search(query, syncResults, asyncResults) {
+
+  // Query database asynchronously
+  let parameters = {
+    q: query
+  };
+  $.getJSON("/search", parameters, function(data, textStatus, jqXHR) {
+
+    // Call typeahead's callback with search results
+    asyncResults(data);
+  });
+
+}
