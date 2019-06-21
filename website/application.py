@@ -33,11 +33,11 @@ def contact():
 
 @app.route("/search")
 def search():
-    query = (request.args.get("q") + "%").upper()
+    query = ("%" + request.args.get("q") + "%").upper()
     connection = sqlite3.connect("static/food.db")
     cursor = connection.cursor()
     ingredients = cursor.execute("""SELECT description FROM food
-                                 WHERE description LIKE ?
+                                 WHERE UPPER(description) LIKE UPPER(?)
                                  ORDER BY description ASC
                                  LIMIT 10""", (query,))
     ingredient_list = []
