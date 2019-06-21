@@ -38,10 +38,10 @@ def search():
     cursor = connection.cursor()
     ingredients = cursor.execute("""SELECT description FROM food
                                  WHERE UPPER(description) LIKE UPPER(?)
-                                 ORDER BY description ASC
-                                 LIMIT 10""", (query,))
+                                 ORDER BY description ASC""", (query,))
     ingredient_list = []
     for ingredient in ingredients:
         ingredient_list.append(ingredient[0])
+    connection.close()
     return jsonify(ingredient_list)
 
