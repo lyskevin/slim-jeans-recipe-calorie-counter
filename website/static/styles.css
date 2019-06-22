@@ -228,7 +228,7 @@ ul ul a {
   overflow-y: auto;
   width: 300px;
 }
-.tt-suggestion.tt-cursor {
+.tt-suggestion.tt-cursor, .tt-suggestion:hover {
   background-color: #0097cf;
   color: #fff;
   cursor: pointer;
