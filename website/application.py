@@ -1,5 +1,6 @@
 import sqlite3
-from flask import Flask,jsonify, render_template, g, request
+import re
+from flask import Flask, jsonify, render_template, g, request
 
 app = Flask(__name__)
 
@@ -33,15 +34,30 @@ def contact():
 
 @app.route("/search")
 def search():
-    query = ("%" + request.args.get("q") + "%").upper()
+    regex = re.compile("[^a-zA-Z ]")
+    query = regex.sub("", request.args.get("q")).split(" ")
     connection = sqlite3.connect("static/food.db")
     cursor = connection.cursor()
-    ingredients = cursor.execute("""SELECT description FROM food
+    ingredients = cursor.execute("""SELECT * FROM food
                                  WHERE UPPER(description) LIKE UPPER(?)
-                                 ORDER BY description ASC""", (query,))
+                                 ORDER BY description ASC""",
+                                 ("%" + query[0].upper() + "%",))
     ingredient_list = []
     for ingredient in ingredients:
-        ingredient_list.append(ingredient[0])
+        description = ingredient[0].lower()
+        descriptionContainsAllQueryWords = True
+        for word in query:
+            if word.lower() not in description:
+                descriptionContainsAllQueryWords = False
+                break
+        if descriptionContainsAllQueryWords:
+            ingredientDictionary = {
+                "description": ingredient[0],
+                "weightInGrams": ingredient[1],
+                "measure": ingredient[2],
+                "energyPerMeasure": ingredient[3]
+            }
+            ingredient_list.append(ingredientDictionary)
     connection.close()
     return jsonify(ingredient_list)
 
