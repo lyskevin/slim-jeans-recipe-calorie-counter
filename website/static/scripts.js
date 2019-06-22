@@ -33,7 +33,7 @@ function getInput() {
 
 // Execute when the DOM is fully loaded
 $(document).ready(function() {
-  $('#sidebarCollapse').on('click', function () {
+  $('#sidebarCollapse').on('click', function() {
     $('#sidebar').toggleClass('active');
   });
 
@@ -44,10 +44,21 @@ $(document).ready(function() {
     hint: false
   },
   {
+    name: "description",
+    display: "description",
     source: search,
     limit: 100
   });
 
+  // Retrieve nutritional information after ingredient is selected
+  $("#ingredient .typeahead").bind("typeahead:select", function(event, suggestion) {
+    alert(suggestion["description"]);
+  });
+
+/*
+  // Clear input field
+  $("#ingredient .typeahead").typeahead("setQuery", "");
+*/
 });
 
 // Search database for typeahead's suggestions
@@ -64,3 +75,4 @@ function search(query, syncResults, asyncResults) {
   });
 
 }
+
