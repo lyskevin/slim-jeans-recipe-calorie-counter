@@ -73,7 +73,11 @@ function configure() {
     // Configure units
     var unitNumber = this.id.split("-")[1];
     var units = document.getElementById("unit-" + unitNumber);
-    units.options[0] = new Option("grams (g)", "grams");
+    units.options[0] = new Option("Choose Units", "units");
+    units.options[0].disabled = true;
+    units.options[1] = new Option("grams (g)", "grams");
+    units.options[2] = new Option("ounces (oz)", "ounces");
+    units.options[3] = new Option("pounds (lb)", "pounds");
 
   });
 
