@@ -1,4 +1,5 @@
-let nRows = 1; // current number of rows
+var nRows = 1; // current number of rows
+var ingredientInformation = {};
 
 function appendRow(tableID) {
   var table = document.getElementsByClassName(tableID)[0];
