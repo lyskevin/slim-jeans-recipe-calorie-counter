@@ -34,11 +34,13 @@ function deleteLastRow(tableID) {
 }
 
 function getInput() {
-  const str = new FormData(document.forms["calorie-input"]);
-  document.forms["calorie-input"].submit();
-  for (var pair of str.entries()) {
-    alert(pair[0] + ', ' + pair[1]);
+
+  var form = document.forms["calorie-input"];
+  for (var i = 0; i < form.length - 4; i += 3) {
+    alert("You have selected " + form[i + 1].value + " " + form[i + 2].value
+          + " of " + form[i].value);
   }
+
 }
 
 // Execute when the DOM is fully loaded
