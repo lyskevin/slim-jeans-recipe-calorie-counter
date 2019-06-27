@@ -1,6 +1,7 @@
 import sqlite3
 import re
 from flask import Flask, jsonify, render_template, g, request
+from os import path
 
 app = Flask(__name__)
 
@@ -36,7 +37,8 @@ def contact():
 def search():
     regex = re.compile("[^a-zA-Z ]")
     query = regex.sub("", request.args.get("q")).split(" ")
-    connection = sqlite3.connect("static/food.db")
+    ROOT = path.dirname(path.realpath(__file__))
+    connection = sqlite3.connect(path.join(ROOT, "static/food.db"))
     cursor = connection.cursor()
     ingredients = cursor.execute("""SELECT * FROM food
                                  WHERE UPPER(description) LIKE UPPER(?)
