@@ -1,5 +1,5 @@
 var numberOfRows = 1; // current number of rows
-var ingredientInformation = {};
+var ingredients = {};
 
 function appendRow(tableID) {
   const table = document.getElementById("input-table");
@@ -42,11 +42,21 @@ function deleteLastRow(tableID) {
 }
 
 function getInput() {
+  
+  // Calculate total calories (grams only)
   var form = document.forms["calorie-input"];
-  for (var i = 0; i < form.length - 4; i += 3) {
-    alert("You have selected " + form[i + 1].value + " " + form[i + 2].value
-          + " of " + form[i].value);
+  var totalCalories = 0;
+  for (let i = 0; i < form.length - 4; i += 3) {
+    let description = form[i].value;
+    let ingredient = ingredients[description];
+    let calories = (form[i + 1].value / ingredient["weightInGrams"])
+                   * ingredient["energyPerMeasure"];
+    totalCalories += calories;
   }
+
+  // Display total calories
+  alert(totalCalories);
+  
 }
 
 // Execute when the DOM is fully loaded
@@ -74,6 +84,13 @@ function configure() {
 
   // Retrieve nutritional information after ingredient is selected
   $("#ingredient .typeahead").on("typeahead:select", function(event, suggestion) {
+
+    // Configure ingredient information
+    var ingredient = {};
+    ingredient["weightInGrams"] = suggestion.weightInGrams;
+    ingredient["measure"] = suggestion.measure;
+    ingredient["energyPerMeasure"] = suggestion.energyPerMeasure;
+    ingredients[suggestion.description] = ingredient;
 
     // Configure units
     var unitNumber = this.id.split("-")[1];
