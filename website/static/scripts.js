@@ -8,15 +8,16 @@ var weightConversionUnits = {
   "pounds": 453.592
 }
 
-function appendRow(tableID) {
+function appendRow() {
   const table = document.getElementById("input-table");
-  if ($("#ingredient-1").val() == ""
-      || $("#amount-1").val() == ""
-      || $("#unit-1").val() == "") {
-    alert("Please fill in all input fields for the previous ingredient");
-  } else {
+  //if ($("#ingredient-1").val() == ""
+  //    || $("#amount-1").val() == ""
+  //    || $("#unit-1").val() == "") {
+  //  alert("Please fill in all input fields for the previous ingredient");
+  //} else {
     var newRow = table.insertRow(-1);
     numberOfRows++;
+
     const input1 = "<div class=\"input\" id=\"ingredient\">\n"
       + "  <input type=\"text\" id=\"ingredient-" + numberOfRows + "\" "
       + "class=\"input-ingredient typeahead\" "
@@ -30,30 +31,39 @@ function appendRow(tableID) {
       + "  <select type=\"text\" id=\"unit-" + numberOfRows + "\" "
       + "class=\"input-unit\" placeholder=\"Choose Unit\">\n"
       + "</div>";
+    const input4 = "<div class=\"input\">\n"
+      + "  <input type=\"button\" "
+      + "value=\"Delete...\" "
+      + "class=\"btn btn-primary\" "
+      + "onclick=\"deleteRow(this)\">\n"
+      + "</div>";
+
     var cell1 = newRow.insertCell(0);
     var cell2 = newRow.insertCell(1);
     var cell3 = newRow.insertCell(2);
+    var cell4 = newRow.insertCell(3);
     cell1.innerHTML = input1;
     cell2.innerHTML = input2;
     cell3.innerHTML = input3;
+    cell4.innerHTML = input4;
     configure();
-  }
+  //}
 }
 
-function deleteLastRow(tableID) {
+function deleteRow(row) {
   if (numberOfRows > 1) {
     numberOfRows--;
     const table = document.getElementById("input-table");
-    table.deleteRow(-1);
+    var rowNumber = $(row).closest('tr').index() + 1;
+    table.deleteRow(rowNumber);
   }
 }
 
 function getInput() {
-  
   // Calculate total calories (grams only)
   var form = document.forms["calorie-input"];
   var totalCalories = 0;
-  for (let i = 0; i < form.length - 4; i += 3) {
+  for (let i = 0; i < form.length - 3; i += 4) {
     let description = form[i].value;
     let ingredient = ingredients[description];
     let unit = form[i + 2].value;

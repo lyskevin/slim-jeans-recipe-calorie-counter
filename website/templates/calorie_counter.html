@@ -27,22 +27,42 @@
           <thead>
             <th>Ingredients</th>
             <th>Amount</th>
+            <th>Unit</th>
+            <th>Delete</th>
           </thead>
           <tbody>
             <tr>
               <td>
                 <div class="input" id="ingredient">
-                  <input type="text" id="ingredient-1" class="input-ingredient typeahead" placeholder="Enter Ingredient">
+                  <input type="text"
+                         id="ingredient-1"
+                         class="input-ingredient typeahead"
+                         placeholder="Enter Ingredient">
                 </div>
               </td>
               <td>
                 <div class="input">
-                  <input type="number" id="amount-1" min="0" class="input-amount" placeholder="Enter Amount">
+                  <input type="number"
+                         id="amount-1"
+                         min="0"
+                         class="input-amount"
+                         placeholder="Enter Amount">
                 </div>
               </td>
               <td>
                 <div class="input">
-                  <select type="text" id="unit-1" class="input-unit" placeholder="Choose Unit">
+                  <select type="text"
+                          id="unit-1"
+                          class="input-unit"
+                          placeholder="Choose Unit">
+                </div>
+              </td>
+              <td>
+                <div class="input">
+                  <input type="button"
+                         class="btn btn-primary"
+                         value="Delete..."
+                         onclick="deleteRow(this)">
                 </div>
               </td>
             </tr>
@@ -53,12 +73,7 @@
         <input type="button"
                class="btn btn-primary"
                value="Add Ingredient"
-               onclick="appendRow('input-table')">
-
-        <input type="button"
-               class="btn btn-primary"
-               value="Delete Ingredient"
-               onclick="deleteLastRow('input-table')">
+               onclick="appendRow()">
 
         <input type="reset"
                class="btn btn-primary"
