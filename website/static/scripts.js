@@ -1,5 +1,12 @@
 var numberOfRows = 1; // current number of rows
 var ingredients = {};
+var weightConversionUnits = {
+  "milligrams": 0.001,
+  "grams": 1.0,
+  "kilograms": 1000.0,
+  "ounces": 28.3495,
+  "pounds": 453.592
+}
 
 function appendRow(tableID) {
   const table = document.getElementById("input-table");
@@ -49,9 +56,14 @@ function getInput() {
   for (let i = 0; i < form.length - 4; i += 3) {
     let description = form[i].value;
     let ingredient = ingredients[description];
-    let calories = (form[i + 1].value / ingredient["weightInGrams"])
-                   * ingredient["energyPerMeasure"];
-    totalCalories += calories;
+    let unit = form[i + 2].value;
+    if (unit in weightConversionUnits) {
+      let conversionFactor = weightConversionUnits[unit];
+      totalCalories += (form[i + 1].value / ingredient["weightInGrams"])
+                       * ingredient["energyPerMeasure"] * conversionFactor;
+    } else {
+      alert("Unit not found");
+    }
   }
 
   // Display total calories
@@ -97,9 +109,11 @@ function configure() {
     var units = document.getElementById("unit-" + unitNumber);
     units.options[0] = new Option("Choose Units", "units");
     units.options[0].disabled = true;
-    units.options[1] = new Option("grams (g)", "grams");
-    units.options[2] = new Option("ounces (oz)", "ounces");
-    units.options[3] = new Option("pounds (lb)", "pounds");
+    units.options[1] = new Option("milligrams (mg)", "milligrams");
+    units.options[2] = new Option("grams (g)", "grams");
+    units.options[3] = new Option("kilograms (kg)", "kilograms");
+    units.options[4] = new Option("ounces (oz)", "ounces");
+    units.options[5] = new Option("pounds (lb)", "pounds");
 
   });
 
