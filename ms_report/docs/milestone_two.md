@@ -6,7 +6,7 @@
 ## How does it work?
 As opposed to what was proposed in Milestone One, are using a mix of:
 
-* **HTML/CSS** and **Vanilla Javascript** for the front-end
+* **HTML/CSS** and **Javascript** for the front-end
 * **Python** using the `Flask` back-end framework
 * **SQL** to store the nutritional information of various foods
   * Data is obtained from [USDA]()

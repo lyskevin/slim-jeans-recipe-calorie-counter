@@ -64,11 +64,10 @@
                class="btn btn-primary"
                value="Reset All">
         <br><br>
-        <button type="submit"
-                class="btn btn-primary"
-                onclick="getInput()">
-                Analyze Calories
-        </button>
+        <input type="button"
+               class="btn btn-primary"
+               value="Analyze Calories"
+               onclick="getInput()">
       </div>
     </form>
   </div>
@@ -76,16 +75,23 @@
   <h2>How to use it?</h2>
   <p>
     It's simple - take any recipe off the internet, and list its ingredients
-    in the form above. The form will spit out the number of calories contained
-    within the recipe.
+    in the calculator above. Click on "Analyze Calories" and the calculator
+    will give you the number of calories contained within the recipe, along
+    with a chart showing which ingredient contributes the most to the total
+    caloric intake.
   </p>
-
-  <h2>Where do we get our information from?</h2>
+  <p>
+    You can then further edit the recipe to see how the calories change with
+    the ingredients, including possible healthier alternatives.
+  </p>
+  <h2>Where do we get our nutritional information from?</h2>
   <p>
     Our information is obtained directly from the
     <a href="https://ndb.nal.usda.gov/ndb/">USDA</a>.
-    We have organised the information into our database to give an estimate
-    on the calorie count of any particular recipe.
+    We have organised the information from the source, into our database to
+    give an estimate on the calorie count of any particular recipe. We are then
+    able to give reliable information on what exactly you're eating in your
+    food.
   </p>
 </div>
 {% endblock %}
