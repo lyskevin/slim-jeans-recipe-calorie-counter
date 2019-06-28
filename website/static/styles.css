@@ -45,17 +45,23 @@ figcaption {
     margin: 20px;
 }
 
-.calorie-container {
+.calorie-container, .result-container {
     border-style: solid;
     border-width: .1rem;
     border-color: lightgrey;
     margin: 0px 0px 40px 0px;
 }
 
-.calorie-form {
+.calorie-form, .result-box {
     padding: 15px 15px 15px 15px;
     margin: 15px 15px 15px 15px;
     background-color: #dbe2ef;
+}
+
+.calorie-result {
+    font-weight: bold;
+    font-size: 50px;
+    color: black;
 }
 
 .input-table {

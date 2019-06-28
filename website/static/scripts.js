@@ -77,8 +77,8 @@ function getInput() {
   }
 
   // Display total calories
-  alert(totalCalories);
-  
+  // alert(totalCalories);
+  displayResults(totalCalories);
 }
 
 // Execute when the DOM is fully loaded
@@ -144,3 +144,21 @@ function search(query, syncResults, asyncResults) {
 
 }
 
+/* Inserts HTML to display calorie results on the webpage */
+/* individualCalories: array representing calorie of each ingredient */
+function displayResults(totalCalories, individualCalories) {
+  var toInsertAfter = document.getElementsByClassName("calorie-container")[0];
+  var result_container = document.createElement("div");
+  result_container.setAttribute("class", "result-container");
+  var resultBox = document.createElement("div");
+  resultBox.setAttribute("class", "result-box");
+  resultBox.innerHTML = "<h3>This recipe contains...</h3>"
+    + "<p class=\"calorie-result\">"
+    + Math.floor(totalCalories) + " calories</p>";
+
+  result_container.appendChild(resultBox);
+  insertAfter(result_container, toInsertAfter);
+}
+function insertAfter(el, referenceNode) {
+  referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
+}
