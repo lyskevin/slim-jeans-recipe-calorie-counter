@@ -1,7 +1,7 @@
 # Milestone 2
-*Updated as of 30th June 2019, 4:26pm*
+*Updated as of 30th June 2019, 5:30pm*
 
-Proposed Level of Achievement: Apollo 11
+**Proposed Level of Achievement:** Apollo 11
 
 ## 1. Overview
 As opposed to what was proposed in Milestone One, are using a mix of:
@@ -129,7 +129,7 @@ As stated earlier, the primary framework used in the back-end is Python's
 
 We used Flask to render different HTML templates based on the route chosen.
 For instance, the home page results in "index.html" being loaded onto the user's
-screen, and the calorie counter page serves "calorie\_counter.html".
+screen, and the calorie counter page serves `calorie_counter.html`.
 
 Flask enables us to use Python code to handle back end logic such as the
 establishing a connection to the database and executing SQL commands from there.
