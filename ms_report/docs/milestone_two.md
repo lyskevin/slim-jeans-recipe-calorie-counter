@@ -127,7 +127,16 @@ in the resulting dropdown box.
 As stated earlier, the primary framework used in the back-end is Python's
 **Flask** framework.
 
-<!-- Insert information about Python and Flask here -->
+We used Flask to render different HTML templates based on the route chosen.
+For instance, the home page results in "index.html" being loaded onto the user's
+screen, and the calorie counter page serves "calorie\_counter.html".
+
+Flask enables us to use Python code to handle back end logic such as the
+establishing a connection to the database and executing SQL commands from there.
+Also, Python's wide variety of libraries contain code abstractions which allow us to
+focus more on what we want to implement instead of how we want to do it. Finally,
+we plan to use additional Python libraries to implement Milestone Three features
+such as graph generation for users.
 
 ### 3.2 SQL and Database
 
