@@ -84,12 +84,13 @@ Theme by GitBook
 
 
 <h1 id="milestone-2">Milestone 2</h1>
-<p><strong>TODO BY July 1</strong></p>
+<p><em>Updated as of 30th June 2019, 4:26pm</em></p>
+<p>Proposed Level of Achievement: Apollo 11</p>
 <h2 id="1-overview">1. Overview</h2>
 <p>As opposed to what was proposed in Milestone One, are using a mix of:</p>
 <ul>
 <li><strong>HTML/CSS</strong> and <strong>Javascript</strong> for the front-end</li>
-<li><strong>Python</strong> using the <code>Flask</code> back-end framework</li>
+<li><strong>Python</strong> using the <strong>Flask</strong> back-end framework</li>
 <li><strong>SQL</strong> to store the nutritional information of various foods</li>
 <li>Data is obtained from <a href="https://ndb.nal.usda.gov/ndb/">USDA</a></li>
 </ul>
@@ -100,16 +101,16 @@ user.</p>
 <h2 id="2-front-end">2. Front-end</h2>
 <h3 id="21-htmlcss-and-javascript">2.1 HTML/CSS and Javascript</h3>
 <p>We decided not to go with any Javascript frameworks as we had a lot of
-difficulties integrating <code>Flask</code> with any framework such as <code>React</code> or <code>Node</code>.
+difficulties integrating Flask with any framework such as <code>React</code> or <code>Node</code>.
 Thus, we decided to go with stock JS for our front-end.</p>
 <p>The actual logic in displaying the calories is quite simple, all it does is
 insert HTML into the website when the information is returned to Javascript
 after Flask returns the information it gets from the SQL database.</p>
 <p>Calculating the number of calories was more difficult than expected. We wanted
 the user to be able to input any (appropriate) type of measurement for any
-ingredient in the database, so if you needed some sweetened condensed milk
-in your recipe, you could add any amount you like (tbsp, tsp, cup, ...). This
-required a large deal of unit conversion.</p>
+ingredient in the database, so if one needed some sweetened condensed milk
+in your recipe, they could add any amount they like (tbsp, tsp, cup, ...).
+This required us to exhaust every possible case for unit conversion.</p>
 <p>There were a very large number of units of measurement, such as <em>grams</em>,
 <em>pounds</em>, <em>fluid ounce</em>, <em>cups</em>, etc and items such as avocadoes had very
 weird measurements such as <em>cup, whole, without pits</em> and
@@ -125,7 +126,8 @@ whatever mass unit was given, into grams, then ran it through the database
 to return the number of calories.</p>
 <h4 id="volume-ingredients">Volume ingredients</h4>
 <p>Since the amount of ingredients you could use in a recipe is very varied, we
-couldn't limit the user to use big measurements such as <em>cups</em> or <em>litres</em>,
+could notlimit the user to use big, simple measurements such as <em>cups</em> or
+<em>litres</em> only,
 we had to accommodate for <em>tsp</em> or <em>tbsp</em> as well. We settled on a conversion
 table:</p>
 <table>
@@ -185,18 +187,18 @@ table:</p>
 </tbody>
 </table>
 <h3 id="22-python-and-jinja2">2.2 Python and Jinja2</h3>
-<p>While <code>Flask</code> was primarily used for the back-end, it was still useful to us
+<p>While Flask was primarily used for the back-end, it was still useful to us
 in the front-end, primarily for <em>HTML reusability</em>.</p>
 <p>For example, we have a layout of the website that contains the sidenav, topnav,
 relevant stylesheets and icons, etc. that are present across all pages. Using
-<code>Flask</code>, we are able to create a template for each page using a <code>layout.html</code>
+Flask, we are able to create a template for each page using a <code>layout.html</code>
 file. Common elements across webpages were easier to reuse in
 other webpages without having to copy the code, by specifying a line in the
 preamble such as</p>
 <div class="highlight"><pre><span></span>{% extends layout.html %}
 </pre></div>
 
-<p><code>Flask</code> also allowed us to use Python code to dynamically generate HTML
+<p>Flask also allowed us to use Python code to dynamically generate HTML
 elements within each HTML file. This was done using codeblocks such as:</p>
 <div class="highlight"><pre><span></span>{% for i in range(x,y) %}
 
@@ -205,7 +207,7 @@ elements within each HTML file. This was done using codeblocks such as:</p>
 {% endfor %}
 </pre></div>
 
-<p>This does about exactly what one might expect.</p>
+<p>This does exactly what one might expect.</p>
 <h3 id="23-autocomplete-using-typeaheadjs">2.3 Autocomplete using <code>typeahead.js</code></h3>
 <p>To avoid cases where the user inputs any ingredient other than those found in
 the database, the site features an autocomplete system that forces users to
@@ -217,13 +219,20 @@ provided by Twitter.</p>
 to the back-end database and finds all entries that match what the user
 has typed, and returns a dropdown menu containing all relevant entries. As the
 user types more characters, the search narrows to more relevant entries.</p>
-<p>The data provided by the USDA is named in a such a way that is common
-to logistics. For example, a "Fuji Apple" may be named "Apple, Fuji". Thus,
-we cannot use any <code>substring</code> methods of searching. The method we used is to
+<p>We had some issues in relation to data processing: the data provided by the
+USDA is named in a such a way that is common to logistics, but a pain to
+manage in code. For example, "Fuji Apple" may be named "Apple, Fuji". Thus,
+we cannot use any <code>substring</code> methods of searching.</p>
+<p>The method we used to overcome this limitation is to
 retrieve all entries that match the first word, then retrieve all sub-entries
-that contain every subsequent word in the query.</p>
+that contain every subsequent word in the query, which are the results displayed
+in the resulting dropdown box.</p>
 <h2 id="3-back-end">3. Back-end</h2>
 <h3 id="31-python-and-flask">3.1 Python and Flask</h3>
+<p>As stated earlier, the primary framework used in the back-end is Python's
+<strong>Flask</strong> framework.</p>
+<!-- Insert information about Python and Flask here -->
+
 <h3 id="32-sql-and-database">3.2 SQL and Database</h3>
 <p>The database took up the brunt of the work for the project. The
 <a href="https://ndb.nal.usda.gov/ndb/">USDA</a>
@@ -239,11 +248,12 @@ the amount of calories per unit measure, allowing us to have an easier
 time managing the data to output to the webpage.</p>
 <p>The management of the data in the calculating of the final result was
 discussed in the <a href="#21-htmlcss-and-javascript">previous section</a>.</p>
-<p>Using <code>Flask</code>, we were able to use Python to query the database using SQL
+<p>Using Flask, we were able to use Python to query the database using SQL
 language and return it to the front-end Javascript using the <code>jsonify()</code>
 method. From there, the data is directly handled by the Javascript.</p>
 <h3 id="33-jquery">3.3 JQuery</h3>
-<p>We used JQuery in DOM traversal and manipulation.</p>
+<p>JQuery's main use is in DOM traversal and manipulation, thus it is used everywhere in the project.
+We haven't encountered any issues with JQuery thus far.</p>
 <h2 id="4-addressing-some-concerns">4. Addressing Some Concerns</h2>
 <p>We read through the feedback from Milestone One, and we would like to address
 some of the important issues that were brought up.</p>
@@ -252,8 +262,9 @@ some of the important issues that were brought up.</p>
 <p>Would the user have to obtain recipes of every food item they consume?</p>
 </blockquote>
 <p>We are actually targetting those who are cooking or looking up recipes to track
-what they are eating. So unfortunately, we won't be able to track the number
-of calories of complex dishes such as Yong Tau Foo.</p>
+what they are eating. It is also very difficult to determine how many calories
+go into a specific meal from a specific restaurant/food court. Thus, we have
+decided that this feature is not practical to implement.</p>
 <hr />
 <blockquote>
 <p>Could you use Natural Language Processing techniques to extract relevant
@@ -273,11 +284,13 @@ level and is impractical for a three month long project.</p>
 </blockquote>
 <p>The main reason is to personalise the way that we deliver nutritional
 information to the user. For example, in Milestone One, we planned to implement
-a feature that shows personalised content to each user, such as caloric
-in-take over a certain time period. This is easier done with user accounts.</p>
-<p>We planned to use Facebook/Google sign-in as it is more convenient, and is
-safer to allow an established third-party to handle user accounts and passwords
-for us.</p>
+a feature by Milestone Three that shows personalised content to each user,
+such as caloric in-take over a certain time period. This would be done using
+user accounts.</p>
+<p>As for why we planned to use Facebook/Google sign-in over handling user
+account info ourselves: we planned to use Facebook/Google sign-in as it is more
+convenient, and is safer in terms of web security, to allow an established
+third-party to handle user accounts and passwords for us.</p>
 <hr />
 <blockquote>
 <p>Food Recommendation criticisms (Feature four)</p>
@@ -285,17 +298,30 @@ for us.</p>
 <p>The original intention of this feature was in relation to the previous
 point, where we would be tracking caloric intake over the day. So if one
 had 800 calories left for the day, the program could supply an example recipe
-in the ballpark of 800 calories. We realise that implementing this feature
-may be difficult and not a priority. Thus, this feature is a KIV, but likely
-will not be implemented.</p>
+in the ballpark of 800 calories. From the feedback, we realise that implementing
+this feature may be difficult and not a priority. Thus, this feature is a KIV,
+but likely will not be implemented.</p>
 <h2 id="plans-for-refinement">Plans for Refinement</h2>
 <ul>
-<li>Graph Generator</li>
-<li>Sign-ins</li>
 <li>Better UI</li>
-<li>Web Security</li>
+</ul>
+<p>The current UI is decent, but a bit plain. We hope to make it more
+  appealing to the eye.</p>
+<ul>
+<li>Greater Web Security</li>
+</ul>
+<p>As this is a prototype, more focus was made on getting the result to
+   display on the webpage.</p>
+<ul>
 <li>Caloric Breakdown for each ingredient (such as pie chart)</li>
 </ul>
+<p>This extends the result of the calorie analyzation. Instead of just
+  returning the calories, the app could return a breakdown of how much
+  each ingredient contributes to the overall recipe.</p>
+<ul>
+<li>Caloric Graphs for each User Account </li>
+</ul>
+<p>... And all those mentioned in Milestone One</p>
 <h2 id="5-project-log">5. Project Log</h2>
 <p>As per Milestone One, the hours we spent on this project is documented
 <a href="https://docs.google.com/spreadsheets/d/17kEtNaCyYZzXc2UWd6ss4zXTWQ4-QY7XN3ODB6DpEJs/edit?usp=sharing">in this Google Sheet</a></p>
