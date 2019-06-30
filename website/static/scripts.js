@@ -6,15 +6,75 @@ var weightConversionUnits = {
   "kilograms": 1000.0,
   "ounces": 28.3495,
   "pounds": 453.592
-}
+};
+var volumeConversionUnits = {
+  "cups": {
+    "cups": 1,
+    "tablespoons": 16,
+    "teaspoons": 48,
+    "litres": 0.236588,
+    "millilitres": 236.588,
+    "pints": 0.5,
+    "fluid ounces": 8
+  },
+  "tablespoons": {
+    "cups": 0.0625,
+    "tablespoons": 1,
+    "teaspoons": 3,
+    "litres": 0.0147868,
+    "millilitres": 14.7868,
+    "pints": 0.03125,
+    "fluid ounces": 0.5
+  },
+  "teaspoons": {
+    "cups": 0.0208333,
+    "tablespoons": 0.333333,
+    "teaspoons": 1,
+    "litres": 0.00492892,
+    "millilitres": 4.92892,
+    "pints": 0.0104167,
+    "fluid ounces": 0.166667
+  },
+  "litres": {
+    "cups": 4.22675,
+    "tablespoons": 67.628,
+    "teaspoons": 202.884,
+    "litres": 1,
+    "millilitres": 1000,
+    "pints": 2.11338,
+    "fluid ounces": 33.814
+  },
+  "millilitres": {
+    "cups": 0.00422675,
+    "tablespoons": 0.067628,
+    "teaspoons": 0.202884,
+    "litres": 0.001,
+    "millilitres": 1,
+    "pints": 0.00211338,
+    "fluid ounces": 0.033814
+  },
+  "pints": {
+    "cups": 2,
+    "tablespoons": 32,
+    "teaspoons": 96,
+    "litres": 0.473176,
+    "millilitres": 473.176,
+    "pints": 1,
+    "fluid ounces": 16
+  },
+  "fluid ounces": {
+    "cups": 0.125,
+    "tablespoons": 2,
+    "teaspoons": 6,
+    "litres": 0.0295735,
+    "millilitres": 29.5735,
+    "pints": 0.0625,
+    "fluid ounces": 1
+  }
+};
 
 function appendRow() {
   const table = document.getElementById("input-table");
-  //if ($("#ingredient-1").val() == ""
-  //    || $("#amount-1").val() == ""
-  //    || $("#unit-1").val() == "") {
-  //  alert("Please fill in all input fields for the previous ingredient");
-  //} else {
     var newRow = table.insertRow(-1);
     numberOfRows++;
 
