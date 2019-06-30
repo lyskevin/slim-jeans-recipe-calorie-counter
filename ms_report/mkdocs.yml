@@ -21,8 +21,8 @@ markdown_extensions:
     - pymdownx.superfences
     - pymdownx.arithmatex
     - pymdownx.caret
-    - codehilite:
-        linenums: True
+    # - codehilite:
+    #    linenums: True
 
 extra_css:
     - 'stylesheets/extra.css'
