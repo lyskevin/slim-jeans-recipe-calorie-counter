@@ -107,7 +107,6 @@ function appendRow() {
     cell3.innerHTML = input3;
     cell4.innerHTML = input4;
     configure();
-  //}
 }
 
 function deleteRow(row) {
@@ -208,17 +207,29 @@ function search(query, syncResults, asyncResults) {
 /* individualCalories: array representing calorie of each ingredient */
 function displayResults(totalCalories, individualCalories) {
   var toInsertAfter = document.getElementsByClassName("calorie-container")[0];
+  var result_container = document.getElementsByClassName("result-container")[0];
+  if (result_container != null) {
+    result_container.parentNode.removeChild(result_container);
+  }
+  result_container = createResultContainer(totalCalories);
+  insertAfter(result_container, toInsertAfter);
+}
+
+function insertAfter(el, referenceNode) {
+  referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
+}
+
+function createResultContainer(totalCalories) {
   var result_container = document.createElement("div");
   result_container.setAttribute("class", "result-container");
+  
   var resultBox = document.createElement("div");
   resultBox.setAttribute("class", "result-box");
+
   resultBox.innerHTML = "<h3>This recipe contains...</h3>"
     + "<p class=\"calorie-result\">"
     + Math.floor(totalCalories) + " calories</p>";
-
   result_container.appendChild(resultBox);
-  insertAfter(result_container, toInsertAfter);
-}
-function insertAfter(el, referenceNode) {
-  referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
+
+  return result_container;
 }
