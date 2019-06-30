@@ -85,6 +85,220 @@ Theme by GitBook
 
 <h1 id="milestone-2">Milestone 2</h1>
 <p><strong>TODO BY July 1</strong></p>
+<h2 id="1-overview">1. Overview</h2>
+<p>As opposed to what was proposed in Milestone One, are using a mix of:</p>
+<ul>
+<li><strong>HTML/CSS</strong> and <strong>Javascript</strong> for the front-end</li>
+<li><strong>Python</strong> using the <code>Flask</code> back-end framework</li>
+<li><strong>SQL</strong> to store the nutritional information of various foods</li>
+<li>Data is obtained from <a href="https://ndb.nal.usda.gov/ndb/">USDA</a></li>
+</ul>
+<p>The big overview is the front-end JS communicates with the Python backend,
+the Python then makes a query to the SQL database and returns the relevant
+information, which is then passed back to the front-end to display to the
+user.</p>
+<h2 id="2-front-end">2. Front-end</h2>
+<h3 id="21-htmlcss-and-javascript">2.1 HTML/CSS and Javascript</h3>
+<p>We decided not to go with any Javascript frameworks as we had a lot of
+difficulties integrating <code>Flask</code> with any framework such as <code>React</code> or <code>Node</code>.
+Thus, we decided to go with stock JS for our front-end.</p>
+<p>The actual logic in displaying the calories is quite simple, all it does is
+insert HTML into the website when the information is returned to Javascript
+after Flask returns the information it gets from the SQL database.</p>
+<p>Calculating the number of calories was more difficult than expected. We wanted
+the user to be able to input any (appropriate) type of measurement for any
+ingredient in the database, so if you needed some sweetened condensed milk
+in your recipe, you could add any amount you like (tbsp, tsp, cup, ...). This
+required a large deal of unit conversion.</p>
+<p>There were a very large number of units of measurement, such as <em>grams</em>,
+<em>pounds</em>, <em>fluid ounce</em>, <em>cups</em>, etc and items such as avocadoes had very
+weird measurements such as <em>cup, whole, without pits</em> and
+<em>cup, quartered or chopped</em>. This made it very difficult to accurately
+calculate the number of calories as we needed to convert the user input
+information into a standard unit, then perform arithmetic to get the result.</p>
+<p>We split the ingredients into two main categories: mass and volume ingredients.</p>
+<h4 id="mass-ingredients">Mass Ingredients</h4>
+<p>This included ingredients such as chicken breast, pork loin, steak, lamb
+chops, etc i.e any ingredient whose caloric information is defined in terms
+of <em>grams</em>. This was much simpler than volume, we simple converted from
+whatever mass unit was given, into grams, then ran it through the database
+to return the number of calories.</p>
+<h4 id="volume-ingredients">Volume ingredients</h4>
+<p>Since the amount of ingredients you could use in a recipe is very varied, we
+couldn't limit the user to use big measurements such as <em>cups</em> or <em>litres</em>,
+we had to accommodate for <em>tsp</em> or <em>tbsp</em> as well. We settled on a conversion
+table:</p>
+<table>
+<thead>
+<tr>
+<th align="left">starting unit</th>
+<th align="left">cup</th>
+<th align="left">tbsp</th>
+<th align="left">tsp</th>
+<th align="left">litre</th>
+<th align="left">millilitre</th>
+<th align="left">pint</th>
+<th align="left">fl oz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1 cup</td>
+<td align="left">1</td>
+<td align="left">16</td>
+<td align="left">48</td>
+<td align="left">0.236588</td>
+<td align="left">236.588</td>
+<td align="left">0.5</td>
+<td align="left">8</td>
+</tr>
+<tr>
+<td align="left">1 tbsp</td>
+<td align="left">0.0625</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">0.0147868</td>
+<td align="left">14.7868</td>
+<td align="left">0.03125</td>
+<td align="left">0.5</td>
+</tr>
+<tr>
+<td align="left">1 tsp</td>
+<td align="left">0.0208333</td>
+<td align="left">0.333333</td>
+<td align="left">1</td>
+<td align="left">0.00492892</td>
+<td align="left">4.92892</td>
+<td align="left">0.0104167</td>
+<td align="left">0.166667</td>
+</tr>
+<tr>
+<td align="left"><em>... etc</em></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-python-and-jinja2">2.2 Python and Jinja2</h3>
+<p>While <code>Flask</code> was primarily used for the back-end, it was still useful to us
+in the front-end, primarily for <em>HTML reusability</em>.</p>
+<p>For example, we have a layout of the website that contains the sidenav, topnav,
+relevant stylesheets and icons, etc. that are present across all pages. Using
+<code>Flask</code>, we are able to create a template for each page using a <code>layout.html</code>
+file. Common elements across webpages were easier to reuse in
+other webpages without having to copy the code, by specifying a line in the
+preamble such as</p>
+<div class="highlight"><pre><span></span>{% extends layout.html %}
+</pre></div>
+
+<p><code>Flask</code> also allowed us to use Python code to dynamically generate HTML
+elements within each HTML file. This was done using codeblocks such as:</p>
+<div class="highlight"><pre><span></span>{% for i in range(x,y) %}
+
+    // insert HTML here
+
+{% endfor %}
+</pre></div>
+
+<p>This does about exactly what one might expect.</p>
+<h3 id="23-autocomplete-using-typeaheadjs">2.3 Autocomplete using <code>typeahead.js</code></h3>
+<p>To avoid cases where the user inputs any ingredient other than those found in
+the database, the site features an autocomplete system that forces users to
+only input ingredients that are found in the database. This is was done
+using an open-source API: 
+<a href="https://github.com/twitter/typeahead.js">typeahead.js</a>
+provided by Twitter.</p>
+<p>Whenever a character is typed into an input field, the website makes a request
+to the back-end database and finds all entries that match what the user
+has typed, and returns a dropdown menu containing all relevant entries. As the
+user types more characters, the search narrows to more relevant entries.</p>
+<p>The data provided by the USDA is named in a such a way that is common
+to logistics. For example, a "Fuji Apple" may be named "Apple, Fuji". Thus,
+we cannot use any <code>substring</code> methods of searching. The method we used is to
+retrieve all entries that match the first word, then retrieve all sub-entries
+that contain every subsequent word in the query.</p>
+<h2 id="3-back-end">3. Back-end</h2>
+<h3 id="31-python-and-flask">3.1 Python and Flask</h3>
+<h3 id="32-sql-and-database">3.2 SQL and Database</h3>
+<p>The database took up the brunt of the work for the project. The
+<a href="https://ndb.nal.usda.gov/ndb/">USDA</a>
+provides a big list of caloric and nutritional information on many common
+foods in the United States that is still relevant to the Singapore context,
+although it might not have foods such as Bak Chor Mee or Chee Cheong Fun.</p>
+<p>Fortunately, the USDA allows its information to be freely used, and allows the
+public to download the data into a compact <code>.csv</code> file. The data contains about
+7500 entries on different foods as documented by the USDA. We trimmed
+down the data of all the nutritional information and only focused on the
+number the calories of each ingredient. Conveniently, each entry also came with
+the amount of calories per unit measure, allowing us to have an easier
+time managing the data to output to the webpage.</p>
+<p>The management of the data in the calculating of the final result was
+discussed in the <a href="#21-htmlcss-and-javascript">previous section</a>.</p>
+<p>Using <code>Flask</code>, we were able to use Python to query the database using SQL
+language and return it to the front-end Javascript using the <code>jsonify()</code>
+method. From there, the data is directly handled by the Javascript.</p>
+<h3 id="33-jquery">3.3 JQuery</h3>
+<p>We used JQuery in DOM traversal and manipulation.</p>
+<h2 id="4-addressing-some-concerns">4. Addressing Some Concerns</h2>
+<p>We read through the feedback from Milestone One, and we would like to address
+some of the important issues that were brought up.</p>
+<hr />
+<blockquote>
+<p>Would the user have to obtain recipes of every food item they consume?</p>
+</blockquote>
+<p>We are actually targetting those who are cooking or looking up recipes to track
+what they are eating. So unfortunately, we won't be able to track the number
+of calories of complex dishes such as Yong Tau Foo.</p>
+<hr />
+<blockquote>
+<p>Could you use Natural Language Processing techniques to extract relevant
+data from copy-pasted recipe text? Instead of using drop-down menus.</p>
+</blockquote>
+<p>This was heavily considered after we read it. We decided to search up
+Natural Language Processing APIs, and those that we found that are specific to
+food are usually licensed and required payment (For one API that we found,
+the entry-level API package is USD300 per month!). The free versions did not
+have the required features for our
+implementation either. We also determined that writing our own Natural
+Language Processing engine would be extremely difficult for our skill
+level and is impractical for a three month long project.</p>
+<hr />
+<blockquote>
+<p>Why do we need Facebook and Google sign-ins?</p>
+</blockquote>
+<p>The main reason is to personalise the way that we deliver nutritional
+information to the user. For example, in Milestone One, we planned to implement
+a feature that shows personalised content to each user, such as caloric
+in-take over a certain time period. This is easier done with user accounts.</p>
+<p>We planned to use Facebook/Google sign-in as it is more convenient, and is
+safer to allow an established third-party to handle user accounts and passwords
+for us.</p>
+<hr />
+<blockquote>
+<p>Food Recommendation criticisms (Feature four)</p>
+</blockquote>
+<p>The original intention of this feature was in relation to the previous
+point, where we would be tracking caloric intake over the day. So if one
+had 800 calories left for the day, the program could supply an example recipe
+in the ballpark of 800 calories. We realise that implementing this feature
+may be difficult and not a priority. Thus, this feature is a KIV, but likely
+will not be implemented.</p>
+<h2 id="plans-for-refinement">Plans for Refinement</h2>
+<ul>
+<li>Graph Generator</li>
+<li>Sign-ins</li>
+<li>Better UI</li>
+<li>Web Security</li>
+<li>Caloric Breakdown for each ingredient (such as pie chart)</li>
+</ul>
+<h2 id="5-project-log">5. Project Log</h2>
+<p>As per Milestone One, the hours we spent on this project is documented
+<a href="https://docs.google.com/spreadsheets/d/17kEtNaCyYZzXc2UWd6ss4zXTWQ4-QY7XN3ODB6DpEJs/edit?usp=sharing">in this Google Sheet</a></p>
 
 
 </section>
