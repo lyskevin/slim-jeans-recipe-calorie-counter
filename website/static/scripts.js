@@ -85,7 +85,8 @@ function appendRow() {
       + "</div>";
     const input2 = "<div class=\"input\">\n"
       + "  <input type=\"number\" id=\"amount-" + numberOfRows + "\" min=\"0\" "
-      + "class=\"input-amount\" placeholder=\"Enter Amount\">\n"
+      + "step=\"0.000001\" class=\"input-amount\" "
+      + "placeholder=\"Enter Amount\">\n"
       + "</div>";
     const input3 = "<div class=\"input\">\n"
       + "  <select type=\"text\" id=\"unit-" + numberOfRows + "\" "
