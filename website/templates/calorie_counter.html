@@ -10,8 +10,7 @@
     <h1>Slim Jeans</h1>
     <h2>Recipe Calorie Counter</h2>
     <p>
-      Know what you're eating<br>
-      Note: All types of pasta fall under "Pasta" when using the ingredient text box
+      Know what you're eating
     </p>
   </div>
   <img src="../static/images/calorie_header3.jpg"
@@ -22,6 +21,11 @@
   <div class="calorie-container">
     <form class="calorie-form" id="calorie-input" name="calorie-input" method="GET">
       <div class="input-container">
+        <h4>Note</h4>
+        <ul>
+          <li>All types of pasta fall under "Pasta" in our database</li>
+          <li>Using exact weight of ingredients is always more accurate!</li>
+        </ul>
 
         <!-- Input Table for Ingredients and Amount-->
         <table class="input-table" id="input-table">
@@ -29,7 +33,7 @@
             <th>Ingredients</th>
             <th>Amount</th>
             <th>Unit</th>
-            <th>Delete</th>
+            <th></th>
           </thead>
           <tbody>
             <tr>
@@ -62,7 +66,7 @@
                 <div class="input">
                   <input type="button"
                          class="btn btn-primary"
-                         value="Delete..."
+                         value="Delete Item"
                          onclick="deleteRow(this)">
                 </div>
               </td>

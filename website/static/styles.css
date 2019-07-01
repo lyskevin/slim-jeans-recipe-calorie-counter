@@ -79,7 +79,6 @@ th {
     font-size: 30px;
 }
 
-
 .input-container {
     display: inline-block;
     margin-right: 50px;
@@ -250,5 +249,21 @@ ul ul a {
 
 /* Style Links */
 p a {
-    color: #4a90ff;
+  color: #4a90ff;
+}
+
+
+/**
+ * contact.html
+ */
+.contact {
+    padding: 30px 0px 0px 50px;
+}
+
+.contact-elements {
+    align-content: center;
+}
+
+.contact h2 {
+    align-content: center;
 }
