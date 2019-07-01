@@ -119,7 +119,7 @@ function deleteRow(row) {
 }
 
 function getInput() {
-  // Calculate total calories (grams only)
+  // Calculate total calories
   var form = document.forms["calorie-input"];
   var totalCalories = 0;
   for (let i = 0; i < form.length - 3; i += 4) {
@@ -130,8 +130,13 @@ function getInput() {
       let conversionFactor = weightConversionUnits[unit];
       totalCalories += (form[i + 1].value / ingredient["weightInGrams"])
                        * ingredient["energyPerMeasure"] * conversionFactor;
+    } else if (unit in volumeConversionUnits) {
+      let conversionFactor = volumeConversionUnits[unit][ingredient["measure"]];
+      totalCalories += (form[i + 1].value / ingredient["measureAmount"])
+                       * ingredient["energyPerMeasure"] * conversionFactor;
     } else {
-      alert("Unit not found");
+      totalCalories += (form[i + 1].value / ingredient["measureAmount"])
+                       * ingredient["energyPerMeasure"];
     }
   }
 
@@ -169,23 +174,71 @@ function configure() {
     // Configure ingredient information
     var ingredient = {};
     ingredient["weightInGrams"] = suggestion.weightInGrams;
-    ingredient["measure"] = suggestion.measure;
+    var measure = suggestion.measure;
     ingredient["energyPerMeasure"] = suggestion.energyPerMeasure;
     ingredients[suggestion.description] = ingredient;
 
-    // Configure units
+    // Configure weight units
     var unitNumber = this.id.split("-")[1];
     var units = document.getElementById("unit-" + unitNumber);
+    for (let i = units.options.length - 1; i >= 0; i -= 1) {
+      units.remove(i);
+    }
     units.options[0] = new Option("Choose Units", "units");
     units.options[0].disabled = true;
-    units.options[1] = new Option("milligrams (mg)", "milligrams");
-    units.options[2] = new Option("grams (g)", "grams");
-    units.options[3] = new Option("kilograms (kg)", "kilograms");
-    units.options[4] = new Option("ounces (oz)", "ounces");
-    units.options[5] = new Option("pounds (lb)", "pounds");
+    configureWeightUnits(units);
 
+    // Configure units related to household measures
+    if (measure.indexOf("cup") !== -1) {
+      configureVolumeUnits(units);
+      ingredient["measureAmount"] = parseFloat(measure);
+      ingredient["measure"] = "cups";
+    } else if (measure.indexOf("tbsp") !== -1) {
+      configureVolumeUnits(units);
+      ingredient["measureAmount"] = parseFloat(measure);
+      ingredient["measure"] = "tablespoons";
+    } else if (measure.indexOf("tsp") !== -1) {
+      configureVolumeUnits(units);
+      ingredient["measureAmount"] = parseFloat(measure);
+      ingredient["measure"] = "teaspoons";
+    } else if (measure.indexOf("ml") !== -1) {
+      configureVolumeUnits(units);
+      ingredient["measureAmount"] = parseFloat(measure);
+      ingredient["measure"] = "millilitres";
+    } else if (measure.indexOf("pint") !== -1) {
+      configureVolumeUnits(units);
+      ingredient["measureAmount"] = parseFloat(measure);
+      ingredient["measure"] = "pints";
+    } else if (measure.indexOf("fl oz") !== -1) {
+      configureVolumeUnits(units);
+      ingredient["measureAmount"] = parseFloat(measure);
+      ingredient["measure"] = "fluid ounces";
+    } else {
+      ingredient["measureAmount"] = parseFloat(measure);
+      ingredient["measure"] = measure.substr(measure.indexOf(" ") + 1);
+    }
   });
 
+}
+
+// Configure volume units
+function configureVolumeUnits(units) {
+  units[units.length] = new Option("cups", "cups");
+  units[units.length] = new Option("tablespoons (tbsp)", "tablespoons");
+  units[units.length] = new Option("teaspoons (tsp)", "teaspoons");
+  units[units.length] = new Option("litres (l)", "litres");
+  units[units.length] = new Option("millilitres (ml)", "millilitres");
+  units[units.length] = new Option("pints", "pints");
+  units[units.length] = new Option("fluid ounces (fl oz)", "fluid ounces");
+}
+
+// Configure weight units
+function configureWeightUnits(units) {
+  units.options[units.length] = new Option("milligrams (mg)", "milligrams");
+  units.options[units.length] = new Option("grams (g)", "grams");
+  units.options[units.length] = new Option("kilograms (kg)", "kilograms");
+  units.options[units.length] = new Option("ounces (oz)", "ounces");
+  units.options[units.length] = new Option("pounds (lb)", "pounds");
 }
 
 // Search database for typeahead's suggestions
