@@ -2111,8 +2111,8 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """01046""","Cheese food, pasteurized process, American, vitamin D fortified",113,1.0 cup,373
 """01254""","Cheese food, pasteurized process, American, without added vitamin D",113,1.0 cup,373
 """01047""","Cheese food, pasteurized process, swiss",28.35,1.0 oz,92
-"""01215""","Cheese product, pasteurized process, American, reduced fat, fortified with vitamin D",21,1.0 slice 3/4 oz,50
-"""01252""","Cheese product, pasteurized process, American, vitamin D fortified",19,1.0 slice (2/3 oz),58
+"""01215""","Cheese product, pasteurized process, American, reduced fat, fortified with vitamin D",21,1.0 slice,50
+"""01252""","Cheese product, pasteurized process, American, vitamin D fortified",19,1.0 slice,58
 """19434""","Cheese puffs and twists, corn based, baked, low fat",28.35,1.0 oz,122
 """01164""","Cheese sauce, prepared from recipe",30,2.0 tbsp,59
 """01259""","Cheese spread, American or Cheddar cheese base, reduced fat",21,1.0 piece,37
@@ -2223,13 +2223,13 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """05326""","Chicken breast tenders, breaded, cooked, microwaved",85,3.0 oz,214
 """05327""","Chicken breast tenders, breaded, uncooked",85,3.0 oz,224
 """07961""","Chicken breast, deli, rotisserie seasoned, sliced, prepackaged",12,1.0 slice,12
-"""07932""","Chicken breast, fat-free, mesquite flavor, sliced",42,1.0 serving 2 slices,34
-"""07933""","Chicken breast, oven-roasted, fat-free, sliced",42,1.0 serving 2 slices,33
-"""07935""","Chicken breast, roll, oven-roasted",56,1.0 serving 2 oz,75
+"""07932""","Chicken breast, fat-free, mesquite flavor, sliced",42,2.0 slices,34
+"""07933""","Chicken breast, oven-roasted, fat-free, sliced",42,2.0 slices,33
+"""07935""","Chicken breast, roll, oven-roasted",56,2.0 oz,75
 """05324""","Chicken patty, frozen, cooked",85,3.0 oz,244
 """05323""","Chicken patty, frozen, uncooked",85,3.0 oz,248
 """22906""","Chicken pot pie, frozen entree, prepared",302,1.0 pie,616
-"""07018""",Chicken spread,56,1.0 serving (1 serving),88
+"""07018""",Chicken spread,56,1.0 serving,88
 """22978""","Chicken tenders, breaded, frozen, prepared",21,1.0 piece,50
 """05746""","Chicken, broiler or fryers, breast, skinless, boneless, meat only, cooked, braised",85,3.0 oz,133
 """05747""","Chicken, broiler or fryers, breast, skinless, boneless, meat only, cooked, grilled",85,3.0 oz,128
@@ -2333,8 +2333,8 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """05090""","Chicken, broilers or fryers, neck, meat only, cooked, simmered",85,3.0 oz,152
 """05088""","Chicken, broilers or fryers, neck, meat only, raw",6,1.0 unit (yield from 1 lb ready-to-cook chicken),9
 """05347""","Chicken, broilers or fryers, rotisserie, original seasoning, back, meat and skin, cooked",102,1.0 back,265
-"""05341""","Chicken, broilers or fryers, rotisserie, original seasoning, back, meat only, cooked",85,1.0 serving (3 oz),174
-"""05348""","Chicken, broilers or fryers, rotisserie, original seasoning, breast, meat and skin, cooked",85,1.0 serving (3 oz),156
+"""05341""","Chicken, broilers or fryers, rotisserie, original seasoning, back, meat only, cooked",85,3.0 oz,174
+"""05348""","Chicken, broilers or fryers, rotisserie, original seasoning, breast, meat and skin, cooked",85,3.0 oz,156
 """05342""","Chicken, broilers or fryers, rotisserie, original seasoning, breast, meat only, cooked",85,3.0 oz,116
 """05344""","Chicken, broilers or fryers, rotisserie, original seasoning, skin only, cooked",85,3.0 oz,345
 """05351""","Chicken, broilers or fryers, rotisserie, original seasoning, thigh, meat and skin, cooked",89,1.0 thigh,207
@@ -2455,7 +2455,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """19902""","Chocolate, dark, 45- 59% cacao solids",28.35,1.0 oz,155
 """19903""","Chocolate, dark, 60-69% cacao solids",28.35,1.0 oz,164
 """19904""","Chocolate, dark, 70-85% cacao solids",28.35,1.0 oz,170
-"""19125""",Chocolate-flavored hazelnut spread,37,1.0 serving 2 TBSP,199
+"""19125""",Chocolate-flavored hazelnut spread,37,2.0 tbsp,199
 """35204""","Chokecherries, raw, pitted (Northern Plains Indians)",154,1.0 cup,249
 """11698""","Chrysanthemum leaves, raw",51,"1.0 cup, chopped",12
 """11767""","Chrysanthemum, garland, cooked, boiled, drained, with salt",100,"1.0 cup (1"" pieces)",20
@@ -2471,7 +2471,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """11162""","Collards, cooked, boiled, drained, without salt",190,"1.0 cup, chopped",63
 """11769""","Collards, frozen, chopped, cooked, boiled, drained, with salt",170,"1.0 cup, chopped",61
 """11164""","Collards, frozen, chopped, cooked, boiled, drained, without salt",170,"1.0 cup, chopped",61
-"""11163""","Collards, frozen, chopped, unprepared",95,0.33 package (10 oz),31
+"""11163""","Collards, frozen, chopped, unprepared",95,10.0 oz,31
 """11161""","Collards, raw",36,"1.0 cup, chopped",12
 """11165""","Coriander (cilantro) leaves, raw",4,0.25 cup,1
 """20015""","Corn bran, crude",76,1.0 cup,170
@@ -2522,7 +2522,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """11774""","Corn, sweet, yellow, frozen, kernels, cut off cob, boiled, drained, with salt",165,1.0 cup,130
 """11167""","Corn, sweet, yellow, raw",145,1.0 cup,125
 """11182""","Corn, yellow, whole kernel, frozen, microwaved",141,1.0 cup,159
-"""07020""","Corned beef loaf, jellied",28,"1.0 slice (1 oz) (4"" x 4"" x 3/32"" thick)",43
+"""07020""","Corned beef loaf, jellied",28,"1.0 oz (4"" x 4"" x 3/32"" thick)",43
 """20322""","Cornmeal, degermed, enriched, white",157,1.0 cup,581
 """20022""","Cornmeal, degermed, enriched, yellow",157,1.0 cup,581
 """20522""","Cornmeal, degermed, unenriched, white",157,1.0 cup,581
@@ -2564,11 +2564,11 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """18434""","Crackers, cheese, low sodium",14.2,0.5 oz,71
 """18965""","Crackers, cheese, reduced fat",30,1.0 serving,125
 """18214""","Crackers, cheese, regular",14.2,0.5 oz,69
-"""18927""","Crackers, cheese, sandwich-type with cheese filling",39,6.0 cracker 1 cracker = 6.5g,191
+"""18927""","Crackers, cheese, sandwich-type with cheese filling",39,6.0 crackers,191
 """18215""","Crackers, cheese, sandwich-type with peanut butter filling",14.2,0.5 oz,70
-"""28303""","Crackers, cheese, whole grain",31,1.0 serving 55 pieces,128
-"""18961""","Crackers, cream, Gamesa Sabrosas",31,11.0 crackers (1 NLEA serving),150
-"""18962""","Crackers, cream, La Moderna Rikis Cream Crackers",32,10.0 crackers (1 NLEA serving),148
+"""28303""","Crackers, cheese, whole grain",31,5.0 pieces,128
+"""18961""","Crackers, cream, Gamesa Sabrosas",31,11.0 crackers,150
+"""18962""","Crackers, cream, La Moderna Rikis Cream Crackers",32,10.0 crackers,148
 """18216""","Crackers, crispbread, rye",14.2,0.5 oz,52
 """28331""","Crackers, flavored, fish-shaped",5.2,10.0 goldfish,24
 """28345""","Crackers, gluten-free, multi-seeded and multigrain",6.1,3.0 crackers,28
@@ -2593,20 +2593,20 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """18426""","Crackers, saltines, unsalted tops (includes oyster, soda, soup)",14.2,0.5 oz,62
 """18966""","Crackers, saltines, whole wheat (includes multi-grain)",14,1.0 serving,56
 """28314""","Crackers, sandwich-type, peanut butter filled, reduced fat",36,1.0 package,157
-"""18960""","Crackers, snack, Goya Crackers",30,1.0 serving (1 NLEA serving - about 4 crackers),130
+"""18960""","Crackers, snack, Goya Crackers",30,4.0 crackers,130
 """18229""","Crackers, standard snack-type, regular",16,5.0 crackers,82
 """18427""","Crackers, standard snack-type, regular, low salt",14.2,0.5 oz,71
 """18230""","Crackers, standard snack-type, sandwich, with cheese filling",14.2,0.5 oz,68
 """18231""","Crackers, standard snack-type, sandwich, with peanut butter filling",14.2,0.5 oz,70
-"""28308""","Crackers, standard snack-type, with whole wheat",15,5.0 crackers 1 serving,69
+"""28308""","Crackers, standard snack-type, with whole wheat",15,5.0 crackers,69
 """28325""","Crackers, toast thins, low sodium",31,1.0 serving,137
-"""28327""","Crackers, water biscuits",14,4.0 cracker 1 serving,54
+"""28327""","Crackers, water biscuits",14,4.0 cracker,54
 """18428""","Crackers, wheat, low salt",14.2,0.5 oz,67
 """18950""","Crackers, wheat, reduced fat",29,1.0 serving,129
-"""18232""","Crackers, wheat, regular",34,16.0 crackers 1 serving,155
+"""18232""","Crackers, wheat, regular",34,16.0 crackers,155
 """18233""","Crackers, wheat, sandwich, with cheese filling",14.2,0.5 oz,71
 """18234""","Crackers, wheat, sandwich, with peanut butter filling",14.2,0.5 oz,70
-"""28326""","Crackers, whole grain, sandwich-type, with peanut butter filling",43,6.0 cracker 1 serving,200
+"""28326""","Crackers, whole grain, sandwich-type, with peanut butter filling",43,6.0 cracker,200
 """18235""","Crackers, whole-wheat",28,1.0 serving,120
 """18429""","Crackers, whole-wheat, low salt",14.2,0.5 oz,63
 """18949""","Crackers, whole-wheat, reduced fat",29,1.0 serving,121
@@ -2731,7 +2731,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """07021""","Dutch brand loaf, chicken, pork and beef",38,1.0 slice,104
 """11212""","Edamame, frozen, prepared",155,1.0 cup,188
 """11211""","Edamame, frozen, unprepared",118,1.0 cup,129
-"""19169""","Egg custards, dry mix",85,1.0 package (3 oz),348
+"""19169""","Egg custards, dry mix",85,3.0 oz,348
 """19205""","Egg custards, dry mix, prepared with 2% milk",141,0.5 cup,158
 """19170""","Egg custards, dry mix, prepared with whole milk",141,0.5 cup,172
 """22954""","Egg rolls, chicken, refrigerated, heated",80,1.0 roll,158
@@ -2771,23 +2771,23 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """11209""","Eggplant, raw",82,"1.0 cup, cubes",20
 """43285""","Eggs, scrambled, frozen mixture",28.35,1.0 oz,37
 """09088""","Elderberries, raw",145,1.0 cup,106
-"""05624""","Emu, fan fillet, cooked, broiled",85,1.0 serving ( 3 oz ),131
-"""05623""","Emu, fan fillet, raw",85,1.0 serving ( 3 oz ),88
+"""05624""","Emu, fan fillet, cooked, broiled",85,3.0 oz,131
+"""05623""","Emu, fan fillet, raw",85,3.0 oz,88
 """05625""","Emu, flat fillet, raw",85,3.0 oz,87
-"""05627""","Emu, full rump, cooked, broiled",85,1.0 serving ( 3 oz ),143
+"""05627""","Emu, full rump, cooked, broiled",85,3.0 oz,143
 """05626""","Emu, full rump, raw",85,3.0 oz,95
 """05622""","Emu, ground, cooked, pan-broiled",109,1.0 patty (yield from 135.8 g raw meat),178
 """05621""","Emu, ground, raw",117,1.0 patty,157
 """05628""","Emu, inside drum, raw",85,3.0 oz,92
-"""05629""","Emu, inside drums, cooked, broiled",85,1.0 serving ( 3 oz ),133
+"""05629""","Emu, inside drums, cooked, broiled",85,3.0 oz,133
 """05630""","Emu, outside drum, raw",85,3.0 oz,88
 """05631""","Emu, oyster, raw",85,3.0 oz,120
-"""05632""","Emu, top loin, cooked, broiled",85,1.0 serving ( 3 oz ),129
+"""05632""","Emu, top loin, cooked, broiled",85,3.0 oz,129
 """11213""","Endive, raw",25,"0.5 cup, chopped",4
 """18437""","English muffins, plain, enriched, without calcium propionate(includes sourdough)",28.35,1.0 oz,67
 """18438""","English muffins, plain, unenriched, with calcium propionate (includes sourdough)",28.35,1.0 oz,67
 """18439""","English muffins, plain, unenriched, without calcium propionate (includes sourdough)",28.35,1.0 oz,67
-"""28320""","English muffins, whole grain white",57,1.0 muffin 1 serving,140
+"""28320""","English muffins, whole grain white",57,1.0 muffin,140
 """11984""","Epazote, raw",0.8,1.0 tbsp,0
 """11618""","Eppaw, raw",100,1.0 cup,150
 """11214""","Escarole, cooked, boiled, drained, no salt added",150,1.0 cup,22
@@ -3013,7 +3013,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """15134""","Fish, wolffish, Atlantic, raw",85,3.0 oz,82
 """15225""","Fish, yellowtail, mixed species, cooked, dry heat",146,0.5 fillet,273
 """15135""","Fish, yellowtail, mixed species, raw",85,3.0 oz,124
-"""19187""","Flan, caramel custard, dry mix",85,1.0 package (3 oz),296
+"""19187""","Flan, caramel custard, dry mix",85,3.0 oz,296
 """18973""","Focaccia, Italian flatbread, plain",57,1.0 piece,142
 """07945""","Frankfurter, beef, heated",48,1.0 frankfurter,155
 """42179""","Frankfurter, beef, low fat",57,1.0 frankfurter,80
@@ -3021,12 +3021,12 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """07022""","Frankfurter, beef, unheated",49,1.0 hot dog,154
 """07024""","Frankfurter, chicken",85,3.0 oz,190
 """43507""","Frankfurter, low sodium",57,1.0 frankfurter,178
-"""07950""","Frankfurter, meat",52,1.0 serving (1 hot dog),151
+"""07950""","Frankfurter, meat",52,1.0 hot dog,151
 """07963""","Frankfurter, meat and poultry, cooked, boiled",50,1.0 frankfurter,149
 """07964""","Frankfurter, meat and poultry, cooked, grilled",48,1.0 frankfurter,145
 """42280""","Frankfurter, meat and poultry, low fat",143,"1.0 cup, sliced",173
 """07962""","Frankfurter, meat and poultry, unheated",51,1.0 frankfurter,141
-"""07949""","Frankfurter, meat, heated",52,1.0 serving (1 hot dog),145
+"""07949""","Frankfurter, meat, heated",52,1.0 hot dog,145
 """43130""","Frankfurter, meatless",140,"1.0 cup, sliced",326
 """07939""","Frankfurter, pork",76,1.0 link,204
 """07025""","Frankfurter, turkey",28.35,1.0 oz,63
@@ -3045,30 +3045,30 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """19230""","Frostings, vanilla, creamy, ready-to-eat",38,0.08 package,159
 """19246""","Frostings, white, fluffy, dry mix",207,1.0 package,768
 """19247""","Frostings, white, fluffy, dry mix, prepared with water",315,1.0 package yields,769
-"""19263""","Frozen novelties, fruit and juice bars",77,1.0 bar (2.5 fl oz),67
+"""19263""","Frozen novelties, fruit and juice bars",77,2.5 fl oz,67
 """43506""","Frozen novelties, ice cream type, chocolate or caramel covered, with nuts",54,1.0 bar,174
 """43269""","Frozen novelties, ice cream type, sundae, prepackaged",74,1.0 serving,141
 """42074""","Frozen novelties, ice cream type, vanilla ice cream, light, no sugar added, chocolate coated",78,1.0 bar,172
 """19217""","Frozen novelties, ice type, fruit, no sugar added",51,1.0 bar,12
 """19281""","Frozen novelties, ice type, italian, restaurant-prepared",29,1.0 fl oz,15
-"""19280""","Frozen novelties, ice type, lime",99,0.5 cup (4 fl oz),127
-"""19387""","Frozen novelties, ice type, pineapple-coconut",99,0.5 cup (4 fl oz),112
-"""19283""","Frozen novelties, ice type, pop",52,1.0 serving 1.75 fl oz pop,41
-"""43514""","Frozen novelties, ice type, pop, with low calorie sweetener",55,1.0 serving 1.75 fl oz pop,13
-"""19873""","Frozen novelties, ice type, sugar free, orange, cherry, and grape POPSICLE pops",55,1.0 serving 1.75 fl oz pop,12
+"""19280""","Frozen novelties, ice type, lime",99,0.5 cup,127
+"""19387""","Frozen novelties, ice type, pineapple-coconut",99,0.5 cup,112
+"""19283""","Frozen novelties, ice type, pop",52,1.75 fl oz,41
+"""43514""","Frozen novelties, ice type, pop, with low calorie sweetener",55,1.75 fl oz,13
+"""19873""","Frozen novelties, ice type, sugar free, orange, cherry, and grape POPSICLE pops",55,1.75 fl oz,12
 """43450""","Frozen novelties, juice type, juice with cream",71,2.0 oz,82
 """43346""","Frozen novelties, juice type, orange",29.8,1.0 fl oz,28
 """42186""","Frozen yogurts, chocolate",174,1.0 cup,228
 """42185""","Frozen yogurts, chocolate, nonfat milk, sweetened without sugar",186,1.0 cup,199
-"""19393""","Frozen yogurts, chocolate, soft-serve",72,0.5 cup (4 fl oz),115
+"""19393""","Frozen yogurts, chocolate, soft-serve",72,0.5 cup,115
 """42187""","Frozen yogurts, flavors other than chocolate",174,1.0 cup,221
 """19293""","Frozen yogurts, vanilla, soft-serve",72,0.5 cup,114
 """19294""","Fruit butters, apple",17,1.0 tbsp,29
 """19018""",Fruit syrup,334,1.0 cup,1139
 """35142""","Frybread, made with lard (Navajo)",152,1.0 piece,502
 """11988""","Fungi, Cloud ears, dried",28,1.0 cup,80
-"""17330""","Game meat , bison, ground, raw",85,1.0 serving ( 3 oz ),190
-"""17332""","Game meat , bison, top sirloin, separable lean only, 1"" steak, cooked, broiled",85,1.0 serving ( 3 oz ),145
+"""17330""","Game meat , bison, ground, raw",85,3.0 oz,190
+"""17332""","Game meat , bison, top sirloin, separable lean only, 1"" steak, cooked, broiled",85,3.0 oz,145
 """17145""","Game meat, antelope, cooked, roasted",85,3.0 oz,128
 """17144""","Game meat, antelope, raw",28.35,1.0 oz,32
 """17147""","Game meat, bear, cooked, simmered",85,3.0 oz,220
@@ -3077,16 +3077,16 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """17150""","Game meat, beaver, raw",113,4.0 oz,165
 """17153""","Game meat, beefalo, composite of cuts, cooked, roasted",85,3.0 oz,160
 """17152""","Game meat, beefalo, composite of cuts, raw",28.35,1.0 oz,41
-"""17333""","Game meat, bison, chuck, shoulder clod, separable lean only, cooked, braised",85,1.0 serving ( 3 oz ),164
-"""17334""","Game meat, bison, chuck, shoulder clod, separable lean only, raw",85,1.0 serving ( 3 oz ),101
-"""17331""","Game meat, bison, ground, cooked, pan-broiled",87,1.0 patty ( yield from 112.7 g raw meat ),207
-"""17335""","Game meat, bison, ribeye, separable lean only, 1"" steak, cooked, broiled",85,1.0 serving ( 3 oz ),150
+"""17333""","Game meat, bison, chuck, shoulder clod, separable lean only, cooked, braised",85,3.0 oz,164
+"""17334""","Game meat, bison, chuck, shoulder clod, separable lean only, raw",85,3.0 oz,101
+"""17331""","Game meat, bison, ground, cooked, pan-broiled",87,1.0 patty (yield from 112.7 g raw meat),207
+"""17335""","Game meat, bison, ribeye, separable lean only, 1"" steak, cooked, broiled",85,3.0 oz,150
 """17268""","Game meat, bison, ribeye, separable lean only, trimmed to 0"" fat, raw",28.35,1.0 oz,33
 """17157""","Game meat, bison, separable lean only, cooked, roasted",85,3.0 oz,122
 """17156""","Game meat, bison, separable lean only, raw",28.35,1.0 oz,31
 """17269""","Game meat, bison, shoulder clod, separable lean only, trimmed to 0"" fat, raw",28.35,1.0 oz,31
-"""17336""","Game meat, bison, top round, separable lean only, 1"" steak, cooked, broiled",85,1.0 serving ( 3 oz ),148
-"""17337""","Game meat, bison, top round, separable lean only, 1"" steak, raw",85,1.0 serving ( 3 oz ),104
+"""17336""","Game meat, bison, top round, separable lean only, 1"" steak, cooked, broiled",85,3.0 oz,148
+"""17337""","Game meat, bison, top round, separable lean only, 1"" steak, raw",85,3.0 oz,104
 """17267""","Game meat, bison, top sirloin, separable lean only, trimmed to 0"" fat, raw",28.35,1.0 oz,32
 """17159""","Game meat, boar, wild, cooked, roasted",85,3.0 oz,136
 """17158""","Game meat, boar, wild, raw",28.35,1.0 oz,35
@@ -3096,19 +3096,19 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """17162""","Game meat, caribou, raw",28.35,1.0 oz,36
 """17165""","Game meat, deer, cooked, roasted",85,3.0 oz,134
 """17344""","Game meat, deer, ground, cooked, pan-broiled",93,1.0 patty,174
-"""17343""","Game meat, deer, ground, raw",85,1.0 patty (cooked from 4 oz raw),133
+"""17343""","Game meat, deer, ground, raw",85,1.0 patty,133
 """17345""","Game meat, deer, loin, separable lean only, 1"" steak, cooked, broiled",54,1.0 steak,81
 """17164""","Game meat, deer, raw",28.35,1.0 oz,34
-"""17346""","Game meat, deer, shoulder clod, separable lean only, cooked, braised",85,1.0 serving ( 3 oz ),162
-"""17347""","Game meat, deer, tenderloin, separable lean only, cooked, broiled",85,1.0 serving ( 3 oz ),127
-"""17348""","Game meat, deer, top round, separable lean only, 1"" steak, cooked, broiled",102,1.0 steak ( yield from 134.9 g raw meat ),155
+"""17346""","Game meat, deer, shoulder clod, separable lean only, cooked, braised",85,3.0 oz,162
+"""17347""","Game meat, deer, tenderloin, separable lean only, cooked, broiled",85,3.0 oz,127
+"""17348""","Game meat, deer, top round, separable lean only, 1"" steak, cooked, broiled",102,1.0 steak (yield from 134.9 g raw meat),155
 """17167""","Game meat, elk, cooked, roasted",85,3.0 oz,124
-"""17339""","Game meat, elk, ground, cooked, pan-broiled",95,1.0 patty ( yield from 104.1 g raw meat ),183
-"""17338""","Game meat, elk, ground, raw",102,1.0 patty ( yield from 102.2 g raw meat ),175
-"""17340""","Game meat, elk, loin, separable lean only, cooked, broiled",114,1.0 steak ( yield from 148.1 g raw meat ),190
+"""17339""","Game meat, elk, ground, cooked, pan-broiled",95,1.0 patty (yield from 104.1 g raw meat),183
+"""17338""","Game meat, elk, ground, raw",102,1.0 patty (yield from 102.2 g raw meat),175
+"""17340""","Game meat, elk, loin, separable lean only, cooked, broiled",114,1.0 steak (yield from 148.1 g raw meat),190
 """17166""","Game meat, elk, raw",28.35,1.0 oz,31
-"""17341""","Game meat, elk, round, separable lean only, cooked, broiled",85,1.0 serving ( 3 oz ),133
-"""17342""","Game meat, elk, tenderloin, separable lean only, cooked, broiled",92,1.0 steak ( yield from 123.5 g raw meat ),149
+"""17341""","Game meat, elk, round, separable lean only, cooked, broiled",85,3.0 oz,133
+"""17342""","Game meat, elk, tenderloin, separable lean only, cooked, broiled",92,1.0 steak (yield from 123.5 g raw meat),149
 """17169""","Game meat, goat, cooked, roasted",85,3.0 oz,122
 """17168""","Game meat, goat, raw",28.35,1.0 oz,31
 """17171""","Game meat, horse, cooked, roasted",85,3.0 oz,149
@@ -3128,14 +3128,14 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """17183""","Game meat, squirrel, raw",28.35,1.0 oz,34
 """18963""","Garlic bread, frozen",43,1.0 slice presliced,150
 """11215""","Garlic, raw",136,1.0 cup,203
-"""19172""","Gelatin desserts, dry mix",85,1.0 package (3 oz),324
+"""19172""","Gelatin desserts, dry mix",85,3.0 oz,324
 """19173""","Gelatin desserts, dry mix, prepared with water",135,0.5 cup,81
 """19175""","Gelatin desserts, dry mix, reduced calorie, with aspartame",6.4,1.0 serving,13
 """19703""","Gelatin desserts, dry mix, reduced calorie, with aspartame, added phosphorus, potassium, sodium, vitamin C",9,1.0 tbsp,31
 """19704""","Gelatin desserts, dry mix, reduced calorie, with aspartame, no added sodium",9,1.0 tbsp,31
 """19176""","Gelatin desserts, dry mix, reduced calorie, with aspartame, prepared with water",117,0.5 cup,23
-"""19702""","Gelatin desserts, dry mix, with added ascorbic acid, sodium-citrate and salt",85,1.0 package (3 oz),324
-"""19177""","Gelatins, dry powder, unsweetened",7,1.0 envelope (1 tbsp),23
+"""19702""","Gelatin desserts, dry mix, with added ascorbic acid, sodium-citrate and salt",85,3.0 oz,324
+"""19177""","Gelatins, dry powder, unsweetened",7,1.0 tbsp,23
 """31033""","Ginger root, pickled, canned, with artificial sweetener",25,2.0 tbsp,5
 """11216""","Ginger root, raw",2,1.0 tsp,2
 """28356""","Glutino, Gluten Free Cookies, Chocolate Vanilla Creme",44,3.0 cookies,209
@@ -3168,7 +3168,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """09123""","Grapefruit juice, white, canned or bottled, unsweetened",257,1.0 cup,95
 """09124""","Grapefruit juice, white, canned, sweetened",250,1.0 cup,115
 """09126""","Grapefruit juice, white, frozen concentrate, unsweetened, diluted with 3 volume water",247,1.0 cup,101
-"""09125""","Grapefruit juice, white, frozen concentrate, unsweetened, undiluted",207,1.0 can (6 fl oz),302
+"""09125""","Grapefruit juice, white, frozen concentrate, unsweetened, undiluted",207,6.0 fl oz,302
 """09128""","Grapefruit juice, white, raw",247,1.0 cup,96
 """09111""","Grapefruit, raw, pink and red and white, all areas",230,"1.0 cup sections, with juice",74
 """09112""","Grapefruit, raw, pink and red, all areas",230,"1.0 cup sections, with juice",97
@@ -3194,17 +3194,17 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """06119""","Gravy, chicken, canned or bottled, ready-to-serve",57,0.25 cup,27
 """06120""","Gravy, chicken, dry",8,1.0 tbsp,30
 """27061""","Gravy, HEINZ Home Style, classic chicken",58,0.25 cup,27
-"""06985""","Gravy, HEINZ Home Style, savory beef",57,1.0 serving 1/4 cup 2 oz,22
+"""06985""","Gravy, HEINZ Home Style, savory beef",57,0.25 cup,22
 """06958""","Gravy, instant beef, dry",6.7,1.0 serving,25
 """06959""","Gravy, instant turkey, dry",6.7,1.0 serving,27
 """06977""","Gravy, meat or poultry, low sodium, prepared",236,1.0 cup,125
 """06121""","Gravy, mushroom, canned",238,1.0 cup,119
-"""06122""","Gravy, mushroom, dry, powder",21,1.0 cup (8 fl oz),69
-"""06123""","Gravy, onion, dry, mix",24,1.0 cup (8 fl oz),77
+"""06122""","Gravy, mushroom, dry, powder",21,1.0 cup,69
+"""06123""","Gravy, onion, dry, mix",24,1.0 cup,77
 """06124""","Gravy, pork, dry, powder",6.7,1.0 serving,25
 """06125""","Gravy, turkey, canned, ready-to-serve",238,1.0 cup,121
 """06126""","Gravy, turkey, dry",7,1.0 serving,26
-"""06127""","Gravy, unspecified type, dry",25,1.0 cup (8 fl oz),86
+"""06127""","Gravy, unspecified type, dry",25,1.0 cup,86
 """09138""","Groundcherries, (cape-gooseberries or poha), raw",140,1.0 cup,74
 """09434""","Guanabana nectar, canned",251,1.0 cup,148
 """09435""","Guava nectar, canned, with added ascorbic acid",251,1.0 cup,158
@@ -3223,7 +3223,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """07938""","Ham, honey, smoked, cooked",55,1.0 oz (1 serving),67
 """07030""","Ham, minced",28.35,1.0 oz,75
 """07028""","Ham, sliced, pre-packaged, deli meat (96%fat free, water added)",13,1.0 slice,14
-"""07029""","Ham, sliced, regular (approximately 11% fat)",56,56.0 grams 1 serving,92
+"""07029""","Ham, sliced, regular (approximately 11% fat)",56,1.0 serving,92
 """42128""","Ham, turkey, sliced, extra lean, prepackaged or deli",138,1.0 cup pieces,185
 """35233""","Hazelnuts, beaked (Northern Plains Indians)",0.4,1.0 nut,3
 """07034""","Headcheese, pork",28,"1.0 slice (1 oz) (4"" x 4"" x 3/32"" thick)",44
@@ -3253,32 +3253,32 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """01237""","Ice cream, bar or stick, chocolate covered",50,1.0 bar,166
 """01263""","Ice cream, light, soft serve, chocolate",298,1.0 medium,420
 """01236""","Ice cream, soft serve, chocolate",86,0.5 cup,191
-"""19894""","Ice creams, BREYERS, 98% Fat Free Chocolate",68,1.0 serving 1/2 cup,92
-"""19877""","Ice creams, BREYERS, 98% Fat Free Vanilla",68,1.0 serving 1/2 cup,93
-"""19893""","Ice creams, BREYERS, All Natural Light French Chocolate",68,1.0 serving 1/2 cup,137
-"""19876""","Ice creams, BREYERS, All Natural Light French Vanilla",68,1.0 serving 1/2 cup,118
-"""19879""","Ice creams, BREYERS, All Natural Light Mint Chocolate Chip",68,1.0 serving 1/2 cup,133
-"""19875""","Ice creams, BREYERS, All Natural Light Vanilla",68,1.0 serving 1/2 cup,110
-"""19878""","Ice creams, BREYERS, All Natural Light Vanilla Chocolate Strawberry",68,1.0 serving 1/2 cup,109
-"""19880""","Ice creams, BREYERS, No Sugar Added, Butter Pecan",68,1.0 serving 1/2 cup,122
-"""19895""","Ice creams, BREYERS, No Sugar Added, Chocolate Caramel",71,1.0 serving 1/2 cup,107
-"""19881""","Ice creams, BREYERS, No Sugar Added, French Vanilla",68,1.0 serving 1/2 cup,105
-"""19882""","Ice creams, BREYERS, No Sugar Added, Vanilla",69,1.0 serving 1/2 cup,99
-"""19884""","Ice creams, BREYERS, No Sugar Added, Vanilla Chocolate Strawberry",68,1.0 serving 1/2 cup,97
-"""19883""","Ice creams, BREYERS, No Sugar Added, Vanilla Fudge Twirl",72,1.0 serving 1/2 cup,110
-"""19270""","Ice creams, chocolate",58,1.0 individual (3.5 fl oz),125
+"""19894""","Ice creams, BREYERS, 98% Fat Free Chocolate",68,0.5 cup,92
+"""19877""","Ice creams, BREYERS, 98% Fat Free Vanilla",68,0.5 cup,93
+"""19893""","Ice creams, BREYERS, All Natural Light French Chocolate",68,0.5 cup,137
+"""19876""","Ice creams, BREYERS, All Natural Light French Vanilla",68,0.5 cup,118
+"""19879""","Ice creams, BREYERS, All Natural Light Mint Chocolate Chip",68,0.5 cup,133
+"""19875""","Ice creams, BREYERS, All Natural Light Vanilla",68,0.5 cup,110
+"""19878""","Ice creams, BREYERS, All Natural Light Vanilla Chocolate Strawberry",68,0.5 cup,109
+"""19880""","Ice creams, BREYERS, No Sugar Added, Butter Pecan",68,0.5 cup,122
+"""19895""","Ice creams, BREYERS, No Sugar Added, Chocolate Caramel",71,0.5 cup,107
+"""19881""","Ice creams, BREYERS, No Sugar Added, French Vanilla",68,0.5 cup,105
+"""19882""","Ice creams, BREYERS, No Sugar Added, Vanilla",69,0.5 cup,99
+"""19884""","Ice creams, BREYERS, No Sugar Added, Vanilla Chocolate Strawberry",68,0.5 cup,97
+"""19883""","Ice creams, BREYERS, No Sugar Added, Vanilla Fudge Twirl",72,0.5 cup,110
+"""19270""","Ice creams, chocolate",58,3.5 fl oz,125
 """19114""","Ice creams, chocolate, light",68,1.0 serving,127
-"""19265""","Ice creams, chocolate, light, no sugar added",72,1.0 serving 1/2 cup,125
+"""19265""","Ice creams, chocolate, light, no sugar added",72,0.5 cup,125
 """43541""","Ice creams, chocolate, rich",148,1.0 cup,371
-"""19090""","Ice creams, french vanilla, soft-serve",86,0.5 cup (4 fl oz),191
-"""19899""","Ice creams, regular, low carbohydrate, chocolate",58,1.0 individual (3.5 fl oz),137
-"""19898""","Ice creams, regular, low carbohydrate, vanilla",58,1.0 individual (3.5 fl oz),125
-"""19271""","Ice creams, strawberry",58,1.0 individual (3.5 fl oz),111
-"""19095""","Ice creams, vanilla",66,1.0 serving 1/2 cup,137
+"""19090""","Ice creams, french vanilla, soft-serve",86,0.5 cup,191
+"""19899""","Ice creams, regular, low carbohydrate, chocolate",58,3.5 fl oz,137
+"""19898""","Ice creams, regular, low carbohydrate, vanilla",58,3.5 fl oz,125
+"""19271""","Ice creams, strawberry",58,3.5 fl oz,111
+"""19095""","Ice creams, vanilla",66,0.5 cup,137
 """19867""","Ice creams, vanilla, fat free",67,0.5 cup,92
-"""19088""","Ice creams, vanilla, light",76,1.0 serving 1/2 cup,137
-"""19260""","Ice creams, vanilla, light, no sugar added",68,1.0 serving 1/2 cup,115
-"""19096""","Ice creams, vanilla, light, soft-serve",88,1.0 serving 1/2 cup,111
+"""19088""","Ice creams, vanilla, light",76,0.5 cup,137
+"""19260""","Ice creams, vanilla, light, no sugar added",68,0.5 cup,115
+"""19096""","Ice creams, vanilla, light, soft-serve",88,0.5 cup,111
 """19089""","Ice creams, vanilla, rich",107,0.5 cup,266
 """42117""","Imitation cheese, american or cheddar, low cholesterol",113,"1.0 cup, shredded",441
 """08580""","Incaparina, dry mix (corn and soy flours), unprepared",8.9,1.0 tbsp,34
@@ -3291,7 +3291,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """43344""","Jams, preserves, marmalade, reduced sugar",17,1.0 tbsp,26
 """19920""","Jams, preserves, marmalades, sweetened with fruit juice",19,1.0 tbsp,40
 """09145""","Java-plum, (jambolan), raw",135,1.0 cup,81
-"""19300""",Jellies,21,1.0 serving 1 tbsp,56
+"""19300""",Jellies,21,1.0 tbsp,56
 """43027""","Jellies, no sugar (with sodium saccharin), any flavors",300,1.0 cup,363
 """44110""","Jellies, reduced sugar, home preserved",19,1.0 tbsp,34
 """43497""","Jellyfish, dried, salted",58,1.0 cup,21
@@ -3315,7 +3315,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """07968""","Kielbasa, fully cooked, grilled",85,3.0 oz,286
 """07969""","Kielbasa, fully cooked, pan-fried",370,1.0 link,1232
 """07970""","Kielbasa, fully cooked, unheated",85,3.0 oz,276
-"""07934""","Kielbasa, Polish, turkey and beef, smoked",56,1.0 serving 2 oz,127
+"""07934""","Kielbasa, Polish, turkey and beef, smoked",56,2.0 oz,127
 """09148""","Kiwifruit, green, raw",180,"1.0 cup, sliced",110
 """09520""","Kiwifruit, ZESPRI SunGold, raw",81,1.0 fruit,51
 """07038""","Knackwurst, knockwurst, pork, beef",72,1.0 link,221
@@ -3331,7 +3331,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """01192""",KRAFT VELVEETA LIGHT Reduced Fat Pasteurized Process Cheese Product,28,1.0 oz,62
 """01191""",KRAFT VELVEETA Pasteurized Process Cheese Spread,28,1.0 oz,85
 """09149""","Kumquats, raw",19,1.0 fruit without refuse,13
-"""17353""","Lamb, Australian, ground,  85% lean / 15% fat, raw",113,1.0 serving (4 oz),288
+"""17353""","Lamb, Australian, ground,  85% lean / 15% fat, raw",113,4.0 oz,288
 """17281""","Lamb, Australian, imported, fresh, composite of trimmed retail cuts, separable lean and fat, trimmed to 1/8"" fat, cooked",85,3.0 oz,218
 """17280""","Lamb, Australian, imported, fresh, composite of trimmed retail cuts, separable lean and fat, trimmed to 1/8"" fat, raw",28.35,1.0 oz,65
 """17283""","Lamb, Australian, imported, fresh, composite of trimmed retail cuts, separable lean only, trimmed to 1/8"" fat, cooked",85,3.0 oz,171
@@ -4111,7 +4111,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """04588""","Oil, oat",13.6,1.0 tbsp,120
 """04053""","Oil, olive, salad or cooking",13.5,1.0 tbsp,119
 """04055""","Oil, palm",13.6,1.0 tbsp,120
-"""04679""","Oil, PAM cooking spray, original",0.3,"1.0 spray , about 1/3 second (1 NLEA serving)",2
+"""04679""","Oil, PAM cooking spray, original",0.3,"1.0 spray, about 1/3 second (1 NLEA serving)",2
 """04042""","Oil, peanut, salad or cooking",13.5,1.0 tbsp,119
 """04514""","Oil, poppyseed",13.6,1.0 tbsp,120
 """04037""","Oil, rice bran",13.6,1.0 tbsp,120
@@ -4182,26 +4182,26 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """07207""","Oscar Mayer, Braunschweiger Liver Sausage (sliced)",85,3.0 oz,281
 """07209""","Oscar Mayer, Chicken Breast (honey glazed)",52,1.0 serving (4 slices),57
 """07212""","Oscar Mayer, Ham (chopped with natural juice)",28,1.0 serving (1 slice),50
-"""07230""","Oscar Mayer, Salami (hard)",27,1.0 serving 3 slices,99
+"""07230""","Oscar Mayer, Salami (hard)",27,1.0 serving (3 slices),99
 """07236""","Oscar Mayer, Smokies Sausage Little Cheese (pork, turkey)",9,1.0 link,28
 """07241""","Oscar Mayer, Wieners (beef franks)",45,1.0 serving,148
-"""05643""","Ostrich, fan, raw",85,1.0 serving ( cooked from 4oz raw),99
+"""05643""","Ostrich, fan, raw",85,1.0 serving (cooked from 4 oz raw),99
 """05642""","Ostrich, ground, cooked, pan-broiled",93,1.0 patty,163
 """05641""","Ostrich, ground, raw",109,1.0 patty,180
-"""05645""","Ostrich, inside leg, cooked",85,1.0 serving ( 3 oz ),120
-"""05644""","Ostrich, inside leg, raw",85,1.0 serving ( cooked from 4 oz raw ),94
-"""05647""","Ostrich, inside strip, cooked",85,1.0 serving ( 3 oz ),139
+"""05645""","Ostrich, inside leg, cooked",85,1.0 serving (3 oz),120
+"""05644""","Ostrich, inside leg, raw",85,1.0 serving (cooked from 4 oz raw),94
+"""05647""","Ostrich, inside strip, cooked",85,1.0 serving (3 oz),139
 """05646""","Ostrich, inside strip, raw",85,1.0 serving (cooked from 4 oz raw),108
 """05648""","Ostrich, outside leg, raw",85,1.0 serving (cooked from 4 oz raw),98
-"""05650""","Ostrich, outside strip, cooked",85,1.0 serving ( 3 oz ),133
+"""05650""","Ostrich, outside strip, cooked",85,1.0 serving (3 oz),133
 """05649""","Ostrich, outside strip, raw",85,1.0 serving (cooked from 4 oz raw),102
-"""05652""","Ostrich, oyster, cooked",85,1.0 serving ( 3 oz ),135
-"""05651""","Ostrich, oyster, raw",85,1.0 serving ( cooked from 4 oz raw),106
+"""05652""","Ostrich, oyster, cooked",85,1.0 serving (3 oz),135
+"""05651""","Ostrich, oyster, raw",85,1.0 serving (cooked from 4 oz raw),106
 """05653""","Ostrich, round, raw",85,1.0 serving (cooked from 4 oz raw),99
 """05654""","Ostrich, tenderloin, raw",85,1.0 serving (cooked from 4 oz raw),105
-"""05656""","Ostrich, tip trimmed, cooked",85,1.0 serving ( 3 oz ),123
-"""05655""","Ostrich, tip trimmed, raw",85,1.0 serving ( cooked from 4 oz raw),97
-"""05658""","Ostrich, top loin, cooked",85,1.0 serving ( 3 oz ),132
+"""05656""","Ostrich, tip trimmed, cooked",85,1.0 serving (3 oz),123
+"""05655""","Ostrich, tip trimmed, raw",85,1.0 serving (cooked from 4 oz raw),97
+"""05658""","Ostrich, top loin, cooked",85,1.0 serving (3 oz),132
 """05657""","Ostrich, top loin, raw",85,1.0 serving (cooked from 4 oz raw),101
 """18288""","Pancakes plain, frozen, ready-to-heat (includes buttermilk)",28.35,1.0 oz,66
 """18294""","Pancakes, blueberry, prepared from recipe",28.35,1.0 oz,63
@@ -4510,63 +4510,63 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """10123""","Pork, cured, bacon, unprepared",113,4.0 oz,444
 """10128""","Pork, cured, breakfast strips, raw or unheated",85,3.0 oz,330
 """10132""","Pork, cured, feet, pickled",85,3.0 oz,119
-"""10913""","Pork, cured, ham -- water added, rump, bone-in, separable lean and fat, heated, roasted",85,3.0 oz (3 oz),137
+"""10913""","Pork, cured, ham -- water added, rump, bone-in, separable lean and fat, heated, roasted",85,3.0 oz,137
 """10912""","Pork, cured, ham -- water added, rump, bone-in, separable lean and fat, unheated",85,3.0 oz,146
 """10865""","Pork, cured, ham -- water added, rump, bone-in, separable lean only, heated, roasted",85,3.0 serving (3 oz),103
 """10866""","Pork, cured, ham -- water added, rump, bone-in, separable lean only, unheated",85,3.0 oz,81
-"""10914""","Pork, cured, ham -- water added, shank, bone-in, separable lean and fat, heated, roasted",85,3.0 oz (3 oz),170
+"""10914""","Pork, cured, ham -- water added, shank, bone-in, separable lean and fat, heated, roasted",85,3.0 oz,170
 """10911""","Pork, cured, ham -- water added, shank, bone-in, separable lean and fat, unheated",85,3.0 oz,142
-"""10867""","Pork, cured, ham -- water added, shank, bone-in, separable lean only, heated, roasted",85,3.0 oz (3 oz),109
+"""10867""","Pork, cured, ham -- water added, shank, bone-in, separable lean only, heated, roasted",85,3.0 oz,109
 """10885""","Pork, cured, ham -- water added, shank, bone-in, separable lean only, unheated",85,3.0 oz,77
-"""10915""","Pork, cured, ham -- water added, slice, bone-in, separable lean and fat, heated, pan-broil",85,3.0 oz (3 oz),141
+"""10915""","Pork, cured, ham -- water added, slice, bone-in, separable lean and fat, heated, pan-broil",85,3.0 oz,141
 """10910""","Pork, cured, ham -- water added, slice, bone-in, separable lean and fat, unheated",85,3.0 oz,139
-"""10868""","Pork, cured, ham -- water added, slice, bone-in, separable lean only, heated, pan-broil",85,3.0 oz (3 oz),111
+"""10868""","Pork, cured, ham -- water added, slice, bone-in, separable lean only, heated, pan-broil",85,3.0 oz,111
 """10886""","Pork, cured, ham -- water added, slice, bone-in, separable lean only, unheated",85,3.0 oz,81
-"""10916""","Pork, cured, ham -- water added, slice, boneless, separable lean and fat, heated, pan-broil",85,3.0 oz (3 oz),106
-"""10878""","Pork, cured, ham -- water added, slice, boneless, separable lean only, heated, pan-broil",85,3.0 oz (3 oz),101
-"""10917""","Pork, cured, ham -- water added, whole, boneless, separable lean and fat, heated, roasted",85,3.0 oz (3 oz),107
-"""10909""","Pork, cured, ham -- water added, whole, boneless, separable lean and fat, unheated",85,3.0 oz whole,103
+"""10916""","Pork, cured, ham -- water added, slice, boneless, separable lean and fat, heated, pan-broil",85,3.0 oz,106
+"""10878""","Pork, cured, ham -- water added, slice, boneless, separable lean only, heated, pan-broil",85,3.0 oz,101
+"""10917""","Pork, cured, ham -- water added, whole, boneless, separable lean and fat, heated, roasted",85,3.0 oz,107
+"""10909""","Pork, cured, ham -- water added, whole, boneless, separable lean and fat, unheated",85,3.0 oz,103
 """10879""","Pork, cured, ham -- water added, whole, boneless, separable lean only, heated, roasted",85,3.0 oz,99
 """10880""","Pork, cured, ham -- water added, whole, boneless, separable lean only, unheated",85,3.0 oz,94
-"""10918""","Pork, cured, ham and water product, rump, bone-in, separable lean and fat, heated, roasted",85,3.0 oz (3 oz),158
+"""10918""","Pork, cured, ham and water product, rump, bone-in, separable lean and fat, heated, roasted",85,3.0 oz,158
 """10908""","Pork, cured, ham and water product, rump, bone-in, separable lean and fat, unheated",85,3.0 oz rump,152
-"""10877""","Pork, cured, ham and water product, rump, bone-in, separable lean only, heated, roasted",85,3.0 oz (3 oz),111
+"""10877""","Pork, cured, ham and water product, rump, bone-in, separable lean only, heated, roasted",85,3.0 oz,111
 """10887""","Pork, cured, ham and water product, rump, bone-in, separable lean only, unheated",85,3.0 oz,91
-"""10919""","Pork, cured, ham and water product, shank, bone-in, separable lean and fat, heated, roasted",85,3.0 oz (3 oz),199
+"""10919""","Pork, cured, ham and water product, shank, bone-in, separable lean and fat, heated, roasted",85,3.0 oz,199
 """10907""","Pork, cured, ham and water product, shank, bone-in, separable lean and fat, unheated",85,3.0 oz shank,207
-"""10881""","Pork, cured, ham and water product, shank, bone-in, separable lean only, heated, roasted",85,3.0 oz (3 oz),112
+"""10881""","Pork, cured, ham and water product, shank, bone-in, separable lean only, heated, roasted",85,3.0 oz,112
 """10889""","Pork, cured, ham and water product, shank, bone-in, unheated, separable lean only",85,3.0 oz,96
-"""10920""","Pork, cured, ham and water product, slice, bone-in, separable lean and fat, heated, pan-broil",85,3.0 oz (3 oz),132
+"""10920""","Pork, cured, ham and water product, slice, bone-in, separable lean and fat, heated, pan-broil",85,3.0 oz,132
 """10906""","Pork, cured, ham and water product, slice, bone-in, separable lean and fat, unheated",85,3.0 oz,127
-"""10869""","Pork, cured, ham and water product, slice, bone-in, separable lean only, heated, pan-broil",85,3.0 oz (3 oz),104
+"""10869""","Pork, cured, ham and water product, slice, bone-in, separable lean only, heated, pan-broil",85,3.0 oz,104
 """10888""","Pork, cured, ham and water product, slice, bone-in, separable lean only, unheated",85,3.0 oz,88
-"""10921""","Pork, cured, ham and water product, slice, boneless, separable lean and fat, heated, pan-broil",85,3.0 oz (3 oz),105
-"""10870""","Pork, cured, ham and water product, slice, boneless, separable lean only, heated, pan-broil",85,3.0 oz (3 oz),105
-"""10922""","Pork, cured, ham and water product, whole, boneless, separable lean and fat, heated, roasted",85,3.0 oz (3 oz),105
+"""10921""","Pork, cured, ham and water product, slice, boneless, separable lean and fat, heated, pan-broil",85,3.0 oz,105
+"""10870""","Pork, cured, ham and water product, slice, boneless, separable lean only, heated, pan-broil",85,3.0 oz,105
+"""10922""","Pork, cured, ham and water product, whole, boneless, separable lean and fat, heated, roasted",85,3.0 oz,105
 """10905""","Pork, cured, ham and water product, whole, boneless, separable lean and fat, unheated",85,3.0 oz whole,99
 """10871""","Pork, cured, ham and water product, whole, boneless, separable lean only, heated, roasted",85,3.0 oz,105
 """10872""","Pork, cured, ham and water product, whole, boneless, separable lean only, unheated",85,3.0 oz,99
-"""10923""","Pork, cured, ham with natural juices, rump, bone-in, separable lean and fat, heated, roasted",85,3.0 oz (3 oz),150
+"""10923""","Pork, cured, ham with natural juices, rump, bone-in, separable lean and fat, heated, roasted",85,3.0 oz,150
 """10904""","Pork, cured, ham with natural juices, rump, bone-in, separable lean and fat, unheated",85,3.0 oz rump,170
-"""10873""","Pork, cured, ham with natural juices, rump, bone-in, separable lean only, heated, roasted",85,3.0 oz (3 oz),116
+"""10873""","Pork, cured, ham with natural juices, rump, bone-in, separable lean only, heated, roasted",85,3.0 oz,116
 """10890""","Pork, cured, ham with natural juices, rump, bone-in, separable lean only, unheated",85,3.0 oz,104
-"""10924""","Pork, cured, ham with natural juices, shank, bone-in, separable lean and fat, heated, roasted",85,3.0 oz (3 oz),162
+"""10924""","Pork, cured, ham with natural juices, shank, bone-in, separable lean and fat, heated, roasted",85,3.0 oz,162
 """10903""","Pork, cured, ham with natural juices, shank, bone-in, separable lean and fat, unheated",85,3.0 oz shank,162
 """10874""","Pork, cured, ham with natural juices, shank, bone-in, separable lean only, heated, roasted",85,1.0 serving (3 oz),123
 """10891""","Pork, cured, ham with natural juices, shank, bone-in, separable lean only, unheated",85,3.0 oz,110
-"""10925""","Pork, cured, ham with natural juices, slice, bone-in, separable lean and fat, heated, pan-broil",85,3.0 oz (3 oz),153
+"""10925""","Pork, cured, ham with natural juices, slice, bone-in, separable lean and fat, heated, pan-broil",85,3.0 oz,153
 """10902""","Pork, cured, ham with natural juices, slice, bone-in, separable lean and fat, unheated",85,3.0 oz,135
-"""10875""","Pork, cured, ham with natural juices, slice, bone-in, separable lean only, heated, pan-broil",85,3.0 oz (3 oz),128
+"""10875""","Pork, cured, ham with natural juices, slice, bone-in, separable lean only, heated, pan-broil",85,3.0 oz,128
 """10892""","Pork, cured, ham with natural juices, slice, bone-in, separable lean only, unheated",85,3.0 oz,105
-"""10926""","Pork, cured, ham with natural juices, slice, boneless, separable lean and fat, heated, pan-broil",85,3.0 oz (3 oz),100
-"""10882""","Pork, cured, ham with natural juices, slice, boneless, separable lean only, heated, pan-broil",85,3.0 oz (3 oz),99
+"""10926""","Pork, cured, ham with natural juices, slice, boneless, separable lean and fat, heated, pan-broil",85,3.0 oz,100
+"""10882""","Pork, cured, ham with natural juices, slice, boneless, separable lean only, heated, pan-broil",85,3.0 oz,99
 """10927""","Pork, cured, ham with natural juices, spiral slice, boneless, separable lean and fat, heated, roasted",145,1.0 slice,202
 """10901""","Pork, cured, ham with natural juices, spiral slice, boneless, separable lean and fat, unheated",85,3.0 oz spiral slice,110
 """10893""","Pork, cured, ham with natural juices, spiral slice, boneless, separable lean only, unheated",85,3.0 oz spiral slice,93
 """10876""","Pork, cured, ham with natural juices, spiral slice, meat only, boneless, separable lean only, heated, roasted",85,3.0 oz,107
-"""10928""","Pork, cured, ham with natural juices, whole, boneless, separable lean and fat, heated, roasted",85,3.0 oz (3 oz),97
+"""10928""","Pork, cured, ham with natural juices, whole, boneless, separable lean and fat, heated, roasted",85,3.0 oz,97
 """10900""","Pork, cured, ham with natural juices, whole, boneless, separable lean and fat, unheated",85,3.0 oz whole,95
-"""10883""","Pork, cured, ham with natural juices, whole, boneless, separable lean only, heated, roasted",85,3.0 oz (3 oz),96
+"""10883""","Pork, cured, ham with natural juices, whole, boneless, separable lean only, heated, roasted",85,3.0 oz,96
 """10884""","Pork, cured, ham with natural juices, whole, boneless, separable lean only, unheated",85,3.0 oz,94
 """10134""","Pork, cured, ham, boneless, extra lean (approximately 5% fat), roasted",140,1.0 cup,203
 """10183""","Pork, cured, ham, boneless, extra lean and regular, roasted",140,1.0 cup,231
@@ -4583,20 +4583,20 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """43326""","Pork, cured, ham, low sodium, lean and fat, cooked",85,"3.0 oz, boneless",146
 """10146""","Pork, cured, ham, patties, unheated",28.35,1.0 oz,89
 """10140""","Pork, cured, ham, regular (approximately 13% fat), canned, roasted",140,1.0 cup,316
-"""10929""","Pork, cured, ham, rump, bone-in, separable lean and fat, heated, roasted",85,3.0 oz (3 oz),150
+"""10929""","Pork, cured, ham, rump, bone-in, separable lean and fat, heated, roasted",85,3.0 oz,150
 """10955""","Pork, cured, ham, rump, bone-in, separable lean and fat, unheated",85,3.0 oz,150
-"""10931""","Pork, cured, ham, rump, bone-in, separable lean only, heated, roasted",85,3.0 oz (3 oz),112
+"""10931""","Pork, cured, ham, rump, bone-in, separable lean only, heated, roasted",85,3.0 oz,112
 """10932""","Pork, cured, ham, rump, bone-in, separable lean only, unheated",85,3.0 oz,106
 """10894""","Pork, cured, ham, separable fat, boneless, heated",85,3.0 oz,431
 """10895""","Pork, cured, ham, separable fat, boneless, unheated",85,3.0 oz,438
-"""10935""","Pork, cured, ham, shank, bone-in, separable lean and fat, heated, roasted",85,3.0 oz (3 oz),162
+"""10935""","Pork, cured, ham, shank, bone-in, separable lean and fat, heated, roasted",85,3.0 oz,162
 """10936""","Pork, cured, ham, shank, bone-in, separable lean and fat, unheated",85,3.0 oz,150
-"""10933""","Pork, cured, ham, shank, bone-in, separable lean only, heated, roasted",85,3.0 oz (3 oz),118
+"""10933""","Pork, cured, ham, shank, bone-in, separable lean only, heated, roasted",85,3.0 oz,118
 """10934""","Pork, cured, ham, shank, bone-in, separable lean only, unheated",85,3.0 oz,106
-"""10937""","Pork, cured, ham, slice, bone-in, separable lean and fat, heated, pan-broil",85,3.0 oz (3 oz),154
-"""10939""","Pork, cured, ham, slice, bone-in, separable lean and fat, unheated",85,3.0 oz (3 oz),147
-"""10899""","Pork, cured, ham, slice, bone-in, separable lean only, heated, pan-broil",85,3.0 oz (3 oz),126
-"""10938""","Pork, cured, ham, slice, bone-in, separable lean only, unheated",85,3.0 oz (3 oz),110
+"""10937""","Pork, cured, ham, slice, bone-in, separable lean and fat, heated, pan-broil",85,3.0 oz,154
+"""10939""","Pork, cured, ham, slice, bone-in, separable lean and fat, unheated",85,3.0 oz,147
+"""10899""","Pork, cured, ham, slice, bone-in, separable lean only, heated, pan-broil",85,3.0 oz,126
+"""10938""","Pork, cured, ham, slice, bone-in, separable lean only, unheated",85,3.0 oz,110
 """10149""","Pork, cured, ham, steak, boneless, extra lean, unheated",28.35,1.0 oz,35
 """10150""","Pork, cured, ham, whole, separable lean and fat, unheated",140,1.0 cup,344
 """10153""","Pork, cured, ham, whole, separable lean only, roasted",140,1.0 cup,220
@@ -4892,10 +4892,10 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """11836""","Potatoes, microwaved, cooked, in skin, skin with salt",58,1.0 skin,77
 """11671""","Potatoes, o'brien, home-prepared",194,1.0 cup,157
 """11362""","Potatoes, raw, skin",38,1.0 skin,22
-"""11358""","Potatoes, red, flesh and skin, baked",299,"1.0 potato large (3"" to 4-1/4"" dia.",260
+"""11358""","Potatoes, red, flesh and skin, baked",299,"1.0 potato large (3"" to 4-1/4"" dia.)",260
 """11355""","Potatoes, red, flesh and skin, raw",75,"0.5 cup, diced",52
 """11361""","Potatoes, roasted, salt added in processing, frozen, unprepared",85,3.0 oz,108
-"""11356""","Potatoes, Russet, flesh and skin, baked",299,"1.0 potato large (3"" to 4-1/4"" dia.",284
+"""11356""","Potatoes, Russet, flesh and skin, baked",299,"1.0 potato large (3"" to 4-1/4"" dia.)",284
 """11353""","Potatoes, russet, flesh and skin, raw (Includes foods for USDA's Food Distribution Program)",75,"0.5 cup, diced",59
 """11387""","Potatoes, scalloped, dry mix, prepared with water, whole milk and butter",245,1.0 cup (unprepared),228
 """11386""","Potatoes, scalloped, dry mix, unprepared",26,0.16 package (5.5 oz),93
@@ -5147,8 +5147,8 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """06632""","Sauce, hot chile, sriracha, CHA! BY TEXAS PETE",6.9,1.0 tsp,7
 """06633""","Sauce, hot chile, sriracha, TUONG OT SRIRACHA",6.2,1.0 tsp,5
 """06176""","Sauce, oyster, ready-to-serve",18,1.0 tbsp,9
-"""06931""","Sauce, pasta, spaghetti/marinara, ready-to-serve",132,1.0 serving 1/2 cup,66
-"""06976""","Sauce, pasta, spaghetti/marinara, ready-to-serve, low sodium",128,1.0 serving 1/2 cup,65
+"""06931""","Sauce, pasta, spaghetti/marinara, ready-to-serve",132,0.5 cup,66
+"""06976""","Sauce, pasta, spaghetti/marinara, ready-to-serve, low sodium",128,0.5 cup,65
 """06618""","Sauce, peanut, made from coconut, water, sugar, peanuts",17,1.0 tbsp,30
 """27059""","Sauce, peanut, made from peanut butter, water, soy sauce",18,1.0 tbsp,46
 """06961""","Sauce, peppers, hot, chili, mature red, canned",15,1.0 tbsp,3
@@ -5162,13 +5162,13 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """06168""","Sauce, ready-to-serve, pepper or hot",4.7,1.0 tsp,1
 """06169""","Sauce, ready-to-serve, pepper, TABASCO",4.7,1.0 tsp,1
 """06164""","Sauce, salsa, ready-to-serve",36,2.0 tbsp,10
-"""27047""","Sauce, salsa, verde, ready-to-serve",30,2.0 Tbsp,11
+"""27047""","Sauce, salsa, verde, ready-to-serve",30,2.0 tbsp,11
 """06142""","Sauce, sofrito, prepared from recipe",103,0.5 cup,244
-"""27048""","Sauce, steak, tomato based",34,2.0 Tbsp,32
-"""27050""","Sauce, sweet and sour, ready-to-serve",35,2.0 Tbsp,54
-"""27049""","Sauce, tartar, ready-to-serve",30,2.0 tbsps,63
+"""27048""","Sauce, steak, tomato based",34,2.0 tbsp,32
+"""27050""","Sauce, sweet and sour, ready-to-serve",35,2.0 tbsp,54
+"""27049""","Sauce, tartar, ready-to-serve",30,2.0 tbsp,63
 """06112""","Sauce, teriyaki, ready-to-serve",18,1.0 tbsp,16
-"""06189""","Sauce, teriyaki, ready-to-serve, reduced sodium",36,2.0 Tbsp,32
+"""06189""","Sauce, teriyaki, ready-to-serve, reduced sodium",36,2.0 tbsp,32
 """06972""","Sauce, tomato chili sauce, bottled, with salt",6,1.0 packet,6
 """06971""","Sauce, worcestershire",17,1.0 tbsp,13
 """11439""","Sauerkraut, canned, solids and liquids",142,1.0 cup,27
@@ -5187,7 +5187,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """07915""","Sausage, Polish, beef with chicken, hot",55,1.0 serving 5 pieces,142
 """07916""","Sausage, Polish, pork and beef, smoked",76,1.0 serving 2.67 oz,229
 """07065""","Sausage, pork and beef, fresh, cooked",13,"1.0 link (raw dimensions: 4"" long x 7/8"" dia), cooked",51
-"""07917""","Sausage, pork and beef, with cheddar cheese, smoked",77,12.0 oz serving 2.7 oz,228
+"""07917""","Sausage, pork and beef, with cheddar cheese, smoked",77,12.0 oz serving,228
 """07957""","Sausage, pork and turkey, pre-cooked",57,1.0 serving,195
 """07019""","Sausage, pork, chorizo, link or ground, raw",28.35,1.0 oz,84
 """07979""","Sausage, pork, turkey, and beef, reduced sodium",85,3.0 oz,241
@@ -5208,14 +5208,14 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """02076""","Seasoning mix, dry, chili, original",9,1.0 tbsp,30
 """02074""","Seasoning mix, dry, sazon, coriander  &  annatto",1,0.25 tsp,0
 """02075""","Seasoning mix, dry, taco, original",5.7,2.0 tsp,18
-"""11442""","Seaweed, agar, raw",10,2.0 tbsp (1/8 cup),3
+"""11442""","Seaweed, agar, raw",10,2.0 tbsp,3
 """31019""","Seaweed, Canadian Cultivated EMI-TSUNOMATA, dry",5,0.25 cup,13
 """31020""","Seaweed, Canadian Cultivated EMI-TSUNOMATA, rehydrated",25,0.25 cup,8
-"""11444""","Seaweed, irishmoss, raw",10,2.0 tbsp (1/8 cup),5
-"""11445""","Seaweed, kelp, raw",10,2.0 tbsp (1/8 cup),4
+"""11444""","Seaweed, irishmoss, raw",10,2.0 tbsp,5
+"""11445""","Seaweed, kelp, raw",10,2.0 tbsp,4
 """11446""","Seaweed, laver, raw",26,10.0 sheets,9
 """11667""","Seaweed, spirulina, dried",112,1.0 cup,325
-"""11669""","Seaweed, wakame, raw",10,2.0 tbsp (1/8 cup),4
+"""11669""","Seaweed, wakame, raw",10,2.0 tbsp,4
 """12003""","Seeds, breadfruit seeds, boiled",28.35,1.0 oz,48
 """12001""","Seeds, breadfruit seeds, raw",28.35,1.0 oz,54
 """12158""","Seeds, breadfruit seeds, roasted",28.35,1.0 oz,59
@@ -5272,7 +5272,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """14347""","Shake, fast food, vanilla",20.8,1.0 fl oz,31
 """11640""","Shallots, freeze-dried",0.9,1.0 tbsp,3
 """11677""","Shallots, raw",10,1.0 tbsp chopped,7
-"""19097""","Sherbet, orange",74,0.5 cup (4 fl oz),107
+"""19097""","Sherbet, orange",74,0.5 cup,107
 """04546""","Shortening bread, soybean (hydrogenated) and cottonseed",12.8,1.0 tbsp,113
 """04548""","Shortening cake mix, soybean (hydrogenated) and cottonseed (hydrogenated)",12.8,1.0 tbsp,113
 """04551""","Shortening confectionery, coconut (hydrogenated) and or palm kernel (hydrogenated)",12.8,1.0 tbsp,113
@@ -5337,7 +5337,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """19407""","Snacks, beef sticks, smoked",28.35,1.0 oz,156
 """25059""","Snacks, brown rice chips",9,1.0 cake,35
 """25043""","Snacks, candy bits, yogurt covered with vitamin C",20,1.0 package,83
-"""25003""","Snacks, candy rolls, yogurt-covered, fruit flavored with high vitamin C",23,1.0 Roll,83
+"""25003""","Snacks, candy rolls, yogurt-covered, fruit flavored with high vitamin C",23,1.0 roll,83
 """25051""","Snacks, CLIF BAR, mixed flavors",68,1.0 bar,235
 """19419""","Snacks, corn cakes",9,1.0 cake,35
 """19800""","Snacks, corn cakes, very low sodium",9,1.0 cake,35
@@ -5479,11 +5479,11 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """20067""",Sorghum grain,192,1.0 cup,632
 """06190""","Soup, bean  &  ham, canned, reduced sodium, prepared with water or ready-to-serve",245,1.0 cup,198
 """06731""","Soup, bean with bacon, condensed, single brand",128,1.0 serving 1/2 cup,150
-"""06006""","Soup, bean with frankfurters, canned, condensed",263,1.0 cup (8 fl oz),373
-"""06406""","Soup, bean with frankfurters, canned, prepared with equal volume water",250,1.0 cup (8 fl oz),188
-"""06007""","Soup, bean with ham, canned, chunky, ready-to-serve",243,1.0 cup (8 fl oz),231
+"""06006""","Soup, bean with frankfurters, canned, condensed",263,1.0 cup,373
+"""06406""","Soup, bean with frankfurters, canned, prepared with equal volume water",250,1.0 cup,188
+"""06007""","Soup, bean with ham, canned, chunky, ready-to-serve",243,1.0 cup,231
 """06004""","Soup, bean with pork, canned, condensed",130,0.5 cup,168
-"""06404""","Soup, bean with pork, canned, prepared with equal volume water",266,1.0 serving 1 cup,168
+"""06404""","Soup, bean with pork, canned, prepared with equal volume water",266,1.0 cup,168
 """06978""","Soup, beef and mushroom, low sodium, chunk style",251,1.0 cup,173
 """06749""","Soup, beef and vegetables, canned, ready-to-serve",250,1.0 cup,120
 """27045""","Soup, beef and vegetables, reduced sodium, canned, ready-to-serve",245,1.0 cup,103
@@ -5491,117 +5491,117 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """06032""","Soup, beef broth bouillon and consomme, canned, condensed",124,0.5 cup,14
 """06008""","Soup, beef broth or bouillon canned, ready-to-serve",240,1.0 cup,17
 """06075""","Soup, beef broth or bouillon, powder, dry",3.6,1.0 cube,8
-"""06475""","Soup, beef broth or bouillon, powder, prepared with water",240,1.0 serving 1 cup,7
-"""06432""","Soup, beef broth, bouillon, consomme, prepared with equal volume water",241,1.0 cup (8 fl oz),29
+"""06475""","Soup, beef broth or bouillon, powder, prepared with water",240,1.0 cup,7
+"""06432""","Soup, beef broth, bouillon, consomme, prepared with equal volume water",241,1.0 cup,29
 """06076""","Soup, beef broth, cubed, dry",3.6,1.0 cube,6
-"""06476""","Soup, beef broth, cubed, prepared with water",240,1.0 serving 1 cup,7
+"""06476""","Soup, beef broth, cubed, prepared with water",240,1.0 cup,7
 """06188""","Soup, beef broth, less/reduced sodium, ready to serve",219,1.0 cup,13
-"""06147""","Soup, beef mushroom, canned, condensed",126,0.5 cup (4 fl oz),77
-"""06547""","Soup, beef mushroom, canned, prepared with equal volume water",244,1.0 cup (8 fl oz),73
+"""06147""","Soup, beef mushroom, canned, condensed",126,0.5 cup,77
+"""06547""","Soup, beef mushroom, canned, prepared with equal volume water",244,1.0 cup,73
 """06009""","Soup, beef noodle, canned, condensed",125,0.5 cup,84
-"""06409""","Soup, beef noodle, canned, prepared with equal volume water",244,1.0 cup (8 fl oz),83
+"""06409""","Soup, beef noodle, canned, prepared with equal volume water",244,1.0 cup,83
 """06980""","Soup, beef stroganoff, canned, chunky style, ready-to-serve",240,1.0 cup,235
-"""06002""","Soup, black bean, canned, condensed",257,1.0 cup (8 fl oz),234
+"""06002""","Soup, black bean, canned, condensed",257,1.0 cup,234
 """06402""","Soup, black bean, canned, prepared with equal volume water",247,1.0 cup,114
 """06981""","Soup, bouillon cubes and granules, low sodium, dry",2.6,1.0 tsp,11
-"""06584""","Soup, broccoli cheese, canned, condensed, commercial",121,1.0 serving 1/2 cup,105
+"""06584""","Soup, broccoli cheese, canned, condensed, commercial",121,0.5 cup,105
 """06011""","Soup, cheese, canned, condensed",124,0.5 cup,102
 """06211""","Soup, cheese, canned, prepared with equal volume milk",251,1.0 cup,231
-"""06411""","Soup, cheese, canned, prepared with equal volume water",247,1.0 cup (8 fl oz),156
+"""06411""","Soup, cheese, canned, prepared with equal volume water",247,1.0 cup,156
 """06024""","Soup, chicken and vegetable, canned, ready-to-serve",255,1.0 cup,84
 """06081""","Soup, chicken broth cubes, dry",4.8,1.0 cube,10
-"""06481""","Soup, chicken broth cubes, dry, prepared with water",243,1.0 cup (8 fl oz),12
+"""06481""","Soup, chicken broth cubes, dry, prepared with water",243,1.0 cup,12
 """06080""","Soup, chicken broth or bouillon, dry",4,1.0 cube,11
-"""06480""","Soup, chicken broth or bouillon, dry, prepared with water",241,1.0 cup 8 fl oz,10
-"""06013""","Soup, chicken broth, canned, condensed",126,0.5 cup (4 fl oz),39
-"""06413""","Soup, chicken broth, canned, prepared with equal volume water",244,1.0 cup (8 fl oz),39
+"""06480""","Soup, chicken broth or bouillon, dry, prepared with water",241,1.0 cup,10
+"""06013""","Soup, chicken broth, canned, condensed",126,0.5 cup,39
+"""06413""","Soup, chicken broth, canned, prepared with equal volume water",244,1.0 cup,39
 """06183""","Soup, chicken broth, less/reduced sodium, ready to serve",240,1.0 cup,17
 """06970""","Soup, chicken broth, low sodium, canned",240,1.0 cup,38
 """06194""","Soup, chicken broth, ready-to-serve",249,1.0 cup,15
 """06725""","Soup, chicken corn chowder, chunky, ready-to-serve, single brand",240,1.0 serving,238
-"""06017""","Soup, chicken gumbo, canned, condensed",126,0.5 cup (4 fl oz),57
+"""06017""","Soup, chicken gumbo, canned, condensed",126,0.5 cup,57
 """06417""","Soup, chicken gumbo, canned, prepared with equal volume water",244,1.0 cup,56
 """06149""","Soup, chicken mushroom, canned, condensed",124,0.5 cup,124
-"""06549""","Soup, chicken mushroom, canned, prepared with equal volume water",244,1.0 cup (8 fl oz),132
+"""06549""","Soup, chicken mushroom, canned, prepared with equal volume water",244,1.0 cup,132
 """06019""","Soup, chicken noodle, canned, condensed",124,0.5 cup,60
-"""06419""","Soup, chicken noodle, canned, prepared with equal volume water",248,1.0 serving 1 cup,60
+"""06419""","Soup, chicken noodle, canned, prepared with equal volume water",248,1.0 cup,60
 """06128""","Soup, chicken noodle, dry, mix",74,1.0 packet,279
 """06528""","Soup, chicken noodle, dry, mix, prepared with water",245,1.0 cup,56
-"""06966""","Soup, chicken noodle, low sodium, canned, prepared with equal volume water",248,1.0 serving 1 cup,62
+"""06966""","Soup, chicken noodle, low sodium, canned, prepared with equal volume water",248,1.0 cup,62
 """27044""","Soup, chicken noodle, reduced sodium, canned, ready-to-serve",245,1.0 cup,100
 """06022""","Soup, chicken rice, canned, chunky, ready-to-serve",240,1.0 cup,127
 """06208""","Soup, chicken vegetable with potato and cheese, chunky, ready-to-serve",245,1.0 cup,159
 """06025""","Soup, chicken vegetable, canned, condensed",121,0.5 cup,74
 """06023""","Soup, chicken with rice, canned, condensed",126,0.5 cup,86
-"""06423""","Soup, chicken with rice, canned, prepared with equal volume water",243,1.0 serving 1 cup,58
+"""06423""","Soup, chicken with rice, canned, prepared with equal volume water",243,1.0 cup,58
 """06015""","Soup, chicken, canned, chunky, ready-to-serve",245,1.0 cup,174
-"""06026""","Soup, chili beef, canned, condensed",263,1.0 cup (8 fl oz),308
+"""06026""","Soup, chili beef, canned, condensed",263,1.0 cup,308
 """06426""","Soup, chili beef, canned, prepared with equal volume water",261,1.0 cup,149
 """06070""","Soup, chunky beef, canned, ready-to-serve",245,1.0 cup,162
 """06018""","Soup, chunky chicken noodle, canned, ready-to-serve",530,1.0 can,217
 """06067""","Soup, chunky vegetable, canned, ready-to-serve",230,1.0 cup,90
 """27060""","Soup, chunky vegetable, reduced sodium, canned, ready-to-serve",240,1.0 cup,120
-"""06027""","Soup, clam chowder, manhattan style, canned, chunky, ready-to-serve",240,1.0 cup (8 fl oz),134
-"""06028""","Soup, clam chowder, manhattan, canned, condensed",126,0.5 cup (4 fl oz),77
-"""06428""","Soup, clam chowder, manhattan, canned, prepared with equal volume water",249,1.0 serving 1 cup,75
+"""06027""","Soup, clam chowder, manhattan style, canned, chunky, ready-to-serve",240,1.0 cup,134
+"""06028""","Soup, clam chowder, manhattan, canned, condensed",126,0.5 cup,77
+"""06428""","Soup, clam chowder, manhattan, canned, prepared with equal volume water",249,1.0 cup,75
 """06030""","Soup, clam chowder, new england, canned, condensed",126,0.5 cup,91
-"""06230""","Soup, clam chowder, new england, canned, prepared with equal volume low fat (2%) milk",252,1.0 serving 1 cup,154
-"""06430""","Soup, clam chowder, new england, canned, prepared with equal volume water",248,1.0 serving 1 cup,87
+"""06230""","Soup, clam chowder, new england, canned, prepared with equal volume low fat (2%) milk",252,1.0 cup,154
+"""06430""","Soup, clam chowder, new england, canned, prepared with equal volume water",248,1.0 cup,87
 """27042""","Soup, clam chowder, new england, canned, ready-to-serve",254,1.0 cup,201
 """27043""","Soup, clam chowder, new england, reduced sodium, canned, ready-to-serve",519,1.0 can,363
-"""06001""","Soup, cream of asparagus, canned, condensed",126,0.5 cup (4 fl oz),87
-"""06201""","Soup, cream of asparagus, canned, prepared with equal volume milk",248,1.0 cup (8 fl oz),161
-"""06401""","Soup, cream of asparagus, canned, prepared with equal volume water",244,1.0 cup (8 fl oz),85
+"""06001""","Soup, cream of asparagus, canned, condensed",126,0.5 cup,87
+"""06201""","Soup, cream of asparagus, canned, prepared with equal volume milk",248,1.0 cup,161
+"""06401""","Soup, cream of asparagus, canned, prepared with equal volume water",244,1.0 cup,85
 """06010""","Soup, cream of celery, canned, condensed",126,0.5 cup,91
-"""06210""","Soup, cream of celery, canned, prepared with equal volume milk",248,1.0 cup (8 fl oz),164
+"""06210""","Soup, cream of celery, canned, prepared with equal volume milk",248,1.0 cup,164
 """06410""","Soup, cream of celery, canned, prepared with equal volume water",248,1.0 cup,92
-"""06016""","Soup, cream of chicken, canned, condensed",126,0.5 cup (4 fl oz),113
+"""06016""","Soup, cream of chicken, canned, condensed",126,0.5 cup,113
 """06955""","Soup, cream of chicken, canned, condensed, reduced sodium",124,0.5 cup,72
-"""06216""","Soup, cream of chicken, canned, prepared with equal volume milk",248,1.0 cup (8 fl oz),191
+"""06216""","Soup, cream of chicken, canned, prepared with equal volume milk",248,1.0 cup,191
 """06416""","Soup, cream of chicken, canned, prepared with equal volume water",244,1.0 cup,117
-"""06483""","Soup, cream of chicken, dry, mix, prepared with water",261,1.0 cup 8 fl oz,107
+"""06483""","Soup, cream of chicken, dry, mix, prepared with water",261,1.0 cup,107
 """06043""","Soup, cream of mushroom, canned, condensed",126,0.5 cup,100
 """06182""","Soup, cream of mushroom, canned, condensed, reduced sodium",251,1.0 cup,131
-"""06243""","Soup, cream of mushroom, canned, prepared with equal volume low fat (2%) milk",252,1.0 serving 1 cup,164
-"""06443""","Soup, cream of mushroom, canned, prepared with equal volume water",248,1.0 serving 1 cup,97
+"""06243""","Soup, cream of mushroom, canned, prepared with equal volume low fat (2%) milk",252,1.0 cup,164
+"""06443""","Soup, cream of mushroom, canned, prepared with equal volume water",248,1.0 cup,97
 """06968""","Soup, cream of mushroom, low sodium, ready-to-serve, canned",244,1.0 cup,129
 """06046""","Soup, cream of onion, canned, condensed",126,0.5 cup,111
-"""06246""","Soup, cream of onion, canned, prepared with equal volume milk",248,1.0 cup (8 fl oz),186
-"""06446""","Soup, cream of onion, canned, prepared with equal volume water",244,1.0 cup (8 fl oz),107
+"""06246""","Soup, cream of onion, canned, prepared with equal volume milk",248,1.0 cup,186
+"""06446""","Soup, cream of onion, canned, prepared with equal volume water",244,1.0 cup,107
 """06053""","Soup, cream of potato, canned, condensed",124,0.5 cup,92
-"""06253""","Soup, cream of potato, canned, prepared with equal volume milk",248,1.0 cup (8 fl oz),149
-"""06453""","Soup, cream of potato, canned, prepared with equal volume water",244,1.0 cup (8 fl oz),73
+"""06253""","Soup, cream of potato, canned, prepared with equal volume milk",248,1.0 cup,149
+"""06453""","Soup, cream of potato, canned, prepared with equal volume water",244,1.0 cup,73
 """06056""","Soup, cream of shrimp, canned, condensed",126,0.5 cup,91
-"""06256""","Soup, cream of shrimp, canned, prepared with equal volume low fat (2%) milk",253,1.0 cup (8 fl oz),154
+"""06256""","Soup, cream of shrimp, canned, prepared with equal volume low fat (2%) milk",253,1.0 cup,154
 """06456""","Soup, cream of shrimp, canned, prepared with equal volume water",244,1.0 cup,88
 """06101""","Soup, cream of vegetable, dry, powder",18,1.0 packet,80
 """27000""","Soup, egg drop, Chinese restaurant",241,1.0 cup,65
-"""06315""","Soup, HEALTHY CHOICE Chicken and Rice Soup, canned",240,1.0 serving 1 cup,89
-"""06314""","Soup, HEALTHY CHOICE Chicken Noodle Soup, canned",243,1.0 serving 1 cup,100
-"""06316""","Soup, HEALTHY CHOICE Garden Vegetable Soup, canned",246,1.0 serving 1 cup,125
+"""06315""","Soup, HEALTHY CHOICE Chicken and Rice Soup, canned",240,1.0 cup,89
+"""06314""","Soup, HEALTHY CHOICE Chicken Noodle Soup, canned",243,1.0 cup,100
+"""06316""","Soup, HEALTHY CHOICE Garden Vegetable Soup, canned",246,1.0 cup,125
 """27001""","Soup, hot and sour, Chinese restaurant",233,1.0 cup,91
-"""06037""","Soup, lentil with ham, canned, ready-to-serve",248,1.0 cup (8 fl oz),139
+"""06037""","Soup, lentil with ham, canned, ready-to-serve",248,1.0 cup,139
 """06039""","Soup, minestrone, canned, chunky, ready-to-serve",240,1.0 cup,127
-"""06040""","Soup, minestrone, canned, condensed",123,0.5 cup (4 fl oz),84
-"""06440""","Soup, minestrone, canned, prepared with equal volume water",241,1.0 cup (8 fl oz),82
+"""06040""","Soup, minestrone, canned, condensed",123,0.5 cup,84
+"""06440""","Soup, minestrone, canned, prepared with equal volume water",241,1.0 cup,82
 """06177""","Soup, minestrone, canned, reduced sodium, ready-to-serve",245,1.0 cup,122
-"""06042""","Soup, mushroom barley, canned, condensed",126,0.5 cup (4 fl oz),77
-"""06442""","Soup, mushroom barley, canned, prepared with equal volume water",244,1.0 cup (8 fl oz),73
-"""06044""","Soup, mushroom with beef stock, canned, condensed",126,0.5 cup (4 fl oz),86
-"""06444""","Soup, mushroom with beef stock, canned, prepared with equal volume water",244,1.0 cup (8 fl oz),85
-"""06045""","Soup, onion, canned, condensed",123,0.5 cup (4 fl oz),57
-"""06094""","Soup, onion, dry, mix",7.5,1.0 serving 1 tbsp,22
-"""06494""","Soup, onion, dry, mix, prepared with water",230,1.0 serving 1 cup,28
-"""06048""","Soup, oyster stew, canned, condensed",123,0.5 cup (4 fl oz),59
-"""06248""","Soup, oyster stew, canned, prepared with equal volume milk",245,1.0 cup (8 fl oz),135
-"""06448""","Soup, oyster stew, canned, prepared with equal volume water",241,1.0 cup (8 fl oz),58
+"""06042""","Soup, mushroom barley, canned, condensed",126,0.5 cup,77
+"""06442""","Soup, mushroom barley, canned, prepared with equal volume water",244,1.0 cup,73
+"""06044""","Soup, mushroom with beef stock, canned, condensed",126,0.5 cup,86
+"""06444""","Soup, mushroom with beef stock, canned, prepared with equal volume water",244,1.0 cup,85
+"""06045""","Soup, onion, canned, condensed",123,0.5 cup,57
+"""06094""","Soup, onion, dry, mix",7.5,1.0 tbsp,22
+"""06494""","Soup, onion, dry, mix, prepared with water",230,1.0 cup,28
+"""06048""","Soup, oyster stew, canned, condensed",123,0.5 cup,59
+"""06248""","Soup, oyster stew, canned, prepared with equal volume milk",245,1.0 cup,135
+"""06448""","Soup, oyster stew, canned, prepared with equal volume water",241,1.0 cup,58
 """06049""","Soup, pea, green, canned, condensed",128,0.5 cup,160
-"""06249""","Soup, pea, green, canned, prepared with equal volume milk",254,1.0 cup (8 fl oz),239
-"""06449""","Soup, pea, green, canned, prepared with equal volume water",259,1.0 serving 1 cup,158
+"""06249""","Soup, pea, green, canned, prepared with equal volume milk",254,1.0 cup,239
+"""06449""","Soup, pea, green, canned, prepared with equal volume water",259,1.0 cup,158
 """06965""","Soup, pea, low sodium, prepared with equal volume water",259,1.0 cup,161
 """06050""","Soup, pea, split with ham, canned, chunky, ready-to-serve",240,1.0 cup,185
-"""06051""","Soup, pea, split with ham, canned, condensed",135,0.5 cup (4 fl oz),190
-"""06451""","Soup, pea, split with ham, canned, prepared with equal volume water",253,1.0 cup (8 fl oz),190
+"""06051""","Soup, pea, split with ham, canned, condensed",135,0.5 cup,190
+"""06451""","Soup, pea, split with ham, canned, prepared with equal volume water",253,1.0 cup,190
 """06583""","Soup, ramen noodle, any flavor, dry",81,1.0 package without flavor packet,356
 """06982""","Soup, ramen noodle, beef flavor, dry",82,1.0 package without flavor packet,362
 """06983""","Soup, ramen noodle, chicken flavor, dry",81,1.0 package without flavor packet,356
@@ -5612,30 +5612,30 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """06174""","Soup, stock, fish, home-prepared",233,1.0 cup,37
 """06611""","Soup, SWANSON, beef broth, lower sodium",213,1.0 cup,13
 """06615""","Soup, SWANSON, vegetable broth",220,1.0 cup,13
-"""06061""","Soup, tomato beef with noodle, canned, condensed",251,1.0 cup (8 fl oz),281
+"""06061""","Soup, tomato beef with noodle, canned, condensed",251,1.0 cup,281
 """06461""","Soup, tomato beef with noodle, canned, prepared with equal volume water",244,1.0 cup,137
-"""06158""","Soup, tomato bisque, canned, condensed",129,0.5 cup (4 fl oz),124
-"""06358""","Soup, tomato bisque, canned, prepared with equal volume milk",251,1.0 cup (8 fl oz),198
-"""06558""","Soup, tomato bisque, canned, prepared with equal volume water",247,1.0 cup (8 fl oz),124
-"""06063""","Soup, tomato rice, canned, condensed",129,0.5 cup (4 fl oz),120
+"""06158""","Soup, tomato bisque, canned, condensed",129,0.5 cup,124
+"""06358""","Soup, tomato bisque, canned, prepared with equal volume milk",251,1.0 cup,198
+"""06558""","Soup, tomato bisque, canned, prepared with equal volume water",247,1.0 cup,124
+"""06063""","Soup, tomato rice, canned, condensed",129,0.5 cup,120
 """06463""","Soup, tomato rice, canned, prepared with equal volume water",247,1.0 cup,116
 """06159""","Soup, tomato, canned, condensed",148,1.0 cup,98
-"""06956""","Soup, tomato, canned, condensed, reduced sodium",121,1.0 serving 1/2 cup,79
-"""06359""","Soup, tomato, canned, prepared with equal volume low fat (2%) milk",252,1.0 serving 1 cup,139
-"""06559""","Soup, tomato, canned, prepared with equal volume water, commercial",248,1.0 serving 1 cup,79
-"""06498""","Soup, tomato, dry, mix, prepared with water",265,1.0 cup 8 fl oz,101
-"""06964""","Soup, tomato, low sodium, with water",248,1.0 serving 1 cup,74
+"""06956""","Soup, tomato, canned, condensed, reduced sodium",121,0.5 cup,79
+"""06359""","Soup, tomato, canned, prepared with equal volume low fat (2%) milk",252,1.0 cup,139
+"""06559""","Soup, tomato, canned, prepared with equal volume water, commercial",248,1.0 cup,79
+"""06498""","Soup, tomato, dry, mix, prepared with water",265,1.0 cup,101
+"""06964""","Soup, tomato, low sodium, with water",248,1.0 cup,74
 """06465""","Soup, turkey noodle, canned, prepared with equal volume water",244,1.0 cup,68
-"""06466""","Soup, turkey vegetable, canned, prepared with equal volume water",241,1.0 cup (8 fl oz),72
-"""06064""","Soup, turkey, chunky, canned, ready-to-serve",236,1.0 cup (8 fl oz),135
+"""06466""","Soup, turkey vegetable, canned, prepared with equal volume water",241,1.0 cup,72
+"""06064""","Soup, turkey, chunky, canned, ready-to-serve",236,1.0 cup,135
 """06071""","Soup, vegetable beef, canned, condensed",126,0.5 cup,79
-"""06471""","Soup, vegetable beef, canned, prepared with equal volume water",244,1.0 cup (8 fl oz),76
+"""06471""","Soup, vegetable beef, canned, prepared with equal volume water",244,1.0 cup,76
 """06742""","Soup, vegetable beef, microwavable, ready-to-serve, single brand",292,1.0 serving,128
 """06700""","Soup, vegetable broth, ready to serve",221,1.0 cup,11
 """06974""","Soup, vegetable chicken, canned, prepared with water, low sodium",241,1.0 cup,166
 """06967""","Soup, vegetable soup, condensed, low sodium, prepared with equal volume water",253,1.0 cup,83
 """06072""","Soup, vegetable with beef broth, canned, condensed",123,0.5 cup,81
-"""06472""","Soup, vegetable with beef broth, canned, prepared with equal volume water",241,1.0 cup (8 fl oz),80
+"""06472""","Soup, vegetable with beef broth, canned, prepared with equal volume water",241,1.0 cup,80
 """06217""","Soup, vegetable, canned, low sodium, condensed",126,0.5 cup,82
 """06068""","Soup, vegetarian vegetable, canned, condensed",126,0.5 cup,74
 """06468""","Soup, vegetarian vegetable, canned, prepared with equal volume water",241,1.0 cup,67
@@ -5772,7 +5772,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """11478""","Squash, summer, zucchini, includes skin, cooked, boiled, drained, without salt",180,"1.0 cup, sliced",27
 """11862""","Squash, summer, zucchini, includes skin, frozen, cooked, boiled, drained, with salt",223,1.0 cup,31
 """11480""","Squash, summer, zucchini, includes skin, frozen, cooked, boiled, drained, without salt",223,1.0 cup,38
-"""11479""","Squash, summer, zucchini, includes skin, frozen, unprepared",95,0.33 package (10 oz),16
+"""11479""","Squash, summer, zucchini, includes skin, frozen, unprepared",95,10.0 oz,16
 """11477""","Squash, summer, zucchini, includes skin, raw",124,"1.0 cup, chopped",21
 """11481""","Squash, summer, zucchini, italian style, canned",227,1.0 cup,66
 """11864""","Squash, winter, acorn, cooked, baked, with salt",205,"1.0 cup, cubes",115
@@ -5787,7 +5787,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """11486""","Squash, winter, butternut, cooked, baked, without salt",205,"1.0 cup, cubes",82
 """11867""","Squash, winter, butternut, frozen, cooked, boiled, with salt",240,"1.0 cup, mashed",94
 """11488""","Squash, winter, butternut, frozen, cooked, boiled, without salt",240,"1.0 cup, mashed",94
-"""11487""","Squash, winter, butternut, frozen, unprepared",113,0.33 package (12 oz),64
+"""11487""","Squash, winter, butternut, frozen, unprepared",113,12.0 oz,64
 """11485""","Squash, winter, butternut, raw",140,"1.0 cup, cubes",63
 """11868""","Squash, winter, hubbard, baked, with salt",205,"1.0 cup, cubes",102
 """11490""","Squash, winter, hubbard, baked, without salt",205,"1.0 cup, cubes",102
@@ -5807,7 +5807,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """09320""","Strawberries, frozen, sweetened, sliced",255,"1.0 cup, thawed",245
 """09318""","Strawberries, frozen, unsweetened (Includes foods for USDA's Food Distribution Program)",221,"1.0 cup, thawed",77
 """09316""","Strawberries, raw",152,"1.0 cup, halves",49
-"""14350""","Strawberry-flavor beverage mix, powder",22,1.0 serving (2-3 heaping tsp),86
+"""14350""","Strawberry-flavor beverage mix, powder",22,2.5 heaping tsp,86
 """18354""","Strudel, apple",28.35,1.0 oz,78
 """11497""","Succotash, (corn and limas), canned, with cream style corn",266,1.0 cup,205
 """11499""","Succotash, (corn and limas), canned, with whole kernel corn, solids and liquids",255,1.0 cup,161
@@ -5851,10 +5851,10 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """44018""","Sweeteners, tabletop, fructose, liquid",0.1,1.0 serving,0
 """43158""","Sweeteners, tabletop, saccharin (sodium saccharin)",1,1.0 serving 1 packet,4
 """19868""","Sweeteners, tabletop, sucralose, SPLENDA packets",1,1.0 serving 1 packet,3
-"""07920""","Swisswurst, pork and beef, with swiss cheese, smoked",77,1.0 serving 2.7 oz,236
+"""07920""","Swisswurst, pork and beef, with swiss cheese, smoked",77,2.7 oz,236
 """90480""","Syrup, Cane",21,1.0 serving,56
 """19030""","Syrup, fruit flavored",20,1.0 serving,52
-"""19911""","Syrup, maple, Canadian",80,60.0 milliliter,216
+"""19911""","Syrup, maple, Canadian",80,60.0 ml,216
 """19924""","Syrup, NESTLE, chocolate",20,1.0 tbsp,54
 """19348""","Syrups, chocolate, fudge-type",304,1.0 cup,1064
 """19345""","Syrups, chocolate, HERSHEY'S Genuine Chocolate Flavored Lite Syrup",35,2.0 tbsp,54
@@ -5869,10 +5869,10 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """43026""","Syrups, sugar free",240,1.0 cup,122
 """19362""","Syrups, table blends, corn, refiner, and sugar",316,1.0 cup,1008
 """19129""","Syrups, table blends, pancake",314,1.0 cup,735
-"""19128""","Syrups, table blends, pancake, reduced-calorie",73,1.0 serving 1/4 cup,120
+"""19128""","Syrups, table blends, pancake, reduced-calorie",73,0.25 cup,120
 """19360""","Syrups, table blends, pancake, with 2% maple",20,1.0 tbsp,53
 """19720""","Syrups, table blends, pancake, with 2% maple, with added potassium",315,1.0 cup,835
-"""19113""","Syrups, table blends, pancake, with butter",73,1.0 serving 1/4 cup,212
+"""19113""","Syrups, table blends, pancake, with butter",73,0.25 cup,212
 """18360""","Taco shells, baked",12.9,1.0 shell,61
 """18448""","Taco shells, baked, without added salt",28.35,1.0 oz,133
 """09437""","Tamarind nectar, canned",251,1.0 cup,143
@@ -5899,7 +5899,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """20143""","Teff, cooked",252,1.0 cup,255
 """20142""","Teff, uncooked",193,1.0 cup,708
 """16114""",Tempeh,166,1.0 cup,319
-"""07078""","Thuringer, cervelat, summer sausage, beef, pork",56,2.0 oz 1 serving,203
+"""07078""","Thuringer, cervelat, summer sausage, beef, pork",56,2.0 oz,203
 """02049""","Thyme, fresh",0.8,1.0 tsp,1
 """18361""","Toaster pastries, brown-sugar-cinnamon",28.35,1.0 oz,105
 """18362""","Toaster pastries, fruit (includes apple, blueberry, cherry, strawberry)",28.35,1.0 oz,110
@@ -5979,7 +5979,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """05696""","Turkey from whole, light meat, meat only, with added solution, raw",113,4.0 oz,114
 """22528""","Turkey Pot Pie, frozen entree",397,1.0 package yields,699
 """05295""","Turkey roast, boneless, frozen, seasoned, light and dark meat, raw",85,3.0 oz,102
-"""05300""","Turkey sticks, breaded, battered, fried",64,1.0 stick (2.25 oz),179
+"""05300""","Turkey sticks, breaded, battered, fried",64,2.25 oz,179
 """05294""","Turkey thigh, pre-basted, meat and skin, cooked, roasted",85,3.0 oz,133
 """05190""","Turkey, all classes, back, meat and skin, cooked, roasted",140,"1.0 cup, chopped or diced",342
 """05192""","Turkey, all classes, breast, meat and skin, cooked, roasted",85,3.0 oz,161
