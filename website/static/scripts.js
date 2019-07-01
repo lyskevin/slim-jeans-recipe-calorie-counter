@@ -289,3 +289,4 @@ function createResultContainer(totalCalories) {
 
   return result_container;
 }
+
