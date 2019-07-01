@@ -215,8 +215,10 @@ function configure() {
       ingredient["measureAmount"] = parseFloat(measure);
       ingredient["measure"] = "fluid ounces";
     } else {
+      let unit = measure.substr(measure.indexOf(" ") + 1);
+      units[units.length] = new Option(unit, unit);
       ingredient["measureAmount"] = parseFloat(measure);
-      ingredient["measure"] = measure.substr(measure.indexOf(" ") + 1);
+      ingredient["measure"] = unit;
     }
   });
 
