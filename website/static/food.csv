@@ -1705,8 +1705,8 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """11104""","Burdock root, raw",118,"1.0 cup (1"" pieces)",85
 """01003""","Butter oil, anhydrous",12.8,1.0 tbsp,112
 """43214""","Butter replacement, without fat, powder",80,1.0 cup,298
-"""04601""","Butter, light, stick, with salt",14,1.0 tablespoon,70
-"""04602""","Butter, light, stick, without salt",14,1.0 tablespoon,70
+"""04601""","Butter, light, stick, with salt",14,1.0 tbsp,70
+"""04602""","Butter, light, stick, without salt",14,1.0 tbsp,70
 """01001""","Butter, salted",5,"1.0 pat (1"" sq, 1/3"" high)",36
 """01002""","Butter, whipped, with salt",3.8,"1.0 pat (1"" sq, 1/3"" high)",28
 """01145""","Butter, without salt",5,"1.0 pat (1"" sq, 1/3"" high)",36
@@ -2030,10 +2030,10 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """08100""","Cereals, CREAM OF RICE, dry",45,0.25 cup (1 NLEA serving),166
 """08578""","Cereals, CREAM OF WHEAT, 1 minute cook time, cooked with water, microwaved, without salt",237,1.0 cup,130
 """08577""","Cereals, CREAM OF WHEAT, 1 minute cook time, cooked with water, stove-top, without salt",245,1.0 cup,137
-"""08576""","Cereals, CREAM OF WHEAT, 1 minute cook time, dry",33,3.0 tablespoon (1 serving),118
+"""08576""","Cereals, CREAM OF WHEAT, 1 minute cook time, dry",33,3.0 tbsp (1 serving),118
 """08575""","Cereals, CREAM OF WHEAT, 2 1/2 minute cook time, cooked with water, microwaved, without salt",231,1.0 cup,120
 """08574""","Cereals, CREAM OF WHEAT, 2 1/2 minute cook time, cooked with water, stove-top, without salt",244,1.0 cup,137
-"""08573""","Cereals, CREAM OF WHEAT, 2 1/2 minute cook time, dry",33,3.0 tablespoon (1 NLEA serving),117
+"""08573""","Cereals, CREAM OF WHEAT, 2 1/2 minute cook time, dry",33,3.0 tbsp (1 NLEA serving),117
 """08106""","Cereals, CREAM OF WHEAT, instant, dry",11.5,1.0 tbsp,42
 """08107""","Cereals, CREAM OF WHEAT, instant, prepared with water, without salt",241,1.0 cup,149
 """08169""","Cereals, CREAM OF WHEAT, regular (10 minute), cooked with water, with salt",251,1.0 cup (1 serving),126
@@ -2463,7 +2463,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """11157""","Chrysanthemum, garland, raw",25,"1.0 cup (1"" pieces)",6
 """18964""","Cinnamon buns, frosted (includes honey buns)",65,1.0 bun,294
 """09433""","Clementines, raw",74,1.0 fruit,35
-"""19860""","Cocoa, dry powder, hi-fat or breakfast, processed with alkali",6,1.0 tablespoon Ghirardelli label 2011,29
+"""19860""","Cocoa, dry powder, hi-fat or breakfast, processed with alkali",6,1.0 tbsp Ghirardelli label 2011,29
 """19165""","Cocoa, dry powder, unsweetened",86,1.0 cup,196
 """19171""","Cocoa, dry powder, unsweetened, HERSHEY'S European Style Cocoa",5,1.0 tbsp,20
 """19166""","Cocoa, dry powder, unsweetened, processed with alkali",86,1.0 cup,189
@@ -3033,15 +3033,15 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """16173""","Frijoles rojos volteados (Refried beans, red, canned)",233,1.0 cup,336
 """80200""","Frog legs, raw",45,1.0 leg,33
 """19240""","Frostings, chocolate, creamy, dry mix",388,1.0 package,1509
-"""19241""","Frostings, chocolate, creamy, dry mix, prepared with butter",33,2.0 tablespoon,135
-"""19372""","Frostings, chocolate, creamy, dry mix, prepared with margarine",33,2.0 tablespoon,133
+"""19241""","Frostings, chocolate, creamy, dry mix, prepared with butter",33,2.0 tbsp,135
+"""19372""","Frostings, chocolate, creamy, dry mix, prepared with margarine",33,2.0 tbsp,133
 """19226""","Frostings, chocolate, creamy, ready-to-eat",41,2.0 tbsp creamy,163
 """19227""","Frostings, coconut-nut, ready-to-eat",38,0.08 package,165
 """19228""","Frostings, cream cheese-flavor, ready-to-eat",33,2.0 tbsp creamy,137
-"""19409""","Frostings, glaze, chocolate, prepared-from-recipe, with butter, NFSMI Recipe No. C-32",33,2.0 tablespoon,118
+"""19409""","Frostings, glaze, chocolate, prepared-from-recipe, with butter, NFSMI Recipe No. C-32",33,2.0 tbsp,118
 """19375""","Frostings, glaze, prepared-from-recipe",327,1.0 recipe yield,1115
 """19244""","Frostings, vanilla, creamy, dry mix",411,1.0 package,1685
-"""19371""","Frostings, vanilla, creamy, dry mix, prepared with margarine",33,2.0 tablespoon,136
+"""19371""","Frostings, vanilla, creamy, dry mix, prepared with margarine",33,2.0 tbsp,136
 """19230""","Frostings, vanilla, creamy, ready-to-eat",38,0.08 package,159
 """19246""","Frostings, white, fluffy, dry mix",207,1.0 package,768
 """19247""","Frostings, white, fluffy, dry mix, prepared with water",315,1.0 package yields,769
@@ -3136,7 +3136,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """19176""","Gelatin desserts, dry mix, reduced calorie, with aspartame, prepared with water",117,0.5 cup,23
 """19702""","Gelatin desserts, dry mix, with added ascorbic acid, sodium-citrate and salt",85,1.0 package (3 oz),324
 """19177""","Gelatins, dry powder, unsweetened",7,1.0 envelope (1 tbsp),23
-"""31033""","Ginger root, pickled, canned, with artificial sweetener",25,2.0 tablespoon,5
+"""31033""","Ginger root, pickled, canned, with artificial sweetener",25,2.0 tbsp,5
 """11216""","Ginger root, raw",2,1.0 tsp,2
 """28356""","Glutino, Gluten Free Cookies, Chocolate Vanilla Creme",44,3.0 cookies,209
 """28357""","Glutino, Gluten Free Cookies, Vanilla Creme",45,3.0 cookies,219
@@ -3234,7 +3234,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """09451""",Horned melon (Kiwano),233,1.0 cup,103
 """02055""","Horseradish, prepared",5,1.0 tsp,2
 """16158""","Hummus, commercial",15,1.0 tbsp,36
-"""16137""","Hummus, home prepared",15,1.0 tablespoon,27
+"""16137""","Hummus, home prepared",15,1.0 tbsp,27
 """18270""","Hush puppies, prepared from recipe",28.35,1.0 oz,96
 """16368""","Hyacinth beans, mature seeds, cooked, boiled, with salt",194,1.0 cup,227
 """16068""","Hyacinth beans, mature seeds, cooked, boiled, without salt",194,1.0 cup,227
@@ -3288,8 +3288,8 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """19297""",Jams and preserves,20,1.0 tbsp,56
 """19719""","Jams and preserves, apricot",20,1.0 tbsp,48
 """43028""","Jams and preserves, no sugar (with sodium saccharin), any flavor",224,1.0 cup,296
-"""43344""","Jams, preserves, marmalade, reduced sugar",17,1.0 tablespoon,26
-"""19920""","Jams, preserves, marmalades, sweetened with fruit juice",19,1.0 tablespoon,40
+"""43344""","Jams, preserves, marmalade, reduced sugar",17,1.0 tbsp,26
+"""19920""","Jams, preserves, marmalades, sweetened with fruit juice",19,1.0 tbsp,40
 """09145""","Java-plum, (jambolan), raw",135,1.0 cup,81
 """19300""",Jellies,21,1.0 serving 1 tbsp,56
 """43027""","Jellies, no sugar (with sodium saccharin), any flavors",300,1.0 cup,363
@@ -3721,13 +3721,13 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """09177""","Mangosteen, canned, syrup pack",196,"1.0 cup, drained",143
 """09328""","Maraschino cherries, canned, drained",5,1.0 cherry (NLEA serving),8
 """04628""","Margarine, 80% fat, stick, includes regular and hydrogenated corn and soybean oils",14,1.0 tbsp,100
-"""04684""","Margarine, 80% fat, tub, CANOLA HARVEST Soft Spread (canola, palm and palm kernel oils)",14,1.0 tablespoon (1 NLEA serving),102
+"""04684""","Margarine, 80% fat, tub, CANOLA HARVEST Soft Spread (canola, palm and palm kernel oils)",14,1.0 tbsp (1 NLEA serving),102
 """04665""","Margarine, industrial, non-dairy, cottonseed, soy oil (partially hydrogenated ), for flaky pastries",14,1.0 tbsp,100
 """04668""","Margarine, industrial, soy and partially hydrogenated soy oil, use for baking, sauces and candy",14,1.0 tbsp,100
 """04683""","Margarine, margarine-like vegetable oil spread, 67-70% fat, tub",14,1.0 tbsp (1 NLEA serving),85
 """04629""","Margarine, margarine-type vegetable oil spread, 70% fat, soybean and partially hydrogenated soybean, stick",14,1.0 tbsp (1 NLEA serving),88
 """04610""","Margarine, regular, 80% fat, composite, stick, with salt",14,1.0 tbsp,100
-"""04691""","Margarine, regular, 80% fat, composite, stick, with salt, with added vitamin D",14,1.0 tablespoon,100
+"""04691""","Margarine, regular, 80% fat, composite, stick, with salt, with added vitamin D",14,1.0 tbsp,100
 """04617""","Margarine, regular, 80% fat, composite, stick, without salt",14.2,1.0 tbsp,102
 """04696""","Margarine, regular, 80% fat, composite, stick, without salt, with added vitamin D",14,1.0 tbsp,100
 """04611""","Margarine, regular, 80% fat, composite, tub, with salt",14.2,1.0 tbsp,101
@@ -3736,16 +3736,16 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """04073""","Margarine, regular, hard, soybean (hydrogenated)",4.7,1.0 tsp,34
 """04128""","Margarine,spread, 35-39% fat, tub",232,1.0 cup,810
 """04655""","Margarine-like shortening, industrial, soy (partially hydrogenated), cottonseed, and soy, principal use flaky pastries",14,1.0 tbsp,88
-"""04626""","Margarine-like spread with yogurt, 70% fat, stick, with salt",14,1.0 tablespoon,88
-"""04627""","Margarine-like spread with yogurt, approximately 40% fat, tub, with salt",14,1.0 tablespoon,46
-"""04687""","Margarine-like spread, BENECOL Light Spread",14,1.0 tablespoon (1 NLEA serving),50
+"""04626""","Margarine-like spread with yogurt, 70% fat, stick, with salt",14,1.0 tbsp,88
+"""04627""","Margarine-like spread with yogurt, approximately 40% fat, tub, with salt",14,1.0 tbsp,46
+"""04687""","Margarine-like spread, BENECOL Light Spread",14,1.0 tbsp (1 NLEA serving),50
 """04674""","Margarine-like spread, SMART BALANCE Light Buttery Spread",14,1.0 tbsp,47
-"""04677""","Margarine-like spread, SMART BALANCE Omega Plus Spread (with plant sterols  &  fish oil)",14,1.0 tablespoon,85
-"""04673""","Margarine-like spread, SMART BALANCE Regular Buttery Spread with flax oil",14,1.0 tablespoon,82
-"""04676""","Margarine-like spread, SMART BEAT Smart Squeeze",14,1.0 tablespoon,7
-"""04675""","Margarine-like spread, SMART BEAT Super Light without saturated fat",14,1.0 tablespoon,22
+"""04677""","Margarine-like spread, SMART BALANCE Omega Plus Spread (with plant sterols  &  fish oil)",14,1.0 tbsp,85
+"""04673""","Margarine-like spread, SMART BALANCE Regular Buttery Spread with flax oil",14,1.0 tbsp,82
+"""04676""","Margarine-like spread, SMART BEAT Smart Squeeze",14,1.0 tbsp,7
+"""04675""","Margarine-like spread, SMART BEAT Super Light without saturated fat",14,1.0 tbsp,22
 """04695""","Margarine-like vegetable-oil spread, stick/tub/bottle, 60% fat, with added vitamin D",14,1.0 tbsp,75
-"""42307""","Margarine-like, butter-margarine blend, 80% fat, stick, without salt",14,1.0 tablespoon,101
+"""42307""","Margarine-like, butter-margarine blend, 80% fat, stick, without salt",14,1.0 tbsp,101
 """04585""","Margarine-like, margarine-butter blend, soybean oil and butter",14.1,1.0 tbsp,103
 """04633""","Margarine-like, vegetable oil spread, 20% fat, with salt",15,1.0 tbsp,26
 """04634""","Margarine-like, vegetable oil spread, 20% fat, without salt",12.8,1.0 tbsp,22
@@ -3759,9 +3759,9 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """04690""","Margarine-like, vegetable oil spread, approximately 37% fat, unspecified oils, with salt, with added vitamin D",14.9,1.0 tbsp,51
 """04624""","Margarine-like, vegetable oil spread, fat free, liquid, with salt",15,1.0 tbsp,6
 """04631""","Margarine-like, vegetable oil spread, fat-free, tub",14.6,1.0 tbsp,6
-"""42256""","Margarine-like, vegetable oil spread, stick or tub, sweetened",14,1.0 tablespoon,75
-"""42309""","Margarine-like, vegetable oil-butter spread, reduced calorie, tub, with salt",14,1.0 tablespoon,63
-"""04600""","Margarine-like, vegetable oil-butter spread, tub, with salt",14,1.0 tablespoon,51
+"""42256""","Margarine-like, vegetable oil spread, stick or tub, sweetened",14,1.0 tbsp,75
+"""42309""","Margarine-like, vegetable oil-butter spread, reduced calorie, tub, with salt",14,1.0 tbsp,63
+"""04600""","Margarine-like, vegetable oil-butter spread, tub, with salt",14,1.0 tbsp,51
 """19303""","Marmalade, orange",20,1.0 tbsp,49
 """43598""","Mayonnaise dressing, no cholesterol",15,1.0 tbsp,103
 """43355""","Mayonnaise, low sodium, low calorie or diet",14,1.0 tbsp,32
@@ -4064,32 +4064,32 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """20132""","Oat flour, partially debranned",104,1.0 cup,420
 """20038""",Oats (Includes foods for USDA's Food Distribution Program),156,1.0 cup,607
 """09192""","Oheloberries, raw",140,1.0 cup,39
-"""04529""","Oil, almond",13.6,1.0 tablespoon,120
-"""04530""","Oil, apricot kernel",13.6,1.0 tablespoon,120
+"""04529""","Oil, almond",13.6,1.0 tbsp,120
+"""04530""","Oil, apricot kernel",13.6,1.0 tbsp,120
 """04581""","Oil, avocado",14,1.0 tbsp,124
 """04534""","Oil, babassu",13.6,1.0 tbsp,120
 """04582""","Oil, canola",14,1.0 tbsp,124
-"""04501""","Oil, cocoa butter",13.6,1.0 tablespoon,120
+"""04501""","Oil, cocoa butter",13.6,1.0 tbsp,120
 """04047""","Oil, coconut",13.6,1.0 tbsp,121
 """04685""","Oil, cooking and salad, ENOVA, 80% diglycerides",14,1.0 tbsp (1 NLEA serving),124
 """42289""","Oil, corn and canola",14,1.0 tbsp,124
 """04518""","Oil, corn, industrial and retail, all purpose salad or cooking",13.6,1.0 tbsp,122
-"""44005""","Oil, corn, peanut, and olive",14,1.0 tablespoon,124
-"""04502""","Oil, cottonseed, salad or cooking",13.6,1.0 tablespoon,120
-"""04541""","Oil, cupu assu",13.6,1.0 tablespoon,120
+"""44005""","Oil, corn, peanut, and olive",14,1.0 tbsp,124
+"""04502""","Oil, cottonseed, salad or cooking",13.6,1.0 tbsp,120
+"""04541""","Oil, cupu assu",13.6,1.0 tbsp,120
 """42231""","Oil, flaxseed, cold pressed",13.6,1.0 tbsp,120
-"""04707""","Oil, flaxseed, contains added sliced flaxseed",13.7,1.0 tablespoon,120
-"""04517""","Oil, grapeseed",13.6,1.0 tablespoon,120
-"""04532""","Oil, hazelnut",13.6,1.0 tablespoon,120
-"""04645""","Oil, industrial, canola (partially hydrogenated) oil for deep fat frying",13.6,1.0 tablespoon,120
-"""04644""","Oil, industrial, canola for salads, woks and light frying",13.6,1.0 tablespoon,120
-"""04643""","Oil, industrial, canola with antifoaming agent, principal uses salads, woks and light frying",13.6,1.0 tablespoon,120
-"""04698""","Oil, industrial, canola, high oleic",14,1.0 tablespoon,126
+"""04707""","Oil, flaxseed, contains added sliced flaxseed",13.7,1.0 tbsp,120
+"""04517""","Oil, grapeseed",13.6,1.0 tbsp,120
+"""04532""","Oil, hazelnut",13.6,1.0 tbsp,120
+"""04645""","Oil, industrial, canola (partially hydrogenated) oil for deep fat frying",13.6,1.0 tbsp,120
+"""04644""","Oil, industrial, canola for salads, woks and light frying",13.6,1.0 tbsp,120
+"""04643""","Oil, industrial, canola with antifoaming agent, principal uses salads, woks and light frying",13.6,1.0 tbsp,120
+"""04698""","Oil, industrial, canola, high oleic",14,1.0 tbsp,126
 """04661""","Oil, industrial, coconut (hydrogenated), used for whipped toppings and coffee whiteners",13.6,1.0 tbsp,120
 """04659""","Oil, industrial, coconut, confection fat, typical basis for ice cream coatings",13.6,1.0 tbsp,120
 """04646""","Oil, industrial, coconut, principal uses candy coatings, oil sprays, roasting nuts",13.6,1.0 tbsp,120
-"""04702""","Oil, industrial, cottonseed, fully hydrogenated",13.6,1.0 tablespoon,120
-"""04642""","Oil, industrial, mid-oleic, sunflower",13.6,1.0 tablespoon,120
+"""04702""","Oil, industrial, cottonseed, fully hydrogenated",13.6,1.0 tbsp,120
+"""04642""","Oil, industrial, mid-oleic, sunflower",13.6,1.0 tbsp,120
 """04662""","Oil, industrial, palm and palm kernel, filling fat (non-hydrogenated)",13.6,1.0 tbsp,120
 """04660""","Oil, industrial, palm kernel (hydrogenated) , used for whipped toppings, non-dairy",13.6,1.0 tbsp,120
 """04658""","Oil, industrial, palm kernel (hydrogenated), confection fat, intermediate grade product",13.6,1.0 tbsp,120
@@ -4102,36 +4102,36 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """04654""","Oil, industrial, soy (partially hydrogenated)  and cottonseed, principal use as a tortilla shortening",13.6,1.0 tbsp,120
 """04651""","Oil, industrial, soy (partially hydrogenated), multiuse for non-dairy butter flavor",13.6,1.0 tbsp,120
 """04648""","Oil, industrial, soy (partially hydrogenated), principal uses popcorn and flavoring vegetables",13.6,1.0 tbsp,120
-"""04701""","Oil, industrial, soy, fully hydrogenated",13.6,1.0 tablespoon,120
-"""04699""","Oil, industrial, soy, low linolenic",14,1.0 tablespoon,126
+"""04701""","Oil, industrial, soy, fully hydrogenated",13.6,1.0 tbsp,120
+"""04699""","Oil, industrial, soy, low linolenic",14,1.0 tbsp,126
 """04650""","Oil, industrial, soy, refined, for woks and light frying",13.6,1.0 tbsp,120
-"""04700""","Oil, industrial, soy, ultra low linolenic",13.6,1.0 tablespoon,120
+"""04700""","Oil, industrial, soy, ultra low linolenic",13.6,1.0 tbsp,120
 """04583""","Oil, mustard",14,1.0 tbsp,124
 """04572""","Oil, nutmeg butter",13.6,1.0 tbsp,120
 """04588""","Oil, oat",13.6,1.0 tbsp,120
-"""04053""","Oil, olive, salad or cooking",13.5,1.0 tablespoon,119
+"""04053""","Oil, olive, salad or cooking",13.5,1.0 tbsp,119
 """04055""","Oil, palm",13.6,1.0 tbsp,120
 """04679""","Oil, PAM cooking spray, original",0.3,"1.0 spray , about 1/3 second (1 NLEA serving)",2
 """04042""","Oil, peanut, salad or cooking",13.5,1.0 tbsp,119
-"""04514""","Oil, poppyseed",13.6,1.0 tablespoon,120
-"""04037""","Oil, rice bran",13.6,1.0 tablespoon,120
-"""04511""","Oil, safflower, salad or cooking, high oleic (primary safflower oil of commerce)",13.6,1.0 tablespoon,120
+"""04514""","Oil, poppyseed",13.6,1.0 tbsp,120
+"""04037""","Oil, rice bran",13.6,1.0 tbsp,120
+"""04511""","Oil, safflower, salad or cooking, high oleic (primary safflower oil of commerce)",13.6,1.0 tbsp,120
 """04510""","Oil, safflower, salad or cooking, linoleic, (over 70%)",13.6,1.0 tbsp,120
-"""04058""","Oil, sesame, salad or cooking",13.6,1.0 tablespoon,120
-"""04536""","Oil, sheanut",13.6,1.0 tablespoon,120
-"""04531""","Oil, soybean lecithin",13.6,1.0 tablespoon,104
+"""04058""","Oil, sesame, salad or cooking",13.6,1.0 tbsp,120
+"""04536""","Oil, sheanut",13.6,1.0 tbsp,120
+"""04531""","Oil, soybean lecithin",13.6,1.0 tbsp,104
 """04044""","Oil, soybean, salad or cooking",13.6,1.0 tbsp,120
 """04034""","Oil, soybean, salad or cooking, (partially hydrogenated)",13.6,1.0 tbsp,120
-"""04543""","Oil, soybean, salad or cooking, (partially hydrogenated) and cottonseed",13.6,1.0 tablespoon,120
+"""04543""","Oil, soybean, salad or cooking, (partially hydrogenated) and cottonseed",13.6,1.0 tbsp,120
 """04584""","Oil, sunflower, high oleic (70% and over)",14,1.0 tbsp,124
 """04060""","Oil, sunflower, linoleic (less than 60%)",13.6,1.0 tbsp,120
 """04506""","Oil, sunflower, linoleic, (approx. 65%)",13.6,1.0 tbsp,120
 """04545""","Oil, sunflower, linoleic, (partially hydrogenated)",13.6,1.0 tbsp,120
-"""04516""","Oil, teaseed",13.6,1.0 tablespoon,120
-"""04515""","Oil, tomatoseed",13.6,1.0 tablespoon,120
+"""04516""","Oil, teaseed",13.6,1.0 tbsp,120
+"""04515""","Oil, tomatoseed",13.6,1.0 tbsp,120
 """04573""","Oil, ucuhuba butter",13.6,1.0 tbsp,120
 """04678""","Oil, vegetable, Natreon canola, high stability, non trans, high oleic (70%)",14,1.0 tbsp,124
-"""04669""","Oil, vegetable, soybean, refined",13.6,1.0 tablespoon,120
+"""04669""","Oil, vegetable, soybean, refined",13.6,1.0 tbsp,120
 """04528""","Oil, walnut",13.6,1.0 tbsp,120
 """04038""","Oil, wheat germ",4.5,1.0 tsp,40
 """16130""",Okara,122,1.0 cup,93
@@ -4222,7 +4222,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """09229""","Papaya nectar, canned",250,1.0 cup,142
 """09228""","Papaya, canned, heavy syrup, drained",39,1.0 piece,80
 """09226""","Papayas, raw",145,"1.0 cup 1"" pieces",62
-"""01185""","Parmesan cheese topping, fat free",5,1.0 tablespoon,18
+"""01185""","Parmesan cheese topping, fat free",5,1.0 tbsp,18
 """11625""","Parsley, freeze-dried",0.4,1.0 tbsp,1
 """11297""","Parsley, fresh",60,1.0 cup chopped,22
 """11808""","Parsnips, cooked, boiled, drained, with salt",78,0.5 cup slices,55
@@ -4288,7 +4288,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """16167""","Peanut Butter, smooth (Includes foods for USDA's Food Distribution Program)",32,2.0 tbsp,188
 """16098""","Peanut butter, smooth style, with salt (Includes foods for USDA's Food Distribution Program)",32,2.0 tbsp,191
 """16398""","Peanut butter, smooth style, without salt",32,2.0 tbsp,191
-"""16150""","Peanut butter, smooth, reduced fat",36,2.0 tablespoon,187
+"""16150""","Peanut butter, smooth, reduced fat",36,2.0 tbsp,187
 """16155""","Peanut butter, smooth, vitamin and mineral fortified",32,2.0 tbsp,189
 """16099""","Peanut flour, defatted",60,1.0 cup,196
 """16100""","Peanut flour, low fat",60,1.0 cup,257
@@ -4970,7 +4970,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """22976""","Ravioli, cheese with tomato sauce, frozen, not prepared, includes regular and light entrees",159,1.0 cup,176
 """22899""","Ravioli, cheese-filled, canned",242,1.0 cup,186
 """22900""","Ravioli, meat-filled, with tomato sauce or meat sauce, canned",262,1.0 cup,254
-"""01200""",Reddi Wip Fat Free Whipped Topping,4,1.0 tablespoon,6
+"""01200""",Reddi Wip Fat Free Whipped Topping,4,1.0 tbsp,6
 """16172""","Refried beans, canned, fat-free",231,1.0 cup,182
 """16103""","Refried beans, canned, traditional style",238,1.0 cup,214
 """16403""","Refried beans, canned, traditional, reduced sodium",238,1.0 cup,212
@@ -5053,56 +5053,56 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """42192""","Salad dressing, blue or roquefort cheese dressing, fat-free",17,1.0 tbsp,20
 """42153""","Salad dressing, blue or roquefort cheese dressing, light",16,1.0 tbsp,14
 """43020""","Salad dressing, blue or roquefort cheese, low calorie",15,1.0 tbsp,15
-"""43215""","Salad dressing, buttermilk, lite",15,1.0 tablespoon,30
+"""43215""","Salad dressing, buttermilk, lite",15,1.0 tbsp,30
 """43015""","Salad dressing, caesar dressing, regular",14.7,1.0 tbsp,80
 """04705""","Salad dressing, caesar, fat-free",34,2.0 tbsp (1 NLEA serving),45
 """43021""","Salad dressing, caesar, low calorie",15,1.0 tbsp,16
 """43016""","Salad dressing, coleslaw",19,1.0 tbsp,77
 """42230""","Salad Dressing, coleslaw, reduced fat",17,1.0 tbsp,56
 """04120""","Salad dressing, french dressing, commercial, regular",250,1.0 cup,1048
-"""04141""","Salad dressing, french dressing, commercial, regular, without salt",15,1.0 tablespoon,69
-"""04367""","Salad dressing, french dressing, fat-free",16,1.0 tablespoon,21
+"""04141""","Salad dressing, french dressing, commercial, regular, without salt",15,1.0 tbsp,69
+"""04367""","Salad dressing, french dressing, fat-free",16,1.0 tbsp,21
 """42171""","Salad dressing, french dressing, reduced calorie",16,1.0 tbsp,36
-"""04020""","Salad dressing, french dressing, reduced fat",16,1.0 tablespoon,36
-"""04142""","Salad dressing, french dressing, reduced fat, without salt",16,1.0 tablespoon,37
-"""04146""","Salad dressing, french, cottonseed, oil, home recipe",14,1.0 tablespoon,88
-"""04133""","Salad dressing, french, home recipe",14,1.0 tablespoon,88
+"""04020""","Salad dressing, french dressing, reduced fat",16,1.0 tbsp,36
+"""04142""","Salad dressing, french dressing, reduced fat, without salt",16,1.0 tbsp,37
+"""04146""","Salad dressing, french, cottonseed, oil, home recipe",14,1.0 tbsp,88
+"""04133""","Salad dressing, french, home recipe",14,1.0 tbsp,88
 """43017""","Salad dressing, green goddess, regular",15,1.0 tbsp,64
-"""04135""","Salad dressing, home recipe, vinegar and oil",16,1.0 tablespoon,72
+"""04135""","Salad dressing, home recipe, vinegar and oil",16,1.0 tbsp,72
 """04686""","Salad dressing, honey mustard dressing, reduced calorie",30,2.0 tbsp (1 serving),62
 """04703""","Salad dressing, honey mustard, regular",30,2.0 tbsp,139
-"""04021""","Salad dressing, italian dressing, commercial, reduced fat",15,1.0 tablespoon,15
+"""04021""","Salad dressing, italian dressing, commercial, reduced fat",15,1.0 tbsp,15
 """04114""","Salad dressing, italian dressing, commercial, regular",14.7,1.0 tbsp,35
-"""04143""","Salad dressing, italian dressing, commercial, regular, without salt",14.7,1.0 tablespoon,43
+"""04143""","Salad dressing, italian dressing, commercial, regular, without salt",14.7,1.0 tbsp,43
 """04636""","Salad dressing, italian dressing, fat-free",14,1.0 tbsp,7
 """42140""","Salad dressing, italian dressing, reduced calorie",14,1.0 tbsp,28
-"""04144""","Salad dressing, italian dressing, reduced fat, without salt",15,1.0 tablespoon,11
+"""04144""","Salad dressing, italian dressing, reduced fat, without salt",15,1.0 tbsp,11
 """04013""","Salad dressing, KRAFT Mayo Fat Free Mayonnaise Dressing",16,1.0 tbsp,10
 """04011""","Salad dressing, KRAFT Mayo Light Mayonnaise",15,1.0 tbsp,50
 """04014""","Salad dressing, KRAFT MIRACLE WHIP FREE Nonfat Dressing",16,1.0 tbsp,13
 """43329""","Salad dressing, mayonnaise and mayonnaise-type, low calorie",14.5,1.0 tbsp,38
 """04018""","Salad dressing, mayonnaise type, regular, with salt",14.7,1.0 tbsp,37
-"""04028""","Salad dressing, mayonnaise, imitation, milk cream",15,1.0 tablespoon,15
+"""04028""","Salad dressing, mayonnaise, imitation, milk cream",15,1.0 tbsp,15
 """04027""","Salad dressing, mayonnaise, imitation, soybean",15,1.0 tbsp,35
-"""04029""","Salad dressing, mayonnaise, imitation, soybean without cholesterol",14.1,1.0 tablespoon,68
-"""04641""","Salad dressing, mayonnaise, light",15,1.0 tablespoon,36
+"""04029""","Salad dressing, mayonnaise, imitation, soybean without cholesterol",14.1,1.0 tbsp,68
+"""04641""","Salad dressing, mayonnaise, light",15,1.0 tbsp,36
 """04689""","Salad Dressing, mayonnaise, light, SMART BALANCE, Omega Plus light",14,1.0 tbsp (1 NLEA serving),47
 """04025""","Salad dressing, mayonnaise, regular",13.8,1.0 tbsp,94
-"""04026""","Salad dressing, mayonnaise, soybean and safflower oil, with salt",13.8,1.0 tablespoon,99
-"""04145""","Salad dressing, mayonnaise, soybean oil, without salt",13.8,1.0 tablespoon,99
+"""04026""","Salad dressing, mayonnaise, soybean and safflower oil, with salt",13.8,1.0 tbsp,99
+"""04145""","Salad dressing, mayonnaise, soybean oil, without salt",13.8,1.0 tbsp,99
 """42193""","Salad Dressing, mayonnaise-like, fat-free",16,1.0 tbsp,13
 """42137""","Salad dressing, peppercorn dressing, commercial, regular",13.4,1.0 tbsp,76
 """04704""","Salad dressing, poppyseed, creamy",33,2.0 tbsp,132
-"""04638""","Salad dressing, ranch dressing, fat-free",14,1.0 tablespoon,17
-"""04640""","Salad dressing, ranch dressing, reduced fat",15,1.0 tablespoon,29
-"""04639""","Salad dressing, ranch dressing, regular",15,1.0 tablespoon,64
+"""04638""","Salad dressing, ranch dressing, fat-free",14,1.0 tbsp,17
+"""04640""","Salad dressing, ranch dressing, reduced fat",15,1.0 tbsp,29
+"""04639""","Salad dressing, ranch dressing, regular",15,1.0 tbsp,64
 """04015""","Salad dressing, russian dressing",15,1.0 tbsp,53
-"""04022""","Salad dressing, russian dressing, low calorie",16,1.0 tablespoon,23
-"""04016""","Salad dressing, sesame seed dressing, regular",15,1.0 tablespoon,66
+"""04022""","Salad dressing, russian dressing, low calorie",16,1.0 tbsp,23
+"""04016""","Salad dressing, sesame seed dressing, regular",15,1.0 tbsp,66
 """04688""","Salad dressing, spray-style dressing, assorted flavors",8,1.0 serving (approximately 10 sprays),13
 """43019""","Salad dressing, sweet and sour",16,1.0 tbsp,2
 """04635""","Salad dressing, thousand island dressing, fat-free",16,1.0 tbsp,21
-"""04023""","Salad dressing, thousand island dressing, reduced fat",15,1.0 tablespoon,29
+"""04023""","Salad dressing, thousand island dressing, reduced fat",15,1.0 tbsp,29
 """04017""","Salad dressing, thousand island, commercial, regular",16,1.0 tbsp,61
 """07068""","Salami, cooked, beef",26,1.0 slice,68
 """07069""","Salami, cooked, beef and pork",12.3,1.0 slice round,41
@@ -5124,7 +5124,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """02047""","Salt, table",6,1.0 tsp,0
 """43135""","Sandwich spread, meatless",15,1.0 tbsp,22
 """07073""","Sandwich spread, pork, beef",15,1.0 tbsp,35
-"""04030""","Sandwich spread, with chopped pickle, regular, unspecified oils",15,1.0 tablespoon,58
+"""04030""","Sandwich spread, with chopped pickle, regular, unspecified oils",15,1.0 tbsp,58
 """09313""","Sapodilla, raw",241,"1.0 cup, pulp",200
 """09314""","Sapote, mamey, raw",175,"1.0 cup 1"" pieces",217
 """06150""","Sauce, barbecue",17,1.0 tbsp,29
@@ -5166,7 +5166,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """06142""","Sauce, sofrito, prepared from recipe",103,0.5 cup,244
 """27048""","Sauce, steak, tomato based",34,2.0 Tbsp,32
 """27050""","Sauce, sweet and sour, ready-to-serve",35,2.0 Tbsp,54
-"""27049""","Sauce, tartar, ready-to-serve",30,2.0 tablespoons,63
+"""27049""","Sauce, tartar, ready-to-serve",30,2.0 tbsps,63
 """06112""","Sauce, teriyaki, ready-to-serve",18,1.0 tbsp,16
 """06189""","Sauce, teriyaki, ready-to-serve, reduced sodium",36,2.0 Tbsp,32
 """06972""","Sauce, tomato chili sauce, bottled, with salt",6,1.0 packet,6
@@ -5273,7 +5273,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """11640""","Shallots, freeze-dried",0.9,1.0 tbsp,3
 """11677""","Shallots, raw",10,1.0 tbsp chopped,7
 """19097""","Sherbet, orange",74,0.5 cup (4 fl oz),107
-"""04546""","Shortening bread, soybean (hydrogenated) and cottonseed",12.8,1.0 tablespoon,113
+"""04546""","Shortening bread, soybean (hydrogenated) and cottonseed",12.8,1.0 tbsp,113
 """04548""","Shortening cake mix, soybean (hydrogenated) and cottonseed (hydrogenated)",12.8,1.0 tbsp,113
 """04551""","Shortening confectionery, coconut (hydrogenated) and or palm kernel (hydrogenated)",12.8,1.0 tbsp,113
 """04550""","Shortening frying (heavy duty), beef tallow and cottonseed",12.8,1.0 tbsp,115
@@ -5283,7 +5283,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """04549""","Shortening industrial, lard and vegetable oil",12.8,1.0 tbsp,115
 """04554""","Shortening industrial, soybean (hydrogenated) and cottonseed",12.8,1.0 tbsp,113
 """04570""","Shortening, confectionery, fractionated palm",13.6,1.0 tbsp,120
-"""04544""","Shortening, household, lard and vegetable oil",12.8,1.0 tablespoon,115
+"""04544""","Shortening, household, lard and vegetable oil",12.8,1.0 tbsp,115
 """04031""","Shortening, household, soybean (partially hydrogenated)-cottonseed (partially hydrogenated)",12.8,1.0 tbsp,113
 """04666""","Shortening, industrial, soy (partially hydrogenated ) and corn for frying",12.8,1.0 tbsp,113
 """04667""","Shortening, industrial, soy (partially hydrogenated ) for baking and confections",12.8,1.0 tbsp,113
@@ -5640,10 +5640,10 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """06068""","Soup, vegetarian vegetable, canned, condensed",126,0.5 cup,74
 """06468""","Soup, vegetarian vegetable, canned, prepared with equal volume water",241,1.0 cup,67
 """27002""","Soup, wonton, Chinese restaurant",223,1.0 cup,71
-"""01180""","Sour cream, fat free",12,1.0 tablespoon,9
+"""01180""","Sour cream, fat free",12,1.0 tbsp,9
 """01074""","Sour cream, imitation, cultured",28.35,1.0 oz,59
-"""01179""","Sour cream, light",12,1.0 tablespoon,16
-"""01178""","Sour cream, reduced fat",12,1.0 tablespoon,22
+"""01179""","Sour cream, light",12,1.0 tbsp,16
+"""01178""","Sour cream, reduced fat",12,1.0 tbsp,22
 """01058""","Sour dressing, non-butterfat, cultured, filled cream-type",12,1.0 tbsp,21
 """09315""","Soursop, raw",225,"1.0 cup, pulp",148
 """16117""","Soy flour, defatted",105,1.0 cup,343
@@ -5809,17 +5809,6 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """09316""","Strawberries, raw",152,"1.0 cup, halves",49
 """14350""","Strawberry-flavor beverage mix, powder",22,1.0 serving (2-3 heaping tsp),86
 """18354""","Strudel, apple",28.35,1.0 oz,78
-"""21161""","SUBWAY, B.L.T. sub on white bread with bacon, lettuce and tomato",148,6.0 inch sub,303
-"""21209""","SUBWAY, black forest ham sub on white bread with lettuce and tomato",184,6.0 inch sub,278
-"""21213""","SUBWAY, cold cut sub on white bread with lettuce and tomato",196,6.0 inch sub,419
-"""21157""","SUBWAY, meatball marinara sub on white bread (no toppings)",209,6.0 inch sub,458
-"""21211""","SUBWAY, oven roasted chicken sub on white bread with lettuce and tomato",198,6.0 inch sub,311
-"""21210""","SUBWAY, roast beef sub on white bread with lettuce and tomato",190,6.0 inch sub,294
-"""21159""","SUBWAY, steak  &  cheese sub on white bread with American cheese, lettuce and tomato",201,6.0 inch sub,368
-"""21152""","SUBWAY, SUBWAY CLUB sub on white bread with lettuce and tomato",207,6.0 inch sub,302
-"""21150""","SUBWAY, sweet onion chicken teriyaki sub on white bread with lettuce, tomato and sweet onion sauce",228,6.0 inch sub,353
-"""21214""","SUBWAY, tuna sub on white bread with lettuce and tomato",237,6.0 inch sub,524
-"""21207""","SUBWAY, turkey breast sub on white bread with lettuce and tomato",184,6.0 inch sub,270
 """11497""","Succotash, (corn and limas), canned, with cream style corn",266,1.0 cup,205
 """11499""","Succotash, (corn and limas), canned, with whole kernel corn, solids and liquids",255,1.0 cup,161
 """11871""","Succotash, (corn and limas), cooked, boiled, drained, with salt",192,1.0 cup,213
@@ -5866,7 +5855,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """90480""","Syrup, Cane",21,1.0 serving,56
 """19030""","Syrup, fruit flavored",20,1.0 serving,52
 """19911""","Syrup, maple, Canadian",80,60.0 milliliter,216
-"""19924""","Syrup, NESTLE, chocolate",20,1.0 tablespoon,54
+"""19924""","Syrup, NESTLE, chocolate",20,1.0 tbsp,54
 """19348""","Syrups, chocolate, fudge-type",304,1.0 cup,1064
 """19345""","Syrups, chocolate, HERSHEY'S Genuine Chocolate Flavored Lite Syrup",35,2.0 tbsp,54
 """19916""","Syrups, chocolate, HERSHEY'S Sugar free, Genuine Chocolate Flavored, Lite Syrup",35,2.0 tbsp,15
@@ -5958,7 +5947,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """11955""","Tomatoes, sun-dried",54,1.0 cup,139
 """11956""","Tomatoes, sun-dried, packed in oil, drained",110,1.0 cup,234
 """11696""","Tomatoes, yellow, raw",139,"1.0 cup, chopped",21
-"""19029""","Topping, SMUCKER'S MAGIC SHELL",34,2.0 tablespoon,207
+"""19029""","Topping, SMUCKER'S MAGIC SHELL",34,2.0 tbsp,207
 """19364""","Toppings, butterscotch or caramel",41,2.0 tbsp,89
 """19365""","Toppings, marshmallow cream",28.35,1.0 oz,91
 """19367""","Toppings, nuts in syrup",328,1.0 cup,1469
@@ -6235,7 +6224,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """11578""","Vegetable juice cocktail, canned",253,1.0 cup,56
 """11585""","Vegetable juice cocktail, low sodium, canned",254,1.0 cup,48
 """31035""","Vegetable juice, BOLTHOUSE FARMS, DAILY GREENS",269,1.0 cup,83
-"""04513""","Vegetable oil, palm kernel",13.6,1.0 tablespoon,117
+"""04513""","Vegetable oil, palm kernel",13.6,1.0 tbsp,117
 """42151""","Vegetable oil-butter spread, reduced calorie",13,1.0 tbsp,60
 """43312""","Vegetables, mixed (corn, lima beans, peas, green beans, carrots) canned, no salt added",182,1.0 cup,67
 """11581""","Vegetables, mixed, canned, drained solids",163,1.0 cup,80
@@ -6277,7 +6266,7 @@ NDB_NO,Description,Weight(g),Measure,Energy(kcal)Per Measure
 """18365""","Waffles, plain, frozen, ready-to-heat",28.35,1.0 oz,81
 """18367""","Waffles, plain, prepared from recipe",28.35,1.0 oz,82
 """28304""","Waffles, whole wheat, lowfat, frozen, ready-to-heat",70,1.0 serving 2 waffles,180
-"""27064""",Wasabi,20,1.0 tablespoon,58
+"""27064""",Wasabi,20,1.0 tbsp,58
 """11990""","Wasabi, root, raw",130,"1.0 cup, sliced",142
 """11873""","Water convolvulus, cooked, boiled, drained, with salt",98,"1.0 cup, chopped",20
 """11504""","Water convolvulus, cooked, boiled, drained, without salt",98,"1.0 cup, chopped",20
