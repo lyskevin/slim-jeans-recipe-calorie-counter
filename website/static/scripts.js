@@ -1,4 +1,5 @@
-var numberOfRows = 1; // current number of rows
+// Globabl variables
+var numberOfRows = 1;
 var ingredients = {};
 var weightConversionUnits = {
   "milligrams": 0.001,
@@ -73,6 +74,15 @@ var volumeConversionUnits = {
   }
 };
 
+// Executes when the DOM is fully loaded
+$(document).ready(function() {  
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar').toggleClass('active');
+  });
+  configure();
+});
+
+// Appends a row to the input table
 function appendRow() {
   const table = document.getElementById("input-table");
     var newRow = table.insertRow(-1);
@@ -110,50 +120,7 @@ function appendRow() {
     configure();
 }
 
-function deleteRow(row) {
-  if (numberOfRows > 1) {
-    numberOfRows--;
-    const table = document.getElementById("input-table");
-    var rowNumber = $(row).closest('tr').index() + 1;
-    table.deleteRow(rowNumber);
-  }
-}
-
-function getInput() {
-  // Calculate total calories
-  var form = document.forms["calorie-input"];
-  var totalCalories = 0;
-  for (let i = 0; i < form.length - 3; i += 4) {
-    let description = form[i].value;
-    let ingredient = ingredients[description];
-    let unit = form[i + 2].value;
-    if (unit in weightConversionUnits) {
-      let conversionFactor = weightConversionUnits[unit];
-      totalCalories += (form[i + 1].value / ingredient["weightInGrams"])
-                       * ingredient["energyPerMeasure"] * conversionFactor;
-    } else if (unit in volumeConversionUnits) {
-      let conversionFactor = volumeConversionUnits[unit][ingredient["measure"]];
-      totalCalories += (form[i + 1].value / ingredient["measureAmount"])
-                       * ingredient["energyPerMeasure"] * conversionFactor;
-    } else {
-      totalCalories += (form[i + 1].value / ingredient["measureAmount"])
-                       * ingredient["energyPerMeasure"];
-    }
-  }
-
-  // Display total calories
-  // alert(totalCalories);
-  displayResults(totalCalories);
-}
-
-// Execute when the DOM is fully loaded
-$(document).ready(function() {  
-  $('#sidebarCollapse').on('click', function() {
-    $('#sidebar').toggleClass('active');
-  });
-  configure();
-});
-
+// Configures the DOM
 function configure() {
   
   // Configure typeahead
@@ -224,7 +191,7 @@ function configure() {
 
 }
 
-// Configure volume units
+// Configures volume units in the specified "units" element in the table
 function configureVolumeUnits(units) {
   units[units.length] = new Option("cups", "cups");
   units[units.length] = new Option("tablespoons (tbsp)", "tablespoons");
@@ -235,13 +202,84 @@ function configureVolumeUnits(units) {
   units[units.length] = new Option("fluid ounces (fl oz)", "fluid ounces");
 }
 
-// Configure weight units
+// Configures weight units in the specified "units" element in the table
 function configureWeightUnits(units) {
   units.options[units.length] = new Option("milligrams (mg)", "milligrams");
   units.options[units.length] = new Option("grams (g)", "grams");
   units.options[units.length] = new Option("kilograms (kg)", "kilograms");
   units.options[units.length] = new Option("ounces (oz)", "ounces");
   units.options[units.length] = new Option("pounds (lb)", "pounds");
+}
+
+// Creates a container to display the specified total number of calories
+function createResultContainer(totalCalories) {
+  var result_container = document.createElement("div");
+  result_container.setAttribute("class", "result-container");
+  
+  var resultBox = document.createElement("div");
+  resultBox.setAttribute("class", "result-box");
+
+  resultBox.innerHTML = "<h3>This recipe contains...</h3>"
+    + "<p class=\"calorie-result\">"
+    + Math.floor(totalCalories) + " calories</p>";
+  result_container.appendChild(resultBox);
+
+  return result_container;
+}
+
+// Deletes the specified row from the input table
+function deleteRow(row) {
+  if (numberOfRows > 1) {
+    numberOfRows--;
+    const table = document.getElementById("input-table");
+    var rowNumber = $(row).closest('tr').index() + 1;
+    table.deleteRow(rowNumber);
+  }
+}
+
+// Inserts HTML to display calorie results on the webpage
+// individualCalories: array representing calorie of each ingredient
+function displayResults(totalCalories, individualCalories) {
+  var toInsertAfter = document.getElementsByClassName("calorie-container")[0];
+  var result_container = document.getElementsByClassName("result-container")[0];
+  if (result_container != null) {
+    result_container.parentNode.removeChild(result_container);
+  }
+  result_container = createResultContainer(totalCalories);
+  insertAfter(result_container, toInsertAfter);
+}
+
+// Gets input and uses it to calculate the total number of calories
+function getInput() {
+
+  var form = document.forms["calorie-input"];
+  var totalCalories = 0;
+
+  for (let i = 0; i < form.length - 3; i += 4) {
+    let description = form[i].value;
+    let ingredient = ingredients[description];
+    let unit = form[i + 2].value;
+    if (unit in weightConversionUnits) {
+      let conversionFactor = weightConversionUnits[unit];
+      totalCalories += (form[i + 1].value / ingredient["weightInGrams"])
+                       * ingredient["energyPerMeasure"] * conversionFactor;
+    } else if (unit in volumeConversionUnits) {
+      let conversionFactor = volumeConversionUnits[unit][ingredient["measure"]];
+      totalCalories += (form[i + 1].value / ingredient["measureAmount"])
+                       * ingredient["energyPerMeasure"] * conversionFactor;
+    } else {
+      totalCalories += (form[i + 1].value / ingredient["measureAmount"])
+                       * ingredient["energyPerMeasure"];
+    }
+  }
+
+  displayResults(totalCalories);
+
+}
+
+// Inserts the specified element after the specified reference node
+function insertAfter(el, referenceNode) {
+  referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
 }
 
 // Search database for typeahead's suggestions
@@ -257,36 +295,5 @@ function search(query, syncResults, asyncResults) {
     asyncResults(data);
   });
 
-}
-
-/* Inserts HTML to display calorie results on the webpage */
-/* individualCalories: array representing calorie of each ingredient */
-function displayResults(totalCalories, individualCalories) {
-  var toInsertAfter = document.getElementsByClassName("calorie-container")[0];
-  var result_container = document.getElementsByClassName("result-container")[0];
-  if (result_container != null) {
-    result_container.parentNode.removeChild(result_container);
-  }
-  result_container = createResultContainer(totalCalories);
-  insertAfter(result_container, toInsertAfter);
-}
-
-function insertAfter(el, referenceNode) {
-  referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
-}
-
-function createResultContainer(totalCalories) {
-  var result_container = document.createElement("div");
-  result_container.setAttribute("class", "result-container");
-  
-  var resultBox = document.createElement("div");
-  resultBox.setAttribute("class", "result-box");
-
-  resultBox.innerHTML = "<h3>This recipe contains...</h3>"
-    + "<p class=\"calorie-result\">"
-    + Math.floor(totalCalories) + " calories</p>";
-  result_container.appendChild(resultBox);
-
-  return result_container;
 }
 
