@@ -104,8 +104,8 @@ function appendRow() {
       + "</div>";
     const input4 = "<div class=\"input\">\n"
       + "  <input type=\"button\" "
-      + "value=\"Delete...\" "
-      + "class=\"btn btn-primary\" "
+      + "value=\"Delete Ingredient\" "
+      + "class=\"btn btn-light\" "
       + "onclick=\"deleteRow(this)\">\n"
       + "</div>";
 
@@ -213,6 +213,8 @@ function configureWeightUnits(units) {
 
 // Creates a container to display the specified total number of calories
 function createResultContainer(totalCalories) {
+
+  /*
   var result_container = document.createElement("div");
   result_container.setAttribute("class", "result-container");
   
@@ -225,6 +227,17 @@ function createResultContainer(totalCalories) {
   result_container.appendChild(resultBox);
 
   return result_container;
+  */
+
+  var resultContainer = document.createElement("div");
+  resultContainer.setAttribute("class", "result-container");
+
+  resultContainer.innerHTML = "<h3>This recipe contains...</h3>"
+    + "<p class=\"calorie-result\">"
+    + Math.floor(totalCalories) + " calories</p>";
+
+  return resultContainer;
+
 }
 
 // Deletes the specified row from the input table
