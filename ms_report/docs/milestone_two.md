@@ -120,6 +120,10 @@ retrieve all entries that match the first word, then retrieve all sub-entries
 that contain every subsequent word in the query, which are the results displayed
 in the resulting dropdown box.
 
+One important point of note is that we force the user to pick one of the
+ingredients from the drop-down menu. This is to prevent any entries of 
+ingredients that are not inside the database.
+
 ## 3. Back-end
 
 ### 3.1 Python and Flask
