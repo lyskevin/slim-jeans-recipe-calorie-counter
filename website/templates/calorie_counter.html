@@ -42,7 +42,7 @@
   </div>
 
   <div class="calorie-container">
-    <form class="calorie-form" id="calorie-input" name="calorie-input" method="GET">
+    <form name="calorie-input" method="GET">
       <div class="input-container">
         <h4>Note</h4>
         <ul>
@@ -90,8 +90,8 @@
               <td>
                 <div class="input">
                   <input type="button"
-                        class="btn btn-primary"
-                        value="Delete Item"
+                        class="btn btn-light"
+                        value="Delete Ingredient"
                         onclick="deleteRow(this)">
                 </div>
               </td>
@@ -101,18 +101,19 @@
 
         <!-- Add Rows and Submit button-->
         <input type="button"
-              class="btn btn-primary"
+              class="btn btn-light"
               value="Add Ingredient"
               onclick="appendRow()">
 
         <input type="reset"
-              class="btn btn-primary"
+              class="btn btn-light"
               value="Reset All">
         <br><br>
         <input type="button"
-              class="btn btn-primary"
+              class="btn btn-light"
               value="Analyze Calories"
               onclick="getInput()">
+
       </div>
     </form>
   </div>
