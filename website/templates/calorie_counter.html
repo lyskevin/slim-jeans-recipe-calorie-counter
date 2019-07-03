@@ -1,23 +1,46 @@
 {% extends "layout.html" %}
 
-{% block title %}
-  Recipe Calorie Counter
-{% endblock %}
+{% block title %}Recipe Calorie Counter{% endblock %}
+
+{% block id %}calorie-counter{% endblock %}
 
 {% block main %}
 <div class="header">
-  <div class="header-text">
+  <div class="text">
     <h1>Slim Jeans</h1>
     <h2>Recipe Calorie Counter</h2>
-    <p>
-      Know what you're eating
-    </p>
+    <p>Know what you're eating</p>
   </div>
-  <img src="../static/images/calorie_header3.jpg"
-       alt="header">
+  <img class="image" src="../static/images/red_velvet_cupcakes.jpg" alt="Red Velvet Cupcakes">
 </div>
 
 <div id="content" class="content">
+
+  <div class="text">
+    
+    <h2>How to use it?</h2>
+    <p>
+      It's simple - take any recipe off the internet, and list its ingredients
+      in the calculator above. Click on "Analyze Calories" and the calculator
+      will give you the number of calories contained within the recipe, along
+      with a chart showing which ingredient contributes the most to the total
+      caloric intake.
+    </p>
+    <p>
+      You can then further edit the recipe to see how the calories change with
+      the ingredients, including possible healthier alternatives.
+    </p>
+    <h2>Where do we get our nutritional information from?</h2>
+    <p>
+      Our information is obtained directly from the
+      <a href="https://ndb.nal.usda.gov/ndb/">USDA</a>.
+      We have organised the information from the source, into our database to
+      give an estimate on the calorie count of any particular recipe. We are then
+      able to give reliable information on what exactly you're eating in your
+      food.
+    </p>
+  </div>
+
   <div class="calorie-container">
     <form class="calorie-form" id="calorie-input" name="calorie-input" method="GET">
       <div class="input-container">
@@ -41,19 +64,19 @@
               <td>
                 <div class="input" id="ingredient">
                   <input type="text"
-                         id="ingredient-1"
-                         class="input-ingredient typeahead"
-                         placeholder="Enter Ingredient">
+                        id="ingredient-1"
+                        class="input-ingredient typeahead"
+                        placeholder="Enter Ingredient">
                 </div>
               </td>
               <td>
                 <div class="input">
                   <input type="number"
-                         id="amount-1"
-                         min="0"
-                         step="0.000001"
-                         class="input-amount"
-                         placeholder="Enter Amount">
+                        id="amount-1"
+                        min="0"
+                        step="0.000001"
+                        class="input-amount"
+                        placeholder="Enter Amount">
                 </div>
               </td>
               <td>
@@ -67,9 +90,9 @@
               <td>
                 <div class="input">
                   <input type="button"
-                         class="btn btn-primary"
-                         value="Delete Item"
-                         onclick="deleteRow(this)">
+                        class="btn btn-primary"
+                        value="Delete Item"
+                        onclick="deleteRow(this)">
                 </div>
               </td>
             </tr>
@@ -78,42 +101,21 @@
 
         <!-- Add Rows and Submit button-->
         <input type="button"
-               class="btn btn-primary"
-               value="Add Ingredient"
-               onclick="appendRow()">
+              class="btn btn-primary"
+              value="Add Ingredient"
+              onclick="appendRow()">
 
         <input type="reset"
-               class="btn btn-primary"
-               value="Reset All">
+              class="btn btn-primary"
+              value="Reset All">
         <br><br>
         <input type="button"
-               class="btn btn-primary"
-               value="Analyze Calories"
-               onclick="getInput()">
+              class="btn btn-primary"
+              value="Analyze Calories"
+              onclick="getInput()">
       </div>
     </form>
   </div>
-
-  <h2>How to use it?</h2>
-  <p>
-    It's simple - take any recipe off the internet, and list its ingredients
-    in the calculator above. Click on "Analyze Calories" and the calculator
-    will give you the number of calories contained within the recipe, along
-    with a chart showing which ingredient contributes the most to the total
-    caloric intake.
-  </p>
-  <p>
-    You can then further edit the recipe to see how the calories change with
-    the ingredients, including possible healthier alternatives.
-  </p>
-  <h2>Where do we get our nutritional information from?</h2>
-  <p>
-    Our information is obtained directly from the
-    <a href="https://ndb.nal.usda.gov/ndb/">USDA</a>.
-    We have organised the information from the source, into our database to
-    give an estimate on the calorie count of any particular recipe. We are then
-    able to give reliable information on what exactly you're eating in your
-    food.
-  </p>
+  
 </div>
 {% endblock %}
