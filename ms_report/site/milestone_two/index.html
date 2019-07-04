@@ -227,6 +227,9 @@ we cannot use any <code>substring</code> methods of searching.</p>
 retrieve all entries that match the first word, then retrieve all sub-entries
 that contain every subsequent word in the query, which are the results displayed
 in the resulting dropdown box.</p>
+<p>One important point of note is that we force the user to pick one of the
+ingredients from the drop-down menu. This is to prevent any entries of 
+ingredients that are not inside the database.</p>
 <h2 id="3-back-end">3. Back-end</h2>
 <h3 id="31-python-and-flask">3.1 Python and Flask</h3>
 <p>As stated earlier, the primary framework used in the back-end is Python's
