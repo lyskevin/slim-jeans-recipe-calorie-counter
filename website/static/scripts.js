@@ -212,29 +212,16 @@ function configureWeightUnits(units) {
 }
 
 // Creates a container to display the specified total number of calories
+// and pie chart of breakdown
 function createResultContainer(totalCalories) {
-
-  /*
-  var result_container = document.createElement("div");
-  result_container.setAttribute("class", "result-container");
-  
-  var resultBox = document.createElement("div");
-  resultBox.setAttribute("class", "result-box");
-
-  resultBox.innerHTML = "<h3>This recipe contains...</h3>"
-    + "<p class=\"calorie-result\">"
-    + Math.floor(totalCalories) + " calories</p>";
-  result_container.appendChild(resultBox);
-
-  return result_container;
-  */
 
   var resultContainer = document.createElement("div");
   resultContainer.setAttribute("class", "result-container");
 
   resultContainer.innerHTML = "<h3>This recipe contains...</h3>"
     + "<p class=\"calorie-result\">"
-    + Math.floor(totalCalories) + " calories</p>";
+    + Math.floor(totalCalories) + " calories</p>"
+    + "<div id=\"piechart\" style=\"width: 900px; height: 500px\"></div>";
 
   return resultContainer;
 
@@ -250,16 +237,35 @@ function deleteRow(row) {
   }
 }
 
-// Inserts HTML to display calorie results on the webpage
-// individualCalories: array representing calorie of each ingredient
-function displayResults(totalCalories, individualCalories) {
+// Inserts HTML to display calorie results and breakdown on the webpage
+function displayResults(totalCalories, breakdown) {
+  
   var toInsertAfter = document.getElementsByClassName("calorie-container")[0];
-  var result_container = document.getElementsByClassName("result-container")[0];
-  if (result_container != null) {
-    result_container.parentNode.removeChild(result_container);
+  var resultContainer = document.getElementsByClassName("result-container")[0];
+  if (resultContainer != null) {
+    result_container.parentNode.removeChild(resultContainer);
   }
-  result_container = createResultContainer(totalCalories);
-  insertAfter(result_container, toInsertAfter);
+  resultContainer = createResultContainer(totalCalories);
+  insertAfter(resultContainer, toInsertAfter);
+
+  google.charts.load("current", {"packages":["corechart"]});
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+
+    var data = google.visualization.arrayToDataTable(breakdown);
+
+    var options = {
+      title: "Breakdown"
+    };
+
+    var chart =
+      new google.visualization.PieChart(document.getElementById("piechart"));
+
+    chart.draw(data, options);
+
+  }
+ 
 }
 
 // Gets input and uses it to calculate the total number of calories
@@ -267,26 +273,30 @@ function getInput() {
 
   var form = document.forms["calorie-input"];
   var totalCalories = 0;
+  var breakdown = [["Description", "Calories"]];
 
   for (let i = 0; i < form.length - 3; i += 4) {
     let description = form[i].value;
     let ingredient = ingredients[description];
     let unit = form[i + 2].value;
+    let calories = 0;
     if (unit in weightConversionUnits) {
       let conversionFactor = weightConversionUnits[unit];
-      totalCalories += (form[i + 1].value / ingredient["weightInGrams"])
-                       * ingredient["energyPerMeasure"] * conversionFactor;
+      calories += (form[i + 1].value / ingredient["weightInGrams"])
+                  * ingredient["energyPerMeasure"] * conversionFactor;
     } else if (unit in volumeConversionUnits) {
       let conversionFactor = volumeConversionUnits[unit][ingredient["measure"]];
-      totalCalories += (form[i + 1].value / ingredient["measureAmount"])
-                       * ingredient["energyPerMeasure"] * conversionFactor;
+      calories += (form[i + 1].value / ingredient["measureAmount"])
+                  * ingredient["energyPerMeasure"] * conversionFactor;
     } else {
-      totalCalories += (form[i + 1].value / ingredient["measureAmount"])
-                       * ingredient["energyPerMeasure"];
+      calories += (form[i + 1].value / ingredient["measureAmount"])
+                  * ingredient["energyPerMeasure"];
     }
+    totalCalories += calories;
+    breakdown[breakdown.length] = [description, calories];
   }
 
-  displayResults(totalCalories);
+  displayResults(totalCalories, breakdown);
 
 }
 
