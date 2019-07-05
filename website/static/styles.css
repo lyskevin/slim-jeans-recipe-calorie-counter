@@ -34,6 +34,16 @@ main {
 
 }
 
+/* Style home page's tagline */
+#index .tagline {
+  background-color: rgba(255, 255, 255, 0.9);
+  display: inline-block;
+  position: absolute;
+  left: 20%;
+  top: 90%;
+  padding: 0.5%;
+}
+
 /* Set calorie counter's header position */
 #calorie-counter .header {
   position: relative;
