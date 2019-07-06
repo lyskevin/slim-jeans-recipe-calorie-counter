@@ -1,4 +1,4 @@
-// Globabl variables
+// Global variables
 var numberOfRows = 1;
 var ingredients = {};
 var weightConversionUnits = {
