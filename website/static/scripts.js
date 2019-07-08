@@ -1,3 +1,5 @@
+//TODO: If any input fields are blank, flash a message on the screen
+
 // Global variables
 var numberOfRows = 1;
 var ingredients = {};
