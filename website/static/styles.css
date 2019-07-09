@@ -160,3 +160,15 @@ p a {
 #calorie-counter .content .text {
   margin: 2.5%;
 }
+
+/* Style contact page's header */
+#contact .header {
+  text-align: center;
+  margin: 1%;
+}
+
+/* Style contact page's content */
+#contact .content {
+  display: flex;
+  justify-content: center;
+}
