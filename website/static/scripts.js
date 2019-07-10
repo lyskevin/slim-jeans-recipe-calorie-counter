@@ -139,58 +139,70 @@ function configure() {
   });
 
   // Retrieve nutritional information after ingredient is selected
-  $("#ingredient .typeahead").on("typeahead:select", function(event, suggestion) {
+  $("#ingredient .typeahead").on("typeahead:select",
+    configureIngredientInformation
+  );
+  $("#ingredient .typeahead").on("typeahead:autocomplete",
+    configureIngredientInformation
+  );
 
-    // Configure ingredient information
-    var ingredient = {};
-    ingredient["weightInGrams"] = suggestion.weightInGrams;
-    var measure = suggestion.measure;
-    ingredient["energyPerMeasure"] = suggestion.energyPerMeasure;
-    ingredients[suggestion.description] = ingredient;
+}
 
-    // Configure weight units
-    var unitNumber = this.id.split("-")[1];
-    var units = document.getElementById("unit-" + unitNumber);
-    for (let i = units.options.length - 1; i >= 0; i -= 1) {
-      units.remove(i);
-    }
-    units.options[0] = new Option("Choose Units", "units");
-    units.options[0].disabled = true;
-    configureWeightUnits(units);
+// Configures nutritional information for each ingredient
+// upon selection from the dropdown menu
+function configureIngredientInformation(event, suggestion) {
 
-    // Configure units related to household measures
-    if (measure.indexOf("cup") !== -1) {
-      configureVolumeUnits(units);
-      ingredient["measureAmount"] = parseFloat(measure);
-      ingredient["measure"] = "cups";
-    } else if (measure.indexOf("tbsp") !== -1) {
-      configureVolumeUnits(units);
-      ingredient["measureAmount"] = parseFloat(measure);
-      ingredient["measure"] = "tablespoons";
-    } else if (measure.indexOf("tsp") !== -1) {
-      configureVolumeUnits(units);
-      ingredient["measureAmount"] = parseFloat(measure);
-      ingredient["measure"] = "teaspoons";
-    } else if (measure.indexOf("ml") !== -1) {
-      configureVolumeUnits(units);
-      ingredient["measureAmount"] = parseFloat(measure);
-      ingredient["measure"] = "millilitres";
-    } else if (measure.indexOf("pint") !== -1) {
-      configureVolumeUnits(units);
-      ingredient["measureAmount"] = parseFloat(measure);
-      ingredient["measure"] = "pints";
-    } else if (measure.indexOf("fl oz") !== -1) {
-      configureVolumeUnits(units);
-      ingredient["measureAmount"] = parseFloat(measure);
-      ingredient["measure"] = "fluid ounces";
-    } else {
-      let unit = measure.substr(measure.indexOf(" ") + 1);
-      units[units.length] = new Option(unit, unit);
-      ingredient["measureAmount"] = parseFloat(measure);
-      ingredient["measure"] = unit;
-    }
-  });
+  // Configure ingredient information
+  var ingredient = {};
+  ingredient["weightInGrams"] = suggestion.weightInGrams;
+  var measure = suggestion.measure;
+  ingredient["energyPerMeasure"] = suggestion.energyPerMeasure;
+  ingredients[suggestion.description] = ingredient;
 
+  // Configure weight units
+  var unitNumber = this.id.split("-")[1];
+  var units = document.getElementById("unit-" + unitNumber);
+  for (let i = units.options.length - 1; i >= 0; i -= 1) {
+    units.remove(i);
+  }
+  units.options[0] = new Option("Choose Units", "units");
+  units.options[0].disabled = true;
+  configureWeightUnits(units);
+
+  // Configure units related to household measures
+  if (measure.indexOf("cup") !== -1) {
+    configureVolumeUnits(units);
+    ingredient["measureAmount"] = parseFloat(measure);
+    ingredient["measure"] = "cups";
+  } else if (measure.indexOf("tbsp") !== -1) {
+    configureVolumeUnits(units);
+    ingredient["measureAmount"] = parseFloat(measure);
+    ingredient["measure"] = "tablespoons";
+  } else if (measure.indexOf("tsp") !== -1) {
+    configureVolumeUnits(units);
+    ingredient["measureAmount"] = parseFloat(measure);
+    ingredient["measure"] = "teaspoons";
+  } else if (measure.indexOf("ml") !== -1) {
+    configureVolumeUnits(units);
+    ingredient["measureAmount"] = parseFloat(measure);
+    ingredient["measure"] = "millilitres";
+  } else if (measure.indexOf("pint") !== -1) {
+    configureVolumeUnits(units);
+    ingredient["measureAmount"] = parseFloat(measure);
+    ingredient["measure"] = "pints";
+  } else if (measure.indexOf("fl oz") !== -1) {
+    configureVolumeUnits(units);
+    ingredient["measureAmount"] = parseFloat(measure);
+    ingredient["measure"] = "fluid ounces";
+  } else {
+    let unit = measure.substr(measure.indexOf(" ") + 1);
+    units[units.length] = new Option(unit, unit);
+    ingredient["measureAmount"] = parseFloat(measure);
+    ingredient["measure"] = unit;
+  }
+
+  // Close dropdown menu
+  $('.typeahead').typeahead('close');
 }
 
 // Configures volume units in the specified "units" element in the table
