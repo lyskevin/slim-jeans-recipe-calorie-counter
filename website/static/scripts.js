@@ -102,7 +102,7 @@ function appendRow() {
       + "</div>";
     const input3 = "<div class=\"input\">\n"
       + "  <select type=\"text\" id=\"unit-" + numberOfRows + "\" "
-      + "class=\"input-unit\" placeholder=\"Choose Unit\">\n"
+      + "class=\"input-unit\">\n"
       + "</div>";
     const input4 = "<div class=\"input\">\n"
       + "  <input type=\"button\" "
@@ -245,7 +245,7 @@ function displayResults(totalCalories, breakdown) {
   var toInsertAfter = document.getElementsByClassName("calorie-container")[0];
   var resultContainer = document.getElementsByClassName("result-container")[0];
   if (resultContainer != null) {
-    result_container.parentNode.removeChild(resultContainer);
+    resultContainer.parentNode.removeChild(resultContainer);
   }
   resultContainer = createResultContainer(totalCalories);
   insertAfter(resultContainer, toInsertAfter);
@@ -273,32 +273,53 @@ function displayResults(totalCalories, breakdown) {
 // Gets input and uses it to calculate the total number of calories
 function getInput() {
 
+  console.log("Button clicked");
+
   var form = document.forms["calorie-input"];
   var totalCalories = 0;
   var breakdown = [["Description", "Calories"]];
 
+  let missingInput = false;
+  let negativeAmount = false;
+
   for (let i = 0; i < form.length - 3; i += 4) {
     let description = form[i].value;
-    let ingredient = ingredients[description];
+    let amount = form[i + 1].value;
     let unit = form[i + 2].value;
     let calories = 0;
+    if (description == "" || amount == "" || unit == ""
+        || unit == "units") {
+      missingInput = true;
+      break;
+    }
+    if (amount < 0) {
+      negativeAmount = true;
+      break;
+    }
+    let ingredient = ingredients[description];
     if (unit in weightConversionUnits) {
       let conversionFactor = weightConversionUnits[unit];
-      calories += (form[i + 1].value / ingredient["weightInGrams"])
+      calories += (amount / ingredient["weightInGrams"])
                   * ingredient["energyPerMeasure"] * conversionFactor;
     } else if (unit in volumeConversionUnits) {
       let conversionFactor = volumeConversionUnits[unit][ingredient["measure"]];
-      calories += (form[i + 1].value / ingredient["measureAmount"])
+      calories += (amount / ingredient["measureAmount"])
                   * ingredient["energyPerMeasure"] * conversionFactor;
     } else {
-      calories += (form[i + 1].value / ingredient["measureAmount"])
+      calories += (amount / ingredient["measureAmount"])
                   * ingredient["energyPerMeasure"];
     }
     totalCalories += calories;
     breakdown[breakdown.length] = [description, calories];
   }
 
-  displayResults(totalCalories, breakdown);
+  if (missingInput) {
+    alert("Please fill in all input fields");
+  } else if (negativeAmount) {
+    alert("Negative amount values are not allowed");
+  } else {
+    displayResults(totalCalories, breakdown);
+  }
 
 }
 
