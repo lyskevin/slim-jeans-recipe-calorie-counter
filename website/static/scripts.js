@@ -139,10 +139,7 @@ function configure() {
   });
 
   // Retrieve nutritional information after ingredient is selected
-  $("#ingredient .typeahead").on("typeahead:select",
-    configureIngredientInformation
-  );
-  $("#ingredient .typeahead").on("typeahead:autocomplete",
+  $("#ingredient .typeahead").on("typeahead:autocomplete typeahead:select",
     configureIngredientInformation
   );
 
@@ -202,7 +199,10 @@ function configureIngredientInformation(event, suggestion) {
   }
 
   // Close dropdown menu
-  $('.typeahead').typeahead('close');
+  //$('.typeahead').typeahead('close');
+  $('.typeahead').typeahead('destroy');
+  configure();
+  
 }
 
 // Configures volume units in the specified "units" element in the table
