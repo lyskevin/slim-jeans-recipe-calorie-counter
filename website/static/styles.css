@@ -195,19 +195,19 @@ p a {
   justify-content: center;
 }
 
-/* Style login page */
-#login {
+/* Style login and register page */
+#login, #register {
   width: 100%;
   text-align: center;
 }
 
-/* Style login form */
-#login .form {
+/* Style login and register forms */
+#login .form, #register .form {
   margin-top: 5%;
 }
 
-/* Style login form fields */
-#login .form-control {
+/* Style login and register form fields */
+#login .form-control, #register .form-control {
   display: inline-block;
   width: auto;
 }
