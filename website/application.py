@@ -9,6 +9,10 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
 @app.route("/calorie_counter")
 def calorie_counter():
     return render_template("calorie_counter.html")
@@ -21,13 +25,9 @@ def daily_goals():
 def graph_generator():
     return render_template("graph_generator.html")
 
-@app.route("/settings")
-def settings():
-    return render_template("settings.html")
-
-@app.route("/about")
-def about():
-    return render_template("about.html")
+@app.route("/login")
+def login():
+    return render_template("login.html")
 
 @app.route("/search")
 def search():
@@ -58,3 +58,8 @@ def search():
             ingredient_list.append(ingredientDictionary)
     connection.close()
     return jsonify(ingredient_list)
+
+@app.route("/settings")
+def settings():
+    return render_template("settings.html")
+
