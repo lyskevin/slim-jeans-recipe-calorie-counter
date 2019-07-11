@@ -1,5 +1,3 @@
-//TODO: If any input fields are blank, flash a message on the screen
-
 // Global variables
 var numberOfRows = 1;
 var ingredients = {};
@@ -127,7 +125,6 @@ function configure(ingredientNumber) {
   
   // Configure typeahead
   let ingredientDescriptionElement = '#ingredient-' + ingredientNumber;
-  console.log(ingredientDescriptionElement);
   $(ingredientDescriptionElement).typeahead({
     minLength: 1,
     highlight: false,
@@ -193,11 +190,6 @@ function configure(ingredientNumber) {
         ingredient["measureAmount"] = parseFloat(measure);
         ingredient["measure"] = unit;
       }
-
-      // Close dropdown menu
-      //$('.typeahead').typeahead('close');
-      //$('.typeahead').typeahead('destroy');
-      //configure(ingredientNumber);
   });
 
 }
