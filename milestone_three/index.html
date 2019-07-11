@@ -84,7 +84,77 @@ Theme by GitBook
 
 
 <h1 id="milestone-3">Milestone 3</h1>
-<p><strong>TODO BY July 29</strong></p>
+<p><strong>Proposed Level of Achievement:</strong> Apollo 11 (w/o Mentor).</p>
+<h2 id="1-table-of-contents">1. Table of Contents <a name="toc"></a></h2>
+<ol>
+<li><a href="#toc">Table of Contents</a></li>
+<li><a href="#revamp">Site Design Revamped</a></li>
+<li><a href="#ccounter">Calorie Counter</a></li>
+<li><a href="#useracc">User Accounts</a></li>
+</ol>
+<h2 id="2-site-design-revamped">2. Site Design Revamped <a name="revamp"></a></h2>
+<p>We realised that the original design was a bit plain, so we decided to make
+some changes to the site's UI.</p>
+<ol>
+<li>We removed the sidenav entirely as it only gave us issues viewing the
+   platform on mobile, moving the sidenav links and elements to the topnav</li>
+<li>All images used are either our own, or images sourced from this website
+   <a href="https://www.pexels.com/search/food/">this website</a>. We are actually unsure
+   if we are legally allowed to use these photos.</li>
+<li>In general, the site looks more appealing to the eye.</li>
+</ol>
+<h2 id="3-calorie-counter">3. Calorie Counter <a name="ccounter"></a></h2>
+<p>This was already shown in the prototype to work, there are however, a few
+aspects that we would like to talk about in this section.</p>
+<h3 id="31-typeaheadjs-bug">3.1 <code>typeahead.js</code> bug</h3>
+<p>Unbeknownst to us, the prototype shown in Milestone Two had a rather annoying
+bug that presented itself when one added rows to the calorie counter. In order
+to do <strong>input validation</strong>, we forced the user to select options from the
+drop-down menu, using Twitter's <code>typeahead.js</code>:</p>
+<!-- insert image showing drop-down menu-->
+
+<p>If multiple rows were added at the start, and users tried to select options
+from the drop-down menu, they would have to click multiple times in order to
+select that item properly. If the item was far down the drop-down menu, the
+menu would refresh and brought back to the first entry. This made a menu
+with many entries and selecting an item far down the menu an exercise in
+frustration.</p>
+<!-- add how the bug was fixed -->
+
+<h3 id="32-input-validation">3.2 Input Validation</h3>
+<h3 id="33-empty-rows">3.3 Empty Rows</h3>
+<p>We received feedback that empty rows in the table would not allow the user to
+submit the form using the "Analyze Calories" button. We originally forced the
+user to fill in all input fields within the form in order to submit it using
+a simple boolean check. We added in an additional <code>if</code> check to continue
+processing the rest of the ingredients if an empty row was found.</p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nx">description</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="o">&amp;&amp;</span> <span class="nx">amount</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="o">&amp;&amp;</span> <span class="nx">unit</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">continue</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3 id="34-additional-functionality">3.4 Additional Functionality</h3>
+<h4 id="341-piechart">3.4.1 Piechart</h4>
+<p>The calorie counter now displays a piechart, giving users at a glance which
+ingredients contributes the most to the overall caloric amount. This fulfilled
+one of the features we wanted to add to the website.</p>
+<h4 id="342-saving-recipes-to-cloudlocally">3.4.2 Saving Recipes to Cloud/Locally</h4>
+<!-- add when we develop this feature -->
+
+<h2 id="4-user-accounts-and-sign-ins">4. User Accounts and Sign-ins <a name="useracc"></a></h2>
+<p>Since we didn't want to handle user accounts and passwords ourselves for fear
+of web security, we went with Google sign-ins, allowing Google to handle
+the grunt work in this area.</p>
+<!-- add how user accounts were added -->
+
+<h2 id="5-conclusion-of-the-project">5. Conclusion of the Project</h2>
+<p>We took Orbital mainly as a learning experience in web development, not
+particularly to make a spectacular app that would be used by millions. We would
+say that we have learnt greatly from Orbital, no matter what level of
+achievement we end up obtaining.</p>
+<h2 id="project-log">Project Log</h2>
+<p>Our project log is documented
+<a href="https://docs.google.com/spreadsheets/d/17kEtNaCyYZzXc2UWd6ss4zXTWQ4-QY7XN3ODB6DpEJs/edit?usp=sharing">in this Google Sheet</a></p>
 
 
 </section>
