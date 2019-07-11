@@ -58,4 +58,3 @@ def search():
             ingredient_list.append(ingredientDictionary)
     connection.close()
     return jsonify(ingredient_list)
-
