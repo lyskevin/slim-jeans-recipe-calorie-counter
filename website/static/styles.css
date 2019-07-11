@@ -194,3 +194,15 @@ p a {
   display: flex;
   justify-content: center;
 }
+
+/* Style login page */
+#login {
+  width: 100%;
+  text-align: center;
+}
+
+/* Style login form */
+#login .form-control {
+  display: inline-block;
+  width: auto;
+}
