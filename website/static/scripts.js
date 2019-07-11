@@ -81,52 +81,54 @@ $(document).ready(function() {
   $('#sidebarCollapse').on('click', function() {
     $('#sidebar').toggleClass('active');
   });
-  configure();
+  configure(1);
 });
 
 // Appends a row to the input table
 function appendRow() {
   const table = document.getElementById("input-table");
-    var newRow = table.insertRow(-1);
-    numberOfRows++;
+  var newRow = table.insertRow(-1);
+  numberOfRows++;
 
-    const input1 = "<div class=\"input\" id=\"ingredient\">\n"
-      + "  <input type=\"text\" id=\"ingredient-" + numberOfRows + "\" "
-      + "class=\"input-ingredient typeahead\" "
-      + "placeholder=\"Enter Ingredient\">\n"
-      + "</div>";
-    const input2 = "<div class=\"input\">\n"
-      + "  <input type=\"number\" id=\"amount-" + numberOfRows + "\" min=\"0\" "
-      + "step=\"0.000001\" class=\"input-amount\" "
-      + "placeholder=\"Enter Amount\">\n"
-      + "</div>";
-    const input3 = "<div class=\"input\">\n"
-      + "  <select type=\"text\" id=\"unit-" + numberOfRows + "\" "
-      + "class=\"input-unit\">\n"
-      + "</div>";
-    const input4 = "<div class=\"input\">\n"
-      + "  <input type=\"button\" "
-      + "value=\"Delete Ingredient\" "
-      + "class=\"btn btn-light\" "
-      + "onclick=\"deleteRow(this)\">\n"
-      + "</div>";
+  const input1 = "<div class=\"input\" id=\"ingredient\">\n"
+    + "  <input type=\"text\" id=\"ingredient-" + numberOfRows + "\" "
+    + "class=\"input-ingredient typeahead\" "
+    + "placeholder=\"Enter Ingredient\">\n"
+    + "</div>";
+  const input2 = "<div class=\"input\">\n"
+    + "  <input type=\"number\" id=\"amount-" + numberOfRows + "\" min=\"0\" "
+    + "step=\"0.000001\" class=\"input-amount\" "
+    + "placeholder=\"Enter Amount\">\n"
+    + "</div>";
+  const input3 = "<div class=\"input\">\n"
+    + "  <select type=\"text\" id=\"unit-" + numberOfRows + "\" "
+    + "class=\"input-unit\">\n"
+    + "</div>";
+  const input4 = "<div class=\"input\">\n"
+    + "  <input type=\"button\" "
+    + "value=\"Delete Ingredient\" "
+    + "class=\"btn btn-light\" "
+    + "onclick=\"deleteRow(this)\">\n"
+    + "</div>";
 
-    var cell1 = newRow.insertCell(0);
-    var cell2 = newRow.insertCell(1);
-    var cell3 = newRow.insertCell(2);
-    var cell4 = newRow.insertCell(3);
-    cell1.innerHTML = input1;
-    cell2.innerHTML = input2;
-    cell3.innerHTML = input3;
-    cell4.innerHTML = input4;
-    configure();
+  var cell1 = newRow.insertCell(0);
+  var cell2 = newRow.insertCell(1);
+  var cell3 = newRow.insertCell(2);
+  var cell4 = newRow.insertCell(3);
+  cell1.innerHTML = input1;
+  cell2.innerHTML = input2;
+  cell3.innerHTML = input3;
+  cell4.innerHTML = input4;
+  configure(numberOfRows);
 }
 
 // Configures the DOM
-function configure() {
+function configure(ingredientNumber) {
   
   // Configure typeahead
-  $('#ingredient .typeahead').typeahead({
+  let ingredientDescriptionElement = '#ingredient-' + ingredientNumber;
+  console.log(ingredientDescriptionElement);
+  $(ingredientDescriptionElement).typeahead({
     minLength: 1,
     highlight: false,
     hint: false
@@ -139,70 +141,65 @@ function configure() {
   });
 
   // Retrieve nutritional information after ingredient is selected
-  $("#ingredient .typeahead").on("typeahead:autocomplete typeahead:select",
-    configureIngredientInformation
-  );
+  $(ingredientDescriptionElement).on("typeahead:select",
+    function(event, suggestion) {
 
-}
+      // Configure ingredient information
+      var ingredient = {};
+      ingredient["weightInGrams"] = suggestion.weightInGrams;
+      var measure = suggestion.measure;
+      ingredient["energyPerMeasure"] = suggestion.energyPerMeasure;
+      ingredients[suggestion.description] = ingredient;
 
-// Configures nutritional information for each ingredient
-// upon selection from the dropdown menu
-function configureIngredientInformation(event, suggestion) {
+      // Configure weight units
+      //var unitNumber = this.id.split("-")[1];
+      var unitNumber = ingredientNumber;
+      var units = document.getElementById("unit-" + unitNumber);
+      for (let i = units.options.length - 1; i >= 0; i -= 1) {
+        units.remove(i);
+      }
+      units.options[0] = new Option("Choose Units", "units");
+      units.options[0].disabled = true;
+      configureWeightUnits(units);
 
-  // Configure ingredient information
-  var ingredient = {};
-  ingredient["weightInGrams"] = suggestion.weightInGrams;
-  var measure = suggestion.measure;
-  ingredient["energyPerMeasure"] = suggestion.energyPerMeasure;
-  ingredients[suggestion.description] = ingredient;
+      // Configure units related to household measures
+      if (measure.indexOf("cup") !== -1) {
+        configureVolumeUnits(units);
+        ingredient["measureAmount"] = parseFloat(measure);
+        ingredient["measure"] = "cups";
+      } else if (measure.indexOf("tbsp") !== -1) {
+        configureVolumeUnits(units);
+        ingredient["measureAmount"] = parseFloat(measure);
+        ingredient["measure"] = "tablespoons";
+      } else if (measure.indexOf("tsp") !== -1) {
+        configureVolumeUnits(units);
+        ingredient["measureAmount"] = parseFloat(measure);
+        ingredient["measure"] = "teaspoons";
+      } else if (measure.indexOf("ml") !== -1) {
+        configureVolumeUnits(units);
+        ingredient["measureAmount"] = parseFloat(measure);
+        ingredient["measure"] = "millilitres";
+      } else if (measure.indexOf("pint") !== -1) {
+        configureVolumeUnits(units);
+        ingredient["measureAmount"] = parseFloat(measure);
+        ingredient["measure"] = "pints";
+      } else if (measure.indexOf("fl oz") !== -1) {
+        configureVolumeUnits(units);
+        ingredient["measureAmount"] = parseFloat(measure);
+        ingredient["measure"] = "fluid ounces";
+      } else {
+        let unit = measure.substr(measure.indexOf(" ") + 1);
+        units[units.length] = new Option(unit, unit);
+        ingredient["measureAmount"] = parseFloat(measure);
+        ingredient["measure"] = unit;
+      }
 
-  // Configure weight units
-  var unitNumber = this.id.split("-")[1];
-  var units = document.getElementById("unit-" + unitNumber);
-  for (let i = units.options.length - 1; i >= 0; i -= 1) {
-    units.remove(i);
-  }
-  units.options[0] = new Option("Choose Units", "units");
-  units.options[0].disabled = true;
-  configureWeightUnits(units);
+      // Close dropdown menu
+      //$('.typeahead').typeahead('close');
+      //$('.typeahead').typeahead('destroy');
+      //configure(ingredientNumber);
+  });
 
-  // Configure units related to household measures
-  if (measure.indexOf("cup") !== -1) {
-    configureVolumeUnits(units);
-    ingredient["measureAmount"] = parseFloat(measure);
-    ingredient["measure"] = "cups";
-  } else if (measure.indexOf("tbsp") !== -1) {
-    configureVolumeUnits(units);
-    ingredient["measureAmount"] = parseFloat(measure);
-    ingredient["measure"] = "tablespoons";
-  } else if (measure.indexOf("tsp") !== -1) {
-    configureVolumeUnits(units);
-    ingredient["measureAmount"] = parseFloat(measure);
-    ingredient["measure"] = "teaspoons";
-  } else if (measure.indexOf("ml") !== -1) {
-    configureVolumeUnits(units);
-    ingredient["measureAmount"] = parseFloat(measure);
-    ingredient["measure"] = "millilitres";
-  } else if (measure.indexOf("pint") !== -1) {
-    configureVolumeUnits(units);
-    ingredient["measureAmount"] = parseFloat(measure);
-    ingredient["measure"] = "pints";
-  } else if (measure.indexOf("fl oz") !== -1) {
-    configureVolumeUnits(units);
-    ingredient["measureAmount"] = parseFloat(measure);
-    ingredient["measure"] = "fluid ounces";
-  } else {
-    let unit = measure.substr(measure.indexOf(" ") + 1);
-    units[units.length] = new Option(unit, unit);
-    ingredient["measureAmount"] = parseFloat(measure);
-    ingredient["measure"] = unit;
-  }
-
-  // Close dropdown menu
-  //$('.typeahead').typeahead('close');
-  $('.typeahead').typeahead('destroy');
-  configure();
-  
 }
 
 // Configures volume units in the specified "units" element in the table
@@ -284,8 +281,6 @@ function displayResults(totalCalories, breakdown) {
 
 // Gets input and uses it to calculate the total number of calories
 function getInput() {
-
-  console.log("Button clicked");
 
   var form = document.forms["calorie-input"];
   var totalCalories = 0;
