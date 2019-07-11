@@ -273,7 +273,6 @@ function displayResults(totalCalories, breakdown) {
 
 // Gets input and uses it to calculate the total number of calories
 function getInput() {
-
   var form = document.forms["calorie-input"];
   var totalCalories = 0;
   var breakdown = [["Description", "Calories"]];
@@ -286,15 +285,21 @@ function getInput() {
     let amount = form[i + 1].value;
     let unit = form[i + 2].value;
     let calories = 0;
-    if (description == "" || amount == "" || unit == ""
-        || unit == "units") {
+
+    if (description == "" && amount == "" && unit == "") {
+      continue;
+    }
+
+    if (description == "" || amount == "" || unit == "" || unit == "units") {
       missingInput = true;
       break;
     }
+
     if (amount < 0) {
       negativeAmount = true;
       break;
     }
+
     let ingredient = ingredients[description];
     if (unit in weightConversionUnits) {
       let conversionFactor = weightConversionUnits[unit];
