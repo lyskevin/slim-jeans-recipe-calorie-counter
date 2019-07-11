@@ -12,7 +12,7 @@ main {
 #index .background {
   
   /* Background image link */
-  background: url('images/tomahawk_steak.jpg') no-repeat center center fixed;
+  background: url('images/bbq.jpg') no-repeat center center fixed;
 
   /* Positioning */
   position: fixed;
@@ -46,6 +46,10 @@ main {
 
 /* Set calorie counter's header position */
 #calorie-counter .header {
+  display: flex;
+  justify-content: flex-end;
+  align-content: flex-end;
+  align-items: flex-end;
   position: relative;
 }
 
