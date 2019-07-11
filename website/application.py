@@ -29,6 +29,10 @@ def graph_generator():
 def login():
     return render_template("login.html")
 
+@app.route("/register")
+def register():
+    return render_template("register.html")
+
 @app.route("/search")
 def search():
     regex = re.compile("[^a-zA-Z ]")
