@@ -347,3 +347,17 @@ function search(query, syncResults, asyncResults) {
 
 }
 
+// Handles the login form submission
+function loginFormSubmission() {
+  var form = document.forms["login-form"];
+  var username = form[0].value;
+  var password = form[1].value;
+  if ($.trim(username) === "" || $.trim(password) === "") {
+    alert("Please fill in all fields (space padding is not allowed)");
+  } else if (password.length < 5) {
+    alert("Password must be at least 5 characters in length");
+  } else {
+    form.submit();
+  }
+}
+
