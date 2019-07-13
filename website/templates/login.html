@@ -5,7 +5,7 @@
 {% block id %}login{% endblock %}
 
 {% block main %}
-<form action="/login" method="post" class="form">
+<form action="/login" method="post" class="form" name="login-form">
   <div class="form-group">
     <input
       autocomplete="off"
@@ -22,5 +22,5 @@
       placeholder="Password"
       type="password">
   </div>
-  <button type="submit" class="btn btn-light">Login</button>
+  <button type="button" class="btn btn-light" onclick="loginFormSubmission()">Login</button>
 {% endblock %}
