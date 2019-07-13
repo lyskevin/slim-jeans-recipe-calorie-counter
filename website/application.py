@@ -1,6 +1,7 @@
+import json
 import sqlite3
 import re
-from flask import Flask, jsonify, render_template, g, request
+from flask import Flask, jsonify, redirect, render_template, g, request, url_for
 from os import path
 
 app = Flask(__name__)
@@ -25,9 +26,19 @@ def daily_goals():
 def graph_generator():
     return render_template("graph_generator.html")
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    return render_template("login.html")
+
+    #session.clear()
+
+    if request.method == "POST":
+        form = request.form
+        print(form["username"])
+        print(form["password"])
+        return redirect("/")
+    
+    else:
+        return render_template("login.html")
 
 @app.route("/register")
 def register():
