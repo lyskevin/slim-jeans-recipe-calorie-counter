@@ -211,3 +211,37 @@ p a {
   display: inline-block;
   width: auto;
 }
+
+/* Set calorie counter's header position */
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-content: flex-end;
+  align-items: flex-end;
+  position: relative;
+}
+
+/* Style calorie counter's header image */
+.header .image {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Style calorie counter's header text */
+.header .text {
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  top: 25%;
+  left: 5%;
+  text-align: center;
+  padding: 1%;
+  z-index: 1;
+}
+
+.header h1 {
+  font-size: 2vw;
+}
+
+.header p {
+  font-size: 1vw;
+}
