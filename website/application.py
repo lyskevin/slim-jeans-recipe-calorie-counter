@@ -39,9 +39,22 @@ def login():
 
     if request.method == "POST":
         form = request.form
-        print(form["username"])
-        print(form["password"])
-        return redirect("/")
+        username = form["username"]
+        password = form["password"]
+        connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
+        cursor = connection.cursor()
+        cursor.execute("""SELECT * FROM users WHERE username = (?)""",
+                       (username,))
+        userInformation = cursor.fetchall()
+        if len(userInformation) < 1 or \
+           not check_password_hash(userInformation[0][2], password):
+            flash("Invalid username and/or password")
+            return render_template("login.html")
+        else:
+            flash("Successfully logged in")
+            return render_template("index.html")
+            #TODO: Remember session id
+            #TODO: Difference between render_template and redirect
     
     else:
         return render_template("login.html")
@@ -56,20 +69,22 @@ def register():
         connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
         cursor = connection.cursor()
         try:
-            with connection:
-                connection.execute("""INSERT INTO users
-                                   (username, password)
-                                   VALUES(?, ?)""",
-                                   (username, hashed_password))
+            cursor.execute("""INSERT INTO users
+                           (username, password)
+                           VALUES(?, ?)""",
+                           (username, hashed_password))
         except sqlite3.IntegrityError:
+            connection.close()
             flash("Username already in use")
             return render_template("register.html")
+        
+        connection.close()
+        flash("Successfully registered and logged in")
         return render_template("index.html")
+        #TODO: Remember session id
 
     else:
         return render_template("register.html")
-
-    return render_template("register.html")
 
 @app.route("/search")
 def search():
