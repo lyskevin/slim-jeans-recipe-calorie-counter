@@ -245,3 +245,10 @@ p a {
 .header p {
   font-size: 1vw;
 }
+
+/* Style registration page's message flash */
+#register .message-flash {
+  margin: 0 auto;
+  margin-top: 10vh;
+  width: 70%;
+}
