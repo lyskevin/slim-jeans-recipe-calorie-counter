@@ -352,6 +352,8 @@ function loginFormSubmission() {
   var form = document.forms["login-form"];
   var username = form[0].value;
   var password = form[1].value;
+  form.submit();
+  /*
   if ($.trim(username) === "" || $.trim(password) === "") {
     alert("Please fill in all fields (space padding is not allowed)");
   } else if (password.length < 5) {
@@ -359,5 +361,27 @@ function loginFormSubmission() {
   } else {
     form.submit();
   }
+  */
 }
 
+// Handles the registration form submission
+function registrationFormSubmission() {
+  var form = document.forms["registration-form"];
+  var username = form[0].value;
+  var password = form[1].value;
+  var confirmation = form[2].value;
+  if ($.trim(username) === "" || $.trim(password) === "") {
+    alert("Please fill in all fields (space padding is not allowed)");
+  } else if (password.length < 5) {
+    alert("Password must be at least 5 characters in length");
+  } else if (password !== confirmation) {
+    alert("Passwords don't match");
+  } else {
+    form.submit();
+  }
+}
+
+// Alerts the user that the selected username is already in use
+function usernameInUseAlert() {
+  alert("Username already in use");
+}
