@@ -10,6 +10,8 @@ from werkzeug.security import check_password_hash, generate_password_hash
 app = Flask(__name__)
 app.secret_key = b'\x0e(\xfd$\x9a\xb1\xa3\xb1\xca\xefa#\xe7\x16\xfb\xa1'
 
+ROOT = path.dirname(path.realpath(__file__))
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -47,17 +49,22 @@ def login():
 @app.route("/register", methods=["GET", "POST"])
 def register():
 
-    #session.clear()
-
     if request.method == "POST":
         form = request.form
         username = form["username"]
         hashed_password = generate_password_hash(form["password"])
-        # if username exists, send failure
-        # else, successful
-        flash("Username already in use")
-        return redirect("/register")
-        #return render_template("index.html")
+        connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
+        cursor = connection.cursor()
+        try:
+            with connection:
+                connection.execute("""INSERT INTO users
+                                   (username, password)
+                                   VALUES(?, ?)""",
+                                   (username, hashed_password))
+        except sqlite3.IntegrityError:
+            flash("Username already in use")
+            return render_template("register.html")
+        return render_template("index.html")
 
     else:
         return render_template("register.html")
@@ -68,7 +75,6 @@ def register():
 def search():
     regex = re.compile("[^a-zA-Z ]")
     query = regex.sub("", request.args.get("q")).split(" ")
-    ROOT = path.dirname(path.realpath(__file__))
     connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
     cursor = connection.cursor()
     ingredients = cursor.execute("""SELECT * FROM food
