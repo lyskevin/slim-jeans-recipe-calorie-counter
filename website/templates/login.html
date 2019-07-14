@@ -22,6 +22,14 @@
       placeholder="Password"
       type="password">
   </div>
-  <button type="button" class="btn btn-light" onclick="loginFormSubmission()">Login</button>
+  <button type="submit" class="btn btn-light">Login</button>
 </form>
+{% if get_flashed_messages() %}
+<div class="alert alert-danger alert-dismissible fade show text-center message-flash" role="alert">
+  {{ get_flashed_messages() | join(" ") }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endif %}
 {% endblock %}
