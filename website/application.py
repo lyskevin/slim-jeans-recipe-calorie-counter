@@ -1,10 +1,14 @@
 import json
 import sqlite3
 import re
-from flask import Flask, jsonify, redirect, render_template, g, request, url_for
+
+from flask import (Flask, flash, g, jsonify, redirect, render_template,
+request, session, url_for)
 from os import path
+from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
+app.secret_key = b'\x0e(\xfd$\x9a\xb1\xa3\xb1\xca\xefa#\xe7\x16\xfb\xa1'
 
 @app.route("/")
 def index():
@@ -40,8 +44,24 @@ def login():
     else:
         return render_template("login.html")
 
-@app.route("/register")
+@app.route("/register", methods=["GET", "POST"])
 def register():
+
+    #session.clear()
+
+    if request.method == "POST":
+        form = request.form
+        username = form["username"]
+        hashed_password = generate_password_hash(form["password"])
+        # if username exists, send failure
+        # else, successful
+        flash("Username already in use")
+        return redirect("/register")
+        #return render_template("index.html")
+
+    else:
+        return render_template("register.html")
+
     return render_template("register.html")
 
 @app.route("/search")
@@ -49,7 +69,7 @@ def search():
     regex = re.compile("[^a-zA-Z ]")
     query = regex.sub("", request.args.get("q")).split(" ")
     ROOT = path.dirname(path.realpath(__file__))
-    connection = sqlite3.connect(path.join(ROOT, "static/food.db"))
+    connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
     cursor = connection.cursor()
     ingredients = cursor.execute("""SELECT * FROM food
                                  WHERE UPPER(description) LIKE UPPER(?)
@@ -58,19 +78,19 @@ def search():
     ingredient_list = []
     for ingredient in ingredients:
         description = ingredient[0].lower()
-        descriptionContainsAllQueryWords = True
+        description_contains_all_query_words = True
         for word in query:
             if word.lower() not in description:
-                descriptionContainsAllQueryWords = False
+                description_contains_all_query_words = False
                 break
-        if descriptionContainsAllQueryWords:
-            ingredientDictionary = {
+        if description_contains_all_query_words:
+            ingredient_dictionary = {
                 "description": ingredient[0],
                 "weightInGrams": ingredient[1],
                 "measure": ingredient[2],
                 "energyPerMeasure": ingredient[3]
             }
-            ingredient_list.append(ingredientDictionary)
+            ingredient_list.append(ingredient_dictionary)
     connection.close()
     return jsonify(ingredient_list)
 
