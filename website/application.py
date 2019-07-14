@@ -3,7 +3,7 @@ import sqlite3
 import re
 
 from flask import (Flask, flash, g, jsonify, redirect, render_template,
-request, session, url_for)
+                   request, session, url_for)
 from os import path
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -12,30 +12,34 @@ app.secret_key = b'\x0e(\xfd$\x9a\xb1\xa3\xb1\xca\xefa#\xe7\x16\xfb\xa1'
 
 ROOT = path.dirname(path.realpath(__file__))
 
+
 @app.route("/")
 def index():
     return render_template("index.html")
+
 
 @app.route("/about")
 def about():
     return render_template("about.html")
 
+
 @app.route("/calorie_counter")
 def calorie_counter():
     return render_template("calorie_counter.html")
+
 
 @app.route("/daily_goals")
 def daily_goals():
     return render_template("daily_goals.html")
 
+
 @app.route("/graph_generator")
 def graph_generator():
     return render_template("graph_generator.html")
 
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
-
-    #session.clear()
 
     if request.method == "POST":
         form = request.form
@@ -53,11 +57,12 @@ def login():
         else:
             flash("Successfully logged in")
             return render_template("index.html")
-            #TODO: Remember session id
-            #TODO: Difference between render_template and redirect
-    
+            # TODO: Remember session id
+            # TODO: Difference between render_template and redirect
+
     else:
         return render_template("login.html")
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -70,21 +75,23 @@ def register():
         cursor = connection.cursor()
         try:
             cursor.execute("""INSERT INTO users
-                           (username, password)
-                           VALUES(?, ?)""",
+                          (username, password)
+                          VALUES(?, ?)""",
                            (username, hashed_password))
+            connection.commit()
         except sqlite3.IntegrityError:
             connection.close()
             flash("Username already in use")
             return render_template("register.html")
-        
+
         connection.close()
         flash("Successfully registered and logged in")
         return render_template("index.html")
-        #TODO: Remember session id
+        # TODO: Remember session id
 
     else:
         return render_template("register.html")
+
 
 @app.route("/search")
 def search():
@@ -115,7 +122,7 @@ def search():
     connection.close()
     return jsonify(ingredient_list)
 
+
 @app.route("/settings")
 def settings():
     return render_template("settings.html")
-
