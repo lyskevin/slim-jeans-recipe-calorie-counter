@@ -365,6 +365,7 @@ function loginFormSubmission() {
 }
 
 // Handles the registration form submission
+// TODO: Check that username and password do not exceed 255 characters in length
 function registrationFormSubmission() {
   var form = document.forms["registration-form"];
   var username = form[0].value;
