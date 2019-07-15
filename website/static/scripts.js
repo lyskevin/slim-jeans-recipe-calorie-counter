@@ -400,13 +400,42 @@ function usernameInUseAlert() {
 }
 
 function createRecipeTableForUser(username) {
-  $.ajax("/display_recipe_data", {
+  $.ajax("/get_all_recipe_data", {
     type: "POST",
-    contentType: 'application/json',
-    dataType: 'json',
+    contentType: "application/json",
+    dataType: "json",
     data: JSON.stringify(username)
   })
-  .done(function (result) {
-    alert(result);
+  .done(recipes => {
+    let tableData = [];
+    for (let i = 0; i < recipes.length; i++) {
+      tableData.push(recipes[i][1]);
+      tableData.push(recipes[i][3]);
+    }
+    const numOfRecipes = tableData.length / 2;
+    const tableBody = document.getElementById("table-saved-recipes").lastElementChild;
+    for (let i = 0, j = 0; i < numOfRecipes; i++, j += 2) {
+      let newRow = tableBody.insertRow(-1);
+      newRow.insertCell(0).innerHTML = i + 1;
+      newRow.insertCell(1).innerHTML = tableData[j];
+      newRow.insertCell(2).innerHTML = tableData[j + 1];
+    }
   });
+}
+
+function displayRecipe(username) {
+  return 0;
+  //recipeData = [];
+  //for (var i = 0; i < recipes.length; i++) {
+  //  recipeData.push(JSON.parse(recipes[i][1]));
+  //}
+  //const numOfIngredients = Object.keys(recipeData[0]).length;
+  //for (var i = 0; i < numOfIngredients; i++) {
+  //  var identifier = "ingredient" + (i + 1);
+  //  const description = recipeData[0][identifier]["description"];
+  //  const amount = recipeData[0][identifier]["amount"];
+  //  const unit = recipeData[0][identifier]["unit"];
+  //  const calories = recipeData[0][identifier]["calories"];
+  //  alert(description + ", " + amount + ", " + unit + ", " + calories);
+  //}
 }
