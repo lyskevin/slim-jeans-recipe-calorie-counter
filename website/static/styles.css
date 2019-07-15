@@ -8,12 +8,11 @@ main {
   z-index: 1;
 }
 
-/* Style home page's background */
-#index .background {
+/* Style home page's logged in background */
+#index .background-logged-in {
   
-  /* Background image link */
   background: url('images/bbq.jpg') no-repeat center center fixed;
-
+  
   /* Positioning */
   position: fixed;
   top: 0;
@@ -31,9 +30,31 @@ main {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
 }
 
+/* Style home page's logged in background */
+#index .background-logged-out {
+  
+  background: url('images/berries.jpg') no-repeat center center fixed;
+  
+  /* Positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  /* Display & Box Model */
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+
+  /* Others */
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
 /* Style home page's tagline */
 #index {
