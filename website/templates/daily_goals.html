@@ -6,7 +6,7 @@ Daily Goals
 
 {% block main %}
 <div class="header">
-  <img src="../static/images/scale.jpg" alt="header image scale">
+  <img class="image" src="../static/images/scale.jpg" alt="header image scale">
   <div class="text">
     <h1>Daily Goals</h1>
     <p>Track what you're cooking</p>
@@ -14,6 +14,38 @@ Daily Goals
 </div>
 
 <div id="content" class="content">
+  <div class="text">
+    <h1>Welcome to Daily Goals!</h1>
+    <p>
+      Use this page to track the number of calories you use in a day, and
+      have left for the day. We will tell you if you're going to overrun,
+      promise!
+    </p>
+    <p>
+      To get started, please give us your daily caloric goal. For the average
+      adult male and female in <em>kcal</em>, these are
+      <a href="https://www.nhs.uk/common-health-questions/food-and-diet/what-should-my-daily-intake-of-calories-be/">
+        2500 and 2000
+      </a>
+      respectively. If you're trying to lose or gain weight, you may want to
+      try a number above and below the average.
+    </p>
+  </div>
+
+  <div class="dailygoals-container">
+    <form method="get" class="dailygoals-form">
+      <div class="form-group">
+        <input
+          class="form-control"
+          autofocus
+          type="number"
+          placeholder="Amount">
+        <button
+          type="submit"
+          class="btn btn-light">Submit</button>
+      </div>
+    </form>
+  </div>
 
 </div>
 {% endblock %}
