@@ -88,7 +88,7 @@
     <div class="background"></div>
 
     <!-- Top Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black" id="navbar">
       <a class="navbar-brand" href="/">Slim Jeans</a>
       <button
         class="navbar-toggler"
@@ -126,7 +126,7 @@
         <ul class="navbar-nav ml-auto mt-2">
           {% if session.user_id %}
           <li>
-            <span class="navbar-text">
+            <span class="navbar-text username">
               {{ session.username }}
             </span>
           </li>
