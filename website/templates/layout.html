@@ -125,6 +125,11 @@
         </ul>
         <ul class="navbar-nav ml-auto mt-2">
           {% if session.user_id %}
+          <li>
+            <span class="navbar-text">
+              {{ session.username }}
+            </span>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="logout">Logout</a>
           </li>
