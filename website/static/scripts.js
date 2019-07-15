@@ -134,7 +134,7 @@ function configure(ingredientNumber) {
     name: "description",
     display: "description",
     source: search,
-    limit: 100
+    limit: 1000
   });
 
   // Retrieve nutritional information after ingredient is selected
@@ -276,6 +276,7 @@ function getInput() {
   var form = document.forms["calorie-input"];
   var totalCalories = 0;
   var breakdown = [["Description", "Calories"]];
+  var recipe = {};
 
   let missingInput = false;
   let negativeAmount = false;
@@ -315,6 +316,15 @@ function getInput() {
     }
     totalCalories += calories;
     breakdown[breakdown.length] = [description, calories];
+
+    // Store recipe
+    let ingredientInformation = {};
+    ingredientInformation["description"] = description;
+    ingredientInformation["amount"] = amount;
+    ingredientInformation["unit"] = unit;
+    ingredientInformation["calories"] = calories;
+    recipe["ingredient" + (i / 4 + 1)] = ingredientInformation;
+
   }
 
   if (missingInput) {
@@ -323,6 +333,7 @@ function getInput() {
     alert("Negative amount values are not allowed");
   } else {
     displayResults(totalCalories, breakdown);
+    alert(JSON.stringify(recipe));
   }
 
 }
