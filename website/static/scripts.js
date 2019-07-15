@@ -400,9 +400,13 @@ function usernameInUseAlert() {
 }
 
 function createRecipeTableForUser(username) {
-  return 0;
-}
-
-function createRecipeTableForAllUsers() {
-  return 0;
+  $.ajax("/display_recipe_data", {
+    type: "POST",
+    contentType: 'application/json',
+    dataType: 'json',
+    data: JSON.stringify(username)
+  })
+  .done(function (result) {
+    alert(result);
+  });
 }

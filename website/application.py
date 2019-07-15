@@ -65,6 +65,24 @@ def search():
     connection.close()
     return jsonify(ingredient_list)
 
+@app.route("/display_recipe_data", methods=["GET", "POST"])
+@login_required
+def display_recipe_data():
+    if request.method == "POST":
+        username = request.get_json()
+        connection = sqlite3.connect(path.join(ROOT, "testrecipe.db"))
+        cursor = connection.cursor()
+
+        recipes = cursor.execute("""SELECT * FROM recipes
+                                    WHERE username = (?)""" ,
+                                    (username,))
+        list_of_recipes = []
+        for amazing_var_name in recipes:
+            list_of_recipes.append(amazing_var_name)
+        return jsonify(list_of_recipes)
+    else:
+        return render_template("saved_recipes.html")
+
 
 """ Helper Functions """
 
@@ -161,5 +179,4 @@ def register():
 @login_required
 def settings():
     return render_template("settings.html")
-
 
