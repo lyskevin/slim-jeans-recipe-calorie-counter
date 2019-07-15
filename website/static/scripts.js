@@ -386,3 +386,11 @@ function registrationFormSubmission() {
 function usernameInUseAlert() {
   alert("Username already in use");
 }
+
+function createRecipeTableForUser(username) {
+  return 0;
+}
+
+function createRecipeTableForAllUsers() {
+  return 0;
+}
