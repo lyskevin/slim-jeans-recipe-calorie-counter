@@ -376,7 +376,6 @@ function loginFormSubmission() {
 }
 
 // Handles the registration form submission
-// TODO: Check that username and password do not exceed 255 characters in length
 function registrationFormSubmission() {
   var form = document.forms["registration-form"];
   var username = form[0].value;
@@ -386,6 +385,8 @@ function registrationFormSubmission() {
     alert("Please fill in all fields (space padding is not allowed)");
   } else if (password.length < 5) {
     alert("Password must be at least 5 characters in length");
+  } else if (username.length > 255 || password.length > 255) {
+    alert("Username and password cannot exceed 255 characters in length");
   } else if (password !== confirmation) {
     alert("Passwords don't match");
   } else {
