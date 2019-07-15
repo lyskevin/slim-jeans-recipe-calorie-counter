@@ -84,10 +84,10 @@ def calorie_counter():
     return render_template("calorie_counter.html")
 
 
-@app.route("/daily_goals")
+@app.route("/saved_recipes")
 @login_required
-def daily_goals():
-    return render_template("daily_goals.html")
+def saved_recipes():
+    return render_template("saved_recipes.html")
 
 
 @app.route("/graph_generator")
