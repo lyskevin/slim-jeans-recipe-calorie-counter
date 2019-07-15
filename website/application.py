@@ -117,8 +117,7 @@ def login():
         else:
             session["user_id"] = userInformation[0][0]
             session["username"] = userInformation[0][1]
-            flash("Successfully logged in")
-            return render_template("index.html")
+            return redirect("/")
             # TODO: Difference between render_template and redirect
 
     else:
@@ -128,7 +127,7 @@ def login():
 @app.route("/logout")
 def logout():
     session.clear()
-    return render_template("index.html")
+    return redirect("/")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -152,8 +151,7 @@ def register():
             return render_template("register.html")
 
         connection.close()
-        flash("Successfully registered and logged in")
-        return render_template("index.html")
+        return redirect("/")
         # TODO: Remember session id
 
     else:
