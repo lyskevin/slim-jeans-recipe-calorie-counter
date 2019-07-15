@@ -247,13 +247,13 @@ p a {
 #register .message-flash, #login .message-flash {
   margin: 0 auto;
   margin-top: 10vh;
-  width: 70%;
+  width: 30%;
 }
 
 /* Style home page's message flash */
 #index .message-flash {
   margin: 0 auto;
-  width: 70%;
+  width: 20%;
 }
 
 /** This section styles dailygoals webpage */
