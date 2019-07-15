@@ -6,6 +6,7 @@ from flask import (Flask, flash, g, jsonify, redirect, render_template,
                    request, session, url_for)
 from functools import wraps
 from os import path
+from werkzeug.exceptions import BadRequest, NotFound
 from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
@@ -16,6 +17,16 @@ ROOT = path.dirname(path.realpath(__file__))
 """ Helper Functions """
 
 
+@app.errorhandler(BadRequest)
+def handle_bad_request(e):
+    return "Bad Request!", 400
+
+
+@app.errorhandler(NotFound)
+def handle_not_found(e):
+    return "Not Found!", 404
+
+
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -23,6 +34,36 @@ def login_required(f):
             return redirect("/login")
         return f(*args, **kwargs)
     return decorated_function
+
+
+@app.route("/search")
+def search():
+    regex = re.compile("[^a-zA-Z ]")
+    query = regex.sub("", request.args.get("q")).split(" ")
+    connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
+    cursor = connection.cursor()
+    ingredients = cursor.execute("""SELECT * FROM food
+                                 WHERE UPPER(description) LIKE UPPER(?)
+                                 ORDER BY description ASC""",
+                                 ("%" + query[0].upper() + "%",))
+    ingredient_list = []
+    for ingredient in ingredients:
+        description = ingredient[0].lower()
+        description_contains_all_query_words = True
+        for word in query:
+            if word.lower() not in description:
+                description_contains_all_query_words = False
+                break
+        if description_contains_all_query_words:
+            ingredient_dictionary = {
+                "description": ingredient[0],
+                "weightInGrams": ingredient[1],
+                "measure": ingredient[2],
+                "energyPerMeasure": ingredient[3]
+            }
+            ingredient_list.append(ingredient_dictionary)
+    connection.close()
+    return jsonify(ingredient_list)
 
 
 """ Helper Functions """
@@ -74,9 +115,8 @@ def login():
             flash("Invalid username and/or password")
             return render_template("login.html")
         else:
-            user_id = userInformation[0][0]
-            print(user_id)
-            session["user_id"] = user_id
+            session["user_id"] = userInformation[0][0]
+            session["username"] = userInformation[0][1]
             flash("Successfully logged in")
             return render_template("index.html")
             # TODO: Difference between render_template and redirect
@@ -118,37 +158,6 @@ def register():
 
     else:
         return render_template("register.html")
-
-
-@app.route("/search")
-def search():
-    regex = re.compile("[^a-zA-Z ]")
-    query = regex.sub("", request.args.get("q")).split(" ")
-    connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
-    cursor = connection.cursor()
-    ingredients = cursor.execute("""SELECT * FROM food
-                                 WHERE UPPER(description) LIKE UPPER(?)
-                                 ORDER BY description ASC""",
-                                 ("%" + query[0].upper() + "%",))
-    ingredient_list = []
-    for ingredient in ingredients:
-        description = ingredient[0].lower()
-        description_contains_all_query_words = True
-        for word in query:
-            if word.lower() not in description:
-                description_contains_all_query_words = False
-                break
-        if description_contains_all_query_words:
-            ingredient_dictionary = {
-                "description": ingredient[0],
-                "weightInGrams": ingredient[1],
-                "measure": ingredient[2],
-                "energyPerMeasure": ingredient[3]
-            }
-            ingredient_list.append(ingredient_dictionary)
-    connection.close()
-    return jsonify(ingredient_list)
-
 
 @app.route("/settings")
 @login_required
