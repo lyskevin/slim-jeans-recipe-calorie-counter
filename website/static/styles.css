@@ -183,7 +183,7 @@ p a {
 }
 
 /* Style about page */
-#about .header {
+.about-header {
   text-align: center;
   margin: 1%;
 }
