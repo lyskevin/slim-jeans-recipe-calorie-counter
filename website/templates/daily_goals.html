@@ -21,32 +21,40 @@ Daily Goals
       have left for the day. We will tell you if you're going to overrun,
       promise!
     </p>
-    <p>
-      To get started, please give us your daily caloric goal. For the average
-      adult male and female in <em>kcal</em>, these are
-      <a href="https://www.nhs.uk/common-health-questions/food-and-diet/what-should-my-daily-intake-of-calories-be/">
-        2500 and 2000 [NHS UK]
-      </a>
-      respectively. If you're trying to lose or gain weight, you may want to
-      try a number above and below the average.
-    </p>
   </div>
 
-  <div class="dailygoals-container">
+  <div class="dailygoals-container-firsttime">
+    <div class="text">
+      <p>
+        To get started, please give us your daily caloric goal. For the average
+        adult male and female in <em>kcal</em>, these are
+        <a href="https://www.nhs.uk/common-health-questions/food-and-diet/what-should-my-daily-intake-of-calories-be/">
+          2500 and 2000 [NHS UK]
+        </a>
+        respectively. If you're trying to lose or gain weight, you may want to
+        try a number above and below the average.
+      </p>
+    </div>
+
     <form method="get" class="dailygoals-form">
       <div class="form-group">
         <input
           class="form-control"
           autofocus
           type="number"
-          placeholder="Amount"
-          pattern="[a-zA-Z0-9!@#$%^*_|]{6,25}">
+          placeholder="Amount">
         <button
           type="submit"
-          class="btn btn-light">Submit</button>
+          class="btn btn-dark btn-sm">Submit</button>
       </div>
     </form>
   </div>
 
+  <!-- HTML for if the site is actually up -->
+  <div class="dailygoals-container">
+    <div class="dailygoals-info">
+    </div>
+
+  </div>
 </div>
 {% endblock %}
