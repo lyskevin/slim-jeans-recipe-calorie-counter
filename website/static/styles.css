@@ -250,12 +250,6 @@ p a {
   width: 30%;
 }
 
-/* Style home page's message flash */
-#index .message-flash {
-  margin: 0 auto;
-  width: 20%;
-}
-
 /** This section styles dailygoals webpage */
 .dailygoals-container {
   width: 100%;
@@ -267,4 +261,9 @@ p a {
 }
 .dailygoals-form button {
   margin-top: 10px;
+}
+
+/* Style navbar username */
+#navbar .username {
+  color: white;
 }
