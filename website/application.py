@@ -4,6 +4,7 @@ import re
 
 from flask import (Flask, flash, g, jsonify, redirect, render_template,
                    request, session, url_for)
+from functools import wraps
 from os import path
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -11,6 +12,20 @@ app = Flask(__name__)
 app.secret_key = b'\x0e(\xfd$\x9a\xb1\xa3\xb1\xca\xefa#\xe7\x16\xfb\xa1'
 
 ROOT = path.dirname(path.realpath(__file__))
+
+""" Helper Functions """
+
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get("user_id") is None:
+            return redirect("/login")
+        return f(*args, **kwargs)
+    return decorated_function
+
+
+""" Helper Functions """
 
 
 @app.route("/")
@@ -29,17 +44,21 @@ def calorie_counter():
 
 
 @app.route("/daily_goals")
+@login_required
 def daily_goals():
     return render_template("daily_goals.html")
 
 
 @app.route("/graph_generator")
+@login_required
 def graph_generator():
     return render_template("graph_generator.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+
+    session.clear()
 
     if request.method == "POST":
         form = request.form
@@ -55,13 +74,21 @@ def login():
             flash("Invalid username and/or password")
             return render_template("login.html")
         else:
+            user_id = userInformation[0][0]
+            print(user_id)
+            session["user_id"] = user_id
             flash("Successfully logged in")
             return render_template("index.html")
-            # TODO: Remember session id
             # TODO: Difference between render_template and redirect
 
     else:
         return render_template("login.html")
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return render_template("index.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -75,8 +102,8 @@ def register():
         cursor = connection.cursor()
         try:
             cursor.execute("""INSERT INTO users
-                          (username, password)
-                          VALUES(?, ?)""",
+                           (username, password)
+                           VALUES(?, ?)""",
                            (username, hashed_password))
             connection.commit()
         except sqlite3.IntegrityError:
@@ -124,5 +151,8 @@ def search():
 
 
 @app.route("/settings")
+@login_required
 def settings():
     return render_template("settings.html")
+
+
