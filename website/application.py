@@ -168,8 +168,10 @@ def register():
             return render_template("register.html")
 
         connection.close()
-        return redirect("/")
+        # TODO: Message flash that says registered?
         # TODO: Remember session id
+        return redirect("/")
+        
 
     else:
         return render_template("register.html")
