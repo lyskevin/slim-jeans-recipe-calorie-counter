@@ -101,6 +101,30 @@ def get_specific_recipe_data():
         return render_template("saved_recipes.html")
 
 
+@app.route("/save_recipe", methods=["GET", "POST"])
+@login_required
+def save_recipe():
+
+    if request.method == "POST":
+        data = request.get_json()
+        username = session["username"]
+        recipe_name = data["recipeName"]
+        recipe = data["recipe"]
+        calories = data["calories"]
+        connection = sqlite3.connect(path.join(ROOT, "testrecipe.db"))
+        cursor = connection.cursor()
+        cursor.execute("""INSERT INTO recipes
+                       (username, recipe_name, recipe, calories)
+                       VALUES(?, ?, ?, ?)""",
+                       (username, recipe_name, recipe, calories))
+        connection.commit()
+        connection.close()
+        return render_template("calorie_counter.html")
+
+    else:
+        return render_template("calorie_counter.html")
+
+
 """ Helper Functions """
 
 
