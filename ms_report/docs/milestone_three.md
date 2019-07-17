@@ -67,17 +67,26 @@ one of the features we wanted to add to the website.
 
 
 ## 4. User Accounts and Sign-ins <a name="useracc"></a>
-Since we didn't want to handle user accounts and passwords ourselves for fear
-of web security, we went with Google sign-ins, allowing Google to handle
-the grunt work in this area.
 
 <!-- add how user accounts were added -->
 
 ## 5. Conclusion of the Project
 We took Orbital mainly as a learning experience in web development, not
-particularly to make a spectacular app that would be used by millions. We would
-say that we have learnt greatly from Orbital, no matter what level of
-achievement we end up obtaining.
+particularly to make a spectacular app that would be used by many.
+
+We would say that we have learnt greatly from Orbital, particularly the
+many APIs and frameowrks (and lack thereof) we have had the pleasure of using,
+such as Flask, Jinja2, SQLite, etc and the other technologies such as HTML5,
+CSS and native Javascript.
+
+Doing this project using native Javascript has
+also allowed us to appreciate new web frameworks such as React,
+Vue or Angular that abstracts the nitty-gritty of direct DOM
+manipulation and state changes. Even trying to creat and insert a table
+into a webpage is long-winded and cumbersome to do!
+
+No matter what level of achievement we end up obtaining for Orbital, this
+has been a fruitful and memorable project.
 
 ## Project Log
 Our project log is documented

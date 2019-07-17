@@ -65,6 +65,7 @@ def search():
     connection.close()
     return jsonify(ingredient_list)
 
+
 @app.route("/get_all_recipe_data", methods=["GET", "POST"])
 @login_required
 def get_all_recipe_data():
@@ -79,6 +80,23 @@ def get_all_recipe_data():
         for recipe in recipes:
             list_of_recipes.append(recipe)
         return jsonify(list_of_recipes)
+    else:
+        return render_template("saved_recipes.html")
+
+
+@app.route("/get_specific_recipe_data", methods=["GET", "POST"])
+@login_required
+def get_specific_recipe_data():
+    if request.method == "POST":
+        username = request.get_json()["username"]
+        recipe_name = request.get_json()["recipeName"]
+        connection = sqlite3.connect(path.join(ROOT, "testrecipe.db"))
+        cursor = connection.cursor()
+        cursor.execute("""SELECT * FROM recipes
+                          WHERE username = (?) AND recipe_name = (?)""",
+                          (username, recipe_name))
+        data = cursor.fetchall()
+        return json.dumps(data)
     else:
         return render_template("saved_recipes.html")
 

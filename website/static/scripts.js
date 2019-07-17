@@ -420,22 +420,100 @@ function createRecipeTableForUser(username) {
       newRow.insertCell(1).innerHTML = tableData[j];
       newRow.insertCell(2).innerHTML = tableData[j + 1];
     }
+    savedRecipesAddRowHandlers(username);
   });
 }
 
-function displayRecipe(username) {
-  return 0;
-  //recipeData = [];
-  //for (var i = 0; i < recipes.length; i++) {
-  //  recipeData.push(JSON.parse(recipes[i][1]));
-  //}
-  //const numOfIngredients = Object.keys(recipeData[0]).length;
-  //for (var i = 0; i < numOfIngredients; i++) {
-  //  var identifier = "ingredient" + (i + 1);
-  //  const description = recipeData[0][identifier]["description"];
-  //  const amount = recipeData[0][identifier]["amount"];
-  //  const unit = recipeData[0][identifier]["unit"];
-  //  const calories = recipeData[0][identifier]["calories"];
-  //  alert(description + ", " + amount + ", " + unit + ", " + calories);
-  //}
+function savedRecipesAddRowHandlers(username) {
+  let rows = document.getElementById("table-saved-recipes").rows;
+  for (let i = 0; i < rows.length; i++) {
+    rows[i].onclick = function() {
+      return function() {
+        let obj = {}
+        obj.username = username;
+        obj.recipeName = rows[i].cells[1].innerHTML;
+        $.ajax("/get_specific_recipe_data", {
+          type: "POST",
+          contentType: "application/json",
+          dataType: "json",
+          data: JSON.stringify(obj)
+        })
+        .done(recipe => {
+          // Check if table exists, delete it if it does
+          let currentTable = document.getElementById("table-recipe-result");
+          let header = document.getElementById("saved-recipe-table-header");
+          if (currentTable != null) {
+            currentTable.parentNode.removeChild(header);
+            currentTable.parentNode.removeChild(currentTable);
+          }
+          displayRecipe(recipe)
+        });
+      };}
+      (rows[i]);
+  }
+}
+
+function displayRecipe(recipeData) {
+  /* Generating Table */
+  let newTable = document.createElement("table");
+  newTable.setAttribute("class", "table table-striped table-hover table-sm");
+  newTable.setAttribute("id", "table-recipe-result");
+
+  /* Processing data */
+  let newTableData = []
+  const recipeName = recipeData[0][1];
+  ingredients = JSON.parse(recipeData[0][2]);
+
+  Object.keys(ingredients).forEach(function(ingredientNumber) {
+    Object.keys(ingredients[ingredientNumber]).forEach(function(key) {
+      value = ingredients[ingredientNumber][key];
+      newTableData.push(value);
+    });
+  });
+
+  /* Processing and Inserting Table */
+  generateTable(newTable, newTableData, recipeData[0][3]);
+  generateTableHead(newTable);
+
+  // Insert table and header
+  document
+    .getElementsByClassName("savedrecipes-container")[0]
+    .insertAdjacentElement("afterbegin", newTable);
+  
+  let header = document.createElement("h5");
+  header.setAttribute("id", "saved-recipe-table-header");
+  header.appendChild(document.createTextNode("Viewing recipe for " + recipeName));
+
+  document
+    .getElementsByClassName("savedrecipes-container")[0]
+    .insertBefore(header, document.getElementById("table-recipe-result"));
+}
+
+function generateTableHead(table) {
+  const tableHeaders = ["Item", "Amount", "Unit", "Calories"];
+  let thead = table.createTHead();
+  let row = thead.insertRow();
+  for (let key of tableHeaders) {
+    let th = document.createElement("th");
+    let text = document.createTextNode(key);
+    th.appendChild(text);
+    row.appendChild(th);
+  }
+}
+
+function generateTable(table, data, totalCalories) {
+  const numOfColumns = 4;
+  for (let i = 0; i < data.length; i += 4) {
+    let row = table.insertRow();
+    for (let j = i; j < i + numOfColumns; j++) {
+      let cell = row.insertCell();
+      let text = document.createTextNode(data[j]);
+      cell.appendChild(text);
+    }
+  }
+  
+  /* insert total calories */
+  let row = table.insertRow();
+  let cell = row.insertCell();
+  cell.appendChild(document.createTextNode(totalCalories));
 }
