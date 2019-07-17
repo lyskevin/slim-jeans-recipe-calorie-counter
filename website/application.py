@@ -153,7 +153,6 @@ def login():
             session["user_id"] = userInformation[0][0]
             session["username"] = userInformation[0][1]
             return redirect("/")
-            # TODO: Difference between render_template and redirect
 
     else:
         return render_template("login.html")
@@ -187,9 +186,7 @@ def register():
 
         connection.close()
         # TODO: Message flash that says registered?
-        # TODO: Remember session id
         return redirect("/")
-        
 
     else:
         return render_template("register.html")
