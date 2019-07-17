@@ -281,7 +281,7 @@ function getInput() {
   let missingInput = false;
   let negativeAmount = false;
 
-  for (let i = 0; i < form.length - 3; i += 4) {
+  for (let i = 0; i < form.length - 5; i += 4) {
     let description = form[i].value;
     let amount = form[i + 1].value;
     let unit = form[i + 2].value;
@@ -324,6 +324,8 @@ function getInput() {
     ingredientInformation["unit"] = unit;
     ingredientInformation["calories"] = calories;
     recipe["ingredient" + (i / 4 + 1)] = ingredientInformation;
+    + "<input type=\"button\" class=\"btn btn-light\" value=\"Save Recipe\" "
+    + "onclick=\"saveRecipe()\">";
 
   }
 
@@ -333,7 +335,6 @@ function getInput() {
     alert("Negative amount values are not allowed");
   } else {
     displayResults(totalCalories, breakdown);
-    alert(JSON.stringify(recipe));
   }
 
 }
@@ -507,4 +508,82 @@ function generateTable(table, data, totalCalories) {
   let row = table.insertRow();
   let cell = row.insertCell();
   cell.appendChild(document.createTextNode(totalCalories));
+}
+
+// Saves the recipe specified by the user
+function saveRecipe() {
+  var form = document.forms["calorie-input"];
+  var totalCalories = 0;
+  var recipe = {};
+
+  let missingInput = false;
+  let negativeAmount = false;
+
+  for (let i = 0; i < form.length - 5; i += 4) {
+    let description = form[i].value;
+    let amount = form[i + 1].value;
+    let unit = form[i + 2].value;
+    let calories = 0;
+
+    if (description == "" && amount == "" && unit == "") {
+      continue;
+    }
+
+    if (description == "" || amount == "" || unit == "" || unit == "units") {
+      missingInput = true;
+      break;
+    }
+
+    if (amount < 0) {
+      negativeAmount = true;
+      break;
+    }
+
+    let ingredient = ingredients[description];
+    if (unit in weightConversionUnits) {
+      let conversionFactor = weightConversionUnits[unit];
+      calories += (amount / ingredient["weightInGrams"])
+                  * ingredient["energyPerMeasure"] * conversionFactor;
+    } else if (unit in volumeConversionUnits) {
+      let conversionFactor = volumeConversionUnits[unit][ingredient["measure"]];
+      calories += (amount / ingredient["measureAmount"])
+                  * ingredient["energyPerMeasure"] * conversionFactor;
+    } else {
+      calories += (amount / ingredient["measureAmount"])
+                  * ingredient["energyPerMeasure"];
+    }
+    totalCalories += calories;
+
+    let ingredientInformation = {};
+    ingredientInformation["description"] = description;
+    ingredientInformation["amount"] = amount;
+    ingredientInformation["unit"] = unit;
+    ingredientInformation["calories"] = calories;
+    recipe["ingredient" + (i / 4 + 1)] = ingredientInformation;
+
+  }
+
+  if (missingInput) {
+    alert("Please fill in all input fields");
+  } else if (negativeAmount) {
+    alert("Negative amount values are not allowed");
+  } else {
+    recipeName = form[form.length - 2].value;
+    if (recipeName === "") {
+      alert("Please include a recipe name");
+    } else {
+      data = {};
+      data["recipeName"] = recipeName;
+      data["recipe"] = JSON.stringify(recipe);
+      data["calories"] = totalCalories;
+      $.ajax("/save_recipe", {
+          type: "POST",
+          contentType: "application/json",
+          dataType: "json",
+          data: JSON.stringify(data)
+      })
+      .done(alert("Recipe saved"));
+    }
+  }
+
 }
