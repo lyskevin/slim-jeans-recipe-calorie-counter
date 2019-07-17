@@ -364,15 +364,6 @@ function loginFormSubmission() {
   var username = form[0].value;
   var password = form[1].value;
   form.submit();
-  /*
-  if ($.trim(username) === "" || $.trim(password) === "") {
-    alert("Please fill in all fields (space padding is not allowed)");
-  } else if (password.length < 5) {
-    alert("Password must be at least 5 characters in length");
-  } else {
-    form.submit();
-  }
-  */
 }
 
 // Handles the registration form submission
