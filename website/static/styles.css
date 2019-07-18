@@ -282,7 +282,19 @@ p a {
 /* Style Saved Recipes page */
 .savedrecipes-container {
   margin: 0 auto;
-  width: 75%;
+  width: 90%;
+  padding-bottom: 10%;
+}
+
+.savedrecipes-list, .savedrecipes-result {
+  margin-top: 1%;
+  padding: 1% 1% 1% 1%;
+  border-radius: 10px;
+  border: 2px solid darkgrey;
+}
+.savedrecipes-list h4, .savedrecipes-result h4 {
+  padding-bottom: 1%;
+  padding-left: 1%;
 }
 
 /* Style about page */
@@ -305,4 +317,10 @@ p a {
 
 #about .ryan {
   margin-left: 2.5%;
+}
+
+tbody td {
+  padding-left: 50%;
+  text-align;
+  left;
 }

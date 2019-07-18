@@ -405,20 +405,36 @@ function createRecipeTableForUser(username) {
       tableData.push(recipes[i][3]);
     }
     const numOfRecipes = tableData.length / 2;
-    const tableBody = document.getElementById("table-saved-recipes").lastElementChild;
+    const tableBody = document.getElementById("table-savedrecipes").lastElementChild;
     for (let i = 0, j = 0; i < numOfRecipes; i++, j += 2) {
       let newRow = tableBody.insertRow(-1);
-      newRow.insertCell(0).innerHTML = i + 1;
-      newRow.insertCell(1).innerHTML = tableData[j];
-      newRow.insertCell(2).innerHTML = tableData[j + 1];
+      newRow.insertCell().innerHTML = i + 1;
+      newRow.insertCell().innerHTML = tableData[j];
+      newRow.insertCell().innerHTML = Math.floor(tableData[j + 1]);
+
+      let cell = newRow.insertCell();
+      let btnId = "delete-btn-" + (i + 1);
+      let deleteButton = document.createElement("button")
+      deleteButton.setAttribute("class", "btn btn-danger btn-sm");
+      deleteButton.setAttribute("id", btnId);
+      deleteButton.innerText = "Delete";
+      cell.appendChild(deleteButton);
+      savedRecipesAddDeleteButtonHandler(btnId, username, tableData[j]);
     }
     savedRecipesAddRowHandlers(username);
   });
 }
 
+function savedRecipesRemoveResultTable() {
+  let currentTable = document.getElementsByClassName("savedrecipes-result")[0];
+  if (currentTable != null) {
+    currentTable.parentNode.removeChild(currentTable);
+  }
+}
+
 function savedRecipesAddRowHandlers(username) {
-  let rows = document.getElementById("table-saved-recipes").rows;
-  for (let i = 0; i < rows.length; i++) {
+  let rows = document.getElementById("table-savedrecipes").rows;
+  for (let i = 1; i < rows.length; i++) {
     rows[i].onclick = function() {
       return function() {
         let obj = {}
@@ -431,13 +447,7 @@ function savedRecipesAddRowHandlers(username) {
           data: JSON.stringify(obj)
         })
         .done(recipe => {
-          // Check if table exists, delete it if it does
-          let currentTable = document.getElementById("table-recipe-result");
-          let header = document.getElementById("saved-recipe-table-header");
-          if (currentTable != null) {
-            currentTable.parentNode.removeChild(header);
-            currentTable.parentNode.removeChild(currentTable);
-          }
+          savedRecipesRemoveResultTable();
           displayRecipe(recipe)
         });
       };}
@@ -445,40 +455,64 @@ function savedRecipesAddRowHandlers(username) {
   }
 }
 
+function savedRecipesAddDeleteButtonHandler(buttonId, username, recipeName) {
+  let button = document.getElementById(buttonId);
+  button.onclick = function() {
+    return function(username, recipeName) {
+      let obj = {};
+      obj.username = username;
+      obj.recipeName = recipeName;
+      $.ajax("/delete_recipe_data", {
+        type: "POST",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(obj)
+      })
+      .done(() => {
+        alert("hello!");
+      });
+    }
+  }
+}
+
 function displayRecipe(recipeData) {
   /* Generating Table */
   let newTable = document.createElement("table");
-  newTable.setAttribute("class", "table table-striped table-hover table-sm");
+  newTable.setAttribute("class", "table table-striped table-hover table-sm table-bordered");
   newTable.setAttribute("id", "table-recipe-result");
 
   /* Processing data */
   let newTableData = []
   const recipeName = recipeData[0][1];
+  const totalCalories = Math.floor(recipeData[0][3]);
   ingredients = JSON.parse(recipeData[0][2]);
 
   Object.keys(ingredients).forEach(function(ingredientNumber) {
     Object.keys(ingredients[ingredientNumber]).forEach(function(key) {
       value = ingredients[ingredientNumber][key];
+      if (typeof(value) == "number") {
+        value = Math.floor(value);
+      }
       newTableData.push(value);
     });
   });
 
   /* Processing and Inserting Table */
-  generateTable(newTable, newTableData, recipeData[0][3]);
+  generateTable(newTable, newTableData, totalCalories);
   generateTableHead(newTable);
 
-  // Insert table and header
-  document
-    .getElementsByClassName("savedrecipes-container")[0]
-    .insertAdjacentElement("afterbegin", newTable);
-  
-  let header = document.createElement("h5");
-  header.setAttribute("id", "saved-recipe-table-header");
-  header.appendChild(document.createTextNode("Viewing recipe for " + recipeName));
+  let div = document.createElement("div")
+  let header = document.createElement("h4");
+  header.appendChild(document.createTextNode("Viewing recipe for \""
+      + recipeName
+      + "\""));
+  div.setAttribute("class", "savedrecipes-result")
+  div.appendChild(header);
+  div.appendChild(newTable);
 
   document
     .getElementsByClassName("savedrecipes-container")[0]
-    .insertBefore(header, document.getElementById("table-recipe-result"));
+    .insertAdjacentElement("beforeend", div);
 }
 
 function generateTableHead(table) {
@@ -491,6 +525,7 @@ function generateTableHead(table) {
     th.appendChild(text);
     row.appendChild(th);
   }
+  row.cells[3].colSpan = 999;
 }
 
 function generateTable(table, data, totalCalories) {
@@ -507,6 +542,8 @@ function generateTable(table, data, totalCalories) {
   /* insert total calories */
   let row = table.insertRow();
   let cell = row.insertCell();
+  cell.setAttribute("style", "text-align: center; font-size: 30px;");
+  cell.colSpan = 999;
   cell.appendChild(document.createTextNode(totalCalories));
 }
 

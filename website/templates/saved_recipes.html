@@ -17,33 +17,33 @@
   <div class="text">
     <h1>View your Saved Recipes</h1>
     <p>
-      Click on any recipe to see its contents
+      The table below displays your saved recipes, click on any row to display
+      information about that recipe.
+    </p>
+    <p>
+      Use this page to track what you're eating. You are able to delete any recipe
+      that you do not wish to use anymore.
     </p>
   </div>
 
   <div class="savedrecipes-container">
-    <table class="table table-striped table-hover table-sm" id="table-saved-recipes">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th scope="col">Calories</th>
-        </tr>
-      </thead>
-      <tbody style="cursor:pointer">
-        <!-- Added in by Javascript -->
-      </tbody>
-    </table>
-  </div>
 
-  <div>
-    <div class="text">
-      <h1>What can you do?</h1>
-      <p>
-        Use this page to track what you're eating. You may delete any recipe
-        that you do not wish to use anymore.
-      </p>
+    <div class="savedrecipes-list">
+      <h4>Saved Recipes</h4>
+      <table class="table-sm table table-striped table-hover table-bordered"
+             id="table-savedrecipes">
+        <thead>
+          <tr>
+            <th scope="col">S/N</th>
+            <th scope="col">Name</th>
+            <th scope="col">Calories</th>
+          </tr>
+        </thead>
+        <tbody style="cursor:pointer">
+        </tbody>
+      </table>
     </div>
+
   </div>
 </div>
 
@@ -51,4 +51,3 @@
   createRecipeTableForUser("{{ session.username }}");
 </script>
 {% endblock %}
-

@@ -124,6 +124,25 @@ def save_recipe():
     else:
         return render_template("calorie_counter.html")
 
+@app.route("/delete_recipe_data", methods=["GET", "POST"])
+@login_required
+def delete_recipe_data():
+    if request.method == "POST":
+        data = request.get_json()
+        username = request.get_json()["username"]
+        recipe_name = request.get_json()["recipeName"]
+        print(username)
+        print(recipe_name)
+        connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
+        cursor = connection.cursor()
+        current_number_of_rows = cursor.rowcount()
+        cursor.execute("""DELETE FROM recipes
+                          WHERE username = (?) AND recipe_name = (?)"""
+                          (username, recipe_name))
+        connection.commit()
+        connection.close()
+    return render_template("saved_recipes.html")
+
 
 """ Helper Functions """
 
