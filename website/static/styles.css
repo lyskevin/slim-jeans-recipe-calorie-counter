@@ -59,6 +59,7 @@ main {
 /* Style home page's tagline */
 #index {
   text-align: center;
+  color: black !important;
 }
 
 #index .tagline {
@@ -94,6 +95,7 @@ main {
   text-align: center;
   padding: 1%;
   z-index: 1;
+  color: black !important;
 }
 
 #calorie-counter .header h1 {
@@ -181,6 +183,7 @@ th {
   max-height: 150px;
   overflow-y: auto;
   width: 300px;
+  color: black !important;
 }
 
 .tt-suggestion.tt-cursor, .tt-suggestion:hover {
@@ -280,6 +283,14 @@ p a {
 }
 
 /* Style Saved Recipes page */
+#saved-recipes .header .text {
+  color: black !important;
+}
+
+body.dark .savedrecipes-list {
+  color: white !important;
+}
+
 .savedrecipes-container {
   margin: 0 auto;
   width: 90%;
@@ -292,6 +303,11 @@ p a {
   border-radius: 10px;
   border: 2px solid darkgrey;
 }
+
+body.dark #table-savedrecipes, body.dark #table-recipe-result {
+  color: white !important;
+}
+
 .savedrecipes-list h4, .savedrecipes-result h4 {
   padding-bottom: 1%;
   padding-left: 1%;
@@ -319,8 +335,9 @@ p a {
   margin-left: 2.5%;
 }
 
-tbody td {
-  padding-left: 50%;
-  text-align;
-  left;
+/* Style dark mode */
+body.dark {
+  background-color: rgb(35, 43, 43);
+  color: white;
 }
+
