@@ -7,9 +7,12 @@
 {% block id %}about{% endblock %}
 
 {% block main %}
-  <h2 class="about-header">Meet the Developers</h2>
-  <div class="content">
-    <figure>
+<img class="image" src="../static/images/assorted_food.jpg" alt="Assorted Food">
+<!-- Image by Pixabay via https://www.pexels.com/photo/basil-delicious-food-ingredients-459469/ -->
+<div class="content">
+  <div class="developers">
+    <h2>Meet the Developers</h2>
+    <figure class="kevin">
       <img src="../static/images/kevin.jpg" alt="Kevin" class="developer-image">
       <figcaption>
         Kevin Lim<br>
@@ -17,7 +20,7 @@
         <a href="mailto:lyskevin@u.nus.edu" target="_top">lyskevin@u.nus.edu</a><br>
       </figcaption>
     </figure>
-    <figure>
+    <figure class="ryan">
       <img src="../static/images/ryan.jpg" alt="Ryan" class="developer-image">
       <figcaption>
         Ryan Tan<br>
@@ -26,4 +29,16 @@
       </figcaption>
     </figure>
   </div>
+  <h2>Background</h2>
+  <p>
+    We are a pair of Computer Science students from the National University of Singapore (NUS)
+    who decided to partake in Orbital, which is NUS’ annual summer software development module
+    for freshmen. After countless discussions, we chose to work on the Slim Jeans Recipe Calorie
+    Counter due to the wide range of possibilities it presented to us. It allowed us to work on
+    something useful while also being versatile enough to expand upon if we had the time to do so.
+    At its core, the website targets those who would like to track their caloric intake based on
+    recipes that they are interested in preparing. We hope that you enjoy using the website as
+    much as we enjoyed developing it!
+  </p>
+</div>
 {% endblock %}
