@@ -257,10 +257,30 @@ function displayResults(totalCalories, breakdown) {
   function drawChart() {
 
     var data = google.visualization.arrayToDataTable(breakdown);
+    var options = {};
 
-    var options = {
+    if (localStorage.getItem('mode') === 'dark') {
+      options = {
+        title: "Breakdown",
+        titleTextStyle: {
+          color: 'white'
+        },
+        legend: {
+          textStyle: {
+            color: 'white'
+          }
+        },
+        backgroundColor: '#232b2b',
+        color: 'white'
+      };
+    } else {
+      options = {
+        title: "Breakdown"
+      };
+    }
+    /*var options = {
       title: "Breakdown"
-    };
+    };*/
 
     var chart =
       new google.visualization.PieChart(document.getElementById("piechart"));
@@ -478,7 +498,16 @@ function savedRecipesAddDeleteButtonHandler(buttonId, username, recipeName) {
 function displayRecipe(recipeData) {
   /* Generating Table */
   let newTable = document.createElement("table");
-  newTable.setAttribute("class", "table table-striped table-hover table-sm table-bordered");
+  if (localStorage.getItem('mode') === 'dark') {
+    newTable.setAttribute(
+      "class", "table table-striped table-hover table-sm table-bordered table-dark"
+    );
+  } else {
+    newTable.setAttribute(
+      "class", "table table-striped table-hover table-sm table-bordered"
+    );
+  }
+  
   newTable.setAttribute("id", "table-recipe-result");
 
   /* Processing data */
@@ -624,3 +653,29 @@ function saveRecipe() {
   }
 
 }
+
+/* Toggles night mode */
+function nightMode() {
+  localStorage.setItem('mode', (localStorage.getItem('mode') || 'dark') === 'dark' ?
+    'light' : 'dark');
+  if (localStorage.getItem('mode') === 'dark') {
+    document.querySelector('body').classList.add('dark');
+    $('#table-savedrecipes').addClass('table-dark');
+    $('#table-recipe-result').addClass('table-dark');
+  } else {
+    document.querySelector('body').classList.remove('dark');
+    $('#table-savedrecipes').removeClass('table-dark');
+    $('#table-recipe-result').removeClass('table-dark');
+  }    
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  if (localStorage.getItem('mode') === 'dark') {
+    document.querySelector('body').classList.add('dark');
+    $('#table-savedrecipes').addClass('table-dark');
+  } else {
+    document.querySelector('body').classList.remove('dark');
+    $('#table-savedrecipes').removeClass('table-dark');
+  }    
+});
+
