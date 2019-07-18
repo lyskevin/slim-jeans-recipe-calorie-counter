@@ -203,16 +203,6 @@ p a {
   margin: 2.5%;
 }
 
-/* Style about page */
-.about-header {
-  text-align: center;
-  margin: 1%;
-}
-#about .content {
-  display: flex;
-  justify-content: center;
-}
-
 /* Style login and register page */
 #login, #register {
   width: 100%;
@@ -291,6 +281,28 @@ p a {
 
 /* Style Saved Recipes page */
 .savedrecipes-container {
-    margin: 0 auto;
-    width: 75%;
+  margin: 0 auto;
+  width: 75%;
+}
+
+/* Style about page */
+#about .image {
+  max-width: 100%;
+  height: auto;
+}
+
+#about .content {
+  margin: 2.5%;
+}
+
+#about .developers {
+  text-align: center;
+}
+
+#about .kevin {
+  margin-right: 2.5%;
+}
+
+#about .ryan {
+  margin-left: 2.5%;
 }
