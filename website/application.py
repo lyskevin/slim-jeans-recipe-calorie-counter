@@ -71,7 +71,7 @@ def search():
 def get_all_recipe_data():
     if request.method == "POST":
         username = request.get_json()
-        connection = sqlite3.connect(path.join(ROOT, "testrecipe.db"))
+        connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
         cursor = connection.cursor()
         recipes = cursor.execute("""SELECT * FROM recipes
                                     WHERE username = (?)""" ,
@@ -90,7 +90,7 @@ def get_specific_recipe_data():
     if request.method == "POST":
         username = request.get_json()["username"]
         recipe_name = request.get_json()["recipeName"]
-        connection = sqlite3.connect(path.join(ROOT, "testrecipe.db"))
+        connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
         cursor = connection.cursor()
         cursor.execute("""SELECT * FROM recipes
                           WHERE username = (?) AND recipe_name = (?)""",
@@ -111,7 +111,7 @@ def save_recipe():
         recipe_name = data["recipeName"]
         recipe = data["recipe"]
         calories = data["calories"]
-        connection = sqlite3.connect(path.join(ROOT, "testrecipe.db"))
+        connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
         cursor = connection.cursor()
         cursor.execute("""INSERT INTO recipes
                        (username, recipe_name, recipe, calories)
