@@ -14,6 +14,7 @@
 </div>
 
 <div id="content" class="content">
+
   <div class="text">
     <h1>View your Saved Recipes</h1>
     <p>
@@ -27,11 +28,11 @@
   </div>
 
   <div class="savedrecipes-container">
-
     <div class="savedrecipes-list">
       <h4>Saved Recipes</h4>
-      <table class="table-sm table table-striped table-hover table-bordered"
-             id="table-savedrecipes">
+      <table
+        class="table-sm table table-striped table-hover table-bordered"
+        id="table-savedrecipes">
         <thead>
           <tr>
             <th scope="col">S/N</th>
@@ -43,11 +44,9 @@
         </tbody>
       </table>
     </div>
-
   </div>
+
 </div>
 
-<script>
-  createRecipeTableForUser("{{ session.username }}");
-</script>
+<script>createRecipeTableForUser("{{ session.username }}");</script>
 {% endblock %}
