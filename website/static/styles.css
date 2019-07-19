@@ -1,75 +1,46 @@
-/* Style body */
-body {
-  font-family: 'Lato', sans-serif;
+/* Style about page */
+
+#about .image {
+  max-width: 100%;
+  height: auto;
 }
 
-/* Style page content */
-main {
-  z-index: 1;
+#about .content {
+  margin: 2.5%;
 }
 
-/* Style home page's logged in background */
-#index .background-logged-in {
-  
-  background: url('images/bbq.jpg') no-repeat center center fixed;
-  
-  /* Positioning */
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-
-  /* Display & Box Model */
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-
-  /* Others */
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-/* Style home page's logged in background */
-#index .background-logged-out {
-  
-  background: url('images/berries.jpg') no-repeat center center fixed;
-  
-  /* Positioning */
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-
-  /* Display & Box Model */
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-
-  /* Others */
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-/* Style home page's tagline */
-#index {
+#about .developers {
   text-align: center;
-  color: black !important;
 }
 
-#index .tagline {
-  background-color: rgba(255, 255, 255, 0.8);
+#about .kevin {
+  margin-right: 2.5%;
+}
+
+#about .ryan {
+  margin-left: 2.5%;
+}
+
+/* Style developer figures */
+figure {
   display: inline-block;
-  margin-top: 3%;
-  padding: 0.5%;
 }
 
-/* Set calorie counter's header position */
+/* Style developer captions */
+figcaption {
+  text-align: center;
+}
+
+/* Style developer images */
+.developer-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 3vh;
+}
+
+/* Style calorie counter page */
+
 #calorie-counter .header {
   display: flex;
   justify-content: flex-end;
@@ -78,13 +49,11 @@ main {
   position: relative;
 }
 
-/* Style calorie counter's header image */
 #calorie-counter .header .image {
   max-width: 100%;
   height: auto;
 }
 
-/* Style calorie counter's header text */
 #calorie-counter .header .text {
   background-color: rgb(255, 255, 255);
   position: absolute;
@@ -108,29 +77,6 @@ main {
 
 #calorie-counter .header h3 {
   font-size: 1.5vw;
-}
-
-/* Black background for navbar */
-.bg-black {
-  background-color: black;
-}
-
-/* Style developer figures */
-figure {
-  display: inline-block;
-}
-
-/* Style developer captions */
-figcaption {
-  text-align: center;
-}
-
-/* Style developer images */
-.developer-image {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin: 3vh;
 }
 
 .calorie-container, .result-container {
@@ -197,33 +143,97 @@ th {
   padding: 6px 12px;
 }
 
-/* Style Links */
-p a {
-  color: #4a90ff;
+/* Style graph generator (TODO) */
+
+/* Style home page */
+
+#index .background-logged-in {
+  
+  background: url('images/bbq.jpg') no-repeat center center fixed;
+  
+  /* Positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  /* Display & Box Model */
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+
+  /* Others */
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#index .background-logged-out {
+  
+  background: url('images/berries.jpg') no-repeat center center fixed;
+  
+  /* Positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  /* Display & Box Model */
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+
+  /* Others */
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#index {
+  text-align: center;
+  color: black !important;
+}
+
+#index .tagline {
+  background-color: rgba(255, 255, 255, 0.8);
+  display: inline-block;
+  margin-top: 3%;
+  padding: 0.5%;
+}
+
+/* Style general page layout */
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+main {
+  z-index: 1;
 }
 
 .content .text {
   margin: 2.5%;
 }
 
-/* Style login and register page */
-#login, #register {
-  width: 100%;
-  text-align: center;
+/* Black background for navbar */
+.bg-black {
+  background-color: black;
 }
 
-/* Style login and register forms */
-#login .form, #register .form {
-  margin-top: 5%;
+/* Style navbar username */
+#navbar .username {
+  color: white;
 }
 
-/* Style login and register form fields */
-#login .form-control, #register .form-control {
-  display: inline-block;
-  width: auto;
+/* Style Links */
+p a {
+  color: #4a90ff;
 }
 
-/* Set calorie counter's header position */
 .header {
   display: flex;
   justify-content: flex-end;
@@ -232,13 +242,11 @@ p a {
   position: relative;
 }
 
-/* Style calorie counter's header image */
 .header .image {
   max-width: 100%;
   height: auto;
 }
 
-/* Style calorie counter's header text */
 .header .text {
   background-color: rgb(255, 255, 255);
   position: absolute;
@@ -257,32 +265,36 @@ p a {
   font-size: 1vw;
 }
 
-/* Style registration page's message flash */
-#register .message-flash, #login .message-flash {
+/* Style dark mode */
+body.dark {
+  background-color: rgb(35, 43, 43);
+  color: white;
+}
+
+/* Style login and register pages */
+
+#login, #register {
+  width: 100%;
+  text-align: center;
+}
+
+#login .form, #register .form {
+  margin-top: 5%;
+}
+
+#login .form-control, #register .form-control {
+  display: inline-block;
+  width: auto;
+}
+
+#login .message-flash, #register .message-flash {
   margin: 0 auto;
   margin-top: 10vh;
   width: 30%;
 }
 
-/** This section styles dailygoals webpage */
-.dailygoals-container {
-  width: 100%;
-  text-align: center;
-}
-.dailygoals-form input {
-  width: 10%;
-  margin: 0 auto;
-}
-.dailygoals-form button {
-  margin-top: 10px;
-}
+/* Style saved recipes page */
 
-/* Style navbar username */
-#navbar .username {
-  color: white;
-}
-
-/* Style Saved Recipes page */
 #saved-recipes .header .text {
   color: black !important;
 }
@@ -312,32 +324,3 @@ body.dark #table-savedrecipes, body.dark #table-recipe-result {
   padding-bottom: 1%;
   padding-left: 1%;
 }
-
-/* Style about page */
-#about .image {
-  max-width: 100%;
-  height: auto;
-}
-
-#about .content {
-  margin: 2.5%;
-}
-
-#about .developers {
-  text-align: center;
-}
-
-#about .kevin {
-  margin-right: 2.5%;
-}
-
-#about .ryan {
-  margin-left: 2.5%;
-}
-
-/* Style dark mode */
-body.dark {
-  background-color: rgb(35, 43, 43);
-  color: white;
-}
-
