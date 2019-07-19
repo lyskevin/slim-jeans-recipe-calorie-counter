@@ -1,4 +1,4 @@
-// Global variables
+/* Global variables */
 var numberOfRows = 1;
 var ingredients = {};
 var weightConversionUnits = {
@@ -74,7 +74,7 @@ var volumeConversionUnits = {
   }
 };
 
-// Executes when the DOM is fully loaded
+/* Executes when the DOM is fully loaded */
 $(document).ready(function() {  
   $('#sidebarCollapse').on('click', function() {
     $('#sidebar').toggleClass('active');
@@ -82,7 +82,17 @@ $(document).ready(function() {
   configure(1);
 });
 
-// Appends a row to the input table
+document.addEventListener('DOMContentLoaded', (event) => {
+  if (localStorage.getItem('mode') === 'dark') {
+    document.querySelector('body').classList.add('dark');
+    $('#table-savedrecipes').addClass('table-dark');
+  } else {
+    document.querySelector('body').classList.remove('dark');
+    $('#table-savedrecipes').removeClass('table-dark');
+  }    
+});
+
+/* Appends a row to the calorie counter's input table */
 function appendRow() {
   const table = document.getElementById("input-table");
   var newRow = table.insertRow(-1);
@@ -120,7 +130,7 @@ function appendRow() {
   configure(numberOfRows);
 }
 
-// Configures the DOM
+/* Configures the DOM */
 function configure(ingredientNumber) {
   
   // Configure typeahead
@@ -194,7 +204,7 @@ function configure(ingredientNumber) {
 
 }
 
-// Configures volume units in the specified "units" element in the table
+/* Configures volume units in the specified "units" element in the table */
 function configureVolumeUnits(units) {
   units[units.length] = new Option("cups", "cups");
   units[units.length] = new Option("tablespoons (tbsp)", "tablespoons");
@@ -205,7 +215,7 @@ function configureVolumeUnits(units) {
   units[units.length] = new Option("fluid ounces (fl oz)", "fluid ounces");
 }
 
-// Configures weight units in the specified "units" element in the table
+/* Configures weight units in the specified "units" element in the table */
 function configureWeightUnits(units) {
   units.options[units.length] = new Option("milligrams (mg)", "milligrams");
   units.options[units.length] = new Option("grams (g)", "grams");
@@ -214,8 +224,43 @@ function configureWeightUnits(units) {
   units.options[units.length] = new Option("pounds (lb)", "pounds");
 }
 
-// Creates a container to display the specified total number of calories
-// and pie chart of breakdown
+/* Creates a table of the user's saved recipes */
+function createRecipeTableForUser(username) {
+  $.ajax("/get_all_recipe_data", {
+    type: "POST",
+    contentType: "application/json",
+    dataType: "json",
+    data: JSON.stringify(username)
+  })
+  .done(recipes => {
+    let tableData = [];
+    for (let i = 0; i < recipes.length; i++) {
+      tableData.push(recipes[i][1]);
+      tableData.push(recipes[i][3]);
+    }
+    const numOfRecipes = tableData.length / 2;
+    const tableBody = document.getElementById("table-savedrecipes").lastElementChild;
+    for (let i = 0, j = 0; i < numOfRecipes; i++, j += 2) {
+      let newRow = tableBody.insertRow(-1);
+      newRow.insertCell().innerHTML = i + 1;
+      newRow.insertCell().innerHTML = tableData[j];
+      newRow.insertCell().innerHTML = Math.floor(tableData[j + 1]);
+
+      let cell = newRow.insertCell();
+      let btnId = "delete-btn-" + (i + 1);
+      let deleteButton = document.createElement("button")
+      deleteButton.setAttribute("class", "btn btn-danger btn-sm");
+      deleteButton.setAttribute("id", btnId);
+      deleteButton.innerText = "Delete";
+      cell.appendChild(deleteButton);
+      savedRecipesAddDeleteButtonHandler(btnId, username, tableData[j]);
+    }
+    savedRecipesAddRowHandlers(username);
+  });
+}
+
+/* Creates a container to display the specified total number
+   of calories and pie chart of breakdown */
 function createResultContainer(totalCalories) {
 
   var resultContainer = document.createElement("div");
@@ -230,7 +275,7 @@ function createResultContainer(totalCalories) {
 
 }
 
-// Deletes the specified row from the input table
+/* Deletes the specified row from the calorie counter's input table */
 function deleteRow(row) {
   if (numberOfRows > 1) {
     numberOfRows--;
@@ -240,7 +285,57 @@ function deleteRow(row) {
   }
 }
 
-// Inserts HTML to display calorie results and breakdown on the webpage
+/* Displays the data for the specified recipe on the saved recipes page */
+function displayRecipe(recipeData) {
+  /* Generating Table */
+  let newTable = document.createElement("table");
+  if (localStorage.getItem('mode') === 'dark') {
+    newTable.setAttribute(
+      "class", "table table-striped table-hover table-sm table-bordered table-dark"
+    );
+  } else {
+    newTable.setAttribute(
+      "class", "table table-striped table-hover table-sm table-bordered"
+    );
+  }
+  
+  newTable.setAttribute("id", "table-recipe-result");
+
+  // Processing data
+  let newTableData = []
+  const recipeName = recipeData[0][1];
+  const totalCalories = Math.floor(recipeData[0][3]);
+  ingredients = JSON.parse(recipeData[0][2]);
+
+  Object.keys(ingredients).forEach(function(ingredientNumber) {
+    Object.keys(ingredients[ingredientNumber]).forEach(function(key) {
+      value = ingredients[ingredientNumber][key];
+      if (typeof(value) == "number") {
+        value = Math.floor(value);
+      }
+      newTableData.push(value);
+    });
+  });
+
+  // Processing and Inserting Table
+  generateTable(newTable, newTableData, totalCalories);
+  generateTableHead(newTable);
+
+  let div = document.createElement("div")
+  let header = document.createElement("h4");
+  header.appendChild(document.createTextNode("Viewing recipe for \""
+      + recipeName
+      + "\""));
+  div.setAttribute("class", "savedrecipes-result")
+  div.appendChild(header);
+  div.appendChild(newTable);
+
+  document
+    .getElementsByClassName("savedrecipes-container")[0]
+    .insertAdjacentElement("beforeend", div);
+}
+
+/* Inserts HTML to display calorie results and breakdown on the webpage */
 function displayResults(totalCalories, breakdown) {
   
   var toInsertAfter = document.getElementsByClassName("calorie-container")[0];
@@ -278,9 +373,6 @@ function displayResults(totalCalories, breakdown) {
         title: "Breakdown"
       };
     }
-    /*var options = {
-      title: "Breakdown"
-    };*/
 
     var chart =
       new google.visualization.PieChart(document.getElementById("piechart"));
@@ -291,7 +383,41 @@ function displayResults(totalCalories, breakdown) {
  
 }
 
-// Gets input and uses it to calculate the total number of calories
+/* Generates the table for the saved recipes page */
+function generateTable(table, data, totalCalories) {
+  const numOfColumns = 4;
+  for (let i = 0; i < data.length; i += 4) {
+    let row = table.insertRow();
+    for (let j = i; j < i + numOfColumns; j++) {
+      let cell = row.insertCell();
+      let text = document.createTextNode(data[j]);
+      cell.appendChild(text);
+    }
+  }
+  
+  // Insert total calories
+  let row = table.insertRow();
+  let cell = row.insertCell();
+  cell.setAttribute("style", "text-align: center; font-size: 30px;");
+  cell.colSpan = 999;
+  cell.appendChild(document.createTextNode(totalCalories));
+}
+
+/* Generates the table headers for the saved recipes page */
+function generateTableHead(table) {
+  const tableHeaders = ["Item", "Amount", "Unit", "Calories"];
+  let thead = table.createTHead();
+  let row = thead.insertRow();
+  for (let key of tableHeaders) {
+    let th = document.createElement("th");
+    let text = document.createTextNode(key);
+    th.appendChild(text);
+    row.appendChild(th);
+  }
+  row.cells[3].colSpan = 999;
+}
+
+/* Gets input from the calorie counter and calculates the total number of calories */
 function getInput() {
   var form = document.forms["calorie-input"];
   var totalCalories = 0;
@@ -359,27 +485,12 @@ function getInput() {
 
 }
 
-// Inserts the specified element after the specified reference node
+/* Inserts the specified element after the specified reference node */
 function insertAfter(el, referenceNode) {
   referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
 }
 
-// Search database for typeahead's suggestions
-function search(query, syncResults, asyncResults) {
-
-  // Query database asynchronously
-  let parameters = {
-    q: query
-  };
-  $.getJSON("/search", parameters, function(data, textStatus, jqXHR) {
-
-    // Call typeahead's callback with search results
-    asyncResults(data);
-  });
-
-}
-
-// Handles the login form submission
+/* Handles the login form submission */
 function loginFormSubmission() {
   var form = document.forms["login-form"];
   var username = form[0].value;
@@ -387,7 +498,7 @@ function loginFormSubmission() {
   form.submit();
 }
 
-// Handles the registration form submission
+/* Handles the registration form submission */
 function registrationFormSubmission() {
   var form = document.forms["registration-form"];
   var username = form[0].value;
@@ -406,52 +517,7 @@ function registrationFormSubmission() {
   }
 }
 
-// Alerts the user that the selected username is already in use
-function usernameInUseAlert() {
-  alert("Username already in use");
-}
-
-function createRecipeTableForUser(username) {
-  $.ajax("/get_all_recipe_data", {
-    type: "POST",
-    contentType: "application/json",
-    dataType: "json",
-    data: JSON.stringify(username)
-  })
-  .done(recipes => {
-    let tableData = [];
-    for (let i = 0; i < recipes.length; i++) {
-      tableData.push(recipes[i][1]);
-      tableData.push(recipes[i][3]);
-    }
-    const numOfRecipes = tableData.length / 2;
-    const tableBody = document.getElementById("table-savedrecipes").lastElementChild;
-    for (let i = 0, j = 0; i < numOfRecipes; i++, j += 2) {
-      let newRow = tableBody.insertRow(-1);
-      newRow.insertCell().innerHTML = i + 1;
-      newRow.insertCell().innerHTML = tableData[j];
-      newRow.insertCell().innerHTML = Math.floor(tableData[j + 1]);
-
-      let cell = newRow.insertCell();
-      let btnId = "delete-btn-" + (i + 1);
-      let deleteButton = document.createElement("button")
-      deleteButton.setAttribute("class", "btn btn-danger btn-sm");
-      deleteButton.setAttribute("id", btnId);
-      deleteButton.innerText = "Delete";
-      cell.appendChild(deleteButton);
-      savedRecipesAddDeleteButtonHandler(btnId, username, tableData[j]);
-    }
-    savedRecipesAddRowHandlers(username);
-  });
-}
-
-function savedRecipesRemoveResultTable() {
-  let currentTable = document.getElementsByClassName("savedrecipes-result")[0];
-  if (currentTable != null) {
-    currentTable.parentNode.removeChild(currentTable);
-  }
-}
-
+/* Adds row handlers for the specified user's saved recipes table */
 function savedRecipesAddRowHandlers(username) {
   let rows = document.getElementById("table-savedrecipes").rows;
   for (let i = 1; i < rows.length; i++) {
@@ -475,6 +541,7 @@ function savedRecipesAddRowHandlers(username) {
   }
 }
 
+/* Adds delete button handlers for the specified user's saved recipes table */
 function savedRecipesAddDeleteButtonHandler(buttonId, username, recipeName) {
   let button = document.getElementById(buttonId);
   button.onclick = function() {
@@ -495,88 +562,15 @@ function savedRecipesAddDeleteButtonHandler(buttonId, username, recipeName) {
   }
 }
 
-function displayRecipe(recipeData) {
-  /* Generating Table */
-  let newTable = document.createElement("table");
-  if (localStorage.getItem('mode') === 'dark') {
-    newTable.setAttribute(
-      "class", "table table-striped table-hover table-sm table-bordered table-dark"
-    );
-  } else {
-    newTable.setAttribute(
-      "class", "table table-striped table-hover table-sm table-bordered"
-    );
+/* Removes the saved recipes table */
+function savedRecipesRemoveResultTable() {
+  let currentTable = document.getElementsByClassName("savedrecipes-result")[0];
+  if (currentTable != null) {
+    currentTable.parentNode.removeChild(currentTable);
   }
-  
-  newTable.setAttribute("id", "table-recipe-result");
-
-  /* Processing data */
-  let newTableData = []
-  const recipeName = recipeData[0][1];
-  const totalCalories = Math.floor(recipeData[0][3]);
-  ingredients = JSON.parse(recipeData[0][2]);
-
-  Object.keys(ingredients).forEach(function(ingredientNumber) {
-    Object.keys(ingredients[ingredientNumber]).forEach(function(key) {
-      value = ingredients[ingredientNumber][key];
-      if (typeof(value) == "number") {
-        value = Math.floor(value);
-      }
-      newTableData.push(value);
-    });
-  });
-
-  /* Processing and Inserting Table */
-  generateTable(newTable, newTableData, totalCalories);
-  generateTableHead(newTable);
-
-  let div = document.createElement("div")
-  let header = document.createElement("h4");
-  header.appendChild(document.createTextNode("Viewing recipe for \""
-      + recipeName
-      + "\""));
-  div.setAttribute("class", "savedrecipes-result")
-  div.appendChild(header);
-  div.appendChild(newTable);
-
-  document
-    .getElementsByClassName("savedrecipes-container")[0]
-    .insertAdjacentElement("beforeend", div);
 }
 
-function generateTableHead(table) {
-  const tableHeaders = ["Item", "Amount", "Unit", "Calories"];
-  let thead = table.createTHead();
-  let row = thead.insertRow();
-  for (let key of tableHeaders) {
-    let th = document.createElement("th");
-    let text = document.createTextNode(key);
-    th.appendChild(text);
-    row.appendChild(th);
-  }
-  row.cells[3].colSpan = 999;
-}
-
-function generateTable(table, data, totalCalories) {
-  const numOfColumns = 4;
-  for (let i = 0; i < data.length; i += 4) {
-    let row = table.insertRow();
-    for (let j = i; j < i + numOfColumns; j++) {
-      let cell = row.insertCell();
-      let text = document.createTextNode(data[j]);
-      cell.appendChild(text);
-    }
-  }
-  
-  /* insert total calories */
-  let row = table.insertRow();
-  let cell = row.insertCell();
-  cell.setAttribute("style", "text-align: center; font-size: 30px;");
-  cell.colSpan = 999;
-  cell.appendChild(document.createTextNode(totalCalories));
-}
-
-// Saves the recipe specified by the user
+/* Saves the recipe specified by the user */
 function saveRecipe() {
   var form = document.forms["calorie-input"];
   var totalCalories = 0;
@@ -654,8 +648,28 @@ function saveRecipe() {
 
 }
 
+/* Searches the food database for typeahead's suggestions */
+function search(query, syncResults, asyncResults) {
+
+  // Query database asynchronously
+  let parameters = {
+    q: query
+  };
+  $.getJSON("/search", parameters, function(data, textStatus, jqXHR) {
+
+    // Call typeahead's callback with search results
+    asyncResults(data);
+  });
+
+}
+
+/* Alerts the user that the selected username is already in use */
+function usernameInUseAlert() {
+  alert("Username already in use");
+}
+
 /* Toggles night mode */
-function nightMode() {
+function toggleNightMode() {
   localStorage.setItem('mode', (localStorage.getItem('mode') || 'dark') === 'dark' ?
     'light' : 'dark');
   if (localStorage.getItem('mode') === 'dark') {
@@ -668,14 +682,4 @@ function nightMode() {
     $('#table-recipe-result').removeClass('table-dark');
   }    
 }
-
-document.addEventListener('DOMContentLoaded', (event) => {
-  if (localStorage.getItem('mode') === 'dark') {
-    document.querySelector('body').classList.add('dark');
-    $('#table-savedrecipes').addClass('table-dark');
-  } else {
-    document.querySelector('body').classList.remove('dark');
-    $('#table-savedrecipes').removeClass('table-dark');
-  }    
-});
 
