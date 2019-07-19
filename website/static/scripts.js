@@ -525,14 +525,6 @@ function insertAfter(el, referenceNode) {
   referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
 }
 
-/* Handles the login form submission */
-function loginFormSubmission() {
-  var form = document.forms["login-form"];
-  var username = form[0].value;
-  var password = form[1].value;
-  form.submit();
-}
-
 /* Handles the registration form submission */
 function registrationFormSubmission() {
   var form = document.forms["registration-form"];
