@@ -309,18 +309,21 @@ body.dark .savedrecipes-list {
   padding-bottom: 10%;
 }
 
-.savedrecipes-list, .savedrecipes-result {
+.savedrecipes-recipes-list, .savedrecipes-result {
   margin-top: 1%;
-  padding: 1% 1% 1% 1%;
+  padding: 0% 0px 1% 0px;
   border-radius: 10px;
   border: 2px solid darkgrey;
 }
 
-body.dark #table-savedrecipes, body.dark #table-recipe-result {
+body.dark #savedrecipes-results-table, body.dark #savedrecipes-recipes-table {
   color: white !important;
 }
 
-.savedrecipes-list h4, .savedrecipes-result h4 {
-  padding-bottom: 1%;
-  padding-left: 1%;
+.savedrecipes-recipes-list h4, .savedrecipes-result h4 {
+  padding: 1% 0 0 1%;
+}
+
+.savedrecipes-recipes-list [id^='btn'] {
+  padding: 5px 10px 5px 10px;
 }
