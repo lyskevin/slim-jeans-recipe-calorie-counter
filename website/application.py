@@ -101,6 +101,27 @@ def get_specific_recipe_data():
         return render_template("saved_recipes.html")
 
 
+@app.route("/reinsert_recipe", methods=["GET", "POST"])
+@login_required
+def reinsert_recipe():
+    if request.method == "POST":
+        data = request.get_json()
+        username = session["username"]
+        recipe_name = data["recipeName"]
+        recipe = data["recipe"]
+        calories = data["calories"]
+        connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
+        cursor = connection.cursor()
+        cursor.execute("""INSERT INTO recipes
+                       (username, recipe_name, recipe, calories)
+                       VALUES(?, ?, ?, ?)""",
+                       (username, recipe_name, recipe, calories))
+        connection.commit()
+        connection.close()
+        return json.dumps("success")
+    return render_template("saved_recipes.html")
+
+
 @app.route("/save_recipe", methods=["GET", "POST"])
 @login_required
 def save_recipe():
@@ -124,6 +145,7 @@ def save_recipe():
     else:
         return render_template("calorie_counter.html")
 
+
 @app.route("/delete_recipe_data", methods=["GET", "POST"])
 @login_required
 def delete_recipe_data():
@@ -131,16 +153,12 @@ def delete_recipe_data():
         data = request.get_json()
         username = request.get_json()["username"]
         recipe_name = request.get_json()["recipeName"]
-        print(username)
-        print(recipe_name)
         connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
         cursor = connection.cursor()
-        current_number_of_rows = cursor.rowcount()
         cursor.execute("""DELETE FROM recipes
-                          WHERE username = (?) AND recipe_name = (?)"""
+                          WHERE username = (?) AND recipe_name = (?)""",
                           (username, recipe_name))
         connection.commit()
-        connection.close()
     return render_template("saved_recipes.html")
 
 

@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 
-{% block title %}Saved Recipes{% endblock %}
-
-{% block id %}saved-recipes{% endblock %}
+{% block title %}
+  Saved Recipes
+{% endblock %}
 
 {% block main %}
 <div class="header">
@@ -14,7 +14,6 @@
 </div>
 
 <div id="content" class="content">
-
   <div class="text">
     <h1>View your Saved Recipes</h1>
     <p>
@@ -28,25 +27,33 @@
   </div>
 
   <div class="savedrecipes-container">
-    <div class="savedrecipes-list">
+
+    <div class="savedrecipes-recipes-list">
       <h4>Saved Recipes</h4>
-      <table
-        class="table-sm table table-striped table-hover table-bordered"
-        id="table-savedrecipes">
+      <table class="table table-striped table-hover table-bordered table-sm"
+             id="savedrecipes-recipes-table">
         <thead>
           <tr>
-            <th scope="col">S/N</th>
             <th scope="col">Name</th>
-            <th scope="col">Calories</th>
+            <th scope="col" colspan=999>Calories</th>
           </tr>
         </thead>
-        <tbody style="cursor:pointer">
+        <tbody>
         </tbody>
       </table>
     </div>
+
   </div>
 
 </div>
 
-<script>createRecipeTableForUser("{{ session.username }}");</script>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  $(document).ready(function() {
+    createRecipeTableForUser("{{ session.username }}");
+  });
+</script>
 {% endblock %}

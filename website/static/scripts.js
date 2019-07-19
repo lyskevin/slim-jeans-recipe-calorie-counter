@@ -92,6 +92,86 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }    
 });
 
+/**
+ * Adds event to the specified button.
+ * @param {string} type - type of the button: specify "delete", or "show"
+ * @param {array} data - array of data to be entered into the table
+ */
+function addEventToButton(type, data) {
+  if (type === "delete") {
+    if (window.confirm("Do you really want to delete recipe \"" + data[1] + "\"?")) {
+      let wrapper = {
+        "username": data[0],
+        "recipeName": data[1]
+      }
+      $.ajax("/delete_recipe_data", {
+        type: "POST",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(wrapper)
+      })
+      .done(handleUndoDelete(data));
+    }
+  } else if (type === "show") {
+    deleteElement("savedrecipes-result");
+    let table = document.createElement("table");
+    table.setAttribute("class", "table table-striped table-hover table-sm table-bordered");
+    table.setAttribute("id", "savedrecipes-results-table");
+    generateTableData(table, data);
+    generateTableHead(table);
+
+    let div = document.createElement("div")
+    div.setAttribute("id", "undo-msg");
+    let header = document.createElement("h4");
+    header.appendChild(document.createTextNode("Viewing recipe for \""
+        + data[1]
+        + "\""));
+    div.setAttribute("class", "savedrecipes-result")
+    div.appendChild(header);
+    div.appendChild(table);
+    document
+      .getElementsByClassName("savedrecipes-container")[0]
+      .insertAdjacentElement("beforeend", div);
+  } else if (type === "undo") {
+    data = {
+      "username": data[0],
+      "recipeName": data[1],
+      "recipe": data[2],
+      "calories": data[3]
+    }
+    $.ajax("/reinsert_recipe", {
+      type: "POST",
+      contentType: "application/json",
+      dataType: "json",
+      data: JSON.stringify(data)
+    })
+    .done(message => {
+      // removes the undo msg
+      let div = document.getElementById("undo-msg");
+
+      div.setAttribute("id", "redone-msg");
+      let undoneMsg = document.createTextNode("Recipe recovered.");
+      while (div.firstChild)
+        div.removeChild(div.firstChild);
+      div.appendChild(undoneMsg);
+      appendDismissButton(div);
+
+      document.getElementsByClassName("header")[0]
+        .insertAdjacentElement("afterend", div);
+      location.reload();
+    });
+  }
+}
+
+function appendDismissButton(el) {
+  let dismissButton = document.createElement("button")
+  dismissButton.setAttribute("class", "close");
+  dismissButton.setAttribute("data-dismiss", "alert");
+  dismissButton.setAttribute("aria-label", "Close");
+  dismissButton.innerHTML = "<span aria-hidden=\"true\">&times;</span>"
+  el.appendChild(dismissButton);
+}
+
 /* Appends a row to the calorie counter's input table */
 function appendRow() {
   const table = document.getElementById("input-table");
@@ -224,7 +304,31 @@ function configureWeightUnits(units) {
   units.options[units.length] = new Option("pounds (lb)", "pounds");
 }
 
-/* Creates a table of the user's saved recipes */
+/**
+ * Returns a button with the specified id and type.
+ * @param {string} id - id of the specified button
+ * @param {string} type - type of the button: specify "delete", or "show"
+ */
+function createButton(id, type, onClickFunction) {
+  let button = document.createElement("button");
+  button.setAttribute("id", id);
+  if (type === "delete") {
+    button.setAttribute("class", "btn btn-sm btn-danger");
+    button.innerText = "Delete";
+  } else if (type === "show") {
+    button.setAttribute("class", "btn btn-sm btn-primary");
+    button.innerText = "Display";
+  } else if (type === "undo") {
+    button.setAttribute("class", "btn btn-sm btn-link");
+    button.innerText = ("Undo");
+  } else {
+    button.setAttribute("class", "btn btm-sm btn-light");
+    button.innerText = "";
+  }
+  button.onclick = onClickFunction;
+  return button;
+}
+
 function createRecipeTableForUser(username) {
   $.ajax("/get_all_recipe_data", {
     type: "POST",
@@ -233,29 +337,11 @@ function createRecipeTableForUser(username) {
     data: JSON.stringify(username)
   })
   .done(recipes => {
-    let tableData = [];
-    for (let i = 0; i < recipes.length; i++) {
-      tableData.push(recipes[i][1]);
-      tableData.push(recipes[i][3]);
+    if (recipes == "") {
+      return;
     }
-    const numOfRecipes = tableData.length / 2;
-    const tableBody = document.getElementById("table-savedrecipes").lastElementChild;
-    for (let i = 0, j = 0; i < numOfRecipes; i++, j += 2) {
-      let newRow = tableBody.insertRow(-1);
-      newRow.insertCell().innerHTML = i + 1;
-      newRow.insertCell().innerHTML = tableData[j];
-      newRow.insertCell().innerHTML = Math.floor(tableData[j + 1]);
-
-      let cell = newRow.insertCell();
-      let btnId = "delete-btn-" + (i + 1);
-      let deleteButton = document.createElement("button")
-      deleteButton.setAttribute("class", "btn btn-danger btn-sm");
-      deleteButton.setAttribute("id", btnId);
-      deleteButton.innerText = "Delete";
-      cell.appendChild(deleteButton);
-      savedRecipesAddDeleteButtonHandler(btnId, username, tableData[j]);
-    }
-    savedRecipesAddRowHandlers(username);
+    const table = document.getElementById("savedrecipes-recipes-table").lastElementChild;
+    generateRecipeTableBody(table, recipes);
   });
 }
 
@@ -275,6 +361,13 @@ function createResultContainer(totalCalories) {
 
 }
 
+function deleteElement(className) {
+  let el = document.getElementsByClassName(className)[0]
+  if (el != null) {
+    el.parentNode.removeChild(el);
+  }
+}
+
 /* Deletes the specified row from the calorie counter's input table */
 function deleteRow(row) {
   if (numberOfRows > 1) {
@@ -285,125 +378,31 @@ function deleteRow(row) {
   }
 }
 
-/* Displays the data for the specified recipe on the saved recipes page */
-function displayRecipe(recipeData) {
-  /* Generating Table */
-  let newTable = document.createElement("table");
-  if (localStorage.getItem('mode') === 'dark') {
-    newTable.setAttribute(
-      "class", "table table-striped table-hover table-sm table-bordered table-dark"
-    );
-  } else {
-    newTable.setAttribute(
-      "class", "table table-striped table-hover table-sm table-bordered"
-    );
+function generateRecipeTableBody(table, data) {
+  let tableData = [];
+  for (let i = 0; i < data.length; i++) {
+    tableData.push(data[i][1]);
+    tableData.push(data[i][3]);
   }
-  
-  newTable.setAttribute("id", "table-recipe-result");
-
-  // Processing data
-  let newTableData = []
-  const recipeName = recipeData[0][1];
-  const totalCalories = Math.floor(recipeData[0][3]);
-  ingredients = JSON.parse(recipeData[0][2]);
-
-  Object.keys(ingredients).forEach(function(ingredientNumber) {
-    Object.keys(ingredients[ingredientNumber]).forEach(function(key) {
-      value = ingredients[ingredientNumber][key];
-      if (typeof(value) == "number") {
-        value = Math.floor(value);
-      }
-      newTableData.push(value);
+  const numberOfRecipes = tableData.length / 2;
+  for (let i = 0, j = 0; i < numberOfRecipes; i++, j += 2) {
+    let newRow = table.insertRow();
+    newRow.setAttribute("id", tableData[j]);
+    let showButton = createButton("btn-sr-show-" + (i + 1), "show", () => {
+      return addEventToButton("show", data[i]);
     });
-  });
+    let deleteButton = createButton("btn-sr-del-" + (i + 1), "delete", () => {
+      return addEventToButton("delete", data[i]);
+    });
 
-  // Processing and Inserting Table
-  generateTable(newTable, newTableData, totalCalories);
-  generateTableHead(newTable);
-
-  let div = document.createElement("div")
-  let header = document.createElement("h4");
-  header.appendChild(document.createTextNode("Viewing recipe for \""
-      + recipeName
-      + "\""));
-  div.setAttribute("class", "savedrecipes-result")
-  div.appendChild(header);
-  div.appendChild(newTable);
-
-  document
-    .getElementsByClassName("savedrecipes-container")[0]
-    .insertAdjacentElement("beforeend", div);
+    newRow.insertCell().innerHTML = tableData[j];
+    newRow.insertCell().innerHTML = Math.floor(tableData[j + 1]);
+    let cellWithButtons = newRow.insertCell()
+    cellWithButtons.appendChild(showButton);
+    cellWithButtons.appendChild(deleteButton);
+  }
 }
 
-/* Inserts HTML to display calorie results and breakdown on the webpage */
-function displayResults(totalCalories, breakdown) {
-  
-  var toInsertAfter = document.getElementsByClassName("calorie-container")[0];
-  var resultContainer = document.getElementsByClassName("result-container")[0];
-  if (resultContainer != null) {
-    resultContainer.parentNode.removeChild(resultContainer);
-  }
-  resultContainer = createResultContainer(totalCalories);
-  insertAfter(resultContainer, toInsertAfter);
-
-  google.charts.load("current", {"packages":["corechart"]});
-  google.charts.setOnLoadCallback(drawChart);
-
-  function drawChart() {
-
-    var data = google.visualization.arrayToDataTable(breakdown);
-    var options = {};
-
-    if (localStorage.getItem('mode') === 'dark') {
-      options = {
-        title: "Breakdown",
-        titleTextStyle: {
-          color: 'white'
-        },
-        legend: {
-          textStyle: {
-            color: 'white'
-          }
-        },
-        backgroundColor: '#232b2b',
-        color: 'white'
-      };
-    } else {
-      options = {
-        title: "Breakdown"
-      };
-    }
-
-    var chart =
-      new google.visualization.PieChart(document.getElementById("piechart"));
-
-    chart.draw(data, options);
-
-  }
- 
-}
-
-/* Generates the table for the saved recipes page */
-function generateTable(table, data, totalCalories) {
-  const numOfColumns = 4;
-  for (let i = 0; i < data.length; i += 4) {
-    let row = table.insertRow();
-    for (let j = i; j < i + numOfColumns; j++) {
-      let cell = row.insertCell();
-      let text = document.createTextNode(data[j]);
-      cell.appendChild(text);
-    }
-  }
-  
-  // Insert total calories
-  let row = table.insertRow();
-  let cell = row.insertCell();
-  cell.setAttribute("style", "text-align: center; font-size: 30px;");
-  cell.colSpan = 999;
-  cell.appendChild(document.createTextNode(totalCalories));
-}
-
-/* Generates the table headers for the saved recipes page */
 function generateTableHead(table) {
   const tableHeaders = ["Item", "Amount", "Unit", "Calories"];
   let thead = table.createTHead();
@@ -414,7 +413,26 @@ function generateTableHead(table) {
     th.appendChild(text);
     row.appendChild(th);
   }
-  row.cells[3].colSpan = 999;
+}
+
+function generateTableData(table, data) {
+  const tableData = JSON.parse(data[2]);
+  const totalCalories = data[3];
+
+  Object.keys(tableData).forEach((key) => {
+    let row = table.insertRow();
+    Object.keys(tableData[key]).forEach((el) => {
+      let cell = row.insertCell();
+      let value = tableData[key][el]
+      if (typeof(value) === "number")
+        value = Math.floor(value);
+      cell.appendChild(document.createTextNode(value));
+    });
+  });
+
+  table.insertRow().insertCell()
+    .appendChild(document
+    .createTextNode(Math.floor(totalCalories) + " calories"));
 }
 
 /* Gets input from the calorie counter and calculates the total number of calories */
@@ -485,6 +503,23 @@ function getInput() {
 
 }
 
+function handleUndoDelete(data) {
+  const recipeName = data[1];
+  let div = document.createElement("div");
+  div.setAttribute("id", "undo-msg");
+  div.setAttribute("class", "alert alert-warning alert-dismissible fade show");
+  let deletedMsg = document.createTextNode("Deleted " + recipeName + ".");
+  div.appendChild(document.createTextNode("Deleted " + recipeName + "."));
+  div.appendChild(createButton("sr-btn-undo", "undo", function() {
+    return addEventToButton("undo", data);
+  }));
+  appendDismissButton(div);
+  document.getElementsByClassName("header")[0]
+    .insertAdjacentElement("afterend", div);
+  let tr = document.getElementById(recipeName);
+  tr.parentNode.removeChild(tr);
+}
+
 /* Inserts the specified element after the specified reference node */
 function insertAfter(el, referenceNode) {
   referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
@@ -514,59 +549,6 @@ function registrationFormSubmission() {
     alert("Passwords don't match");
   } else {
     form.submit();
-  }
-}
-
-/* Adds row handlers for the specified user's saved recipes table */
-function savedRecipesAddRowHandlers(username) {
-  let rows = document.getElementById("table-savedrecipes").rows;
-  for (let i = 1; i < rows.length; i++) {
-    rows[i].onclick = function() {
-      return function() {
-        let obj = {}
-        obj.username = username;
-        obj.recipeName = rows[i].cells[1].innerHTML;
-        $.ajax("/get_specific_recipe_data", {
-          type: "POST",
-          contentType: "application/json",
-          dataType: "json",
-          data: JSON.stringify(obj)
-        })
-        .done(recipe => {
-          savedRecipesRemoveResultTable();
-          displayRecipe(recipe)
-        });
-      };}
-      (rows[i]);
-  }
-}
-
-/* Adds delete button handlers for the specified user's saved recipes table */
-function savedRecipesAddDeleteButtonHandler(buttonId, username, recipeName) {
-  let button = document.getElementById(buttonId);
-  button.onclick = function() {
-    return function(username, recipeName) {
-      let obj = {};
-      obj.username = username;
-      obj.recipeName = recipeName;
-      $.ajax("/delete_recipe_data", {
-        type: "POST",
-        contentType: "application/json",
-        dataType: "json",
-        data: JSON.stringify(obj)
-      })
-      .done(() => {
-        alert("hello!");
-      });
-    }
-  }
-}
-
-/* Removes the saved recipes table */
-function savedRecipesRemoveResultTable() {
-  let currentTable = document.getElementsByClassName("savedrecipes-result")[0];
-  if (currentTable != null) {
-    currentTable.parentNode.removeChild(currentTable);
   }
 }
 
