@@ -668,7 +668,8 @@ function usernameInUseAlert() {
   alert("Username already in use");
 }
 
-/* Toggles night mode */
+/* Toggles night mode
+   Source: https://flaviocopes.com/dark-mode/ */
 function toggleNightMode() {
   localStorage.setItem('mode', (localStorage.getItem('mode') || 'dark') === 'dark' ?
     'light' : 'dark');
