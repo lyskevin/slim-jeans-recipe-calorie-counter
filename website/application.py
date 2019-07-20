@@ -74,8 +74,8 @@ def get_all_recipe_data():
         connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
         cursor = connection.cursor()
         recipes = cursor.execute("""SELECT * FROM recipes
-                                    WHERE username = (?)""" ,
-                                    (username,))
+                                 WHERE username = (?)""" ,
+                                 (username,))
         list_of_recipes = []
         for recipe in recipes:
             list_of_recipes.append(recipe)
@@ -93,8 +93,8 @@ def get_specific_recipe_data():
         connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
         cursor = connection.cursor()
         cursor.execute("""SELECT * FROM recipes
-                          WHERE username = (?) AND recipe_name = (?)""",
-                          (username, recipe_name))
+                       WHERE username = (?) AND recipe_name = (?)""",
+                       (username, recipe_name))
         data = cursor.fetchall()
         return json.dumps(data)
     else:
@@ -156,8 +156,8 @@ def delete_recipe_data():
         connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
         cursor = connection.cursor()
         cursor.execute("""DELETE FROM recipes
-                          WHERE username = (?) AND recipe_name = (?)""",
-                          (username, recipe_name))
+                       WHERE username = (?) AND recipe_name = (?)""",
+                       (username, recipe_name))
         connection.commit()
     return render_template("saved_recipes.html")
 
