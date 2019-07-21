@@ -40,7 +40,6 @@ figcaption {
 }
 
 /* Style calorie counter page */
-
 #calorie-counter .header {
   display: flex;
   justify-content: flex-end;
@@ -305,19 +304,28 @@ body.dark .savedrecipes-list {
 
 .savedrecipes-container {
   margin: 0 auto;
-  width: 90%;
+  width: 98%;
   padding-bottom: 10%;
 }
 
 .savedrecipes-recipes-list, .savedrecipes-result {
-  margin-top: 1%;
-  padding: 0% 0px 1% 0px;
   border-radius: 10px;
-  border: 2px solid darkgrey;
+  border-style: solid;
+  border-width: .1rem;
+  border-color: grey;
+  margin: 2.5%;
 }
 
 body.dark #savedrecipes-results-table, body.dark #savedrecipes-recipes-table {
   color: white !important;
+}
+
+#savedrecipes-results-table, #savedrecipes-recipes-table {
+  text-align: center;
+}
+
+#savedrecipes-results-table th, #savedrecipes-recipes-table th {
+  font-size: 25px;
 }
 
 .savedrecipes-recipes-list h4, .savedrecipes-result h4 {
@@ -326,4 +334,5 @@ body.dark #savedrecipes-results-table, body.dark #savedrecipes-recipes-table {
 
 .savedrecipes-recipes-list [id^='btn'] {
   padding: 5px 10px 5px 10px;
+  margin: 0px 2px 0px 2px;
 }

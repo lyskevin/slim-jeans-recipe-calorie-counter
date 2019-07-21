@@ -125,7 +125,6 @@ def reinsert_recipe():
 @app.route("/save_recipe", methods=["GET", "POST"])
 @login_required
 def save_recipe():
-
     if request.method == "POST":
         data = request.get_json()
         username = session["username"]
@@ -134,14 +133,19 @@ def save_recipe():
         calories = data["calories"]
         connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
         cursor = connection.cursor()
-        cursor.execute("""INSERT INTO recipes
-                       (username, recipe_name, recipe, calories)
-                       VALUES(?, ?, ?, ?)""",
-                       (username, recipe_name, recipe, calories))
-        connection.commit()
-        connection.close()
-        return render_template("calorie_counter.html")
-
+        exists = cursor.execute("""SELECT 1 FROM recipes
+                WHERE username = (?) AND recipe_name = (?)""",
+                (username, recipe_name)).fetchall()
+        if (exists):
+            return json.dumps("Recipe Exists")
+        else:
+            cursor.execute("""INSERT INTO recipes
+                    (username, recipe_name, recipe, calories)
+                    VALUES(?, ?, ?, ?)""",
+                    (username, recipe_name, recipe, calories))
+            connection.commit()
+            connection.close()
+            return json.dumps("Recipe Saved")
     else:
         return render_template("calorie_counter.html")
 
