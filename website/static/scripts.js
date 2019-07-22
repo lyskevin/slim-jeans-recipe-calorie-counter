@@ -115,7 +115,7 @@ function addEventToButton(type, data) {
   } else if (type === "show") {
     deleteElement("savedrecipes-result");
     let table = document.createElement("table");
-    table.setAttribute("class", "table table-striped table-hover table-sm table-bordered");
+    table.setAttribute("class", "table table-striped table-sm table-bordered");
     table.setAttribute("id", "savedrecipes-results-table");
     generateTableData(table, data);
     generateTableHead(table);
@@ -329,6 +329,10 @@ function createButton(id, type, onClickFunction) {
   return button;
 }
 
+/**
+ * Saved Recipe: Creates the recipe table for the user
+ * @param {string} username - session.username
+ */
 function createRecipeTableForUser(username) {
   $.ajax("/get_all_recipe_data", {
     type: "POST",
@@ -378,6 +382,53 @@ function deleteRow(row) {
   }
 }
 
+/* Inserts HTML to display calorie results and breakdown on the webpage */
+function displayResults(totalCalories, breakdown) {
+  
+  var toInsertAfter = document.getElementsByClassName("calorie-container")[0];
+  var resultContainer = document.getElementsByClassName("result-container")[0];
+  if (resultContainer != null) {
+    resultContainer.parentNode.removeChild(resultContainer);
+  }
+  resultContainer = createResultContainer(totalCalories);
+  insertAfter(resultContainer, toInsertAfter);
+
+  google.charts.load("current", {"packages":["corechart"]});
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+
+    var data = google.visualization.arrayToDataTable(breakdown);
+    var options = {};
+
+    if (localStorage.getItem('mode') === 'dark') {
+      options = {
+        title: "Breakdown",
+        titleTextStyle: {
+          color: 'white'
+        },
+        legend: {
+          textStyle: {
+            color: 'white'
+          }
+        },
+        backgroundColor: '#232b2b',
+        color: 'white'
+      };
+    } else {
+      options = {
+        title: "Breakdown"
+      };
+    }
+
+    var chart =
+      new google.visualization.PieChart(document.getElementById("piechart"));
+
+    chart.draw(data, options);
+  }
+}
+
+/* Saved Recipes: Helper functions; generates recipe table */
 function generateRecipeTableBody(table, data) {
   let tableData = [];
   for (let i = 0; i < data.length; i++) {
@@ -403,6 +454,7 @@ function generateRecipeTableBody(table, data) {
   }
 }
 
+/* Saved Recipes: Generates results table head */
 function generateTableHead(table) {
   const tableHeaders = ["Item", "Amount", "Unit", "Calories"];
   let thead = table.createTHead();
@@ -415,6 +467,7 @@ function generateTableHead(table) {
   }
 }
 
+/* Saved Recipes: Generates results table body */
 function generateTableData(table, data) {
   const tableData = JSON.parse(data[2]);
   const totalCalories = data[3];
@@ -451,58 +504,49 @@ function getInput() {
     let unit = form[i + 2].value;
     let calories = 0;
 
-    if (description == "" && amount == "" && unit == "") {
-      continue;
+    if (!(description == "" && amount == "" && unit == "")) {
+      if (description == "" || amount == "" || unit == "" || unit == "units") {
+        missingInput = true;
+      } else if (amount < 0) {
+        negativeAmount = true;
+      } else {
+        let ingredient = ingredients[description];
+        if (unit in weightConversionUnits) {
+          let conversionFactor = weightConversionUnits[unit];
+          calories += (amount / ingredient["weightInGrams"])
+                      * ingredient["energyPerMeasure"] * conversionFactor;
+        } else if (unit in volumeConversionUnits) {
+          let conversionFactor = volumeConversionUnits[unit][ingredient["measure"]];
+          calories += (amount / ingredient["measureAmount"])
+                      * ingredient["energyPerMeasure"] * conversionFactor;
+        } else {
+          calories += (amount / ingredient["measureAmount"])
+                      * ingredient["energyPerMeasure"];
+        }
+        totalCalories += calories;
+        breakdown[breakdown.length] = [description, calories];
+
+        // Store recipe
+        let ingredientInformation = {};
+        ingredientInformation["description"] = description;
+        ingredientInformation["amount"] = amount;
+        ingredientInformation["unit"] = unit;
+        ingredientInformation["calories"] = calories;
+        recipe["ingredient" + (i / 4 + 1)] = ingredientInformation;
+      }
     }
 
-    if (description == "" || amount == "" || unit == "" || unit == "units") {
-      missingInput = true;
-      break;
-    }
-
-    if (amount < 0) {
-      negativeAmount = true;
-      break;
-    }
-
-    let ingredient = ingredients[description];
-    if (unit in weightConversionUnits) {
-      let conversionFactor = weightConversionUnits[unit];
-      calories += (amount / ingredient["weightInGrams"])
-                  * ingredient["energyPerMeasure"] * conversionFactor;
-    } else if (unit in volumeConversionUnits) {
-      let conversionFactor = volumeConversionUnits[unit][ingredient["measure"]];
-      calories += (amount / ingredient["measureAmount"])
-                  * ingredient["energyPerMeasure"] * conversionFactor;
+    if (missingInput) {
+      alert("Please fill in all input fields");
+    } else if (negativeAmount) {
+      alert("Negative amount values are not allowed");
     } else {
-      calories += (amount / ingredient["measureAmount"])
-                  * ingredient["energyPerMeasure"];
+      displayResults(totalCalories, breakdown);
     }
-    totalCalories += calories;
-    breakdown[breakdown.length] = [description, calories];
-
-    // Store recipe
-    let ingredientInformation = {};
-    ingredientInformation["description"] = description;
-    ingredientInformation["amount"] = amount;
-    ingredientInformation["unit"] = unit;
-    ingredientInformation["calories"] = calories;
-    recipe["ingredient" + (i / 4 + 1)] = ingredientInformation;
-    + "<input type=\"button\" class=\"btn btn-light\" value=\"Save Recipe\" "
-    + "onclick=\"saveRecipe()\">";
-
   }
-
-  if (missingInput) {
-    alert("Please fill in all input fields");
-  } else if (negativeAmount) {
-    alert("Negative amount values are not allowed");
-  } else {
-    displayResults(totalCalories, breakdown);
-  }
-
 }
 
+/* Saved Recipes: Handles undo event when user deletes a recipe */
 function handleUndoDelete(data) {
   const recipeName = data[1];
   let div = document.createElement("div");
@@ -616,10 +660,15 @@ function saveRecipe() {
           dataType: "json",
           data: JSON.stringify(data)
       })
-      .done(alert("Recipe saved"));
+      .done(str => {
+        if (str == "Recipe Exists") {
+          alert("Recipe already exists!")
+        } else {
+          alert("Recipe saved")
+        }
+      });
     }
   }
-
 }
 
 /* Searches the food database for typeahead's suggestions */
