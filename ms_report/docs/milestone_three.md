@@ -41,6 +41,11 @@ frustration.
 <!-- add how the bug was fixed -->
 
 ### 3.2 Input Validation
+A big part of simplifying the back-end was to restrict users in selecting
+the ingredients. In order to do this, we simply made one of the fields
+unselectable until the user clicked something from the drop-down menu, this
+would trigger the `Please fill in all input fields` alert, forcing the user
+to pick something from the drop-down menu.
 
 ### 3.3 Empty Rows
 We received feedback that empty rows in the table would not allow the user to
@@ -55,6 +60,8 @@ if (description == "" && amount == "" && unit == "") {
 }
 ```
 
+This seemed to work well without any issues.
+
 ### 3.4 Additional Functionality
 
 #### 3.4.1 Piechart
@@ -63,17 +70,20 @@ ingredients contributes the most to the overall caloric amount. This fulfilled
 one of the features we wanted to add to the website.
 
 #### 3.4.2 Saving Recipes to Cloud/Locally
-<!-- add when we develop this feature -->
+This one was very annoying to implement, mostly due to the handling of events
+by the "Display" and "Delete" buttons, thus most of the problems faced
+actually occurred on the front-end. This was one of the features where
+not going with current Javascript frameworks came back to bite us.
 
+Firstly, Flask has a `jsonify()` method to pass JSON objects back to the
+front-end Javascript. Conversely, Javascript's jQuery has the ability to make
+an `ajax` request to the Python back-end to send data back. This is how the
+front-end communicates with the SQL database in the back-end.
 
 ## 4. User Accounts and Sign-ins <a name="useracc"></a>
-
 <!-- add how user accounts were added -->
 
 ## 5. Conclusion of the Project
-We took Orbital mainly as a learning experience in web development, not
-particularly to make a spectacular app that would be used by many.
-
 We would say that we have learnt greatly from Orbital, particularly the
 many APIs and frameowrks (and lack thereof) we have had the pleasure of using,
 such as Flask, Jinja2, SQLite, etc and the other technologies such as HTML5,
