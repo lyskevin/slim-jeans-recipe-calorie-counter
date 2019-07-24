@@ -8,7 +8,7 @@ nav:
 site_name: "Orb2019 - $TEAMNAME"
 site_description: "Orb2019 - $TEAMNAME"
 theme:
-    name: gitbook
+    name: material
 
 plugins: []
 
@@ -21,11 +21,12 @@ markdown_extensions:
     - pymdownx.superfences
     - pymdownx.arithmatex
     - pymdownx.caret
-    # - codehilite:
-    #    linenums: True
+    - codehilite:
+        linenums: True
 
 extra_css:
     - 'stylesheets/extra.css'
     - 'https://use.fontawesome.com/releases/v5.3.1/css/all.css'
     - 'https://fonts.googleapis.com/css?family=Gentium+Book+Basic'
     - 'https://fonts.googleapis.com/css?family=Roboto:400,700'
+    - 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'

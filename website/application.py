@@ -137,7 +137,7 @@ def save_recipe():
                 WHERE username = (?) AND recipe_name = (?)""",
                 (username, recipe_name)).fetchall()
         if (exists):
-            return json.dumps("Recipe Exists")
+            return json.dumps("Recipe already exists!")
         else:
             cursor.execute("""INSERT INTO recipes
                     (username, recipe_name, recipe, calories)
@@ -145,7 +145,7 @@ def save_recipe():
                     (username, recipe_name, recipe, calories))
             connection.commit()
             connection.close()
-            return json.dumps("Recipe Saved")
+            return json.dumps("Recipe saved")
     else:
         return render_template("calorie_counter.html")
 
