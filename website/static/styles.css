@@ -63,7 +63,18 @@ figcaption {
   text-align: center;
   padding: 1%;
   z-index: 1;
-  color: black !important;
+}
+
+body.dark #calorie-counter .header .text {
+  background-color: rgb(35, 43, 43);
+  position: absolute;
+  width: 25%;
+  height: 48%;
+  top: 25%;
+  left: 5%;
+  text-align: center;
+  padding: 1%;
+  z-index: 1;
 }
 
 #calorie-counter .header h1 {
@@ -194,11 +205,18 @@ th {
 
 #index {
   text-align: center;
-  color: black !important;
+  /*color: black !important;*/
 }
 
 #index .tagline {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(255, 255, 255);
+  display: inline-block;
+  margin-top: 3%;
+  padding: 0.5%;
+}
+
+body.dark #index .tagline {
+  background-color: rgb(35, 43, 43);
   display: inline-block;
   margin-top: 3%;
   padding: 0.5%;
@@ -294,12 +312,17 @@ body.dark {
 
 /* Style saved recipes page */
 
-#saved-recipes .header .text {
+/*#saved-recipes .header .text {
   color: black !important;
 }
 
+
 body.dark .savedrecipes-list {
   color: white !important;
+}*/
+
+body.dark #saved-recipes .header .text {
+  background-color: rgb(35, 43, 43);
 }
 
 .savedrecipes-container {

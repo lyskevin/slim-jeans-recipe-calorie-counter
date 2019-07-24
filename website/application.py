@@ -251,6 +251,7 @@ def register():
 
         connection.close()
         # TODO: Message flash that says registered?
+        # TODO: Some other alternative feedback to indicate that registration was successful
         return redirect("/")
 
     else:
