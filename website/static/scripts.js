@@ -654,19 +654,23 @@ function saveRecipe() {
       data["recipeName"] = recipeName;
       data["recipe"] = JSON.stringify(recipe);
       data["calories"] = totalCalories;
-      $.ajax("/save_recipe", {
-          type: "POST",
-          contentType: "application/json",
-          dataType: "json",
-          data: JSON.stringify(data)
-      })
-      .done(str => {
-        if (str == "Recipe Exists") {
-          alert("Recipe already exists!")
-        } else {
-          alert("Recipe saved")
-        }
-      });
+      if (data["recipe"].length > 7500) {
+        alert("Your recipe is too large to be stored!");
+      } else {
+        $.ajax("/save_recipe", {
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(data)
+        })
+        .done(str => {
+          if (str == "Recipe Exists") {
+            alert("Recipe already exists!")
+          } else {
+            alert("Recipe saved")
+          }
+        });
+      }
     }
   }
 }

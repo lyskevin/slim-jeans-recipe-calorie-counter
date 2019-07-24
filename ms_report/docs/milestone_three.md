@@ -9,8 +9,7 @@ some changes to the site's UI.
 1. We removed the sidenav entirely as it only gave us issues viewing the
    platform on mobile, moving the sidenav links and elements to the topnav
 2. All images used are either our own, or images sourced from this website
-   [this website](https://www.pexels.com/search/food/). We are actually unsure
-   if we are legally allowed to use these photos.
+   [this website](https://www.pexels.com/search/food/).
 3. In general, the site looks more appealing to the eye.
 
 ## 3. Calorie Counter
