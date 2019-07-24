@@ -51,9 +51,11 @@
 {% endblock %}
 
 {% block scripts %}
+<script src="../static/savedrecipes.js"></script>
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     createRecipeTableForUser("{{ session.username }}");
   });
+  $('#savedrecipes-recipes-table').DataTable();
 </script>
 {% endblock %}

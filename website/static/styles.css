@@ -343,19 +343,19 @@ body.dark #savedrecipes-results-table, body.dark #savedrecipes-recipes-table {
   color: white !important;
 }
 
-#savedrecipes-results-table, #savedrecipes-recipes-table {
-  text-align: center;
-}
-
-#savedrecipes-results-table th, #savedrecipes-recipes-table th {
-  font-size: 25px;
-}
-
-.savedrecipes-recipes-list h4, .savedrecipes-result h4 {
-  padding: 1% 0 0 1%;
-}
-
-.savedrecipes-recipes-list [id^='btn'] {
-  padding: 5px 10px 5px 10px;
-  margin: 0px 2px 0px 2px;
-}
+/*#savedrecipes-results-table, #savedrecipes-recipes-table {
+/*  text-align: center;
+/*}
+/*
+/*#savedrecipes-results-table th, #savedrecipes-recipes-table th {
+/*  font-size: 25px;
+/*}
+/*
+/*.savedrecipes-recipes-list h4, .savedrecipes-result h4 {
+/*  padding: 1% 0 0 1%;
+/*}
+/*
+/*.savedrecipes-recipes-list [id^='btn'] {
+/*  padding: 5px 10px 5px 10px;
+/*  margin: 0px 2px 0px 2px;
+/*}
