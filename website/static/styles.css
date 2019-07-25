@@ -21,18 +21,15 @@
   margin-left: 2.5%;
 }
 
-/* Style developer figures */
-figure {
+#about figure {
   display: inline-block;
 }
 
-/* Style developer captions */
-figcaption {
+#about figcaption {
   text-align: center;
 }
 
-/* Style developer images */
-.developer-image {
+#about .developer-image {
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -40,56 +37,8 @@ figcaption {
 }
 
 /* Style calorie counter page */
-#calorie-counter .header {
-  display: flex;
-  justify-content: flex-end;
-  align-content: flex-end;
-  align-items: flex-end;
-  position: relative;
-}
 
-#calorie-counter .header .image {
-  max-width: 100%;
-  height: auto;
-}
-
-#calorie-counter .header .text {
-  background-color: rgb(255, 255, 255);
-  position: absolute;
-  width: 25%;
-  height: 48%;
-  top: 25%;
-  left: 5%;
-  text-align: center;
-  padding: 1%;
-  z-index: 1;
-}
-
-body.dark #calorie-counter .header .text {
-  background-color: rgb(35, 43, 43);
-  position: absolute;
-  width: 25%;
-  height: 48%;
-  top: 25%;
-  left: 5%;
-  text-align: center;
-  padding: 1%;
-  z-index: 1;
-}
-
-#calorie-counter .header h1 {
-  font-size: 3vw;
-}
-
-#calorie-counter .header h2 {
-  font-size: 2vw;
-}
-
-#calorie-counter .header h3 {
-  font-size: 1.5vw;
-}
-
-.calorie-container, .result-container {
+#calorie-counter .calorie-container, #calorie-counter .result-container {
   display: flex;
   border-style: solid;
   border-width: .1rem;
@@ -98,40 +47,33 @@ body.dark #calorie-counter .header .text {
   padding: 1%;
 }
 
-.calorie-result {
-  font-weight: bold;
-  font-size: 50px;
-}
-
-.input-table {
+#calorie-counter .input-table {
   margin-bottom: 1.5em;
 }
 
-th, tr {
+#calorie-counter .input-table th, #calorie-counter .input-table tr {
   font-family: 'Roboto', sans-serif;
   padding-right: 200px;
 }
 
-th {
+#calorie-counter .input-table th {
   font-size: 30px;
 }
 
-.input-container {
+#calorie-counter .input-container {
   display: inline-block;
 }
 
-.input {
+#calorie-counter .input {
   vertical-align: top;
 }
 
-/* Stylize dropdown text box */
-#ingredient .typeahead {
+#calorie-counter #ingredient .typeahead {
   background-color: #ffffff !important;
   width: 300px;
 }
 
-/* Stylize typeahead.js. Source: http://twitter.github.io/typeahead.js/css/examples.css */
-.tt-menu {
+#calorie-counter .tt-menu {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -142,48 +84,36 @@ th {
   color: black !important;
 }
 
-.tt-suggestion.tt-cursor, .tt-suggestion:hover {
+#calorie-counter .tt-suggestion.tt-cursor, .tt-suggestion:hover {
   background-color: #0097cf;
   color: #fff;
   cursor: pointer;
 }
 
-.tt-suggestion {
+#calorie-counter .tt-suggestion {
   margin: 0;
   padding: 6px 12px;
+}
+
+#calorie-counter .calorie-result {
+  font-weight: bold;
+  font-size: 50px;
 }
 
 /* Style graph generator (TODO) */
 
 /* Style home page */
 
-#index .background-logged-in {
-  
+#index .logged-in {
   background: url('images/bbq.jpg') no-repeat center center fixed;
-  
-  /* Positioning */
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-
-  /* Display & Box Model */
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-
-  /* Others */
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
 }
 
-#index .background-logged-out {
-  
+#index .logged-out {
   background: url('images/berries.jpg') no-repeat center center fixed;
-  
+}
+
+#index .background {
+
   /* Positioning */
   position: fixed;
   top: 0;
@@ -201,15 +131,15 @@ th {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+
 }
 
 #index {
   text-align: center;
-  /*color: black !important;*/
 }
 
 #index .tagline {
-  background-color: rgb(255, 255, 255);
+  background-color: white;
   display: inline-block;
   margin-top: 3%;
   padding: 0.5%;
@@ -217,39 +147,9 @@ th {
 
 body.dark #index .tagline {
   background-color: rgb(35, 43, 43);
-  display: inline-block;
-  margin-top: 3%;
-  padding: 0.5%;
 }
 
 /* Style general page layout */
-
-body {
-  font-family: 'Lato', sans-serif;
-}
-
-main {
-  z-index: 1;
-}
-
-.content .text {
-  margin: 2.5%;
-}
-
-/* Black background for navbar */
-.bg-black {
-  background-color: black;
-}
-
-/* Style navbar username */
-#navbar .username {
-  color: white;
-}
-
-/* Style Links */
-p a {
-  color: #4a90ff;
-}
 
 .header {
   display: flex;
@@ -265,7 +165,7 @@ p a {
 }
 
 .header .text {
-  background-color: rgb(255, 255, 255);
+  background-color: white;
   position: absolute;
   top: 25%;
   left: 5%;
@@ -274,18 +174,53 @@ p a {
   z-index: 1;
 }
 
+body.dark .header .text {
+  background-color: rgb(35, 43, 43);
+}
+
 .header h1 {
+  font-size: 3vw;
+}
+
+.header h2 {
   font-size: 2vw;
+}
+
+.header h3 {
+  font-size: 1.5vw;
 }
 
 .header p {
   font-size: 1vw;
 }
 
-/* Style dark mode */
+.bg-black {
+  background-color: black;
+}
+
+#navbar .username {
+  color: white;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
 body.dark {
   background-color: rgb(35, 43, 43);
   color: white;
+}
+
+main {
+  z-index: 1;
+}
+
+.content .text {
+  margin: 2.5%;
+}
+
+p a {
+  color: #4a90ff;
 }
 
 /* Style login and register pages */
@@ -310,48 +245,32 @@ body.dark {
   width: 30%;
 }
 
-/* Saved Recipes page styling */
-.sr-wrapper {
+/* Style saved recipes page */
+
+#saved-recipes .sr-wrapper {
   margin: 0 auto;
   padding-bottom: 20%;
   width: 80%;
 }
 
-.sr-inner-table th {
+#saved-recipes .sr-inner-table th {
   font-size: 18px;
 }
 
-td.details-control {
+#saved-recipes td.details-control {
     background: url('../static/images/details_open.png') no-repeat center center;
     background-size: 25%;
     cursor: pointer;
 }
-tr.shown td.details-control {
+
+#saved-recipes tr.shown td.details-control {
     background: url('../static/images/details_close.png') no-repeat center center;
     background-size: 25%;
 }
 
-td.details-delete {
+#saved-recipes td.details-delete {
     background: url('../static/images/details_delete.png') no-repeat center center;
     background-size: 25%;
     cursor: pointer;
 }
 
-/* Style saved recipes page */
-
-/*#saved-recipes .header .text {
-/*  color: black !important;
-/*}
-/*
-/*body.dark .savedrecipes-list {
-/*  color: white !important;
-/*}*/
-/*
-/*body.dark #saved-recipes .header .text {
-/*  background-color: rgb(35, 43, 43);
-/*}
-/*
-/*
-/*body.dark #savedrecipes-results-table, body.dark #savedrecipes-recipes-table {
-/*  color: white !important;
-/*}
