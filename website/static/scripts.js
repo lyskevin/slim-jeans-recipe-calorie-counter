@@ -423,9 +423,14 @@ function displayResults(totalCalories, breakdown) {
 
     var chart =
       new google.visualization.PieChart(document.getElementById("piechart"));
+    
 
     chart.draw(data, options);
+
   }
+  
+  google.visualization.events.addListener(chart, 'nightMode', drawChart());
+
 }
 
 /* Saved Recipes: Helper functions; generates recipe table */
@@ -708,6 +713,10 @@ function toggleNightMode() {
     document.querySelector('body').classList.remove('dark');
     $('#table-savedrecipes').removeClass('table-dark');
     $('#table-recipe-result').removeClass('table-dark');
+  }
+  var piechart = document.getElementById("piechart");
+  if (piechart !== null) {
+    getInput();
   }    
 }
 
