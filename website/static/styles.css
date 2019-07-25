@@ -310,52 +310,48 @@ body.dark {
   width: 30%;
 }
 
+/* Saved Recipes page styling */
+.sr-wrapper {
+  margin: 0 auto;
+  padding-bottom: 20%;
+  width: 80%;
+}
+
+.sr-inner-table th {
+  font-size: 18px;
+}
+
+td.details-control {
+    background: url('../static/images/details_open.png') no-repeat center center;
+    background-size: 25%;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('../static/images/details_close.png') no-repeat center center;
+    background-size: 25%;
+}
+
+td.details-delete {
+    background: url('../static/images/details_delete.png') no-repeat center center;
+    background-size: 25%;
+    cursor: pointer;
+}
+
 /* Style saved recipes page */
 
 /*#saved-recipes .header .text {
-  color: black !important;
-}
-
-
-body.dark .savedrecipes-list {
-  color: white !important;
-}*/
-
-body.dark #saved-recipes .header .text {
-  background-color: rgb(35, 43, 43);
-}
-
-.savedrecipes-container {
-  margin: 0 auto;
-  width: 98%;
-  padding-bottom: 10%;
-}
-
-.savedrecipes-recipes-list, .savedrecipes-result {
-  border-radius: 10px;
-  border-style: solid;
-  border-width: .1rem;
-  border-color: grey;
-  margin: 2.5%;
-}
-
-body.dark #savedrecipes-results-table, body.dark #savedrecipes-recipes-table {
-  color: white !important;
-}
-
-/*#savedrecipes-results-table, #savedrecipes-recipes-table {
-/*  text-align: center;
+/*  color: black !important;
 /*}
 /*
-/*#savedrecipes-results-table th, #savedrecipes-recipes-table th {
-/*  font-size: 25px;
+/*body.dark .savedrecipes-list {
+/*  color: white !important;
+/*}*/
+/*
+/*body.dark #saved-recipes .header .text {
+/*  background-color: rgb(35, 43, 43);
 /*}
 /*
-/*.savedrecipes-recipes-list h4, .savedrecipes-result h4 {
-/*  padding: 1% 0 0 1%;
-/*}
 /*
-/*.savedrecipes-recipes-list [id^='btn'] {
-/*  padding: 5px 10px 5px 10px;
-/*  margin: 0px 2px 0px 2px;
+/*body.dark #savedrecipes-results-table, body.dark #savedrecipes-recipes-table {
+/*  color: white !important;
 /*}

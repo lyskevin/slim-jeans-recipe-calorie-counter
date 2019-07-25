@@ -26,25 +26,20 @@
     </p>
   </div>
 
-  <div class="savedrecipes-container">
-    <div class="savedrecipes-recipes-list">
-      <h4>Saved Recipes</h4>
-      <table
-        class="table table-striped table-bordered table-sm"
-        id="savedrecipes-recipes-table">
-        <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Calories</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </div>
+  <div class="sr-wrapper">
+    <h4>Saved Recipes</h4>
+    <table id="sr-recipe-table"
+           class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>Recipe Name</th>
+          <th>Calories</th>
+        </tr>
+      </thead>
+    </table>
   </div>
-
 </div>
 
 
@@ -53,9 +48,8 @@
 {% block scripts %}
 <script src="../static/savedrecipes.js"></script>
 <script>
-  $(document).ready(function () {
-    createRecipeTableForUser("{{ session.username }}");
-  });
-  $('#savedrecipes-recipes-table').DataTable();
+$(document).ready(function () {
+  createRecipeTableForUser("{{ session.username }}");
+});
 </script>
 {% endblock %}

@@ -70,7 +70,7 @@ def search():
 @login_required
 def get_all_recipe_data():
     if request.method == "POST":
-        username = request.get_json()
+        username = session["username"]
         connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
         cursor = connection.cursor()
         recipes = cursor.execute("""SELECT * FROM recipes
@@ -88,7 +88,7 @@ def get_all_recipe_data():
 @login_required
 def get_specific_recipe_data():
     if request.method == "POST":
-        username = request.get_json()["username"]
+        username = session["username"]
         recipe_name = request.get_json()["recipeName"]
         connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
         cursor = connection.cursor()
@@ -155,7 +155,7 @@ def save_recipe():
 def delete_recipe_data():
     if request.method == "POST":
         data = request.get_json()
-        username = request.get_json()["username"]
+        username = session["username"]
         recipe_name = request.get_json()["recipeName"]
         connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
         cursor = connection.cursor()
@@ -163,6 +163,7 @@ def delete_recipe_data():
                        WHERE username = (?) AND recipe_name = (?)""",
                        (username, recipe_name))
         connection.commit()
+        return json.dumps("delete success")
     return render_template("saved_recipes.html")
 
 
