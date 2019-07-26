@@ -509,45 +509,51 @@ function getInput() {
     let unit = form[i + 2].value;
     let calories = 0;
 
-    if (!(description == "" && amount == "" && unit == "")) {
-      if (description == "" || amount == "" || unit == "" || unit == "units") {
-        missingInput = true;
-      } else if (amount < 0) {
-        negativeAmount = true;
-      } else {
-        let ingredient = ingredients[description];
-        if (unit in weightConversionUnits) {
-          let conversionFactor = weightConversionUnits[unit];
-          calories += (amount / ingredient["weightInGrams"])
-                      * ingredient["energyPerMeasure"] * conversionFactor;
-        } else if (unit in volumeConversionUnits) {
-          let conversionFactor = volumeConversionUnits[unit][ingredient["measure"]];
-          calories += (amount / ingredient["measureAmount"])
-                      * ingredient["energyPerMeasure"] * conversionFactor;
-        } else {
-          calories += (amount / ingredient["measureAmount"])
-                      * ingredient["energyPerMeasure"];
-        }
-        totalCalories += calories;
-        breakdown[breakdown.length] = [description, calories];
-
-        // Store recipe
-        let ingredientInformation = {};
-        ingredientInformation["description"] = description;
-        ingredientInformation["amount"] = amount;
-        ingredientInformation["unit"] = unit;
-        ingredientInformation["calories"] = calories;
-        recipe["ingredient" + (i / 4 + 1)] = ingredientInformation;
-      }
+    if (description == "" && amount == "" && unit == "") {
+      continue
     }
 
-    if (missingInput) {
-      alert("Please fill in all input fields");
-    } else if (negativeAmount) {
-      alert("Negative amount values are not allowed");
+    if (description == "" || amount == "" || unit == "" || unit == "units") {
+      missingInput = true;
+      break;
+    }
+    
+    if (amount < 0) {
+      negativeAmount = true;
+      break;
+    }
+    
+    let ingredient = ingredients[description];
+    if (unit in weightConversionUnits) {
+      let conversionFactor = weightConversionUnits[unit];
+      calories += (amount / ingredient["weightInGrams"])
+        * ingredient["energyPerMeasure"] * conversionFactor;
+    } else if (unit in volumeConversionUnits) {
+      let conversionFactor = volumeConversionUnits[unit][ingredient["measure"]];
+      calories += (amount / ingredient["measureAmount"])
+        * ingredient["energyPerMeasure"] * conversionFactor;
     } else {
-      displayResults(totalCalories, breakdown);
+      calories += (amount / ingredient["measureAmount"])
+        * ingredient["energyPerMeasure"];
     }
+    totalCalories += calories;
+    breakdown[breakdown.length] = [description, calories];
+
+    // Store recipe
+    let ingredientInformation = {};
+    ingredientInformation["description"] = description;
+    ingredientInformation["amount"] = amount;
+    ingredientInformation["unit"] = unit;
+    ingredientInformation["calories"] = calories;
+    recipe["ingredient" + (i / 4 + 1)] = ingredientInformation;
+  }
+
+  if (missingInput) {
+    alert("Please fill in all input fields");
+  } else if (negativeAmount) {
+    alert("Negative amount values are not allowed");
+  } else {
+    displayResults(totalCalories, breakdown);
   }
 }
 

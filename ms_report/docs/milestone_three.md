@@ -353,7 +353,14 @@ else:
 <!-- Please explain this section -->
 
 
-## 5. Night Mode
+## 4. Night Mode
+
+## 5. User Testing
+We gave it to a few friends and family members who actually cook and see if
+they liked the features. This is what we have obtained
+
+<!-- I tried it myself on a Nikujaga recipe lol -->
+
 
 
 ## 6. Conclusion of the Project

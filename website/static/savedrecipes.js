@@ -1,61 +1,13 @@
 /**
- * These 300 lines were written in my blood.
- * I hate Javascript and web pages.
- * Thank you very much.
+ * Javascript necessary for saved recipes page.
+ * @file: savedrecipes.js
  */
 
-let toDelete = [];
+let toDelete = []; // global var to track 
 
-function getAdditionalInfo(recipe, totalCalories) {
-  let info = document.createElement("table");
-  info.setAttribute("class", "sr-inner-table");
-  let recipeData = JSON.parse(recipe);
-
-  // create thead
-  let headerText = ["Description", "Amount", "Units", "Calories"];
-  let header = info.createTHead();
-  let headerRow = header.insertRow();
-  for (let header in headerText) {
-    let th = document.createElement("th");
-    th.innerText = headerText[header];
-    headerRow.appendChild(th);
-  }
-
-  // create tbody
-  let body = info.createTBody();
-  Object.keys(recipeData).forEach(ingredient => {
-    let row = body.insertRow();
-    Object.keys(recipeData[ingredient]).forEach(prop => {
-      let cell = row.insertCell();
-      if (typeof(recipeData[ingredient][prop]) === "number") {
-        cell.innerHTML = Math.floor(recipeData[ingredient][prop]);
-      } else {
-        cell.innerHTML = recipeData[ingredient][prop];
-      }
-    });
-  });
-
-  // insert total calories
-  let calories = body.insertRow();
-  let cell = calories.insertCell();
-  cell.innerHTML = Math.floor(totalCalories);
-  cell.setAttribute("colspan", 4);
-  return info;
-}
-
-function parseRecipeRowData(recipes) {
-  let ret = [];
-  Object.keys(recipes).forEach(key => {
-    const recipe = recipes[key];
-    let subObj = {};
-    subObj["recipeName"] = recipe[1];
-    subObj["calories"] = Math.floor(recipe[3]);
-    subObj["addInfo"] = getAdditionalInfo(recipe[2], recipe[3]);
-    ret.push(subObj);
-  });
-  return ret;
-}
-
+/**
+ * Helper function to create the recipe table on saved recipes page.
+ */
 function createRecipeTableForUser() {
   $.ajax("/get_all_recipe_data", {
     type: "POST",
@@ -146,6 +98,70 @@ function createRecipeTableForUser() {
   });
 }
 
+/**
+ * Returns a HTML table element, representing recipe data.
+ * @param {object} recipe - recipe data
+ * @param {number} totalCalories - total calories of the given recipe
+ */
+function getAdditionalInfo(recipe, totalCalories) {
+  let info = document.createElement("table");
+  info.setAttribute("class", "sr-inner-table");
+  let recipeData = JSON.parse(recipe);
+
+  // create thead
+  let headerText = ["Description", "Amount", "Units", "Calories"];
+  let header = info.createTHead();
+  let headerRow = header.insertRow();
+  for (let header in headerText) {
+    let th = document.createElement("th");
+    th.innerText = headerText[header];
+    headerRow.appendChild(th);
+  }
+
+  // create tbody
+  let body = info.createTBody();
+  Object.keys(recipeData).forEach(ingredient => {
+    let row = body.insertRow();
+    Object.keys(recipeData[ingredient]).forEach(prop => {
+      let cell = row.insertCell();
+      if (typeof(recipeData[ingredient][prop]) === "number") {
+        cell.innerHTML = Math.floor(recipeData[ingredient][prop]);
+      } else {
+        cell.innerHTML = recipeData[ingredient][prop];
+      }
+    });
+  });
+
+  // insert total calories
+  let calories = body.insertRow();
+  let cell = calories.insertCell();
+  cell.innerHTML = Math.floor(totalCalories);
+  cell.setAttribute("colspan", 4);
+  return info;
+}
+
+/**
+ * Returns an object parseable by DataTables to create recipe table.
+ * @param {object} recipes - list of all recipes and their data
+ */
+function parseRecipeRowData(recipes) {
+  let ret = [];
+  Object.keys(recipes).forEach(key => {
+    const recipe = recipes[key];
+    let subObj = {};
+    subObj["recipeName"] = recipe[1];
+    subObj["calories"] = Math.floor(recipe[3]);
+    subObj["addInfo"] = getAdditionalInfo(recipe[2], recipe[3]);
+    ret.push(subObj);
+  });
+  return ret;
+}
+
+/**
+ * Returns an alert display the deletion event of a recipe.
+ * @param {string} recipeName - recipeName associated with this alert
+ * @param {object} recipes - list of all recipes and their data
+ */
 function createDeleteAlert(recipeName, recipes) {
   let alert = document.createElement("div");
   alert.setAttribute("id", "alert-" + replaceSpacesWithUnderscores(recipeName));
@@ -154,7 +170,21 @@ function createDeleteAlert(recipeName, recipes) {
   button.setAttribute("class", "btn btn-sm btn-link");
   button.setAttribute("id", "undo-" + replaceSpacesWithUnderscores(recipeName));
   button.innerText = "Undo";
+  handleUndoOnClick(recipeName, recipes);
+  alert.setAttribute("role", "alert");
+  alert.setAttribute("class","alert alert-warning alert-dismissible fade show");
+  alert.appendChild(document.createTextNode(alertText));
+  alert.appendChild(button);
+  alert.appendChild(createDismissButtonForAlert());
+  return alert;
+}
 
+/**
+ * Function to handle undo event for a specific recipe.
+ * @param {string} recipeName - name of recipe associated with this button
+ * @param {object} recipes - list of all recipes and their data
+ */
+function handleUndoOnClick(recipeName, recipes) {
   $(document).on('click', '#undo-' + replaceSpacesWithUnderscores(recipeName), function() {
     let table = $('#sr-recipe-table').DataTable();
     let subObj = {};
@@ -172,15 +202,11 @@ function createDeleteAlert(recipeName, recipes) {
     insertAlert(createUndoneAlert());
     deleteAlert(recipeName);
   })
-
-  alert.setAttribute("role", "alert");
-  alert.setAttribute("class","alert alert-warning alert-dismissible fade show");
-  alert.appendChild(document.createTextNode(alertText));
-  alert.appendChild(button);
-  alert.appendChild(createDismissButtonForAlert());
-  return alert;
 }
 
+/**
+ * Returns an alert displaying "Recipe recovered!"
+ */
 function createUndoneAlert() {
   let alert = document.createElement("div");
   const alertText = "Recipe recovered!";
@@ -191,11 +217,9 @@ function createUndoneAlert() {
   return alert;
 }
 
-function deleteAlert(recipeName) {
-  let alert = document.getElementById("alert-" + replaceSpacesWithUnderscores(recipeName));
-  alert.parentNode.removeChild(alert);
-}
-
+/**
+ * Returns a dismiss button associated with Bootstrap alerts
+ */
 function createDismissButtonForAlert() {
   let dismissButton = document.createElement("button")
   dismissButton.setAttribute("class", "close");
@@ -205,91 +229,32 @@ function createDismissButtonForAlert() {
   return dismissButton;
 }
 
+/**
+ * Inserts the given alert into the webpage after the header
+ * @param {HTML element} alert - alert to insert
+ */
 function insertAlert(alert) {
   let header = document.getElementsByClassName("header")[0];
   header.insertAdjacentElement("afterend", alert);
 }
 
-function saveRecipe() {
-  var form = document.forms["calorie-input"];
-  var totalCalories = 0;
-  var recipe = {};
-
-  let missingInput = false;
-  let negativeAmount = false;
-
-  for (let i = 0; i < form.length - 5 && !missingInput
-    && !negativeAmount; i += 4) {
-    let description = form[i].value;
-    let amount = form[i + 1].value;
-    let unit = form[i + 2].value;
-    let calories = 0;
-
-    if (!(description == "" && amount == "" && unit == "")) {
-      if (description == "" || amount == "" || unit == "" || unit == "units") {
-        missingInput = true;
-      } else if (amount < 0) {
-        negativeAmount = true;
-      } else {
-        let ingredient = ingredients[description];
-        if (unit in weightConversionUnits) {
-          let conversionFactor = weightConversionUnits[unit];
-          calories += (amount / ingredient["weightInGrams"])
-            * ingredient["energyPerMeasure"] * conversionFactor;
-        } else if (unit in volumeConversionUnits) {
-          let conversionFactor = volumeConversionUnits[unit][ingredient["measure"]];
-          calories += (amount / ingredient["measureAmount"])
-            * ingredient["energyPerMeasure"] * conversionFactor;
-        } else {
-          calories += (amount / ingredient["measureAmount"])
-            * ingredient["energyPerMeasure"];
-        }
-        totalCalories += calories;
-
-        let ingredientInformation = {};
-        ingredientInformation["description"] = description;
-        ingredientInformation["amount"] = amount;
-        ingredientInformation["unit"] = unit;
-        ingredientInformation["calories"] = calories;
-        recipe["ingredient" + (i / 4 + 1)] = ingredientInformation;
-      }
-    }
-  }
-
-  if (missingInput) {
-    alert("Please fill in all input fields");
-  } else if (negativeAmount) {
-    alert("Negative amount values are not allowed");
-  } else {
-    recipeName = form[form.length - 2].value;
-    if (recipeName === "") {
-      alert("Please include a recipe name");
-    } else {
-      data = {};
-      data["recipeName"] = recipeName;
-      data["recipe"] = JSON.stringify(recipe);
-      data["calories"] = totalCalories;
-      $.ajax("/save_recipe", {
-        type: "POST",
-        contentType: "application/json",
-        dataType: "json",
-        data: JSON.stringify(data)
-      })
-        .done(str => {
-          if (str == "Recipe Exists") {
-            alert("Recipe already exists!")
-          } else {
-            alert("Recipe saved")
-          }
-        });
-    }
+/**
+ * Finds and deletes the alert associated with the given recipeName
+ * @param {string} recipeName 
+ */
+function deleteAlert(recipeName) {
+  let alert = document.getElementById("alert-" +
+      replaceSpacesWithUnderscores(recipeName));
+  if (alert !== null) {
+    alert.parentNode.removeChild(alert);
   }
 }
 
+/**
+ * Returns a new string containing the argument string, with all spaces
+ * replaced with underscores.
+ * @param {string} string - string to replace
+ */
 function replaceSpacesWithUnderscores(string) {
   return string.replace(/ /g,"_")
-}
-
-function replaceUnderscoresWithSpaces(string) {
-  return string.replace(/_/g, ' ');
 }

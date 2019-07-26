@@ -298,20 +298,24 @@ p a {
   font-size: 18px;
 }
 
+#saved-recipes th.details-control, th.details-delete {
+  width: 20px;
+}
+
 #saved-recipes td.details-control {
     background: url('../static/images/details_open.png') no-repeat center center;
-    background-size: 25%;
+    background-size: 40%;
     cursor: pointer;
 }
 
 #saved-recipes tr.shown td.details-control {
     background: url('../static/images/details_close.png') no-repeat center center;
-    background-size: 25%;
+    background-size: 40%;
 }
 
 #saved-recipes td.details-delete {
     background: url('../static/images/details_delete.png') no-repeat center center;
-    background-size: 25%;
+    background-size: 40%;
     cursor: pointer;
 }
 
