@@ -6,7 +6,7 @@ from flask import (Flask, flash, g, jsonify, redirect, render_template,
                    request, session, url_for)
 from functools import wraps
 from os import path
-from werkzeug.exceptions import BadRequest, NotFound, InternalServerError
+from werkzeug.exceptions import BadRequest, NotFound, InternalServerError, HTTPException
 from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
@@ -17,19 +17,9 @@ ROOT = path.dirname(path.realpath(__file__))
 """ Helper Functions """
 
 
-@app.errorhandler(BadRequest)
-def handle_bad_request(e):
-    return "Bad Request!", 400
-
-
-@app.errorhandler(NotFound)
-def handle_not_found(e):
-    return "Not Found!", 404
-
-
-@app.errorhandler(InternalServerError)
-def handle_internal_server_error(e):
-    return "Internal Server Error!", 500
+@app.errorhandler(HTTPException)
+def handle_http_exception(e):
+    return render_template("error.html"), 200
 
 
 def login_required(f):
@@ -188,6 +178,11 @@ def about():
 @app.route("/calorie_counter")
 def calorie_counter():
     return render_template("calorie_counter.html")
+
+
+@app.route("/error")
+def error():
+    return render_template("error.html")
 
 
 @app.route("/saved_recipes")
