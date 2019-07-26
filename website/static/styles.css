@@ -100,6 +100,47 @@
   font-size: 50px;
 }
 
+/* Style error page */
+
+#error .background {
+
+  background: url('images/five_foods.jpg') no-repeat center center fixed;
+
+  /* Positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  /* Display & Box Model */
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+
+  /* Others */
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+#error {
+  text-align: center;
+}
+
+#error .text {
+  background-color: white;
+  display: inline-block;
+  margin-top: 3%;
+  padding: 0.5%;
+}
+
+body.dark #error .text {
+  background-color: rgb(35, 43, 43);
+} 
+
 /* Style graph generator (TODO) */
 
 /* Style home page */
