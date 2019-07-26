@@ -6,7 +6,7 @@ from flask import (Flask, flash, g, jsonify, redirect, render_template,
                    request, session, url_for)
 from functools import wraps
 from os import path
-from werkzeug.exceptions import BadRequest, NotFound
+from werkzeug.exceptions import BadRequest, NotFound, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
@@ -25,6 +25,11 @@ def handle_bad_request(e):
 @app.errorhandler(NotFound)
 def handle_not_found(e):
     return "Not Found!", 404
+
+
+@app.errorhandler(InternalServerError)
+def handle_internal_server_error(e):
+    return "Internal Server Error!", 500
 
 
 def login_required(f):
