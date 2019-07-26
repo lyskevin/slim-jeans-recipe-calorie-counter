@@ -2,7 +2,7 @@
 
 **Proposed Level of Achievement:** Apollo 11
 
-## 2. Site Design Revamped
+## 1. Site Design Revamped
 We realised that the original design was a bit plain, so we decided to make
 some changes to the site's UI.
 
@@ -12,23 +12,23 @@ some changes to the site's UI.
    [this website](https://www.pexels.com/search/food/).
 3. In general, the site looks more appealing to the eye.
 
-## 3. Calorie Counter
+## 2. Calorie Counter
 This was already shown in the prototype to work, there are however, a few
 aspects that we would like to talk about in this section.
 
-### 3.1 `typeahead.js` technical details
+### 2.1 `typeahead.js` technical details
 <div class="todo">
   <p>We didn't talk about this in MS2</p>
 </div>
 
-### 3.2 `typeahead.js` bug
+### 2.2 `typeahead.js` bug
 Unbeknownst to us, the prototype shown in Milestone Two had a rather annoying
 bug that presented itself when one added rows to the calorie counter. In order
-to do **input validation**, we forced the user to select options from the
+to do input validation, we forced the user to select options from the
 drop-down menu, using Twitter's `typeahead.js`:
 
 <div class="wrapper-center">
-  <img src="/figures/ms3/typeahead_1.gif" alt="typeahead gif">
+  <img src="../figures/ms3/typeahead_1.gif" alt="typeahead gif">
   <p>The recording software glitched a bit...</p>
 </div>
 
@@ -39,18 +39,24 @@ menu would refresh and brought back to the first entry. This made a menu
 with many entries and selecting an item far down the menu an exercise in
 frustration.
 
+<div class="wrapper-center">
+  <img src="../figures/ms3/typeahead_2.gif" alt="typeahead 2 gif">
+  <p>Five rows, so need to click five times</p>
+</div>
+
+
 <div class="todo">
   <p>TODO: How this was fixed</p>
 </div>
 
-### 3.3 Input Validation
+### 2.3 Input Validation
 A big part of simplifying the back-end was to restrict users in selecting
 the ingredients. In order to do this, we simply made one of the fields
 unselectable until the user clicked something from the drop-down menu, this
 would trigger the `Please fill in all input fields` alert, forcing the user
 to pick something from the drop-down menu.
 
-### 3.4 Empty Rows
+### 2.4 Empty Rows
 We received feedback that empty rows in the table would not allow the user to
 submit the form using the "Analyze Calories" button. We originally forced the
 user to fill in all input fields within the form in order to submit it using
@@ -73,9 +79,7 @@ function isAnEmptyRow() {
 
 This seemed to work well without issues.
 
-### 3.4 Additional Functionality
-
-#### 3.4.1 Piechart
+### 2.5 Piechart for Results
 The calorie counter now displays a piechart, giving users at a glance which
 ingredients contributes the most to the overall caloric amount. This fulfilled
 one of the features we wanted to add to the website.
@@ -114,34 +118,88 @@ function drawChart() {
 ```
   
 
-#### 3.4.2 Saving Recipes to Database
-This one was very annoying to implement, mostly due to the handling of events
-by the "Display" and "Delete" buttons, thus most of the problems faced
-actually occurred on the front-end. This was one of the features where
-not going with current Javascript frameworks came back to bite us.
+### 2.6 Saving Recipes to Database
+This feature was annoying and frustrating to implement, mostly due to the
+handling of events by the Display and Delete buttons. Majority of the problems
+faced were due to `async` on the front-end, rather than the back-end.
 
-##### Front-end
-The table rendered onto the page upon first load displays the *recipe name*
-and *number of calories* of each recipe stored into the user account using
-the calorie counter. Each row has two buttons:
+#### 2.6.1 Front-end
+We had a few versions of this page using vanilla Javascript and "doing
+everything ourselves". But this proved to be very time-consuming and
+frustrating to work with. In the end, we ended up going with the
+[DataTables](https://datatables.net/)
+library, which allowed us to more easily create a table with additional
+functionality, that also allowed styling via Bootstrap.
 
-<div class="wrapper-center">
-  <button type="button" class="btn btn-primary btn-sm">Display</button>
-  <button type="button" class="btn btn-danger btn-sm">Delete</button>
+The table displays the *recipe name* and *number of calories* of each recipe
+stored into the user account using the calorie counter. We give the users
+two additional functionality in the form of two buttons in each row:
+
+<div class="md-typeset__scrollwrap">
+  <div class="md-typeset__table">
+    <table>
+      <thead>
+        <tr>
+          <th align="center">Button</th>
+          <th align="center">Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td align="center" class="details-control"></td>
+          <td align="left">
+            Shows more information abouyt the recipe. This uses DataTable's
+            <a href="https://datatables.net/examples/api/row_details.html">child rows</a>
+            API, where more information can be dynamically inserted into the
+            table
+          </td>
+        </tr>
+        <tr>
+          <td align="center" class="details-delete"></td>
+          <td align="left">
+            Deletes the recipe from the table (and database). While DataTable's
+            does offer an API to delete rows from the table, we needed to
+            handle reinserting the same row into the table for the "Undo"
+            feature ourselves.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
-"Display" displays the recipe in that row through another
-HTML table. The table is dynamically inserted using Javascript.
+##### "Delete"
+The "delete" functionality posed some challenges for us. First, `ajax` requests
+are asynchronous, and so making an `ajax` call every time the user deletes
+something caused some problems with the code (functions not returning until
+`ajax` request has finished, causing `null` in some variables, etc). So, we
+ended up storing the names of the recipes that were to be deleted in an
+array (a "fake" delete, as it were), and executing an `ajax` request to delete
+all the recipes from the database once the page is unloaded.
 
-"Delete" calls a delete function to the back-end and deletes
-that recipe, it also deletes that particular row from the recipe table.
+```Javascript
+$(window).on('unload', function() {
+  for (let key in toDelete) {
+    $.ajax("/delete_recipe_data", {
+      type: 'POST',
+      contentType: "application/json",
+      dataType: "json",
+      data: JSON.stringify({
+        "recipeName": toDelete[key]
+      })
+    });
+  }
+});
+```
 
-###### "Undo"
-We felt that the "Undo" option is very important for users. This is from
-experience of frequently using
-`Ctrl-Shift-T` to reopen closed tabs on browsers, or `Ctrl-Z` in most programs.
-We used Bootstrap alerts to create a way for users to "Undo" a delete they
-may have accidentally clicked, such as:
+It also turned out that doing this method made the `undo` button easier to
+implement as well.
+
+#### 2.6.2 Undo Functionality
+We felt that an `undo` option is very important for users. This is from
+experience of frequently using `Ctrl-Shift-T` to reopen closed tabs on browsers,
+or `Ctrl-Z` in most programs. We used Bootstrap alerts to create a way for
+users to "Undo" a delete they may have accidentally clicked, such as:
 
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
   Deleted "recipe_name".
@@ -156,7 +214,7 @@ may have accidentally clicked, such as:
 This allows the users to Undo the delete if it was by accident, or if the user
 had a change of heart.
 
-##### Back-end
+#### 2.6.3 Back-end
 Flask has a `jsonify()` method to pass JSON objects back to the
 front-end Javascript. Conversely, Javascript's jQuery has the ability to make
 an `ajax` request to the Python back-end to send data back. This is how the
@@ -215,17 +273,17 @@ else:
     return json.dumps("Recipe saved")
 ```
 
-## 4. User Accounts and Sign-ins
+## 3. User Accounts and Sign-ins
 User Accounts and Sign-ins were a big part of how we implemented certain
 functions within the webapp. Flask has a framework for User Accounts already
 available.
 
-### 4.1 Information Transfer
+### 3.1 Information Transfer
 Passing username/passwords back and forth between the front and back-end was
 done using HTTPS POST requests. We read that this is standard for web
 security nowadays due to HTTPS encryption to prevent MiTM attacks.
 
-### 4.2 Registration
+### 3.2 Registration
 While we initially intended to work with Firebase to do Google/Facebook
 Sign-ins due to the ease of implementation and security in having established
 third-parties handle authentications for us, 
@@ -257,13 +315,13 @@ hashed2:
 pbkdf2:sha256:150000$0o18iF5N$7c406da90ce724f65c896fe931f9bda806fb3f04b55e21d1f9f0f88488b47385
 ```
 
-... making it more secure. In the back-end, our code is:
+... making it more secure. In the back-end, our code is simply -
 
 ```Python
 hashed_password = generate_password_hash(form["password"])
 ```
 
-### 4.3 Logins
+### 3.3 Logins
 Logins were simple. We simply sent the username and password back to the
 back-end, and uses Werkzeug's `check_password_hash()` function to check if the
 given password matched the hashed password in our database. If it matches,
@@ -291,7 +349,7 @@ else:
     return render_template("login.html")
 ```
 
-### 4.4 Session ID
+### 3.4 Session ID
 <!-- Please explain this section -->
 
 
