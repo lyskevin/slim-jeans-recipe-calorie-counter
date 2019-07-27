@@ -5,3 +5,50 @@
 .header {
     font-weight: bold;
 }
+
+img[alt^="typeahead"] {
+    width: 45%;
+    border: 1px solid;
+}
+
+.wrapper-center {
+    text-align: center;
+}
+.wrapper-center p {
+    font-size: 12px;
+    color: grey;
+}
+
+.alert {
+    height: 70px;
+}
+
+h5 {
+    font-size: 15px !important;
+    color: black !important;
+}
+
+h6 {
+    font-size: 15px !important;
+    color: black !important;
+}
+
+.todo p {
+    font-size: 40px;
+}
+
+pre .nx {
+    color: #37474f !important;
+}
+
+td.details-control {
+  background: url('../figures/ms3/details_open.png') no-repeat center center;
+  background-size: 30%;
+  cursor: pointer;
+}
+
+td.details-delete {
+  background: url('../figures/ms3/details_close.png') no-repeat center center;
+  background-size: 30%;
+  cursor: pointer;
+}
