@@ -258,6 +258,7 @@ def register():
     else:
         return render_template("register.html")
 
+
 @app.route("/settings")
 @login_required
 def settings():
