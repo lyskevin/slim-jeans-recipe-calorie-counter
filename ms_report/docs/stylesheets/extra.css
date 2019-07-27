@@ -48,7 +48,7 @@ td.details-control {
 }
 
 td.details-delete {
-  background: url('../figures/ms3/details_close.png') no-repeat center center;
+  background: url('../figures/ms3/details_delete.png') no-repeat center center;
   background-size: 30%;
   cursor: pointer;
 }

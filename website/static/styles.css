@@ -265,7 +265,6 @@ p a {
 }
 
 /* Style login and register pages */
-
 #login, #register {
   width: 100%;
   text-align: center;
@@ -290,8 +289,11 @@ p a {
 
 #saved-recipes .sr-wrapper {
   margin: 0 auto;
-  padding-bottom: 20%;
-  width: 80%;
+  margin-bottom: 10%;
+  width: 90%;
+  padding: 1% 1% 1% 1%;
+  border: 1px lightgrey solid;
+  border-radius: 5px;
 }
 
 #saved-recipes .sr-inner-table th {
@@ -318,4 +320,3 @@ p a {
     background-size: 40%;
     cursor: pointer;
 }
-

@@ -39,23 +39,18 @@ function createRecipeTableForUser() {
           "order": [[1, 2, 'asc']]
         });
 
+        // handle display recipe information
         $('#sr-recipe-table tbody').on('click', 'td.details-control', function() {
           let tr = $(this).closest('tr');
           let row = table.row(tr);
-          let index = 0;
-          for (let i = 0; i < recipes.length; i++) {
-            let recipe = recipes[i];
-            if (recipe[1] === row.data()["recipeName"]) {
-              index = i;
-              break;
-            }
-          }
+          let index;
+          for (index = 0; index < recipes.length &&
+              recipes[index][1] !== row.data()["recipeName"]; index++)
           if (row.child.isShown()) {
             row.child.hide();
             tr.removeClass('shown');
           } else {
-            let info = data[index]["addInfo"];
-            row.child(info).show();
+            row.child(data[index]["addInfo"]).show();
             tr.addClass('shown');
           }
         });
@@ -63,15 +58,12 @@ function createRecipeTableForUser() {
         $('#sr-recipe-table tbody').on('click', 'td.details-delete', function() {
           const recipeName = table.row( $(this).parents('tr') ).data()["recipeName"]
           if (window.confirm("Are you sure you want to delete \"" + recipeName + "\"?")) {
-
-            // "fake" delete
             toDelete.push(recipeName);
 
             // handle undo
             let alert = createDeleteAlert(recipeName, recipes);
             insertAlert(alert);
 
-            // delete row from table
             table.row( $(this).parents('tr') )
               .remove()
               .draw();
@@ -105,12 +97,13 @@ function createRecipeTableForUser() {
  */
 function getAdditionalInfo(recipe, totalCalories) {
   let info = document.createElement("table");
-  info.setAttribute("class", "sr-inner-table");
+  info.setAttribute("class", "table table-bordered table-sm sr-inner-table");
   let recipeData = JSON.parse(recipe);
 
   // create thead
   let headerText = ["Description", "Amount", "Units", "Calories"];
   let header = info.createTHead();
+  header.setAttribute("class", "thead-light");
   let headerRow = header.insertRow();
   for (let header in headerText) {
     let th = document.createElement("th");
@@ -125,9 +118,9 @@ function getAdditionalInfo(recipe, totalCalories) {
     Object.keys(recipeData[ingredient]).forEach(prop => {
       let cell = row.insertCell();
       if (typeof(recipeData[ingredient][prop]) === "number") {
-        cell.innerHTML = Math.floor(recipeData[ingredient][prop]);
+        cell.textContent = Math.floor(recipeData[ingredient][prop]);
       } else {
-        cell.innerHTML = recipeData[ingredient][prop];
+        cell.textContent = recipeData[ingredient][prop];
       }
     });
   });
@@ -135,7 +128,7 @@ function getAdditionalInfo(recipe, totalCalories) {
   // insert total calories
   let calories = body.insertRow();
   let cell = calories.insertCell();
-  cell.innerHTML = Math.floor(totalCalories);
+  cell.textContent = Math.floor(totalCalories) + " calories";
   cell.setAttribute("colspan", 4);
   return info;
 }
@@ -186,21 +179,15 @@ function createDeleteAlert(recipeName, recipes) {
  */
 function handleUndoOnClick(recipeName, recipes) {
   $(document).on('click', '#undo-' + replaceSpacesWithUnderscores(recipeName), function() {
-    let table = $('#sr-recipe-table').DataTable();
-    let subObj = {};
-    Object.keys(recipes).forEach(key => {
-      let recipe = recipes[key];
-      if (recipe[1] === recipeName) {
-        subObj["recipeName"] = recipe[1];
-        subObj["calories"] = Math.floor(recipe[3]);
-        subObj["addInfo"] = getAdditionalInfo(recipe[2], recipe[3]);
-      }
+    findRecipe(recipeName, recipes).then((row) => {
+      $('#sr-recipe-table').DataTable()
+        .row
+        .add(row)
+        .draw();
+      toDelete = toDelete.filter(names => names !== recipeName);
+      insertAlert(createUndoneAlert());
+      deleteAlert(recipeName);
     });
-    table.row.add(subObj);
-    table.draw();
-    toDelete = toDelete.filter(names => names !== recipeName);
-    insertAlert(createUndoneAlert());
-    deleteAlert(recipeName);
   })
 }
 
@@ -257,4 +244,24 @@ function deleteAlert(recipeName) {
  */
 function replaceSpacesWithUnderscores(string) {
   return string.replace(/ /g,"_")
+}
+
+/**
+ * Returns a DataTable-friendly object of a specific recipe.
+ * @param {string} recipeName - name of recipe to find
+ * @param {recipes} recipes - list of all recipes and their data
+ */
+function findRecipe(recipeName, recipes) {
+  return new Promise((resolve, reject) => {
+    let obj = {};
+    Object.keys(recipes).forEach(key => {
+      let recipe = recipes[key];
+      if (recipe[1] === recipeName) {
+        obj["recipeName"] = recipe[1];
+        obj["calories"] = Math.floor(recipe[3]);
+        obj["addInfo"] = getAdditionalInfo(recipe[2], recipe[3]);
+      }
+    });
+    resolve(obj);
+  });
 }

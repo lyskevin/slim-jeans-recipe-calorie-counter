@@ -116,162 +116,6 @@ function drawChart() {
     chart.draw(data, options);
 }
 ```
-  
-
-### 2.6 Saving Recipes to Database
-This feature was annoying and frustrating to implement, mostly due to the
-handling of events by the Display and Delete buttons. Majority of the problems
-faced were due to `async` on the front-end, rather than the back-end.
-
-#### 2.6.1 Front-end
-We had a few versions of this page using vanilla Javascript and "doing
-everything ourselves". But this proved to be very time-consuming and
-frustrating to work with. In the end, we ended up going with the
-[DataTables](https://datatables.net/)
-library, which allowed us to more easily create a table with additional
-functionality, that also allowed styling via Bootstrap.
-
-The table displays the *recipe name* and *number of calories* of each recipe
-stored into the user account using the calorie counter. We give the users
-two additional functionality in the form of two buttons in each row:
-
-<div class="md-typeset__scrollwrap">
-  <div class="md-typeset__table">
-    <table>
-      <thead>
-        <tr>
-          <th align="center">Button</th>
-          <th align="center">Function</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td align="center" class="details-control"></td>
-          <td align="left">
-            Shows more information abouyt the recipe. This uses DataTable's
-            <a href="https://datatables.net/examples/api/row_details.html">child rows</a>
-            API, where more information can be dynamically inserted into the
-            table
-          </td>
-        </tr>
-        <tr>
-          <td align="center" class="details-delete"></td>
-          <td align="left">
-            Deletes the recipe from the table (and database). While DataTable's
-            does offer an API to delete rows from the table, we needed to
-            handle reinserting the same row into the table for the "Undo"
-            feature ourselves.
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-##### "Delete"
-The "delete" functionality posed some challenges for us. First, `ajax` requests
-are asynchronous, and so making an `ajax` call every time the user deletes
-something caused some problems with the code (functions not returning until
-`ajax` request has finished, causing `null` in some variables, etc). So, we
-ended up storing the names of the recipes that were to be deleted in an
-array (a "fake" delete, as it were), and executing an `ajax` request to delete
-all the recipes from the database once the page is unloaded.
-
-```Javascript
-$(window).on('unload', function() {
-  for (let key in toDelete) {
-    $.ajax("/delete_recipe_data", {
-      type: 'POST',
-      contentType: "application/json",
-      dataType: "json",
-      data: JSON.stringify({
-        "recipeName": toDelete[key]
-      })
-    });
-  }
-});
-```
-
-It also turned out that doing this method made the `undo` button easier to
-implement as well.
-
-#### 2.6.2 Undo Functionality
-We felt that an `undo` option is very important for users. This is from
-experience of frequently using `Ctrl-Shift-T` to reopen closed tabs on browsers,
-or `Ctrl-Z` in most programs. We used Bootstrap alerts to create a way for
-users to "Undo" a delete they may have accidentally clicked, such as:
-
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  Deleted "recipe_name".
-  <button type="button" class="btn btn-link btn-sm">
-    Undo
-  </button>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-
-This allows the users to Undo the delete if it was by accident, or if the user
-had a change of heart.
-
-#### 2.6.3 Back-end
-Flask has a `jsonify()` method to pass JSON objects back to the
-front-end Javascript. Conversely, Javascript's jQuery has the ability to make
-an `ajax` request to the Python back-end to send data back. This is how the
-front-end communicates with the SQL database in the back-end. So, to send
-data back to the back-end, an `ajax` request may look something like this:
-
-```Javascript
-const data = ...; // recipe data goes here
-$.ajax("/func_name", {
-    type: "POST",
-    contentType: "application/json",
-    dataType: "json",
-    data: JSON.stringify(data)
-}).done(() => {
-  // do something after function returns
-})
-```
-
-When the Python function returns from the back-end, `.done()` is used to
-continue the running of the Javascript after the `ajax` request is finished.
-
-In the back-end, the Python function looks like:
-
-```Python
-@app.route("/func_name", methods=["GET", "POST"])
-@login_required
-def func_name:
-  if request.method == "POST":
-      # make SQL requests and deletes from database
-  else:
-      return render_template("my_page.html")
-```
-
-Due to the way we delete recipes form the database, we do not allow
-duplicate recipe names inside the database. This is done using an SQL
-`SELECT` first:
-
-```Python
-exists = cursor.execute("""SELECT 1 FROM recipes
-        WHERE username = (?) AND recipe_name = (?)""",
-        (username, recipe_name)).fetchall()
-```
-
-Then check `if (exists)`
-
-```Python
-if (exists):
-    return json.dumps("Recipe already exists")
-else:
-    cursor.execute("""INSERT INTO recipes
-            (username, recipe_name, recipe, calories)
-            VALUES(?, ?, ?, ?)""",
-            (username, recipe_name, recipe, calories))
-    connection.commit()
-    connection.close()
-    return json.dumps("Recipe saved")
-```
 
 ## 3. User Accounts and Sign-ins
 User Accounts and Sign-ins were a big part of how we implemented certain
@@ -351,11 +195,192 @@ else:
 
 ### 3.4 Session ID
 <!-- Please explain this section -->
+  
+
+## 4 Saving Recipes to Database
+This feature was annoying and frustrating to implement, mostly due to the
+handling of events by the Display and Delete buttons. Majority of the problems
+faced were due to `async` on the front-end, rather than the back-end.
+
+### 4.1 Front-end
+We had a few versions of this page using vanilla Javascript. But this proved
+to be very time-consuming and frustrating to work with. In the end, we ended up
+going with the [DataTables](https://datatables.net/)
+library, which allowed us to more easily create a table with additional
+functionality, that also allowed styling via Bootstrap.
+
+The table displays the **recipe name** and **number of calories** of each recipe
+stored into the user account using the calorie counter. We give the users
+two additional functionality in the form of two buttons in each row:
+
+<div class="md-typeset__scrollwrap">
+  <div class="md-typeset__table">
+    <table>
+      <thead>
+        <tr>
+          <th align="center">Button</th>
+          <th align="center">Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td align="center" class="details-control"></td>
+          <td align="left">
+            Shows more information abouyt the recipe. This uses DataTable's
+            <a href="https://datatables.net/examples/api/row_details.html">child rows</a>
+            API, where more information can be dynamically inserted into the
+            table
+          </td>
+        </tr>
+        <tr>
+          <td align="center" class="details-delete"></td>
+          <td align="left">
+            Deletes the recipe from the table (and database). While DataTable's
+            does offer an API to delete rows from the table, we needed to
+            handle reinserting the same row into the table for the "Undo"
+            feature ourselves.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+#### "Delete"
+The "delete" functionality posed some challenges for us. First, `ajax` requests
+are asynchronous, and so making an `ajax` call every time the user deletes
+something caused some problems with the code (functions not returning until
+`ajax` request has finished, causing `null` in some variables, etc). So, we
+ended up storing the names of the recipes that were to be deleted in an
+array (a "fake" delete, as it were), and executing an `ajax` request to delete
+all the recipes from the database once the page is unloaded.
+
+```Javascript
+$(window).on('unload', function() {
+  for (let key in toDelete) {
+    $.ajax("/delete_recipe_data", {
+      type: 'POST',
+      contentType: "application/json",
+      dataType: "json",
+      data: JSON.stringify({
+        "recipeName": toDelete[key]
+      })
+    });
+  }
+});
+```
+
+It also turned out that doing this method made the `undo` button easier to
+implement as well.
+
+### 4.2 Undo Functionality
+We felt that an `undo` option is very important for users. This is from
+experience of frequently using `Ctrl-Shift-T` to reopen closed tabs on browsers,
+or `Ctrl-Z` in most programs. We used Bootstrap alerts to create a way for
+users to "Undo" a delete they may have accidentally clicked:
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  Deleted "recipe_name".
+  <button type="button" class="btn btn-link btn-sm">
+    Undo
+  </button>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+The `undo` button's event was handled by jQuery
+
+```Javascript
+/**
+ * Function to handle undo event for a specific recipe.
+ * @param {string} recipeName - name of recipe associated with this button
+ * @param {object} recipes - list of all recipes and their data
+ */
+function handleUndoOnClick(recipeName, recipes) {
+  $(document).on('click', '#undo-'
+      + replaceSpacesWithUnderscores(recipeName), function() {
+    findRecipe(recipeName, recipes).then((row) => {
+      $('#sr-recipe-table').DataTable()
+        .row
+        .add(row)
+        .draw();
+      toDelete = toDelete.filter(names => names !== recipeName);
+      insertAlert(createUndoneAlert());
+      deleteAlert(recipeName);
+    });
+  })
+}
+```
+
+This allows the users to Undo the delete if it was by accident, or if the user
+had a change of heart.
+
+### 4.3 Back-end
+Flask has a `jsonify()` method to pass JSON objects back to the
+front-end Javascript. Conversely, Javascript's jQuery has the ability to make
+an `ajax` request to the Python back-end to send data back. This is how the
+front-end communicates with the SQL database in the back-end. So, to send
+data back to the back-end, an `ajax` request may look something like this:
+
+```Javascript
+const data = ...; // recipe data goes here
+$.ajax("/func_name", {
+    type: "POST",
+    contentType: "application/json",
+    dataType: "json",
+    data: JSON.stringify(data)
+}).done(() => {
+  // do something after function returns
+})
+```
+
+When the Python function returns from the back-end, `.done()` is used to
+continue the running of the Javascript after the `ajax` request is finished.
+
+In the back-end, the Python function looks like:
+
+```Python
+@app.route("/func_name", methods=["GET", "POST"])
+@login_required
+def func_name:
+  if request.method == "POST":
+      # make SQL requests and deletes from database
+  else:
+      return render_template("my_page.html")
+```
+
+Due to the way we delete recipes form the database, we do not allow
+duplicate recipe names inside the database. This is done using an SQL
+`SELECT` first:
+
+```Python
+exists = cursor.execute("""SELECT 1
+                           FROM recipes
+                           WHERE username = (?) AND recipe_name = (?)""",
+                           (username, recipe_name)).fetchall()
+```
+
+Then check `if (exists)`
+
+```Python
+if (exists):
+    return json.dumps("Recipe already exists")
+else:
+    cursor.execute("""INSERT INTO recipes
+                      (username, recipe_name, recipe, calories)
+                      VALUES(?, ?, ?, ?)""",
+                      (username, recipe_name, recipe, calories))
+    connection.commit()
+    connection.close()
+    return json.dumps("Recipe saved")
+```
 
 
-## 4. Night Mode
 
-## 5. User Testing
+## 5. Night Mode
+
+## 6. User Testing
 We gave it to a few friends and family members who actually cook and see if
 they liked the features. This is what we have obtained
 
@@ -363,7 +388,7 @@ they liked the features. This is what we have obtained
 
 
 
-## 6. Conclusion of the Project
+## 7. Conclusion of the Project
 We would say that we have learnt greatly from Orbital, particularly the
 many APIs and frameowrks (and lack thereof) we have had the pleasure of using,
 such as Flask, Jinja2, SQLite, etc and the other technologies such as HTML5,
