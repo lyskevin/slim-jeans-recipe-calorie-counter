@@ -143,6 +143,11 @@ body.dark #error .text {
 
 /* Style graph generator page */
 
+#graph-generator .content {
+  text-align: center;
+  margin: 2.5%;
+}
+
 /* Style home page */
 
 #index .logged-in {
@@ -265,6 +270,7 @@ p a {
 }
 
 /* Style login and register pages */
+
 #login, #register {
   width: 100%;
   text-align: center;
