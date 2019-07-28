@@ -273,23 +273,23 @@ p a {
   color: #4a90ff;
 }
 
-/* Style login and register pages */
+/* Style login, register and settings pages */
 
-#login, #register {
+#login, #register, #settings {
   width: 100%;
   text-align: center;
 }
 
-#login .form, #register .form {
+#login .form, #register .form, #settings .form {
   margin-top: 5%;
 }
 
-#login .form-control, #register .form-control {
+#login .form-control, #register .form-control, #settings .form-control {
   display: inline-block;
   width: auto;
 }
 
-#login .message-flash, #register .message-flash {
+#login .message-flash, #register .message-flash, #settings .message-flash {
   margin: 0 auto;
   margin-top: 10vh;
   width: 30%;
