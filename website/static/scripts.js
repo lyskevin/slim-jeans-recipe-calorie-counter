@@ -246,7 +246,7 @@ function getRowElements(numRows) {
 
   let fourthCell = document.createElement('input');
   fourthCell.setAttribute('type', 'button');
-  fourthCell.setAttribute('class', 'btn btn-danger remove');
+  fourthCell.setAttribute('class', 'btn btn-danger btn-block remove');
   fourthCell.setAttribute('value', 'Delete');
 
   return [
@@ -300,11 +300,9 @@ function getInput() {
         recipe["ingredient" + (i / 4 + 1)] = ingredientInformation;
       }
     }
-    if (isAnEmptyRow(description, amount, unit) && form.length < 10)
-      missingInput = true;
   }
 
-  if (missingInput)
+  if (missingInput || totalCalories === 0)
     alert("Please fill in all input fields");
   else if (negativeAmount)
     alert("Negative amount values are not allowed");
@@ -352,11 +350,9 @@ function saveRecipe() {
           recipe["ingredient" + (i / 4 + 1)] = ingredientInformation;
         }
       }
-      if (isAnEmptyRow(description, amount, unit) && form.length < 10) 
-        missingInput = true;
     }
 
-    if (missingInput) {
+    if (missingInput || totalCalories === 0) {
       alert("Please fill in all input fields");
     } else if (negativeAmount) {
       alert("Negative amount values are not allowed");
@@ -515,6 +511,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     $('#table-savedrecipes').removeClass('table-dark');
   }    
 });
+
 function toggleNightMode() {
   localStorage.setItem('mode', (localStorage.getItem('mode') || 'dark') === 'dark' ?
     'light' : 'dark');

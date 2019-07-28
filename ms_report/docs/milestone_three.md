@@ -224,7 +224,9 @@ two additional functionality in the form of two buttons in each row:
       </thead>
       <tbody>
         <tr>
-          <td align="center" class="details-control"></td>
+          <td class="button1" align="center">
+            <button class='btn btn-block btn-primary btn-sm'>Delete</button>
+          </td>
           <td align="left">
             Shows more information abouyt the recipe. This uses DataTable's
             <a href="https://datatables.net/examples/api/row_details.html">child rows</a>
@@ -233,7 +235,9 @@ two additional functionality in the form of two buttons in each row:
           </td>
         </tr>
         <tr>
-          <td align="center" class="details-delete"></td>
+          <td class="button2" align="center">
+            <button class='btn btn-block btn-danger btn-sm'>Delete</button>
+          </td>
           <td align="left">
             Deletes the recipe from the table (and database). While DataTable's
             does offer an API to delete rows from the table, we needed to

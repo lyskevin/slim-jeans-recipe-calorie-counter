@@ -41,14 +41,6 @@ pre .nx {
     color: #37474f !important;
 }
 
-td.details-control {
-  background: url('../figures/ms3/details_open.png') no-repeat center center;
-  background-size: 30%;
-  cursor: pointer;
-}
-
-td.details-delete {
-  background: url('../figures/ms3/details_delete.png') no-repeat center center;
-  background-size: 30%;
-  cursor: pointer;
+td {
+  vertical-align: middle !important;
 }

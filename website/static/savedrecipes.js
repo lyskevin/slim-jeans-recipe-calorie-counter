@@ -26,28 +26,27 @@ function createRecipeTableForUser() {
               "className": 'details-control',
               "orderable": false,
               "data": null,
-              "defaultContent": '',
-              "width": 1
+              "defaultContent": '<button class="btn btn-block btn-primary btn-sm">Display</button>',
+              "width": "1"
             },
             {
               "className": 'details-delete',
               "orderable": false,
               "data": null,
-              "defaultContent": '',
-              "width": 1
+              "defaultContent": '<button class="btn btn-block btn-danger btn-sm">Delete</button>',
+              "width": "1"
             },
             { 
               "data": "recipeName",
-              "width": 512
             },
             {
               "data": "calories",
-              "width": 128
+              "width": "30"
             },
             {
               "data": "dateTime",
-              "width": 128
-       }
+              "width": "256"
+            }
           ],
           "order": [[1, 2, 'asc']]
         });
@@ -57,20 +56,31 @@ function createRecipeTableForUser() {
           let tr = $(this).closest('tr');
           let row = table.row(tr);
           let index;
+
           for (index = 0; index < recipes.length &&
               recipes[index][1] !== row.data()["recipeName"]; index++) {
             ; 
           }
 
           if (row.child.isShown()) {
+            let button = document.createElement('button');
+            button.className = 'btn btn-block btn-primary btn-sm';
+            button.innerText = 'Display'
+            this.removeChild(this.childNodes[0]);
+            this.appendChild(button);
             row.child.hide();
             tr.removeClass('shown');
           } else {
+            let button = document.createElement('button');
+            button.className = 'btn btn-block btn-warning btn-sm';
+            button.innerText = 'Hide'
+            this.removeChild(this.childNodes[0]);
+            this.appendChild(button);
             row.child(data[index]["addInfo"]).show();
             tr.addClass('shown');
           }
         });
-        
+
         $('#sr-recipe-table tbody').on('click', 'td.details-delete', function() {
           const recipeName = table.row( $(this).parents('tr') ).data()["recipeName"]
           if (window.confirm("Are you sure you want to delete \"" + recipeName + "\"?")) {
@@ -85,7 +95,6 @@ function createRecipeTableForUser() {
               .draw();
           }
         });
-
       });
 
       // delete from db when page unloads
@@ -283,10 +292,10 @@ function findRecipe(recipeName, recipes) {
   });
 }
 
-
-// 2019-07-28 09:45:45
-// 2019/07/28 09:45:45 UTC
-
+/**
+ * Returns a date in the format
+ * @param {string} dateString - original date string
+ */
 function convertDate(dateString) {
   dateString = dateString.replace(/-/g, '/');
   dateString = dateString + " UTC";
