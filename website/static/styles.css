@@ -148,6 +148,10 @@ body.dark #error .text {
   margin: 2.5%;
 }
 
+#graph-generator #column_chart {
+  margin: 0 auto;
+}
+
 /* Style home page */
 
 #index .logged-in {
