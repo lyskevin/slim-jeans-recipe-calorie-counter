@@ -4,4 +4,42 @@
 
 {% block id %}settings{% endblock %}
 
-{% block main %}TODO{% endblock %}
+{% block main %}
+<form action="/change_password" method="post" class="form" name="change-password-form">
+  <div class="form-group">
+    <input
+      class="form-control"
+      name="old-password"
+      placeholder="Old Password"
+      type="password"
+      pattern="[a-zA-Z0-9!@#$%^*_|]{1,999}">
+  </div>
+  <div class="form-group">
+    <input
+      class="form-control"
+      name="new-password"
+      placeholder="New Password"
+      type="password"
+      pattern="[a-zA-Z0-9!@#$%^*_|]{1,999}">
+  </div>
+  <div class="form-group">
+    <input
+      class="form-control"
+      name="confirmation"
+      placeholder="Confirm New Password"
+      type="password"
+      pattern="[a-zA-Z0-9!@#$%^*_|]{1,999}">
+  </div>
+  <button type="button" class="btn btn-light" onclick="changePasswordFormSubmission()">
+    Change Password
+  </button>
+</form>
+{% if get_flashed_messages() %}
+<div class="alert alert-danger alert-dismissible fade show text-center message-flash" role="alert">
+  {{ get_flashed_messages() | join(" ") }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endif %}
+{% endblock %}
