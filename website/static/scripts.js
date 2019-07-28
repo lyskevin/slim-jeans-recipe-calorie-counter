@@ -530,3 +530,20 @@ function generateGraph() {
   });
 }
 
+/* Handles the form submission for changing passwords */
+function changePasswordFormSubmission() {
+  let form = document.forms["change-password-form"];
+  let newPassword = form[1].value;
+  let confirmation = form[2].value;
+  if ($.trim(newPassword) === "") {
+    alert("Please fill in all fields (space padding is not allowed)");
+  } else if (newPassword.length < 5) {
+    alert("New password must be at least 5 characters in length");
+  } else if (newPassword.length > 255) {
+    alert("New password cannot exceed 255 characters in length");
+  } else if (newPassword !== confirmation) {
+    alert("Passwords don't match");
+  } else {
+    form.submit();
+  }
+}
