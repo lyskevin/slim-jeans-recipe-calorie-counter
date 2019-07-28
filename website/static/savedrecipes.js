@@ -19,24 +19,35 @@ function createRecipeTableForUser() {
       // render table onto page
       $(document).ready(function () {
         let table = $('#sr-recipe-table').DataTable({
-          responsive: true,
+          "autoWidth": false,
           data: data,
           columns: [
             {
-                "className": 'details-control',
-                "orderable": false,
-                "data": null,
-                "defaultContent": ''
+              "className": 'details-control',
+              "orderable": false,
+              "data": null,
+              "defaultContent": '',
+              "width": 1
             },
             {
-                "className": 'details-delete',
-                "orderable": false,
-                "data": null,
-                "defaultContent": ''
+              "className": 'details-delete',
+              "orderable": false,
+              "data": null,
+              "defaultContent": '',
+              "width": 1
             },
-            { "data": "recipeName" },
-            { "data": "calories" },
-            { "data": "dateTime" }
+            { 
+              "data": "recipeName",
+              "width": 512
+            },
+            {
+              "data": "calories",
+              "width": 128
+            },
+            {
+              "data": "dateTime",
+              "width": 128
+       }
           ],
           "order": [[1, 2, 'asc']]
         });
