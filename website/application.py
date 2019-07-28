@@ -18,9 +18,9 @@ ROOT = path.dirname(path.realpath(__file__))
 """ Helper Functions """
 
 
-@app.errorhandler(HTTPException)
+"""@app.errorhandler(HTTPException)
 def handle_http_exception(e):
-    return render_template("error.html"), 200
+    return render_template("error.html"), 200"""
 
 
 def login_required(f):
@@ -146,6 +146,37 @@ def save_recipe():
             return json.dumps("Recipe saved")
     else:
         return render_template("calorie_counter.html")
+
+
+@app.route("/change_password", methods=["GET", "POST"])
+@login_required
+def change_password():
+    
+    if request.method == "POST":
+        form = request.form
+        username = session["username"]
+        old_password = form["old-password"]
+        connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
+        cursor = connection.cursor()
+        cursor.execute("""SELECT * FROM users WHERE username = (?)""",
+                       (username,))
+        user_information = cursor.fetchall()
+        if not check_password_hash(user_information[0][2], old_password):
+            connection.close()
+            flash("Old password does not match")
+            return redirect("/settings")
+        else:
+            new_password = form["new-password"]
+            hashed_password = generate_password_hash(new_password)
+            cursor.execute("""UPDATE users SET password = (?) WHERE username = (?)""",
+                           (hashed_password, username))
+            connection.commit()
+            connection.close()
+            flash("Password changed")
+            return redirect("/settings")
+
+    else:
+        return redirect("/settings")
 
 
 @app.route("/delete_recipe_data", methods=["GET", "POST"])
