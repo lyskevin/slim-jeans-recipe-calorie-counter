@@ -2,6 +2,7 @@ import json
 import sqlite3
 import re
 
+from datetime import datetime
 from flask import (Flask, flash, g, jsonify, redirect, render_template,
                    request, session, url_for)
 from functools import wraps
@@ -100,6 +101,7 @@ def get_specific_recipe_data():
 @login_required
 def reinsert_recipe():
     if request.method == "POST":
+        now = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
         data = request.get_json()
         username = session["username"]
         recipe_name = data["recipeName"]
@@ -108,9 +110,9 @@ def reinsert_recipe():
         connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
         cursor = connection.cursor()
         cursor.execute("""INSERT INTO recipes
-                       (username, recipe_name, recipe, calories)
-                       VALUES(?, ?, ?, ?)""",
-                       (username, recipe_name, recipe, calories))
+                       (username, recipe_name, recipe, calories, date_time)
+                       VALUES(?, ?, ?, ?, ?)""",
+                       (username, recipe_name, recipe, calories, date_time))
         connection.commit()
         connection.close()
         return json.dumps("success")
@@ -121,6 +123,7 @@ def reinsert_recipe():
 @login_required
 def save_recipe():
     if request.method == "POST":
+        now = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
         data = request.get_json()
         username = session["username"]
         recipe_name = data["recipeName"]
@@ -135,9 +138,9 @@ def save_recipe():
             return json.dumps("Recipe already exists!")
         else:
             cursor.execute("""INSERT INTO recipes
-                    (username, recipe_name, recipe, calories)
-                    VALUES(?, ?, ?, ?)""",
-                    (username, recipe_name, recipe, calories))
+                    (username, recipe_name, recipe, calories, date_time)
+                    VALUES(?, ?, ?, ?, ?)""",
+                    (username, recipe_name, recipe, calories, now))
             connection.commit()
             connection.close()
             return json.dumps("Recipe saved")
