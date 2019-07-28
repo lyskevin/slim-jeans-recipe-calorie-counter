@@ -37,8 +37,13 @@
 }
 
 /* Style calorie counter page */
+.calorie-wrapper {
+  border: .1rem lightgrey solid;
+  padding: 1% 1% 1% 1%;
+  margin: 2.5%;
+}
 
-#calorie-counter .calorie-container, #calorie-counter .result-container {
+#calorie-counter .result-container {
   display: flex;
   border-style: solid;
   border-width: .1rem;
@@ -47,8 +52,12 @@
   padding: 1%;
 }
 
-#calorie-counter .input-table {
+#calorie-counter .dataTables_wrapper {
   margin-bottom: 1.5em;
+}
+
+table.dataTable thead tr th {
+  border-bottom: 0;
 }
 
 #calorie-counter .input-table th, #calorie-counter .input-table tr {
@@ -60,8 +69,12 @@
   font-size: 30px;
 }
 
-#calorie-counter .input-container {
-  display: inline-block;
+#calorie-counter table.dataTable.no-footer {
+  border-bottom: 1px lightgrey solid !important;
+}
+
+#calorie-counter td {
+  vertical-align: middle;
 }
 
 #calorie-counter .input {
@@ -78,7 +91,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-top: 1px;
-  max-height: 150px;
+  max-height: 300px;
   overflow-y: auto;
   width: 300px;
   color: black !important;
@@ -101,7 +114,6 @@
 }
 
 /* Style error page */
-
 #error .background {
 
   background: url('images/five_foods.jpg') no-repeat center center fixed;

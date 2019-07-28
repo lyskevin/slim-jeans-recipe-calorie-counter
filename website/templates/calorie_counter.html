@@ -16,7 +16,6 @@
 </div>
 
 <div id="content" class="content">
-
   <div class="text">
     <h2>How to use it?</h2>
     <p>
@@ -32,99 +31,66 @@
     </p>
   </div>
 
-  <div class="calorie-container">
-    <form name="calorie-input" method="GET">
-      <div class="input-container">
-        
-        <h4>Note</h4>
-        <ul>
-          <li>All types of pasta fall under "Pasta" in our database</li>
-          <li>Salt falls under "Salt, table"</li>
-          <li>Using exact weight of ingredients is always more accurate!</li>
-        </ul>
+  <div class="calorie-wrapper">
 
-        <!-- Input Table for Ingredients and Amount-->
-        <table class="input-table" id="input-table">
-          <thead>
-            <th>Ingredients</th>
-            <th>Amounts</th>
-            <th>Units</th>
+    <form id='calorie-form'>
+      <h4>Note</h4>
+      <ul>
+        <li>All types of pasta fall under "Pasta" in our database</li>
+        <li>Salt falls under "Salt, table"</li>
+        <li>Using exact weight of ingredients is always more accurate!</li>
+      </ul>
+
+      <table id='input-table'
+             class='table table-bordered'>
+        <thead>
+          <tr>
+            <th>Ingredient</th>
+            <th>Amount</th>
+            <th>Unit</th>
             <th></th>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <div class="input" id="ingredient">
-                  <input
-                    type="text"
-                    id="ingredient-1"
-                    class="input-ingredient typeahead"
-                    placeholder="Enter Ingredient">
-                </div>
-              </td>
-              <td>
-                <div class="input">
-                  <input
-                    type="number"
-                    id="amount-1"
-                    min="0"
-                    step="0.000001"
-                    class="input-amount"
-                    placeholder="Enter Amount">
-                </div>
-              </td>
-              <td>
-                <div class="input">
-                  <select
-                    type="text"
-                    id="unit-1"
-                    class="input-unit">
-                </div>
-              </td>
-              <td>
-                <div class="input">
-                  <input
-                    type="button"
-                    class="btn btn-light"
-                    value="Delete Ingredient"
-                    onclick="deleteRow(this)">
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+          </tr>
+        </thead>
+      </table>
 
-        <!-- Add Rows and Submit button-->
-        <input
-          type="button"
-          class="btn btn-light"
-          value="Add Ingredient"
-          onclick="appendRow()">
-        <input
-          type="reset"
-          class="btn btn-light"
-          value="Reset All">
-        <input
-          type="button"
-          class="btn btn-light"
-          value="Analyze Calories"
-          onclick="getInput()">
-        <br><br>
-        {% if session.user_id %}
-        <input
-          type="text"
-          placeholder="Recipe Name"
-          pattern="[a-zA-Z0-9!@#$%^*_|]">
-        <input
-          type="button"
-          class="btn btn-light"
-          value="Save Recipe"
-          onclick="saveRecipe()">
-        {% endif %}
-      </div>
+      <!-- Add Rows and Submit button-->
+      <input
+        type="button"
+        class="btn btn-light"
+        value="Add Ingredient"
+        id="add-ingred"
+      >
+
+      <input
+        type="reset"
+        class="btn btn-light"
+        value="Reset All"
+      >
+
+      <input
+        type="button"
+        id="analyze-ingred"
+        class="btn btn-light"
+        value="Analyze Calories"
+      >
+
+      {% if session.user_id %}
+      <br><br>
+      <input
+        type="text"
+        placeholder="Recipe Name"
+        pattern="[a-zA-Z0-9!@#$%^*_|]">
+      <input
+        type="button"
+        class="btn btn-light"
+        value="Save Recipe"
+        onclick="saveRecipe()">
+      {% endif %}
+
     </form>
+
   </div>
-  
+
   <div class="text">
     <h2>Where do we get our nutritional information from?</h2>
     <p>
@@ -136,6 +102,11 @@
       food.
     </p>
   </div>
-
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  createInputTable();
+</script>
 {% endblock %}

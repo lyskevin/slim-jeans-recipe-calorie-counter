@@ -180,46 +180,87 @@ function configureWeightUnits(units) {
   units.options[units.length] = new Option("pounds (lb)", "pounds");
 }
 
-/* Appends a row to the calorie counter's input table */
-function appendRow() {
-  const table = document.getElementById("input-table");
-  const numberOfInputs = 4;
-  var newRow = table.insertRow(-1);
-  numberOfRows++;
-  const input1 = "<div class=\"input\" id=\"ingredient\">\n"
-    + "  <input type=\"text\" id=\"ingredient-" + numberOfRows + "\" "
-    + "class=\"input-ingredient typeahead\" "
-    + "placeholder=\"Enter Ingredient\">\n"
-    + "</div>";
-  const input2 = "<div class=\"input\">\n"
-    + "  <input type=\"number\" id=\"amount-" + numberOfRows + "\" min=\"0\" "
-    + "step=\"0.000001\" class=\"input-amount\" "
-    + "placeholder=\"Enter Amount\">\n"
-    + "</div>";
-  const input3 = "<div class=\"input\">\n"
-    + "  <select type=\"text\" id=\"unit-" + numberOfRows + "\" "
-    + "class=\"input-unit\">\n"
-    + "</div>";
-  const input4 = "<div class=\"input\">\n"
-    + "  <input type=\"button\" "
-    + "value=\"Delete Ingredient\" "
-    + "class=\"btn btn-light\" "
-    + "onclick=\"deleteRow(this)\">\n"
-    + "</div>";
-  let inputs = [input1, input2, input3, input4];
-  for (let i = 0; i < numberOfInputs; i++) {
-    newRow.insertCell().innerHTML = inputs[i];
-  }
-  configure(numberOfRows);
+function createInputTable() {
+  $(document).ready(function() {
+    let table = $('#input-table').DataTable({
+      "autoWidth": false,
+      "paging": false,
+      "ordering": false,
+      "searching": false,
+      "bInfo": false,
+      "columns": [
+        null,
+        { "width": "256" },
+        { "width": "150" },
+        { "width": "20" }
+      ]
+    });
+
+    $(function () {
+      $('#add-ingred').click();
+    });
+
+    /* handle add row */
+    $('.calorie-wrapper').on('click', '#add-ingred', function() {
+      let numRows = table.data().count() / 4;
+      table.row.add(getRowElements(numRows)).draw();
+      configure(numRows);
+    });
+
+    /* handle delete row */
+    $('#input-table').on('click', '.remove', function() {
+      let numRows = table.data().count() / 4;
+      if (numRows > 1) {
+        let row = $(this).closest('tr');
+        table.row(row).remove().draw();
+      }
+    });
+
+    /* handle analyze calories */
+    $('.calorie-wrapper').on('click', '#analyze-ingred', function() {
+      let numRows = table.data().count() / 4;
+      getInput();
+    });
+  });
 }
 
-/* Deletes the specified row from the calorie counter's input table */
-function deleteRow(row) {
-  if (numberOfRows > 1) {
-    numberOfRows--;
-    let rowNumber = $(row).closest('tr').index() + 1;
-    document.getElementById("input-table").deleteRow(rowNumber);
-  }
+function getRowElements(numRows) {
+  let firstCell = document.createElement('input');
+  firstCell.setAttribute('type', 'text');
+  firstCell.setAttribute('class', 'input-ingredient typeahead');
+  firstCell.setAttribute('placeholder', 'Enter Ingredient');
+  firstCell.setAttribute('id', 'ingredient-' + numRows);
+  firstCell.setAttribute('style', 'width: 512px;');
+
+  let secondCell = document.createElement('input');
+  secondCell.setAttribute('type', 'number');
+  secondCell.setAttribute('min', '0');
+  secondCell.setAttribute('step', '0.000001');
+  secondCell.setAttribute('class', 'input-amount');
+  secondCell.setAttribute('placeholder', 'Enter Amount');
+
+  let thirdCell = document.createElement('select');
+  thirdCell.setAttribute('type', 'text');
+  thirdCell.setAttribute('class', 'input-unit');
+  thirdCell.setAttribute('id', 'unit-' + numRows);
+
+  let fourthCell = document.createElement('input');
+  fourthCell.setAttribute('type', 'button');
+  fourthCell.setAttribute('class', 'btn btn-danger remove');
+  fourthCell.setAttribute('value', 'Delete');
+
+  return [
+    asHTMLString(firstCell),
+    asHTMLString(secondCell),
+    asHTMLString(thirdCell),
+    asHTMLString(fourthCell),
+  ];
+}
+
+function asHTMLString(el) {
+  let div = document.createElement('div');
+  div.appendChild(el);
+  return div.innerHTML;
 }
 
 /* Gets input from the calorie counter and calculates the total number of calories */
@@ -227,7 +268,7 @@ function getInput() {
   // 0-th element are the headers of the pie chart elements
   let breakdown = [["Description", "Calories"]];
 
-  let form = document.forms["calorie-input"];
+  let form = document.forms["calorie-form"];
   let totalCalories = 0;
   let recipe = {};
 
@@ -259,6 +300,8 @@ function getInput() {
         recipe["ingredient" + (i / 4 + 1)] = ingredientInformation;
       }
     }
+    if (isAnEmptyRow(description, amount, unit) && form.length < 10)
+      missingInput = true;
   }
 
   if (missingInput)
@@ -271,7 +314,7 @@ function getInput() {
 
 /* Saves the recipe specified by the user */
 function saveRecipe() {
-  let form = document.forms["calorie-input"];
+  let form = document.forms["calorie-form"];
   let recipeName = form[form.length - 2].value;
   if (recipeName === "")
     alert("Please include a recipe name.");
@@ -309,6 +352,8 @@ function saveRecipe() {
           recipe["ingredient" + (i / 4 + 1)] = ingredientInformation;
         }
       }
+      if (isAnEmptyRow(description, amount, unit) && form.length < 10) 
+        missingInput = true;
     }
 
     if (missingInput) {
@@ -399,7 +444,7 @@ function createResultContainer(totalCalories) {
 
 /* Inserts HTML to display calorie results and breakdown on the webpage */
 function displayResults(totalCalories, breakdown) {
-  var toInsertAfter = document.getElementsByClassName("calorie-container")[0];
+  var toInsertAfter = document.getElementsByClassName("calorie-wrapper")[0];
   var resultContainer = document.getElementsByClassName("result-container")[0];
   if (resultContainer != null) {
     resultContainer.parentNode.removeChild(resultContainer);
