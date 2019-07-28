@@ -35,6 +35,7 @@ function createRecipeTableForUser() {
             },
             { "data": "recipeName" },
             { "data": "calories" },
+            { "data": "dateTime" }
           ],
           "order": [[1, 2, 'asc']]
         });
@@ -45,7 +46,10 @@ function createRecipeTableForUser() {
           let row = table.row(tr);
           let index;
           for (index = 0; index < recipes.length &&
-              recipes[index][1] !== row.data()["recipeName"]; index++)
+              recipes[index][1] !== row.data()["recipeName"]; index++) {
+            ; 
+          }
+
           if (row.child.isShown()) {
             row.child.hide();
             tr.removeClass('shown');
@@ -144,6 +148,7 @@ function parseRecipeRowData(recipes) {
     let subObj = {};
     subObj["recipeName"] = recipe[1];
     subObj["calories"] = Math.floor(recipe[3]);
+    subObj["dateTime"] = convertDate(recipe[4]);
     subObj["addInfo"] = getAdditionalInfo(recipe[2], recipe[3]);
     ret.push(subObj);
   });
@@ -264,4 +269,26 @@ function findRecipe(recipeName, recipes) {
     });
     resolve(obj);
   });
+}
+
+
+// 2019-07-28 09:45:45
+// 2019/07/28 09:45:45 UTC
+
+function convertDate(dateString) {
+  dateString = dateString.replace(/-/g, '/');
+  dateString = dateString + " UTC";
+  dateString = dateString.toLocaleString("en-US", {timeZone: "Asia/Singapore"});
+  dateString = new Date(dateString);
+
+  let mm = dateString.getMonth() + 1;
+  let dd = dateString.getDate();
+  let time = dateString.toTimeString().slice(0, 8);
+
+  let ret = dateString.getFullYear() + "/"
+    + (mm > 9 ? '' : '0') + mm + "/"
+    + (dd > 9 ? '' : '0') + dd + " "
+    + time;
+
+  return ret;
 }
