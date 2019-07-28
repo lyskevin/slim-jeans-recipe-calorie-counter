@@ -19,6 +19,7 @@ function createRecipeTableForUser() {
       // render table onto page
       $(document).ready(function () {
         let table = $('#sr-recipe-table').DataTable({
+          responsive: true,
           data: data,
           columns: [
             {

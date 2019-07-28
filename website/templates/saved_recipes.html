@@ -7,7 +7,6 @@
 {% block main %}
 <div class="header">
   <img class="image" src="../static/images/scale.jpg" alt="header image scale">
-  <!-- Image by Pixabay via https://www.pexels.com/photo/shallow-focus-photography-of-gram-scale-1740904/ -->
   <div class="text">
     <h1>Saved Recipes</h1>
     <h2>See what you've eaten</h2>
@@ -27,21 +26,23 @@
     </p>
   </div>
 
-  <div class="sr-wrapper">
-    <h4>Saved Recipes</h4>
-    <table
-      id="sr-recipe-table"
-      class="table table-bordered table-hover">
-      <thead>
-        <tr>
-          <th></th>
-          <th></th>
-          <th>Recipe Name</th>
-          <th>Calories</th>
-          <th>Date Added [YYYY/MM/DD]</th>
-        </tr>
-      </thead>
-    </table>
+  <div class="row">
+    <div class="sr-wrapper table-responsive">
+      <h4>Saved Recipes</h4>
+      <table
+        id="sr-recipe-table"
+        class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th>Recipe Name</th>
+            <th>Calories</th>
+            <th>Date Added [YYYY/MM/DD]</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
   </div>
 </div>
 
