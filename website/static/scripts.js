@@ -492,3 +492,41 @@ function toggleNightMode() {
 function insertAfter(el, referenceNode) {
   referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
 }
+
+/* Generates a graph of the user's saved recipes' caloric information */
+function generateGraph() {
+  $.ajax("/graph_generator", {
+    type: "POST",
+  }).done(results => {
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var dataset = [["Date", "Calories"]];
+      for (let i = 0; i < results.length; i++) {
+        var data = [];
+        var dateString = results[i][1];
+        dateString = dateString.replace(/-/g, '/');
+        dateString = dateString + " UTC";
+        dateString = dateString.toLocaleString("en-US", {timeZone: "Asia/Singapore"});
+        dateString = new Date(dateString);
+        data[0] = dateString;
+        data[1] = results[i][0];
+        dataset[i + 1] = data;
+      }
+      dataset = google.visualization.arrayToDataTable(dataset);
+      var options = {
+        title: 'Calorie Graph',
+        curveType: 'function',
+        legend: {position: 'bottom'}
+      };
+
+      var chart =
+        new google.visualization.ColumnChart(document.getElementById('column_chart'));
+
+      chart.draw(dataset, options);
+    }
+
+  });
+}
+
