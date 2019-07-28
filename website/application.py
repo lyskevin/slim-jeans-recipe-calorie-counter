@@ -194,10 +194,26 @@ def saved_recipes():
     return render_template("saved_recipes.html")
 
 
-@app.route("/graph_generator")
+@app.route("/graph_generator", methods=["GET", "POST"])
 @login_required
 def graph_generator():
-    return render_template("graph_generator.html")
+
+    if request.method == "POST":
+        connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
+        cursor = connection.cursor()
+        rows = cursor.execute("SELECT * FROM recipes WHERE username = (?)",
+                              (session["username"],))
+        dataset = []
+        for row in rows:
+            data = []
+            data.append(row[3])
+            data.append(row[4])
+            dataset.append(data)
+        connection.close()
+        return jsonify(dataset)
+        
+    else:
+        return render_template("graph_generator.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -217,10 +233,12 @@ def login():
         if len(userInformation) < 1 or \
            not check_password_hash(userInformation[0][2], password):
             flash("Invalid username and/or password")
+            connection.close()
             return render_template("login.html")
         else:
             session["user_id"] = userInformation[0][0]
             session["username"] = userInformation[0][1]
+            connection.close()
             return redirect("/")
 
     else:
