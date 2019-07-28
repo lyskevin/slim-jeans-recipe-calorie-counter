@@ -110,15 +110,17 @@
           value="Analyze Calories"
           onclick="getInput()">
         <br><br>
+        {% if session.user_id %}
         <input
           type="text"
-          placeholder="Recipe Name">
+          placeholder="Recipe Name"
+          pattern="[a-zA-Z0-9!@#$%^*_|]">
         <input
           type="button"
           class="btn btn-light"
           value="Save Recipe"
           onclick="saveRecipe()">
-
+        {% endif %}
       </div>
     </form>
   </div>

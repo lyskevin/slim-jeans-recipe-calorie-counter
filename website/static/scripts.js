@@ -82,48 +82,9 @@ $(document).ready(function() {
   configure(1);
 });
 
-document.addEventListener('DOMContentLoaded', (event) => {
-  if (localStorage.getItem('mode') === 'dark') {
-    document.querySelector('body').classList.add('dark');
-    $('#table-savedrecipes').addClass('table-dark');
-  } else {
-    document.querySelector('body').classList.remove('dark');
-    $('#table-savedrecipes').removeClass('table-dark');
-  }    
-});
-
-/* Appends a row to the calorie counter's input table */
-function appendRow() {
-  const table = document.getElementById("input-table");
-  const numberOfInputs = 4;
-  var newRow = table.insertRow(-1);
-  numberOfRows++;
-  const input1 = "<div class=\"input\" id=\"ingredient\">\n"
-    + "  <input type=\"text\" id=\"ingredient-" + numberOfRows + "\" "
-    + "class=\"input-ingredient typeahead\" "
-    + "placeholder=\"Enter Ingredient\">\n"
-    + "</div>";
-  const input2 = "<div class=\"input\">\n"
-    + "  <input type=\"number\" id=\"amount-" + numberOfRows + "\" min=\"0\" "
-    + "step=\"0.000001\" class=\"input-amount\" "
-    + "placeholder=\"Enter Amount\">\n"
-    + "</div>";
-  const input3 = "<div class=\"input\">\n"
-    + "  <select type=\"text\" id=\"unit-" + numberOfRows + "\" "
-    + "class=\"input-unit\">\n"
-    + "</div>";
-  const input4 = "<div class=\"input\">\n"
-    + "  <input type=\"button\" "
-    + "value=\"Delete Ingredient\" "
-    + "class=\"btn btn-light\" "
-    + "onclick=\"deleteRow(this)\">\n"
-    + "</div>";
-  let inputs = [input1, input2, input3, input4];
-  for (let i = 0; i < numberOfInputs; i++) {
-    newRow.insertCell().innerHTML = inputs[i];
-  }
-  configure(numberOfRows);
-}
+/**
+ * Functions handling Calorie Counter forms.
+ */
 
 /* Configures the DOM */
 function configure(ingredientNumber) {
@@ -219,35 +180,225 @@ function configureWeightUnits(units) {
   units.options[units.length] = new Option("pounds (lb)", "pounds");
 }
 
-/* Creates a container to display the specified total number
-   of calories and pie chart of breakdown */
-function createResultContainer(totalCalories) {
-
-  var resultContainer = document.createElement("div");
-  resultContainer.setAttribute("class", "result-container");
-
-  resultContainer.innerHTML = "<h3>This recipe contains...</h3>"
-    + "<p class=\"calorie-result\">"
-    + Math.floor(totalCalories) + " calories</p>"
-    + "<div id=\"piechart\" style=\"width: 900px; height: 500px\"></div>";
-
-  return resultContainer;
-
+/* Appends a row to the calorie counter's input table */
+function appendRow() {
+  const table = document.getElementById("input-table");
+  const numberOfInputs = 4;
+  var newRow = table.insertRow(-1);
+  numberOfRows++;
+  const input1 = "<div class=\"input\" id=\"ingredient\">\n"
+    + "  <input type=\"text\" id=\"ingredient-" + numberOfRows + "\" "
+    + "class=\"input-ingredient typeahead\" "
+    + "placeholder=\"Enter Ingredient\">\n"
+    + "</div>";
+  const input2 = "<div class=\"input\">\n"
+    + "  <input type=\"number\" id=\"amount-" + numberOfRows + "\" min=\"0\" "
+    + "step=\"0.000001\" class=\"input-amount\" "
+    + "placeholder=\"Enter Amount\">\n"
+    + "</div>";
+  const input3 = "<div class=\"input\">\n"
+    + "  <select type=\"text\" id=\"unit-" + numberOfRows + "\" "
+    + "class=\"input-unit\">\n"
+    + "</div>";
+  const input4 = "<div class=\"input\">\n"
+    + "  <input type=\"button\" "
+    + "value=\"Delete Ingredient\" "
+    + "class=\"btn btn-light\" "
+    + "onclick=\"deleteRow(this)\">\n"
+    + "</div>";
+  let inputs = [input1, input2, input3, input4];
+  for (let i = 0; i < numberOfInputs; i++) {
+    newRow.insertCell().innerHTML = inputs[i];
+  }
+  configure(numberOfRows);
 }
 
 /* Deletes the specified row from the calorie counter's input table */
 function deleteRow(row) {
   if (numberOfRows > 1) {
     numberOfRows--;
-    const table = document.getElementById("input-table");
     let rowNumber = $(row).closest('tr').index() + 1;
-    table.deleteRow(rowNumber);
+    document.getElementById("input-table").deleteRow(rowNumber);
   }
+}
+
+/* Gets input from the calorie counter and calculates the total number of calories */
+function getInput() {
+  // 0-th element are the headers of the pie chart elements
+  let breakdown = [["Description", "Calories"]];
+
+  let form = document.forms["calorie-input"];
+  let totalCalories = 0;
+  let recipe = {};
+
+  let missingInput = false;
+  let negativeAmount = false;
+  for (let i = 0;
+       i < form.length - 5 && !missingInput && !negativeAmount;
+       i += 4) {
+    let description = form[i].value;
+    let amount = form[i + 1].value;
+    let unit = form[i + 2].value;
+
+    if (!isAnEmptyRow(description, amount, unit)) {
+      if (hasMissingInput(description, amount, unit))
+        missingInput = true;
+      else if (hasNegativeAmount(amount))
+        negativeAmount = true;
+      else {
+        let calories = getCaloriesOfIngredient(description, amount, unit);
+        totalCalories += calories;
+        breakdown.push([description, calories]);
+
+        // Store recipe
+        let ingredientInformation = {};
+        ingredientInformation["description"] = description;
+        ingredientInformation["amount"] = amount;
+        ingredientInformation["unit"] = unit;
+        ingredientInformation["calories"] = calories;
+        recipe["ingredient" + (i / 4 + 1)] = ingredientInformation;
+      }
+    }
+  }
+
+  if (missingInput)
+    alert("Please fill in all input fields");
+  else if (negativeAmount)
+    alert("Negative amount values are not allowed");
+  else
+    displayResults(totalCalories, breakdown);
+}
+
+/* Saves the recipe specified by the user */
+function saveRecipe() {
+  let form = document.forms["calorie-input"];
+  let recipeName = form[form.length - 2].value;
+  if (recipeName === "")
+    alert("Please include a recipe name.");
+  else if (!/^[a-zA-Z0-9!@#$%^*_,\s]+$/i.test(recipeName)) {
+    alert("Invalid recipe name.");
+  } else {
+    console.log("asd");
+    let totalCalories = 0;
+    let recipe = {};
+
+    let missingInput = false;
+    let negativeAmount = false;
+    for (let i = 0;
+         i < form.length - 5 && !missingInput && !negativeAmount;
+         i += 4) {
+      let description = form[i].value;
+      let amount = form[i + 1].value;
+      let unit = form[i + 2].value;
+
+      if (!isAnEmptyRow(description, amount, unit)) {
+        if (hasMissingInput(description, amount, unit))
+          missingInput = true;
+        else if (hasNegativeAmount(amount))
+          negativeAmount = true;
+        else {
+          let calories = getCaloriesOfIngredient(description, amount, unit);
+          totalCalories += calories;
+
+          // Store recipe
+          let ingredientInformation = {};
+          ingredientInformation["description"] = description;
+          ingredientInformation["amount"] = amount;
+          ingredientInformation["unit"] = unit;
+          ingredientInformation["calories"] = calories;
+          recipe["ingredient" + (i / 4 + 1)] = ingredientInformation;
+        }
+      }
+    }
+
+    if (missingInput) {
+      alert("Please fill in all input fields");
+    } else if (negativeAmount) {
+      alert("Negative amount values are not allowed");
+    } else {
+      let recipeName = form[form.length - 2].value;
+      data = {
+        "recipeName": recipeName,
+        "recipe": JSON.stringify(recipe),
+        "calories": totalCalories
+      }
+      if (data["recipe"].length > 7500) {
+        alert("Your recipe is too large to be stored!");
+      } else {
+        $.ajax("/save_recipe", {
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(data)
+        }).done(str => {
+          if (str == "Recipe Exists") {
+            alert("Recipe already exists!")
+          } else {
+            alert("Recipe saved")
+          }
+        });
+      }
+    }
+  }
+}
+
+/* Searches the food database for typeahead's suggestions */
+function search(query, syncResults, asyncResults) {
+  // Query database asynchronously
+  let parameters = {
+    q: query
+  };
+  $.getJSON("/search", parameters, function(data, textStatus, jqXHR) {
+    // Call typeahead's callback with search results
+    asyncResults(data);
+  });
+}
+
+/* Helper functions for input validation */
+function isAnEmptyRow(desc, amount, unit) {
+  return desc === "" && amount === "" && unit === "";
+}
+
+function hasMissingInput(desc, amount, unit) {
+  return desc === "" || amount === "" || unit === "" || unit === "units";
+}
+
+function hasNegativeAmount(amount) {
+  return amount < 0;
+}
+
+function getCaloriesOfIngredient(desc, amount, unit) {
+  let calories = 0;
+  let ingredient = ingredients[desc];
+  if (unit in weightConversionUnits) {
+    let conversionFactor = weightConversionUnits[unit];
+    calories += (amount / ingredient["weightInGrams"])
+      * ingredient["energyPerMeasure"] * conversionFactor;
+  } else if (unit in volumeConversionUnits) {
+    let conversionFactor = volumeConversionUnits[unit][ingredient["measure"]];
+    calories += (amount / ingredient["measureAmount"])
+      * ingredient["energyPerMeasure"] * conversionFactor;
+  } else {
+    calories += (amount / ingredient["measureAmount"])
+      * ingredient["energyPerMeasure"];
+  }
+  return calories;
+}
+
+/* Creates a container to display the specified total number
+   of calories and pie chart of breakdown */
+function createResultContainer(totalCalories) {
+  let resultContainer = document.createElement("div");
+  resultContainer.setAttribute("class", "result-container");
+  resultContainer.innerHTML = "<h3>This recipe contains...</h3>"
+    + "<p class=\"calorie-result\">"
+    + Math.floor(totalCalories) + " calories</p>"
+    + "<div id=\"piechart\" style=\"width: 900px; height: 500px\"></div>";
+  return resultContainer;
 }
 
 /* Inserts HTML to display calorie results and breakdown on the webpage */
 function displayResults(totalCalories, breakdown) {
-  
   var toInsertAfter = document.getElementsByClassName("calorie-container")[0];
   var resultContainer = document.getElementsByClassName("result-container")[0];
   if (resultContainer != null) {
@@ -260,10 +411,8 @@ function displayResults(totalCalories, breakdown) {
   google.charts.setOnLoadCallback(drawChart);
 
   function drawChart() {
-
     var data = google.visualization.arrayToDataTable(breakdown);
     var options = {};
-
     if (localStorage.getItem('mode') === 'dark') {
       options = {
         title: "Breakdown",
@@ -283,94 +432,20 @@ function displayResults(totalCalories, breakdown) {
         title: "Breakdown"
       };
     }
-
     var chart =
       new google.visualization.PieChart(document.getElementById("piechart"));
-    
-
     chart.draw(data, options);
-
-  }
-  
-  google.visualization.events.addListener(chart, 'nightMode', drawChart());
-
-}
-
-/* Gets input from the calorie counter and calculates the total number of calories */
-function getInput() {
-  var form = document.forms["calorie-input"];
-  var totalCalories = 0;
-  var breakdown = [["Description", "Calories"]];
-  var recipe = {};
-
-  let missingInput = false;
-  let negativeAmount = false;
-
-  for (let i = 0; i < form.length - 5; i += 4) {
-    let description = form[i].value;
-    let amount = form[i + 1].value;
-    let unit = form[i + 2].value;
-    let calories = 0;
-
-    if (description == "" && amount == "" && unit == "") {
-      continue
-    }
-
-    if (description == "" || amount == "" || unit == "" || unit == "units") {
-      missingInput = true;
-      break;
-    }
-    
-    if (amount < 0) {
-      negativeAmount = true;
-      break;
-    }
-    
-    let ingredient = ingredients[description];
-    if (unit in weightConversionUnits) {
-      let conversionFactor = weightConversionUnits[unit];
-      calories += (amount / ingredient["weightInGrams"])
-        * ingredient["energyPerMeasure"] * conversionFactor;
-    } else if (unit in volumeConversionUnits) {
-      let conversionFactor = volumeConversionUnits[unit][ingredient["measure"]];
-      calories += (amount / ingredient["measureAmount"])
-        * ingredient["energyPerMeasure"] * conversionFactor;
-    } else {
-      calories += (amount / ingredient["measureAmount"])
-        * ingredient["energyPerMeasure"];
-    }
-    totalCalories += calories;
-    breakdown[breakdown.length] = [description, calories];
-
-    // Store recipe
-    let ingredientInformation = {};
-    ingredientInformation["description"] = description;
-    ingredientInformation["amount"] = amount;
-    ingredientInformation["unit"] = unit;
-    ingredientInformation["calories"] = calories;
-    recipe["ingredient" + (i / 4 + 1)] = ingredientInformation;
-  }
-
-  if (missingInput) {
-    alert("Please fill in all input fields");
-  } else if (negativeAmount) {
-    alert("Negative amount values are not allowed");
-  } else {
-    displayResults(totalCalories, breakdown);
   }
 }
 
-/* Inserts the specified element after the specified reference node */
-function insertAfter(el, referenceNode) {
-  referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
-}
-
-/* Handles the registration form submission */
+/**
+ * Handles form registration submission.
+ */
 function registrationFormSubmission() {
-  var form = document.forms["registration-form"];
-  var username = form[0].value;
-  var password = form[1].value;
-  var confirmation = form[2].value;
+  let form = document.forms["registration-form"];
+  let username = form[0].value;
+  let password = form[1].value;
+  let confirmation = form[2].value;
   if ($.trim(username) === "" || $.trim(password) === "") {
     alert("Please fill in all fields (space padding is not allowed)");
   } else if (password.length < 5) {
@@ -384,115 +459,17 @@ function registrationFormSubmission() {
   }
 }
 
-/* Saves the recipe specified by the user */
-function saveRecipe() {
-  var form = document.forms["calorie-input"];
-  var totalCalories = 0;
-  var recipe = {};
-
-  let missingInput = false;
-  let negativeAmount = false;
-
-  for (let i = 0; i < form.length - 5; i += 4) {
-    let description = form[i].value;
-    let amount = form[i + 1].value;
-    let unit = form[i + 2].value;
-    let calories = 0;
-
-    if (description == "" && amount == "" && unit == "") {
-      continue;
-    }
-
-    if (description == "" || amount == "" || unit == "" || unit == "units") {
-      missingInput = true;
-      break;
-    }
-
-    if (amount < 0) {
-      negativeAmount = true;
-      break;
-    }
-
-    let ingredient = ingredients[description];
-    if (unit in weightConversionUnits) {
-      let conversionFactor = weightConversionUnits[unit];
-      calories += (amount / ingredient["weightInGrams"])
-                  * ingredient["energyPerMeasure"] * conversionFactor;
-    } else if (unit in volumeConversionUnits) {
-      let conversionFactor = volumeConversionUnits[unit][ingredient["measure"]];
-      calories += (amount / ingredient["measureAmount"])
-                  * ingredient["energyPerMeasure"] * conversionFactor;
-    } else {
-      calories += (amount / ingredient["measureAmount"])
-                  * ingredient["energyPerMeasure"];
-    }
-    totalCalories += calories;
-
-    let ingredientInformation = {};
-    ingredientInformation["description"] = description;
-    ingredientInformation["amount"] = amount;
-    ingredientInformation["unit"] = unit;
-    ingredientInformation["calories"] = calories;
-    recipe["ingredient" + (i / 4 + 1)] = ingredientInformation;
-
-  }
-
-  if (missingInput) {
-    alert("Please fill in all input fields");
-  } else if (negativeAmount) {
-    alert("Negative amount values are not allowed");
+/* Toggles night mode in the website
+ * Source: https://flaviocopes.com/dark-mode/ */
+document.addEventListener('DOMContentLoaded', (event) => {
+  if (localStorage.getItem('mode') === 'dark') {
+    document.querySelector('body').classList.add('dark');
+    $('#table-savedrecipes').addClass('table-dark');
   } else {
-    recipeName = form[form.length - 2].value;
-    if (recipeName === "") {
-      alert("Please include a recipe name");
-    } else {
-      data = {};
-      data["recipeName"] = recipeName;
-      data["recipe"] = JSON.stringify(recipe);
-      data["calories"] = totalCalories;
-      if (data["recipe"].length > 7500) {
-        alert("Your recipe is too large to be stored!");
-      } else {
-        $.ajax("/save_recipe", {
-            type: "POST",
-            contentType: "application/json",
-            dataType: "json",
-            data: JSON.stringify(data)
-        })
-        .done(str => {
-          if (str == "Recipe Exists") {
-            alert("Recipe already exists!")
-          } else {
-            alert("Recipe saved")
-          }
-        });
-      }
-    }
-  }
-}
-
-/* Searches the food database for typeahead's suggestions */
-function search(query, syncResults, asyncResults) {
-
-  // Query database asynchronously
-  let parameters = {
-    q: query
-  };
-  $.getJSON("/search", parameters, function(data, textStatus, jqXHR) {
-
-    // Call typeahead's callback with search results
-    asyncResults(data);
-  });
-
-}
-
-/* Alerts the user that the selected username is already in use */
-function usernameInUseAlert() {
-  alert("Username already in use");
-}
-
-/* Toggles night mode
-   Source: https://flaviocopes.com/dark-mode/ */
+    document.querySelector('body').classList.remove('dark');
+    $('#table-savedrecipes').removeClass('table-dark');
+  }    
+});
 function toggleNightMode() {
   localStorage.setItem('mode', (localStorage.getItem('mode') || 'dark') === 'dark' ?
     'light' : 'dark');
@@ -511,3 +488,7 @@ function toggleNightMode() {
   }    
 }
 
+/* Inserts the specified element after the specified reference node */
+function insertAfter(el, referenceNode) {
+  referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
+}
