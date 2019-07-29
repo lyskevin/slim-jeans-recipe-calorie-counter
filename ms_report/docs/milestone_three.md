@@ -8,7 +8,7 @@ This is the final milestone. With that, this README will document
 
 1. The features we implemented in our calorie counter webpage
 2. The challenges we faced in implementing such features
-3. The steps we took to overcome these challenges.
+3. The steps we took to overcome these challenges
 4. User testing and additional considerations taken
 
 The site can be found at this [link](https://lyskevin.pythonanywhere.com)   .
@@ -85,10 +85,10 @@ frustration.
 
 ### 3.3 Input Validation
 A big part of simplifying the back-end was to restrict users in selecting
-the ingredients. In order to do this, we simply made one of the fields
-unselectable until the user clicked something from the drop-down menu, this
-would trigger the `Please fill in all input fields` alert, forcing the user
-to pick something from the drop-down menu.
+the ingredients. In order to do this, we simply made the unit field
+unselectable until the user clicked something from the drop-down menu, which
+would trigger the `Please fill in all input fields` alert, hence forcing the
+user to pick something from the drop-down menu.
 
 ### 3.4 Empty Rows
 We received feedback in milestone 2 that empty rows in the table would not
@@ -106,8 +106,8 @@ function isAnEmptyRow(desc, amount, unit) {
 This seemed to work well without issues.
 
 ### 3.5 Piechart for Results
-The calorie counter now displays a piechart, giving users at a glance which
-ingredients contributes the most to the overall caloric amount. This fulfilled
+The calorie counter now displays a piechart, giving users a glance at which
+ingredient contributes the most to the overall caloric amount. This fulfilled
 one of the features we wanted to add to the website.
 
 For this feature, we used the
@@ -240,8 +240,22 @@ else:
 ```
 
 ### 4.4 Session ID
-<!-- Please explain this section -->
-  
+The user's user id (as stored in the SQL database upon registration) and
+username is stored after logging in. The Python code that handles this is
+as follows:
+
+```Python
+session["user_id"] = userInformation[0][0]
+session["username"] = userInformation[0][1]
+```
+
+Flask has a session object which deals with user information during web browsing,
+while userInformation is a 2D array that contains the user's information after
+querying the database. In this way, we can use Flask to pass user information
+to the front-end, which can then be accessed with the Jinja2 templating language.
+This allows us to keep track of things such as whether a user is logged in and
+render the website accordingly. For instance, the top navbar will have different
+options for users who are logged in.
 
 ## 5 Saving Recipes to Database
 This feature was annoying and frustrating to implement, mostly due to the
@@ -429,21 +443,21 @@ else:
     return json.dumps("Recipe saved")
 ```
 
-#### Method of Storage
+#### 5.4 Method of Storage
 We store each recipe along with its recipe name, number of calories and
 the date and time at which it was saved at inside our database. The individual
-ingredient information was stored in a large JSON string such as the following,
+ingredient information iss stored in a large JSON string such as the following:
 
 ```
 {"ingredient1":{"description":"Avocados, raw, California","amount":"200","unit":"grams","calories":333.9130434782609},"ingredient2":{"description":"Milk, canned, condensed, sweetened","amount":"0.75","unit":"cups","calories":738},"ingredient3":{"description":"Milk, whole, 3.25% milkfat, with added vitamin D","amount":"0.75","unit":"cups","calories":111.75},"ingredient4":{"description":"Lime juice, raw","amount":"1","unit":"tablespoons","calories":3.75}}
 ```
 
-This is generated in the front-end when the user saves the recipe, the
+This is generated from the front-end when the user saves the recipe. The
 information is saved to an object and the `#!Python JSON.stringify()` method is
 used to convert it to a string.
 
 Fortunately, we are able to use Flask's `#!Python jsonify()` method to convert
-this long string into a Javascript Object that can be processed by the front-end\
+this long string into a Javascript Object that can be processed by the front-end
 to display the user's saved recipes.
 
 ## 6. Night Mode
@@ -478,7 +492,7 @@ a proper NightMode functionality in all our webpages.
 
 ## 7. User Testing
 We gave it to a few friends and family members who actually cook and see if
-they liked the features. This is what we have obtained
+they liked the features. Here is some feedback that we have gathered.
 
 ### 7.1 Difficulty of Inputting Standard Ingredients
 One of the criticisms we got from users was that it was difficult to input
@@ -500,11 +514,16 @@ We decided to manually add common ingredients such as potatoes, carrots, onions,
 tomatoes, etc into the database with `unit` units, making it easier for
 users to input such ingredients.
 
+We also decided to add some notes regarding some common ingredients since they
+are represented differently in the food database than what we are normally
+used to. One example is clarifying that salt falls under "Salt, table" to
+make it easier for users to find.
+
 ### 7.2 
 
-## 8. Conclusion of the Project
+## 8. Project Conclusion
 We would say that we have learnt greatly from Orbital, particularly the
-many APIs and frameowrks (and lack thereof) we have had the pleasure of using,
+many APIs and frameworks (and lack thereof) we have had the pleasure of using,
 such as Flask, Jinja2, SQLite, etc and the other technologies such as HTML5,
 CSS and native Javascript.
 
@@ -514,8 +533,14 @@ Vue or Angular that abstracts the nitty-gritty of direct DOM
 manipulation and state changes. Even trying to creat and insert a table
 into a webpage is long-winded and cumbersome to do!
 
-No matter what level of achievement we end up obtaining for Orbital, this
-has been a fruitful and memorable project.
+We feel that we could have done more to improve the website, such as
+optimising it for mobile as well as implemented other features which
+we had in mind, but we simply did not have the time to work these
+imporvements.
+
+Regardless, no matter what level of achievement we end up obtaining for
+Orbital, this has been a fruitful and memorable project which has
+taught us a lot about web development and software engineering concepts.
 
 ## 9. Project Log
 Our project log is documented
