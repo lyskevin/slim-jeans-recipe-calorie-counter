@@ -230,10 +230,20 @@ def saved_recipes():
 def graph_generator():
 
     if request.method == "POST":
+        recipe_count = request.data.replace('\"', '')
         connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
         cursor = connection.cursor()
-        rows = cursor.execute("SELECT * FROM recipes WHERE username = (?)",
-                              (session["username"],))
+        rows = None
+        if recipe_count != "All":
+            recipe_count = int(recipe_count)
+            rows = cursor.execute("""SELECT * FROM recipes WHERE username = (?)
+                                  ORDER BY date_time DESC
+                                  LIMIT (?)""",
+                                  (session["username"], recipe_count))
+        else:
+            rows = cursor.execute("""SELECT * FROM recipes WHERE username = (?)
+                                  ORDER BY date_time DESC""",
+                                  (session["username"],))
         dataset = []
         for row in rows:
             data = []
