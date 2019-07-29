@@ -69,7 +69,7 @@ drop-down menu, using Twitter's `typeahead.js`:
 If multiple rows were added at the start, and users tried to select options
 from the drop-down menu, they would have to click multiple times in order to
 select that item properly. If the item was far down the drop-down menu, the
-menu would refresh and brought back to the first entry. This made a menu
+menu would refresh and be brought back to the first entry. This made a menu
 with many entries and selecting an item far down the menu an exercise in
 frustration.
 
@@ -86,13 +86,13 @@ frustration.
 ### 3.3 Input Validation
 A big part of simplifying the back-end was to restrict users in selecting
 the ingredients. In order to do this, we simply made the unit field
-unselectable until the user clicked something from the drop-down menu, which
+unselectable until the user clicked something from the drop-down menu. This
 would trigger the `Please fill in all input fields` alert, hence forcing the
 user to pick something from the drop-down menu.
 
 ### 3.4 Empty Rows
-We received feedback in milestone 2 that empty rows in the table would not
-allow the user to submit the form using the "Analyze Calories" button. We
+We received feedback in Milestone Two that empty rows in the table would not
+allow the user to submit the form using the **Analyze Calories** button. We
 originally forced the user to fill in all input fields within the form in order
 to submit it using a simple boolean check. We added in a simple `if` check to
 continue processing the rest of the ingredients if an empty row was found.
@@ -103,11 +103,11 @@ function isAnEmptyRow(desc, amount, unit) {
 }
 ```
 
-This seemed to work well without issues.
+This seems to work well without issues.
 
 ### 3.5 Piechart for Results
-The calorie counter now displays a piechart, giving users a glance at which
-ingredient contributes the most to the overall caloric amount. This fulfilled
+The calorie counter now displays a piechart, giving users at a glance what
+ingredients contribute the most to the overall caloric amount. This fulfilled
 one of the features we wanted to add to the website.
 
 For this feature, we used the
@@ -148,27 +148,26 @@ User Accounts and Sign-ins were a big part of how we implemented certain
 functions within the webapp. Flask has a framework for User Accounts already
 available.
 
-### 4.1 Information Transfer
-Passing username/passwords back and forth between the front and back-end was
-done using HTTPS POST requests. We read that this is standard for web
-security nowadays as HTTPS encryption in required as a step in preventing
-MiTM attacks.
-
-### 4.2 Registration
 While we initially intended to work with Firebase to do Google/Facebook
 Sign-ins due to the ease of implementation and security in having established
-third-parties handle authentications for us, 
-we decided against this because we wanted to appreciate the
-difficulty and security considerations with storing usernames, passwords
-and doing secure serverside authentication, and how big of a topic it is in
-web security.
+third-parties handle authentications for us, we decided against this because we
+wanted to appreciate the difficulty and security considerations with storing
+usernames, passwords and doing secure serverside authentication, and how big of
+a topic it is in web security.
 
-We used Flask's [Werkzeug](https://pypi.org/project/Werkzeug/) library to
-handle password hashing and salting. Hashing ensures that we do not store
-passwords in plaintext, while salting ensures that similar passwords don't
-result in the same hash, and to prevent the use of
+### 4.1 Information Transfer
+Passing username and passwords back and forth between the front and back-end
+was done using HTTPs POST requests. This was required to prevent against
+MiTM (man-in-the-middle) attacks.
+
+### 4.2 Registration
+We used Flask's
+[Werkzeug](https://pypi.org/project/Werkzeug/)
+library to handle password hashing and salting. Hashing ensures that we do not
+store passwords in plaintext, while salting ensures that similar passwords
+don't result in the same hash, and to prevent the use of
 [Rainbow Tables](https://en.wikipedia.org/wiki/Rainbow_table).
-For example, I made two accounts with the following usernames and passwords
+For example, I made two accounts with the following usernames and passwords:
 
 ```text
 user        password
@@ -180,14 +179,16 @@ hashed2     123456
 The two passwords were hashed and salted to:
 
 ```text
-hashed1:
+hashed1 password:
 pbkdf2:sha256:150000$QBDEP5Jn$3001b4fb44eeb17630b6d9a0089f9b883686bd6ea9a61cec1f8b1ae0ade8e05e
 
-hashed2:
+hashed2 password:
 pbkdf2:sha256:150000$0o18iF5N$7c406da90ce724f65c896fe931f9bda806fb3f04b55e21d1f9f0f88488b47385
+
+The two hashes are obviously different
 ```
 
-... making it more secure. In the back-end, our code is simply -
+... making it more secure. In the back-end, our code is simply:
 
 ```Python
 @app.route("/register", methods=["GET", "POST"])
@@ -249,23 +250,25 @@ session["user_id"] = userInformation[0][0]
 session["username"] = userInformation[0][1]
 ```
 
-Flask has a session object which deals with user information during web browsing,
-while userInformation is a 2D array that contains the user's information after
-querying the database. In this way, we can use Flask to pass user information
-to the front-end, which can then be accessed with the Jinja2 templating language.
-This allows us to keep track of things such as whether a user is logged in and
-render the website accordingly. For instance, the top navbar will have different
-options for users who are logged in.
+Flask has a session object which deals with user information during web
+browsing, while userInformation is a 2D array that contains the user's
+information after querying the database. In this way, we can use Flask to pass
+user information to the front-end, which can then be accessed with the Jinja2
+templating language. This allows us to keep track of things such as whether a
+user is logged in and render the website accordingly. For instance, the top
+navbar will have different options for users who are logged in.
 
 ## 5 Saving Recipes to Database
-This feature was annoying and frustrating to implement, mostly due to the
-handling of events by the Display and Delete buttons. Majority of the problems
-faced were due to `async` on the front-end, rather than the back-end.
+This feature was surprisingly annoying and frustrating to implement, mostly
+due to the handling of events by the Display and Delete buttons. Many of
+the problems faced were due to `async` on the front-end, rather than the
+back-end.
 
 ### 5.1 Front-end
 We had a few versions of this page using vanilla Javascript. But this proved
 to be very time-consuming and frustrating to work with. In the end, we ended up
-going with the [DataTables](https://datatables.net/)
+going with the
+[DataTables](https://datatables.net/)
 library, which allowed us to more easily create a table with additional
 functionality, that also allowed styling via Bootstrap.
 
@@ -299,7 +302,8 @@ two additional functionality in the form of two buttons in each row:
         <tr>
           <td class="button2" align="center">
             <button class='btn btn-block btn-danger btn-sm'
-                    style='width: 80px;'>Delete</button>
+                    style='width: 80px;'
+                    onclick='toggleDelete()'>Delete</button>
           </td>
           <td align="left">
             Deletes the recipe from the table (and database). While DataTable's
@@ -314,11 +318,11 @@ two additional functionality in the form of two buttons in each row:
 </div>
 
 #### "Delete"
-The "delete" functionality posed some challenges for us. First, `ajax` requests
-are asynchronous, and so making an `ajax` call every time the user deletes
-something caused some problems with the code (functions not returning until
-`ajax` request has finished, causing `null` in some variables, etc). So, we
-ended up storing the names of the recipes that were to be deleted in an
+The "delete" functionality posed some challenges for us. Firstly, `ajax`
+requests are asynchronous, and so making an `ajax` call every time the user
+deletes something caused some problems with the code (functions not returning
+until `ajax` request has finished, causing `null` in some variables, etc). So,
+we ended up storing the names of the recipes that were to be deleted in an
 array (a "fake" delete, as it were), and executing an `ajax` request to delete
 all the recipes from the database once the page is unloaded.
 
@@ -341,10 +345,12 @@ It also turned out that doing this method made the `undo` button easier to
 implement as well.
 
 ### 5.2 Undo Functionality
-We felt that an `undo` option is very important for users. This is from
-experience of frequently using `Ctrl-Shift-T` to reopen closed tabs on browsers,
-or `Ctrl-Z` in most programs. We used Bootstrap alerts to create a way for
-users to "Undo" a delete they may have accidentally clicked:
+One of our users commented on the lack of an `undo` button in the saved recipes
+page, something like what GMail has when the user deletes an e-mail. Therefore,
+we have implemented an `undo` functionality within the saved recipes page.
+
+We used Bootstrap alerts to create a way for users to `undo` a delete they may
+have accidentally clicked:
 
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
   Deleted "recipe_name".
@@ -356,7 +362,9 @@ users to "Undo" a delete they may have accidentally clicked:
   </button>
 </div>
 
-The `undo` button's event was handled by jQuery
+The `undo` button's event was handled by jQuery, the function acquires
+the data from a large JSON object, appends it to the table and redraws
+the table. The "fake delete" array is updated as well.
 
 ```Javascript
 /**
@@ -379,9 +387,6 @@ function handleUndoOnClick(recipeName, recipes) {
   })
 }
 ```
-
-This allows the users to Undo the delete if it was by accident, or if the user
-had a change of heart.
 
 ### 5.3 Back-end
 Flask has a `jsonify()` method to pass JSON objects back to the

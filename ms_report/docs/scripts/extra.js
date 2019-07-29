@@ -21,3 +21,8 @@ function toggleDisplayButton(button) {
     parent.appendChild(display);
   }
 }
+
+function toggleDelete() {
+  alert('This deletes a recipe from the table, but not from the database');
+  alert('The delete operation is only handled once the user leaves the page');
+}
