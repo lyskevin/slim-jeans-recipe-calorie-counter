@@ -203,8 +203,10 @@ function createInputTable() {
     /* handle add row */
     $('.calorie-wrapper').on('click', '#add-ingred', function() {
       let numRows = table.data().count() / 4;
-      table.row.add(getRowElements(numRows)).draw();
-      configure(numRows);
+      let rowEl = getRowElements(numRows);
+      let idNo = rowEl.pop();
+      table.row.add(rowEl).draw();
+      configure(idNo);
     });
 
     /* handle delete row */
@@ -229,6 +231,9 @@ function getRowElements(numRows) {
   firstCell.setAttribute('type', 'text');
   firstCell.setAttribute('class', 'input-ingredient typeahead');
   firstCell.setAttribute('placeholder', 'Enter Ingredient');
+  while (document.getElementById('ingredient-' + numRows) != null) {
+    numRows += 1;
+  }
   firstCell.setAttribute('id', 'ingredient-' + numRows);
   firstCell.setAttribute('style', 'width: 512px;');
 
@@ -254,6 +259,7 @@ function getRowElements(numRows) {
     asHTMLString(secondCell),
     asHTMLString(thirdCell),
     asHTMLString(fourthCell),
+    numRows
   ];
 }
 

@@ -113,6 +113,10 @@ table.dataTable thead tr th {
   font-size: 50px;
 }
 
+#calorie-counter .text-bottom {
+  margin-bottom: 10%;
+}
+
 /* Style error page */
 #error .background {
 
