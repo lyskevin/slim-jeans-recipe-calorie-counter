@@ -24,7 +24,7 @@ site's UI.
     This made it easier to view the website on mobile, such as the following:
     <br><br>
     <div class='wrapper-center'>
-      <img src="../figures/ms3/mob_view.png" alt="typeahead gif">
+      <img src="../figures/ms3/mob_view.PNG" alt="typeahead gif">
     </div>
     <br>
   </li>
@@ -574,6 +574,23 @@ Regardless, no matter what level of achievement we end up obtaining for
 Orbital, this has been a fruitful and memorable project which has
 taught us a lot about web development and software engineering concepts.
 
-## 9. Project Log
+## 9. Deliverables
+
+### 9.1 Poster
+<div class='wrapper-center'>
+  <img src="../figures/ms3/poster.png" alt="poster">
+</div>
+
+### 9.2 Project Log
 Our project log is documented
 [in this Google Sheet](https://docs.google.com/spreadsheets/d/17kEtNaCyYZzXc2UWd6ss4zXTWQ4-QY7XN3ODB6DpEJs/edit?usp=sharing)
+
+### 9.3 Video
+<div class='wrapper-center'>
+  <iframe width="640"
+          height="360"
+          src="https://www.youtube.com/embed/se1fP5lb1ug"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+</div>

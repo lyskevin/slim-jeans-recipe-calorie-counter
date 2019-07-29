@@ -11,6 +11,11 @@ img[alt^="typeahead"] {
     border: 1px solid;
 }
 
+img[alt^="poster"] {
+  height: 800px;
+  border: 1px solid;
+}
+
 .wrapper-center {
     text-align: center;
 }
@@ -19,8 +24,8 @@ img[alt^="typeahead"] {
     color: grey;
 }
 
-.alert {
-    height: 70px;
+#alert-2, #alert-1 {
+    height: 62px;
 }
 
 h5 {
@@ -41,14 +46,6 @@ pre .nx {
     color: #37474f !important;
 }
 
-td.details-control {
-  background: url('../figures/ms3/details_open.png') no-repeat center center;
-  background-size: 30%;
-  cursor: pointer;
-}
-
-td.details-delete {
-  background: url('../figures/ms3/details_close.png') no-repeat center center;
-  background-size: 30%;
-  cursor: pointer;
+td {
+  vertical-align: middle !important;
 }
