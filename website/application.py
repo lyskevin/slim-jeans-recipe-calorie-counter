@@ -18,6 +18,7 @@ ROOT = path.dirname(path.realpath(__file__))
 """ Helper Functions """
 
 
+@app.errorhandler(HTTPException)
 def handle_http_exception(e):
     return render_template("error.html"), 200
 
