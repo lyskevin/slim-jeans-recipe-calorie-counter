@@ -535,6 +535,10 @@ function toggleNightMode() {
   var piechart = document.getElementById("piechart");
   if (piechart !== null) {
     getInput();
+  }
+  var graph = document.getElementById("column_chart");
+  if (graph !== null) {
+    generateGraph();
   }    
 }
 
@@ -565,11 +569,38 @@ function generateGraph() {
         dataset[i + 1] = data;
       }
       dataset = google.visualization.arrayToDataTable(dataset);
-      var options = {
-        title: 'Calorie Graph',
-        curveType: 'function',
-        legend: {position: 'bottom'}
-      };
+      var options = {};
+      if (localStorage.getItem('mode') === 'dark') {
+        options = {
+          title: 'Calorie Graph',
+          titleTextStyle: {
+            color: 'white'
+          },
+          legend: {
+            textStyle: {
+              color: 'white'
+            },
+            position: 'bottom'
+          },
+          hAxis: {
+            textStyle: {
+              color: 'white'
+            }
+          },
+          vAxis: {
+            textStyle: {
+              color: 'white'
+            }
+          },
+          backgroundColor: '#232b2b',
+          /*colors: ['red', 'orange', 'yellow', 'green', 'blue', 'purple']*/
+        };
+      } else {
+        options = {
+          title: 'Calorie Graph',
+          legend: {position: 'bottom'}
+        }
+      }
 
       var chart =
         new google.visualization.ColumnChart(document.getElementById('column_chart'));
@@ -578,6 +609,7 @@ function generateGraph() {
     }
 
   });
+    
 }
 
 /* Handles the form submission for changing passwords */
