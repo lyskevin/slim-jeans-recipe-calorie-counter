@@ -73,6 +73,7 @@ var volumeConversionUnits = {
     "fluid ounces": 1
   }
 };
+const regexRecipe = /^[a-zA-Z0-9 _'-]*$/;
 
 /* Executes when the DOM is fully loaded */
 $(document).ready(function() {  
@@ -319,13 +320,12 @@ function getInput() {
 /* Saves the recipe specified by the user */
 function saveRecipe() {
   let form = document.forms["calorie-form"];
-  let recipeName = form[form.length - 2].value;
+  const recipeName = form[form.length - 2].value;
   if (recipeName === "")
     alert("Please include a recipe name.");
-  else if (!/^[a-zA-Z0-9!@#$%^*_,\s]+$/i.test(recipeName)) {
+  else if (!regexRecipe.test(recipeName)) {
     alert("Invalid recipe name.");
   } else {
-    console.log("asd");
     let totalCalories = 0;
     let recipe = {};
 
@@ -378,7 +378,7 @@ function saveRecipe() {
             dataType: "json",
             data: JSON.stringify(data)
         }).done(str => {
-          if (str == "Recipe Exists") {
+          if (str === "Recipe already exists!") {
             alert("Recipe already exists!")
           } else {
             alert("Recipe saved")
