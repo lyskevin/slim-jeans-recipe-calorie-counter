@@ -15,7 +15,31 @@
 </div>
 
 <div class="content">
-  <div id="column_chart" style="width: 900px; height: 500px"></div>
-  <script>generateGraph()</script>
+<ul class="notes">
+    <li>
+      Hover the mouse over each bar to see more detailed information
+    </li>
+    <li>
+      The area covered by the graph cannot be right-clicked
+    </li>
+  </ul>
+  <div class="graph-generator-input">
+    <span>
+      Select number of recipes to display:
+    </span>
+    <select id="recipe-count">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+      <option value="All">All</option>
+    </select>
+    <input
+      type="button"
+      class="btn btn-light"
+      value="Generate Graph"
+      onclick="generateGraph()">
+  </div>
+  <!--Hover over to see date, cannot right click graph-->
 </div>
 {% endblock %}
