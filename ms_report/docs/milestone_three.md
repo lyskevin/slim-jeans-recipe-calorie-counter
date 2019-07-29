@@ -2,24 +2,49 @@
 
 **Proposed Level of Achievement:** Apollo 11
 
-## 1. Site Design Revamped
-We realised that the original design was a bit plain, so we decided to make
-some changes to the site's UI.
+## 1. Overview
 
-1. We removed the sidenav entirely as it only gave us issues viewing the
-   platform on mobile, moving the sidenav links and elements to the topnav
-2. All images used are either our own, or images sourced from this website
-   [this website](https://www.pexels.com/search/food/).
-3. In general, the site looks more appealing to the eye.
+This is the final milestone. With that, this README will document
 
-## 2. Calorie Counter
+1. The features we implemented in our calorie counter webpage
+2. The challenges we faced in implementing such features
+3. The steps we took to overcome these challenges.
+4. User testing and additional considerations taken
+
+The site can be found at this [link](https://lyskevin.pythonanywhere.com)   .
+
+## 2. Revamp of Site UI
+The original design was a bit plain, so we decided to make some changes to the
+site's UI.
+
+<ol>
+
+  <li>
+    We removed the sidenav entirely as it only gave us issues viewing the
+    platform on mobile, moving the sidenav links and elements to the topnav.
+    This made it easier to view the website on mobile, such as the following:
+    <br><br>
+    <div class='wrapper-center'>
+      <img src="../figures/ms3/mob_view.png" alt="typeahead gif">
+    </div>
+    <br>
+  </li>
+
+  <li>
+    All images used are either our own, or images sourced from
+    <a href='https://www.pexels.com/search/food/'>this website</a>.
+  </li>
+  <li>
+    In general, the site looks more appealing to the eye.
+  </li>
+</ol>
+
+## 3. Calorie Counter
 This was already shown in the prototype to work, there are however, a few
 aspects that we would like to talk about in this section.
 
 ### 2.1 `typeahead.js` technical details
-<div class="todo">
-  <p>We didn't talk about this in MS2</p>
-</div>
+The `typehead` box is actually just a wrapper in between each
 
 ### 2.2 `typeahead.js` bug
 Unbeknownst to us, the prototype shown in Milestone Two had a rather annoying

@@ -77,6 +77,9 @@ function createRecipeTableForUser() {
             this.removeChild(this.childNodes[0]);
             this.appendChild(button);
             row.child(data[index]["addInfo"]).show();
+            if (localStorage.getItem('mode') === 'dark') {
+              $('.sr-inner-table').addClass('table-dark');
+            }
             tr.addClass('shown');
           }
         });
@@ -128,7 +131,6 @@ function getAdditionalInfo(recipe, totalCalories) {
   // create thead
   let headerText = ["Description", "Amount", "Units", "Calories"];
   let header = info.createTHead();
-  header.setAttribute("class", "thead-light");
   let headerRow = header.insertRow();
   for (let header in headerText) {
     let th = document.createElement("th");

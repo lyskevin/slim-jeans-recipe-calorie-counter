@@ -513,10 +513,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.querySelector('body').classList.add('dark');
     $('#sr-recipe-table').addClass('table-dark');
     $('#input-table').addClass('table-dark');
+    $('.sr-inner-table').addClass('table-dark');
   } else {
     document.querySelector('body').classList.remove('dark');
     $('#sr-recipe-table').removeClass('table-dark');
     $('#input-table').removeClass('table-dark');
+    $('.sr-inner-table').removeClass('table-dark');
   }    
 });
 
@@ -527,10 +529,12 @@ function toggleNightMode() {
     document.querySelector('body').classList.add('dark');
     $('#sr-recipe-table').addClass('table-dark');
     $('#input-table').addClass('table-dark');
+    $('.sr-inner-table').addClass('table-dark');
   } else {
     document.querySelector('body').classList.remove('dark');
     $('#sr-recipe-table').removeClass('table-dark');
     $('#input-table').removeClass('table-dark');
+    $('.sr-inner-table').removeClass('table-dark');
   }
   var piechart = document.getElementById("piechart");
   if (piechart !== null) {
