@@ -287,6 +287,7 @@ function findRecipe(recipeName, recipes) {
       if (recipe[1] === recipeName) {
         obj["recipeName"] = recipe[1];
         obj["calories"] = Math.floor(recipe[3]);
+        obj["dateTime"] = convertDate(recipe[4]);
         obj["addInfo"] = getAdditionalInfo(recipe[2], recipe[3]);
       }
     });
