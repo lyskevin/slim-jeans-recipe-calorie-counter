@@ -19,8 +19,8 @@ img[alt^="typeahead"] {
     color: grey;
 }
 
-.alert {
-    height: 70px;
+#alert-2, #alert-1 {
+    height: 62px;
 }
 
 h5 {
