@@ -18,7 +18,6 @@ The original design was a bit plain, so we decided to make some changes to the
 site's UI.
 
 <ol>
-
   <li>
     We removed the sidenav entirely as it only gave us issues viewing the
     platform on mobile, moving the sidenav links and elements to the topnav.
@@ -29,7 +28,6 @@ site's UI.
     </div>
     <br>
   </li>
-
   <li>
     All images used are either our own, or images sourced from
     <a href='https://www.pexels.com/search/food/'>this website</a>.
@@ -43,10 +41,21 @@ site's UI.
 This was already shown in the prototype to work, there are however, a few
 aspects that we would like to talk about in this section.
 
-### 2.1 `typeahead.js` technical details
-The `typehead` box is actually just a wrapper in between each
+### 3.1 `typeahead.js` technical details
+The `typeahead` box is actually just a wrapper around each `<input>` tag.
 
-### 2.2 `typeahead.js` bug
+```HTML
+<span class="twitter-typeahead" style="position: relative; display: inline-block;">
+    <!-- Input box -->
+</span>
+```
+
+A `configure()` method is called on each input box that wraps the `typeahead`
+object around each one. Every character typed queries the database using a
+regex, this allows for dynamic ingredient searching while the user types their
+desired query.
+
+### 3.2 `typeahead.js` bug
 Unbeknownst to us, the prototype shown in Milestone Two had a rather annoying
 bug that presented itself when one added rows to the calorie counter. In order
 to do input validation, we forced the user to select options from the
@@ -74,37 +83,29 @@ frustration.
   <p>TODO: How this was fixed</p>
 </div>
 
-### 2.3 Input Validation
+### 3.3 Input Validation
 A big part of simplifying the back-end was to restrict users in selecting
 the ingredients. In order to do this, we simply made one of the fields
 unselectable until the user clicked something from the drop-down menu, this
 would trigger the `Please fill in all input fields` alert, forcing the user
 to pick something from the drop-down menu.
 
-### 2.4 Empty Rows
-We received feedback that empty rows in the table would not allow the user to
-submit the form using the "Analyze Calories" button. We originally forced the
-user to fill in all input fields within the form in order to submit it using
-a simple boolean check. We added in an additional `if` check to continue
-processing the rest of the ingredients if an empty row was found.
+### 3.4 Empty Rows
+We received feedback in milestone 2 that empty rows in the table would not
+allow the user to submit the form using the "Analyze Calories" button. We
+originally forced the user to fill in all input fields within the form in order
+to submit it using a simple boolean check. We added in a simple `if` check to
+continue processing the rest of the ingredients if an empty row was found.
 
 ```Javascript
-if (!(description == "" && amount == "" && unit == "")) {
-  :
-}
-```
-
-... Which we can abstract into a function such as:
-
-```Javascript
-function isAnEmptyRow() {
-  :
+function isAnEmptyRow(desc, amount, unit) {
+  return desc === "" && amount === "" && unit === "";
 }
 ```
 
 This seemed to work well without issues.
 
-### 2.5 Piechart for Results
+### 3.5 Piechart for Results
 The calorie counter now displays a piechart, giving users at a glance which
 ingredients contributes the most to the overall caloric amount. This fulfilled
 one of the features we wanted to add to the website.
@@ -115,44 +116,45 @@ to render the chart.
 
 ```Javascript
 function drawChart() {
-    var data = google.visualization.arrayToDataTable(breakdown);
-    var options = {};
-    if (localStorage.getItem('mode') === 'dark') {
-      options = {
-        title: "Breakdown",
-        titleTextStyle: {
-          color: 'white'
-        },
-        legend: {
-          textStyle: {
-            color: 'white'
-          }
-        },
-        backgroundColor: '#232b2b',
+  let data = google.visualization.arrayToDataTable(breakdown);
+  let options = {};
+  if (localStorage.getItem('mode') === 'dark') {
+    options = {
+      title: "Breakdown",
+      titleTextStyle: {
         color: 'white'
-      };
-    } else {
-      options = {
-        title: "Breakdown"
-      };
-    }
-    var chart =
-      new google.visualization.PieChart(document.getElementById("piechart"));
-    chart.draw(data, options);
+      },
+      legend: {
+        textStyle: {
+          color: 'white'
+        }
+      },
+      backgroundColor: '#232b2b',
+      color: 'white'
+    };
+  } else {
+    options = {
+      title: "Breakdown"
+    };
+  }
+  var chart =
+    new google.visualization.PieChart(document.getElementById("piechart"));
+  chart.draw(data, options);
 }
 ```
 
-## 3. User Accounts and Sign-ins
+## 4. User Accounts and Sign-ins
 User Accounts and Sign-ins were a big part of how we implemented certain
 functions within the webapp. Flask has a framework for User Accounts already
 available.
 
-### 3.1 Information Transfer
+### 4.1 Information Transfer
 Passing username/passwords back and forth between the front and back-end was
 done using HTTPS POST requests. We read that this is standard for web
-security nowadays due to HTTPS encryption to prevent MiTM attacks.
+security nowadays as HTTPS encryption in required as a step in preventing
+MiTM attacks.
 
-### 3.2 Registration
+### 4.2 Registration
 While we initially intended to work with Firebase to do Google/Facebook
 Sign-ins due to the ease of implementation and security in having established
 third-parties handle authentications for us, 
@@ -164,8 +166,9 @@ web security.
 We used Flask's [Werkzeug](https://pypi.org/project/Werkzeug/) library to
 handle password hashing and salting. Hashing ensures that we do not store
 passwords in plaintext, while salting ensures that similar passwords don't
-result in the same hash. For example, I made two accounts with the following
-usernames and passwords
+result in the same hash, and to prevent the use of
+[Rainbow Tables](https://en.wikipedia.org/wiki/Rainbow_table).
+For example, I made two accounts with the following usernames and passwords
 
 ```text
 user        password
@@ -187,47 +190,65 @@ pbkdf2:sha256:150000$0o18iF5N$7c406da90ce724f65c896fe931f9bda806fb3f04b55e21d1f9
 ... making it more secure. In the back-end, our code is simply -
 
 ```Python
-hashed_password = generate_password_hash(form["password"])
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        form = request.form
+        username = form["username"]
+        hashed_password = generate_password_hash(form["password"])
+        connection = sqlite3.connect(path.join(<connect to db>))
+        cursor = connection.cursor()
+        try:
+            cursor.execute("""INSERT INTO users
+                           (username, password)
+                           VALUES(?, ?)""",
+                           (username, hashed_password))
+            connection.commit()
+        except sqlite3.IntegrityError:
+            connection.close()
+            flash("Username already in use")
+            return render_template("register.html")
+        connection.close()
+        return redirect("/")
+    else:
+        return render_template("register.html")
 ```
 
-### 3.3 Logins
+### 4.3 Logins
 Logins were simple. We simply sent the username and password back to the
 back-end, and uses Werkzeug's `check_password_hash()` function to check if the
 given password matched the hashed password in our database. If it matches,
 it logs the user in and redirects the user to the front-page.
 
 ```Python
-if request.method == "POST":
-    form = request.form
-    username = form["username"]
-    password = form["password"]
-    connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
-    cursor = connection.cursor()
-    cursor.execute("""SELECT * FROM users WHERE username = (?)""",
-                    (username,))
-    userInformation = cursor.fetchall()
-    if len(userInformation) < 1 or \
-        not check_password_hash(userInformation[0][2], password):
-        flash("Invalid username and/or password")
-        return render_template("login.html")
-    else:
-        session["user_id"] = userInformation[0][0]
-        session["username"] = userInformation[0][1]
-        return redirect("/")
-else:
+form = request.form
+username = form["username"]
+password = form["password"]
+connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
+cursor = connection.cursor()
+cursor.execute("""SELECT * FROM users WHERE username = (?)""",
+                (username,))
+userInformation = cursor.fetchall()
+if len(userInformation) < 1 or \
+    not check_password_hash(userInformation[0][2], password):
+    flash("Invalid username and/or password")
     return render_template("login.html")
+else:
+    session["user_id"] = userInformation[0][0]
+    session["username"] = userInformation[0][1]
+    return redirect("/")
 ```
 
-### 3.4 Session ID
+### 4.4 Session ID
 <!-- Please explain this section -->
   
 
-## 4 Saving Recipes to Database
+## 5 Saving Recipes to Database
 This feature was annoying and frustrating to implement, mostly due to the
 handling of events by the Display and Delete buttons. Majority of the problems
 faced were due to `async` on the front-end, rather than the back-end.
 
-### 4.1 Front-end
+### 5.1 Front-end
 We had a few versions of this page using vanilla Javascript. But this proved
 to be very time-consuming and frustrating to work with. In the end, we ended up
 going with the [DataTables](https://datatables.net/)
@@ -302,7 +323,7 @@ $(window).on('unload', function() {
 It also turned out that doing this method made the `undo` button easier to
 implement as well.
 
-### 4.2 Undo Functionality
+### 5.2 Undo Functionality
 We felt that an `undo` option is very important for users. This is from
 experience of frequently using `Ctrl-Shift-T` to reopen closed tabs on browsers,
 or `Ctrl-Z` in most programs. We used Bootstrap alerts to create a way for
@@ -345,7 +366,7 @@ function handleUndoOnClick(recipeName, recipes) {
 This allows the users to Undo the delete if it was by accident, or if the user
 had a change of heart.
 
-### 4.3 Back-end
+### 5.3 Back-end
 Flask has a `jsonify()` method to pass JSON objects back to the
 front-end Javascript. Conversely, Javascript's jQuery has the ability to make
 an `ajax` request to the Python back-end to send data back. This is how the
@@ -405,19 +426,82 @@ else:
     return json.dumps("Recipe saved")
 ```
 
+#### Method of Storage
+We store each recipe along with its recipe name, number of calories and
+the date and time at which it was saved at inside our database. The individual
+ingredient information was stored in a large JSON string such as the following,
 
+```
+{"ingredient1":{"description":"Avocados, raw, California","amount":"200","unit":"grams","calories":333.9130434782609},"ingredient2":{"description":"Milk, canned, condensed, sweetened","amount":"0.75","unit":"cups","calories":738},"ingredient3":{"description":"Milk, whole, 3.25% milkfat, with added vitamin D","amount":"0.75","unit":"cups","calories":111.75},"ingredient4":{"description":"Lime juice, raw","amount":"1","unit":"tablespoons","calories":3.75}}
+```
 
-## 5. Night Mode
+This is generated in the front-end when the user saves the recipe, the
+information is saved to an object and the `#!Python JSON.stringify()` method is
+used to convert it to a string.
 
-## 6. User Testing
+Fortunately, we are able to use Flask's `#!Python jsonify()` method to convert
+this long string into a Javascript Object that can be processed by the front-end\
+to display the user's saved recipes.
+
+## 6. Night Mode
+This was suggested as a joke during one of our meetings, as inspired
+by NUSMods, but we eventually decided to implement it in our webpages. There's
+a button near the top of the page to toggle NightMode functionality in each
+webpage.
+
+It was primarily done using jQuery, we selected the `#!HTML <body>` tag to add a
+CSS class `#!css class='dark'`. From there, we used CSS to edit the font and
+background color of each elemnt in order to style the page in this way.
+
+```CSS
+body.dark {
+    background-color: rgb(35, 43, 43);
+    color: white;
+}
+
+/* other nitty-gritty css omitted */
+```
+
+For tables, we could use Bootstrap's `#!text table-dark` implementation and just
+add `class='table-dark'` to each table to style it as such
+
+```Javascript
+$('table-id').addClass('table-dark');
+```
+
+We had some issues implementing this with DataTable's library however, and had
+to override some of their own CSS styling in order to successfully implement
+a proper NightMode functionality in all our webpages.
+
+## 7. User Testing
 We gave it to a few friends and family members who actually cook and see if
 they liked the features. This is what we have obtained
 
-<!-- I tried it myself on a Nikujaga recipe lol -->
+### 7.1 Difficulty of Inputting Standard Ingredients
+One of the criticisms we got from users was that it was difficult to input
+ingredients such Potatoes, Carrots or Onions as no recipe gives the *weight* of
+such ingredients, but rather their *number*. For example, a recipe might list
 
+```text
+1 medium carrot
+1 small onion
+...
+```
 
+rather than,
 
-## 7. Conclusion of the Project
+```text
+61g of carrots
+30g of onions
+```
+
+We decided to manually add common ingredients such as potatoes, carrots, onions,
+tomatoes, etc into the database with `unit` calories, making it easier for
+users to input such ingredients.
+
+### 7.2 
+
+## 8. Conclusion of the Project
 We would say that we have learnt greatly from Orbital, particularly the
 many APIs and frameowrks (and lack thereof) we have had the pleasure of using,
 such as Flask, Jinja2, SQLite, etc and the other technologies such as HTML5,
@@ -432,6 +516,6 @@ into a webpage is long-winded and cumbersome to do!
 No matter what level of achievement we end up obtaining for Orbital, this
 has been a fruitful and memorable project.
 
-## Project Log
+## 9. Project Log
 Our project log is documented
 [in this Google Sheet](https://docs.google.com/spreadsheets/d/17kEtNaCyYZzXc2UWd6ss4zXTWQ4-QY7XN3ODB6DpEJs/edit?usp=sharing)

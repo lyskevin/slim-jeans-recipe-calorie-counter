@@ -25,6 +25,7 @@ markdown_extensions:
     - pymdownx.superfences
     - pymdownx.arithmatex
     - pymdownx.caret
+    - pymdownx.inlinehilite
     - codehilite:
         linenums: True
 
