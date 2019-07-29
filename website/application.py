@@ -313,8 +313,7 @@ def register():
             return render_template("register.html")
 
         connection.close()
-        # TODO: Message flash that says registered?
-        # TODO: Some other alternative feedback to indicate that registration was successful
+        flash("Registered!")
         return redirect("/")
 
     else:
