@@ -18,4 +18,13 @@
 <div class="tagline">
   <h2>Let us do the counting so that you can do the eating!</h2>
 </div>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      {% if message == "Registered!" %}
+      <script>alertSuccessfulRegistration()</script>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endwith %}
 {% endblock %}
