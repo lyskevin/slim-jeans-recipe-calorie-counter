@@ -18,9 +18,8 @@ ROOT = path.dirname(path.realpath(__file__))
 """ Helper Functions """
 
 
-"""@app.errorhandler(HTTPException)
 def handle_http_exception(e):
-    return render_template("error.html"), 200"""
+    return render_template("error.html"), 200
 
 
 def login_required(f):
@@ -313,8 +312,7 @@ def register():
             return render_template("register.html")
 
         connection.close()
-        # TODO: Message flash that says registered?
-        # TODO: Some other alternative feedback to indicate that registration was successful
+        flash("Registered!")
         return redirect("/")
 
     else:

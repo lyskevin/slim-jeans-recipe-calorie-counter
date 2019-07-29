@@ -381,7 +381,7 @@ function saveRecipe() {
           if (str === "Recipe already exists!") {
             alert("Recipe already exists!")
           } else {
-            alert("Recipe saved")
+            alert("Recipe saved");
           }
         });
       }
@@ -504,6 +504,11 @@ function registrationFormSubmission() {
   } else {
     form.submit();
   }
+}
+
+/* Alerts the user that his/her registration was successful */
+function alertSuccessfulRegistration() {
+  alert("Registered!");
 }
 
 /* Toggles night mode in the website
