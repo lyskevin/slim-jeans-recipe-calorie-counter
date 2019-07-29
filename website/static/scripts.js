@@ -511,10 +511,12 @@ function registrationFormSubmission() {
 document.addEventListener('DOMContentLoaded', (event) => {
   if (localStorage.getItem('mode') === 'dark') {
     document.querySelector('body').classList.add('dark');
-    $('#table-savedrecipes').addClass('table-dark');
+    $('#sr-recipe-table').addClass('table-dark');
+    $('#input-table').addClass('table-dark');
   } else {
     document.querySelector('body').classList.remove('dark');
-    $('#table-savedrecipes').removeClass('table-dark');
+    $('#sr-recipe-table').removeClass('table-dark');
+    $('#input-table').removeClass('table-dark');
   }    
 });
 
@@ -523,12 +525,12 @@ function toggleNightMode() {
     'light' : 'dark');
   if (localStorage.getItem('mode') === 'dark') {
     document.querySelector('body').classList.add('dark');
-    $('#table-savedrecipes').addClass('table-dark');
-    $('#table-recipe-result').addClass('table-dark');
+    $('#sr-recipe-table').addClass('table-dark');
+    $('#input-table').addClass('table-dark');
   } else {
     document.querySelector('body').classList.remove('dark');
-    $('#table-savedrecipes').removeClass('table-dark');
-    $('#table-recipe-result').removeClass('table-dark');
+    $('#sr-recipe-table').removeClass('table-dark');
+    $('#input-table').removeClass('table-dark');
   }
   var piechart = document.getElementById("piechart");
   if (piechart !== null) {

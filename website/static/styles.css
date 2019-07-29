@@ -69,9 +69,11 @@ table.dataTable thead tr th {
   font-size: 30px;
 }
 
+/*
 #calorie-counter table.dataTable.no-footer {
   border-bottom: 1px lightgrey solid !important;
 }
+*/
 
 #calorie-counter td {
   vertical-align: middle;
@@ -324,4 +326,16 @@ p a {
 
 #saved-recipes .sr-inner-table th {
   font-size: 18px;
+}
+
+table.dataTable.table-dark tbody tr {
+  background-color: #343a40;
+}
+
+body.dark label {
+  color: white;
+}
+
+body.dark #sr-recipe-table_info {
+  color: white;
 }
