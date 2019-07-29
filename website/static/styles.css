@@ -170,6 +170,16 @@ body.dark #error .text {
   margin: 0 auto;
 }
 
+#graph-generator #recipe-count {
+  margin-left: 0.5%;
+  margin-right: 0.5%;
+}
+
+#graph-generator .notes {
+  list-style-position: inside;
+  margin-bottom: 1%;
+}
+
 /* Style home page */
 
 #index .logged-in {
