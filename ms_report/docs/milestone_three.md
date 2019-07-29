@@ -271,10 +271,12 @@ two additional functionality in the form of two buttons in each row:
       <tbody>
         <tr>
           <td class="button1" align="center">
-            <button class='btn btn-block btn-primary btn-sm'>Delete</button>
+            <button class='btn btn-block btn-primary btn-sm'
+                    style='width: 80px;'
+                    onclick='toggleDisplayButton(this)'>Display</button>
           </td>
           <td align="left">
-            Shows more information abouyt the recipe. This uses DataTable's
+            Shows more information about the recipe. This uses DataTable's
             <a href="https://datatables.net/examples/api/row_details.html">child rows</a>
             API, where more information can be dynamically inserted into the
             table
@@ -282,7 +284,8 @@ two additional functionality in the form of two buttons in each row:
         </tr>
         <tr>
           <td class="button2" align="center">
-            <button class='btn btn-block btn-danger btn-sm'>Delete</button>
+            <button class='btn btn-block btn-danger btn-sm'
+                    style='width: 80px;'>Delete</button>
           </td>
           <td align="left">
             Deletes the recipe from the table (and database). While DataTable's
@@ -486,17 +489,15 @@ such ingredients, but rather their *number*. For example, a recipe might list
 1 medium carrot
 1 small onion
 ...
-```
 
-rather than,
+rather than:
 
-```text
 61g of carrots
 30g of onions
 ```
 
 We decided to manually add common ingredients such as potatoes, carrots, onions,
-tomatoes, etc into the database with `unit` calories, making it easier for
+tomatoes, etc into the database with `unit` units, making it easier for
 users to input such ingredients.
 
 ### 7.2 
