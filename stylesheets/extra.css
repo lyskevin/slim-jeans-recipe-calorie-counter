@@ -11,6 +11,11 @@ img[alt^="typeahead"] {
     border: 1px solid;
 }
 
+img[alt^="poster"] {
+  height: 800px;
+  border: 1px solid;
+}
+
 .wrapper-center {
     text-align: center;
 }
