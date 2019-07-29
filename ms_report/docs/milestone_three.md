@@ -78,10 +78,11 @@ frustration.
   <p>Five rows, so need to click five times</p>
 </div>
 
-
-<div class="todo">
-  <p>TODO: How this was fixed</p>
-</div>
+We came to realise that all input fields which make use of typeahead's
+functionality were styled with the "typeahead" CSS class. This was a naming
+decision which we had made when we first started working on the autocomplete
+feature and subsequently forgot about. Hence, it came back to cause many bugs
+and we finally found out about it after rigorous unit testing.
 
 ### 3.3 Input Validation
 A big part of simplifying the back-end was to restrict users in selecting
@@ -519,7 +520,20 @@ are represented differently in the food database than what we are normally
 used to. One example is clarifying that salt falls under "Salt, table" to
 make it easier for users to find.
 
-### 7.2 
+### 7.2 Error Handling
+One of our tech savvy friends tried to break the website by visiting website paths
+that did no exist as well as website paths that only exist as Python Flask functions.
+This resulted in a lot of server errors and would not make for a good user experience
+if users were to encounter them. We added in some generalised error handling code
+to handle all HTTP exceptions.
+
+### 7.3 Meaningful User Feedback
+Another piece of feedback which was given to us was that some users did not receive
+feedback upon completing certain actions. For instance, upon successful registration,
+users were brought back to the home page but were not told that their registration was
+successful. We implemented some feedback mechanisms (mainly JavaScript alerts and Flask's
+message flashing) in order to give users more meaningful information once they had
+finished certain actions.
 
 ## 8. Project Conclusion
 We would say that we have learnt greatly from Orbital, particularly the
