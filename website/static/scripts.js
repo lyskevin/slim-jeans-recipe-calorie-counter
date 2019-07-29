@@ -538,7 +538,7 @@ function toggleNightMode() {
   }
   var graph = document.getElementById("column_chart");
   if (graph !== null) {
-    generateGraph();
+    displayGraph();
   }    
 }
 
@@ -549,8 +549,22 @@ function insertAfter(el, referenceNode) {
 
 /* Generates a graph of the user's saved recipes' caloric information */
 function generateGraph() {
+  if (document.getElementById("column_chart") === null) {
+    var columnChartHTML =
+      "<div id=\"column_chart\" style=\"width: 900px; height: 500px\"></div>";
+    $('#graph-generator .content').append(columnChartHTML)
+  }
+  displayGraph();
+}
+
+/* Displays a graph contianing the saved recipe count specified by the user */
+function displayGraph() {
+  var recipeCount = document.getElementById("recipe-count").value;
   $.ajax("/graph_generator", {
     type: "POST",
+    contentType: "application/json",
+    dataType: "json",
+    data: JSON.stringify(recipeCount)
   }).done(results => {
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
@@ -593,7 +607,6 @@ function generateGraph() {
             }
           },
           backgroundColor: '#232b2b',
-          /*colors: ['red', 'orange', 'yellow', 'green', 'blue', 'purple']*/
         };
       } else {
         options = {
