@@ -151,7 +151,7 @@ def save_recipe():
 @app.route("/change_password", methods=["GET", "POST"])
 @login_required
 def change_password():
-    
+
     if request.method == "POST":
         form = request.form
         username = session["username"]
@@ -230,7 +230,7 @@ def saved_recipes():
 def graph_generator():
 
     if request.method == "POST":
-        recipe_count = request.data.replace('\"', '')
+        recipe_count = request.data.decode("utf-8").replace('\"', '')
         connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
         cursor = connection.cursor()
         rows = None
@@ -252,7 +252,7 @@ def graph_generator():
             dataset.append(data)
         connection.close()
         return jsonify(dataset)
-        
+
     else:
         return render_template("graph_generator.html")
 
