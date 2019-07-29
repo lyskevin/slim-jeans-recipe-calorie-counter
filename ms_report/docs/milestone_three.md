@@ -79,7 +79,7 @@ frustration.
 </div>
 
 We came to realise that all input fields which make use of typeahead's
-functionality were styled with the "typeahead" CSS class. This was a naming
+functionality were styled with the `typeahead` CSS class. This was a naming
 decision which we had made when we first started working on the autocomplete
 feature and subsequently forgot about. Hence, it came back to cause many bugs
 and we finally found out about it after rigorous unit testing.
@@ -252,7 +252,7 @@ session["username"] = userInformation[0][1]
 ```
 
 Flask has a session object which deals with user information during web
-browsing, while userInformation is a 2D array that contains the user's
+browsing, while `userInformation` is a 2D array that contains the user's
 information after querying the database. In this way, we can use Flask to pass
 user information to the front-end, which can then be accessed with the Jinja2
 templating language. This allows us to keep track of things such as whether a
@@ -345,49 +345,9 @@ $(window).on('unload', function() {
 It also turned out that doing this method made the `undo` button easier to
 implement as well.
 
-### 5.2 Undo Functionality
-One of our users commented on the lack of an `undo` button in the saved recipes
-page, something like what GMail has when the user deletes an e-mail. Therefore,
-we have implemented an `undo` functionality within the saved recipes page.
-
-We used Bootstrap alerts to create a way for users to `undo` a delete they may
-have accidentally clicked:
-
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  Deleted "recipe_name".
-  <button type="button" class="btn btn-link btn-sm">
-    Undo
-  </button>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-
-The `undo` button's event was handled by jQuery, the function acquires
-the data from a large JSON object, appends it to the table and redraws
-the table. The "fake delete" array is updated as well.
-
-```Javascript
-/**
- * Function to handle undo event for a specific recipe.
- * @param {string} recipeName - name of recipe associated with this button
- * @param {object} recipes - list of all recipes and their data
- */
-function handleUndoOnClick(recipeName, recipes) {
-  $(document).on('click', '#undo-'
-      + replaceSpacesWithUnderscores(recipeName), function() {
-    findRecipe(recipeName, recipes).then((row) => {
-      $('#sr-recipe-table').DataTable()
-        .row
-        .add(row)
-        .draw();
-      toDelete = toDelete.filter(names => names !== recipeName);
-      insertAlert(createUndoneAlert());
-      deleteAlert(recipeName);
-    });
-  })
-}
-```
+### 5.2 `undo`
+This was suggested to us by a user during our testing, more information can be
+found in [Section 7.4](#74-undo-functionality)
 
 ### 5.3 Back-end
 Flask has a `jsonify()` method to pass JSON objects back to the
@@ -467,10 +427,9 @@ this long string into a Javascript Object that can be processed by the front-end
 to display the user's saved recipes.
 
 ## 6. Night Mode
-This was suggested as a joke during one of our meetings, as inspired
-by NUSMods, but we eventually decided to implement it in our webpages. There's
-a button near the top of the page to toggle NightMode functionality in each
-webpage.
+Inspired by NUSMods, this was suggested as a joke during one of our meetings.
+We eventually decided to implement it in our webpages. There's a button near
+the top of the page to toggle NightMode functionality in each webpage.
 
 It was primarily done using jQuery, we selected the `#!HTML <body>` tag to add a
 CSS class `#!css class='dark'`. From there, we used CSS to edit the font and
@@ -503,7 +462,8 @@ they liked the features. Here is some feedback that we have gathered.
 ### 7.1 Difficulty of Inputting Standard Ingredients
 One of the criticisms we got from users was that it was difficult to input
 ingredients such Potatoes, Carrots or Onions as no recipe gives the *weight* of
-such ingredients, but rather their *number*. For example, a recipe might list
+such ingredients, but rather their *number*. For example, most recipes list
+such ingredients as:
 
 ```text
 1 medium carrot
@@ -526,19 +486,73 @@ used to. One example is clarifying that salt falls under "Salt, table" to
 make it easier for users to find.
 
 ### 7.2 Error Handling
-One of our tech savvy friends tried to break the website by visiting website paths
-that did no exist as well as website paths that only exist as Python Flask functions.
-This resulted in a lot of server errors and would not make for a good user experience
-if users were to encounter them. We added in some generalised error handling code
-to handle all HTTP exceptions.
+One of our tech savvy friends tried to break the website by visiting website
+paths that did not exist as well as those that only exist as Python Flask
+functions. This resulted in a lot of server errors and would not make for a
+good user experience if users were to encounter them. We added in some
+generalised error handling code to handle all HTTP exceptions.
 
-### 7.3 Meaningful User Feedback
-Another piece of feedback which was given to us was that some users did not receive
-feedback upon completing certain actions. For instance, upon successful registration,
-users were brought back to the home page but were not told that their registration was
-successful. We implemented some feedback mechanisms (mainly JavaScript alerts and Flask's
-message flashing) in order to give users more meaningful information once they had
-finished certain actions.
+### 7.3 Meaningful User Interactions with the UI
+Another piece of feedback which was given to us was that some users did not
+receive feedback upon completing certain actions. For instance, upon successful
+registration, users were brought back to the home page but were not told that
+their registration was successful. We implemented some feedback mechanisms
+(mainly JavaScript alerts and Flask's message flashing) in order to give users
+more meaningful information once they had finished certain actions.
+
+  <div id='alert-1'
+       class="alert alert-danger alert-dismissible fade show text-center message-flash" role="alert">
+    Old password does not match
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+
+### 7.4 `undo` Functionality
+One of our users, while exploring the saved recipes page on an example
+account, accidentally clicked off a Delete on one of the recipes. After a
+"sorry", we realised that this could happen to any other user.
+
+The first thing we did was put in an alert to confirm whether the user
+wanted to delete the recipe. After that, we implemented an `undo` functionality.
+We implemented this using Bootstrap alerts:
+
+<div id='alert-2'
+     class="alert alert-warning alert-dismissible fade show" role="alert">
+  Deleted "recipe_name".
+  <button type="button" class="btn btn-link btn-sm">
+    Undo
+  </button>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+The `undo` button's event was handled by jQuery, the function acquires
+the data from a large JSON object, appends it to the table and redraws
+the table. The "fake delete" array is updated as well.
+
+```Javascript
+/**
+ * Function to handle undo event for a specific recipe.
+ * @param {string} recipeName - name of recipe associated with this button
+ * @param {object} recipes - list of all recipes and their data
+ */
+function handleUndoOnClick(recipeName, recipes) {
+  $(document).on('click', '#undo-'
+      + replaceSpacesWithUnderscores(recipeName), function() {
+    findRecipe(recipeName, recipes).then((row) => {
+      $('#sr-recipe-table').DataTable()
+        .row
+        .add(row)
+        .draw();
+      toDelete = toDelete.filter(names => names !== recipeName);
+      insertAlert(createUndoneAlert());
+      deleteAlert(recipeName);
+    });
+  })
+}
+```
 
 ## 8. Project Conclusion
 We would say that we have learnt greatly from Orbital, particularly the
@@ -546,11 +560,10 @@ many APIs and frameworks (and lack thereof) we have had the pleasure of using,
 such as Flask, Jinja2, SQLite, etc and the other technologies such as HTML5,
 CSS and native Javascript.
 
-Doing this project using native Javascript has
-also allowed us to appreciate new web frameworks such as React,
-Vue or Angular that abstracts the nitty-gritty of direct DOM
-manipulation and state changes. Even trying to creat and insert a table
-into a webpage is long-winded and cumbersome to do!
+Doing this project using native Javascript has also allowed us to appreciate
+new web frameworks such as React, Vue or Angular that abstracts the nitty-gritty
+of direct DOM manipulation and state changes. Even trying to create and insert
+a table into a webpage is long-winded and cumbersome to do!
 
 We feel that we could have done more to improve the website, such as
 optimising it for mobile as well as implemented other features which
