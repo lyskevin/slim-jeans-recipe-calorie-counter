@@ -231,10 +231,6 @@ def graph_generator():
 
     if request.method == "POST":
         recipe_count = request.data.decode("utf-8").replace('\"', '')
-<<<<<<< HEAD
-=======
-        #recipe_count = request.data.replace('\"', '')
->>>>>>> 6450c387f2fb4e6a0fad540ec737a649ac704872
         connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
         cursor = connection.cursor()
         rows = None
