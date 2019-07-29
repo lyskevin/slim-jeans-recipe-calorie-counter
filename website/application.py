@@ -112,7 +112,7 @@ def reinsert_recipe():
         cursor.execute("""INSERT INTO recipes
                        (username, recipe_name, recipe, calories, date_time)
                        VALUES(?, ?, ?, ?, ?)""",
-                       (username, recipe_name, recipe, calories, date_time))
+                       (username, recipe_name, recipe, calories, now))
         connection.commit()
         connection.close()
         return json.dumps("success")
@@ -230,7 +230,8 @@ def saved_recipes():
 def graph_generator():
 
     if request.method == "POST":
-        recipe_count = request.data.replace('\"', '')
+        recipe_count = request.data.decode("utf-8").replace('\"', '')
+        #recipe_count = request.data.replace('\"', '')
         connection = sqlite3.connect(path.join(ROOT, "slim_jeans.db"))
         cursor = connection.cursor()
         rows = None
