@@ -489,18 +489,24 @@ function displayResults(totalCalories, breakdown) {
  * Handles form registration submission.
  */
 function registrationFormSubmission() {
+  const regex = /^\w+$/;
+  const lowerLenLimit = 8;
+  const upperLenLimit = 255;
   let form = document.forms["registration-form"];
   let username = form[0].value;
   let password = form[1].value;
   let confirmation = form[2].value;
-  if ($.trim(username) === "" || $.trim(password) === "") {
-    alert("Please fill in all fields (space padding is not allowed)");
-  } else if (password.length < 5) {
-    alert("Password must be at least 5 characters in length");
-  } else if (username.length > 255 || password.length > 255) {
-    alert("Username and password cannot exceed 255 characters in length");
+
+  if (!regex.test(username)) {
+    alert("Usernames are limited to alphanumeric characters and underscores");
+  } else if (username.length > upperLenLimit) {
+    alert("Username is too long");
+  } else if (password.length < lowerLenLimit) {
+    alert(`Password must be at least ${lowerLenLimit} characters in length`);
+  } else if (password.length > upperLenLimit) {
+    alert(`Password must be at least ${upperLenLimit} characters in length`);
   } else if (password !== confirmation) {
-    alert("Passwords don't match");
+    alert("Passwords do not match");
   } else {
     form.submit();
   }

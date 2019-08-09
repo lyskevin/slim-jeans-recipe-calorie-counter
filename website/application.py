@@ -294,7 +294,6 @@ def logout():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-
     if request.method == "POST":
         form = request.form
         username = form["username"]
@@ -315,7 +314,6 @@ def register():
         connection.close()
         flash("Registered!")
         return redirect("/")
-
     else:
         return render_template("register.html")
 
