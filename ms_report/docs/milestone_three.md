@@ -12,6 +12,8 @@ This is the final milestone. With that, this README will document
 4. User testing and additional considerations taken
 
 The site can be found at this [link](https://lyskevin.pythonanywhere.com).
+The image and piechart/graph load times are a bit slow since we use a
+free hosting service ([PythonAnywhere](https://www.pythonanywhere.com)).
 
 You may navigate around the website using the top navigation bar. Certain
 features only usable by users that have logged in may only be accessed via 
@@ -117,7 +119,7 @@ ingredients contribute the most to the overall caloric amount. This fulfilled
 one of the features we wanted to add to the website.
 
 For this feature, we used the
-[Google Chart's API](https://developers.google.com/chart/interactive/docs/gallery/piechart)
+[Google Charts API](https://developers.google.com/chart/interactive/docs/gallery/piechart)
 to render the chart.
 
 ```Javascript
@@ -158,6 +160,47 @@ many restaurant foods such as ones from McDonalds or Burger King. We felt that
 this would only clog up the search results when users would be trying to find
 ingredients more suited for cooking at home, and thus we manually removed them
 from the database.
+
+Some of the feedback given to us was that the ingredient choices are too 
+complicated and that we could perhaps simplify them because users might not
+like that level of complexity (e.g. it is tedious to look through the ingredient
+autocomplete list for similar food choices). However, this is a limitation that
+we chose to accept from the beginning. We knew that we would be using a pre-set
+source for the food database in order to implement our autocomplete feature.
+Here are some of the alternatives that we had but ultimately chose to reject:
+
+<ol>
+  <li>
+    One option would be to find databases with simpler ingredient names. We
+    felt that this would defeat the purpose of the calorie counter since the
+    level of required specificity would not be there when selecting ingredients.
+    For instance, a simpler food database could perhaps simply listed "tomato"
+    as part of its ingredient selection. With our current database, we give users
+    a choice between different varieties of tomatoes as well as different methods
+    of preparation. Again, this kind of specificity would be lost if we had gone
+    with a database which is perceived to have simpler ingredient names.
+    <br><br>
+    <div class='wrapper-center'>
+      <img src="../figures/ms3/tomato_selection.png" alt="Tomato autocomplete dropdown list">
+      <p>The autocomplete choices that appear in the dropdown list for "tomato"</p>
+    </div>
+    <br>
+  </li>
+  <li>
+    Another alternative would have been to create our own database but we felt
+    that this would not be comprehensive or specific enough. Hence, we decided
+    to choose one from a credible source.
+  </li>
+  <li>
+    We could have gone with a database which is more complicated than our current
+    one but this could potentially affect the user experience negatively so we
+    decided against it.
+  </li>
+</ol>
+
+Ultimately, the USDA's database was actually the best one that we could
+find based on the circumstances. Refer to [Section 8.1](#81-difficulty-of-inputting-standard-ingredients)
+for more details on how we decided to tackle this problem.
 
 ## 4. User Accounts and Sign-ins
 User Accounts and Sign-ins were a big part of how we implemented certain
@@ -273,7 +316,7 @@ else:
     return redirect("/")
 ```
 
-### 4.4 Session ID
+### 4.5 Session ID
 The user's user id (as stored in the SQL database upon registration) and
 username is stored after logging in. The Python code that handles this is
 as follows:
@@ -379,7 +422,7 @@ implement as well.
 
 ### 5.2 `undo`
 This was suggested to us by a user during our testing, more information can be
-found in [Section 7.4](#74-undo-functionality)
+found in [Section 8.4](#84-undo-functionality)
 
 ### 5.3 Back-end
 Flask has a `jsonify()` method to pass JSON objects back to the
@@ -460,8 +503,8 @@ to display the user's saved recipes.
 
 ## 6. Night Mode
 Inspired by NUSMods, this was suggested as a joke during one of our meetings.
-We eventually decided to implement it in our webpages. There's a button near
-the top of the page to toggle NightMode functionality in each webpage.
+We eventually decided to implement it in our webpages. There's a sun/moon icon
+in the navbar which toggles night mode for the website.
 
 It was primarily done using jQuery, we selected the `#!HTML <body>` tag to add a
 CSS class `#!css class='dark'`. From there, we used CSS to edit the font and
@@ -485,9 +528,28 @@ $('table-id').addClass('table-dark');
 
 We had some issues implementing this with DataTable's library however, and had
 to override some of their own CSS styling in order to successfully implement
-a proper NightMode functionality in all our webpages.
+proper night mode functionality in all our webpages.
 
 ## 7. Graph Generator
+
+<div class="wrapper-center">
+  <img src="../figures/ms3/graph_generator.png" alt="Example graph">
+  <p>Example graph</p>
+</div>
+
+### 7.1 Rationale
+We decided to implement a graph generator in order to show users a visual
+representation of the calories of the recipes that they've stored in the
+past. We gave users the option to display 5, 10, 15, 20 or all stored recipes.
+This is useful to have a side by side comparison across different recipes
+and time periods.
+
+### 7.2 Implementation
+We used the [Google Charts API](https://developers.google.com/chart/interactive/docs/gallery/columnchart)
+to render our graph. The data is passed to the API from our stored recipes
+database. Google's Charts API comes with in-built interactivity which is
+useful for displaying additional data whenever a user hovers over one of
+the columns in the column chart.
 
 ## 8. User Testing
 We gave it to a few friends and family members who actually cook and see if
