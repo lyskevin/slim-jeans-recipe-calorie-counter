@@ -11,7 +11,12 @@ This is the final milestone. With that, this README will document
 3. The steps we took to overcome these challenges
 4. User testing and additional considerations taken
 
-The site can be found at this [link](https://lyskevin.pythonanywhere.com)   .
+The site can be found at this [link](https://lyskevin.pythonanywhere.com).
+
+You may navigate around the website using the top navigation bar. Certain
+features only usable by users that have logged in may only be accessed via 
+registration of an account, and then logging in. Unregistered users, however,
+have access to the calorie counter itself.
 
 ## 2. Revamp of Site UI
 The original design was a bit plain, so we decided to make some changes to the
@@ -144,6 +149,16 @@ function drawChart() {
 }
 ```
 
+### 3.6 Food Database
+As stated before, we obtained our data directly from
+[USDA's website](https://ndb.nal.usda.gov/ndb/).
+
+The original database contained over 8000 entries of foods, which included
+many restaurant foods such as ones from McDonalds or Burger King. We felt that
+this would only clog up the search results when users would be trying to find
+ingredients more suited for cooking at home, and thus we manually removed them
+from the database.
+
 ## 4. User Accounts and Sign-ins
 User Accounts and Sign-ins were a big part of how we implemented certain
 functions within the webapp. Flask has a framework for User Accounts already
@@ -156,12 +171,29 @@ wanted to appreciate the difficulty and security considerations with storing
 usernames, passwords and doing secure serverside authentication, and how big of
 a topic it is in web security.
 
-### 4.1 Information Transfer
+### 4.1 NIST Password Guidelines
+We decided to follow
+[NIST's Password Guidelines](https://pages.nist.gov/800-63-3/sp800-63b.html#sec5)
+(see section 5.1.1) for password authentication, since it seems to be the
+standard for password registration for end-users. We followed the following
+guidelines:
+
+Passwords should...
+
+* be at least 8 characters in length
+* be allowed to be at least 64 characters in length
+* be able to use all printing ASCII characters as well as spaces
+
+According to the guidelines, password hints and secret questions are strongly
+discouraged, as are composition rules (1 uppercase, 1 lowercase, 1 special
+character, etc).
+
+### 4.2 Information Transfer
 Passing username and passwords back and forth between the front and back-end
 was done using HTTPs POST requests. This was required to prevent against
 MiTM (man-in-the-middle) attacks.
 
-### 4.2 Registration
+### 4.3 Registration
 We used Flask's
 [Werkzeug](https://pypi.org/project/Werkzeug/)
 library to handle password hashing and salting. Hashing ensures that we do not
@@ -216,7 +248,7 @@ def register():
         return render_template("register.html")
 ```
 
-### 4.3 Logins
+### 4.4 Logins
 Logins were simple. We simply sent the username and password back to the
 back-end, and uses Werkzeug's `check_password_hash()` function to check if the
 given password matched the hashed password in our database. If it matches,
@@ -259,7 +291,7 @@ templating language. This allows us to keep track of things such as whether a
 user is logged in and render the website accordingly. For instance, the top
 navbar will have different options for users who are logged in.
 
-## 5 Saving Recipes to Database
+## 5. Saving Recipes to Database
 This feature was surprisingly annoying and frustrating to implement, mostly
 due to the handling of events by the Display and Delete buttons. Many of
 the problems faced were due to `async` on the front-end, rather than the
@@ -455,11 +487,13 @@ We had some issues implementing this with DataTable's library however, and had
 to override some of their own CSS styling in order to successfully implement
 a proper NightMode functionality in all our webpages.
 
-## 7. User Testing
+## 7. Graph Generator
+
+## 8. User Testing
 We gave it to a few friends and family members who actually cook and see if
 they liked the features. Here is some feedback that we have gathered.
 
-### 7.1 Difficulty of Inputting Standard Ingredients
+### 8.1 Difficulty of Inputting Standard Ingredients
 One of the criticisms we got from users was that it was difficult to input
 ingredients such Potatoes, Carrots or Onions as no recipe gives the *weight* of
 such ingredients, but rather their *number*. For example, most recipes list
@@ -485,14 +519,14 @@ are represented differently in the food database than what we are normally
 used to. One example is clarifying that salt falls under "Salt, table" to
 make it easier for users to find.
 
-### 7.2 Error Handling
+### 8.2 Error Handling
 One of our tech savvy friends tried to break the website by visiting website
 paths that did not exist as well as those that only exist as Python Flask
 functions. This resulted in a lot of server errors and would not make for a
 good user experience if users were to encounter them. We added in some
 generalised error handling code to handle all HTTP exceptions.
 
-### 7.3 Meaningful User Interactions with the UI
+### 8.3 Meaningful User Interactions with the UI
 Another piece of feedback which was given to us was that some users did not
 receive feedback upon completing certain actions. For instance, upon successful
 registration, users were brought back to the home page but were not told that
@@ -508,7 +542,7 @@ more meaningful information once they had finished certain actions.
     </button>
   </div>
 
-### 7.4 `undo` Functionality
+### 8.4 `undo` Functionality
 One of our users, while exploring the saved recipes page on an example
 account, accidentally clicked off a Delete on one of the recipes. After a
 "sorry", we realised that this could happen to any other user.
@@ -554,7 +588,7 @@ function handleUndoOnClick(recipeName, recipes) {
 }
 ```
 
-## 8. Project Conclusion
+## 9. Project Conclusion
 We would say that we have learnt greatly from Orbital, particularly the
 many APIs and frameworks (and lack thereof) we have had the pleasure of using,
 such as Flask, Jinja2, SQLite, etc and the other technologies such as HTML5,
@@ -574,18 +608,18 @@ Regardless, no matter what level of achievement we end up obtaining for
 Orbital, this has been a fruitful and memorable project which has
 taught us a lot about web development and software engineering concepts.
 
-## 9. Deliverables
+## 10. Deliverables
 
-### 9.1 Poster
+### 10.1 Poster
 <div class='wrapper-center'>
   <img src="../figures/ms3/poster.png" alt="poster">
 </div>
 
-### 9.2 Project Log
+### 10.2 Project Log
 Our project log is documented
 [in this Google Sheet](https://docs.google.com/spreadsheets/d/17kEtNaCyYZzXc2UWd6ss4zXTWQ4-QY7XN3ODB6DpEJs/edit?usp=sharing)
 
-### 9.3 Video
+### 10.3 Video
 <div class='wrapper-center'>
   <iframe width="640"
           height="360"
