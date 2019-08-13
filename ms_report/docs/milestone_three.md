@@ -484,7 +484,7 @@ else:
     return json.dumps("Recipe saved")
 ```
 
-#### 5.4 Method of Storage
+### 5.4 Method of Storage
 We store each recipe along with its recipe name, number of calories and
 the date and time at which it was saved at inside our database. The individual
 ingredient information iss stored in a large JSON string such as the following:
