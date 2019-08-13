@@ -1,14 +1,18 @@
 .custom-link {
-    font-weight: bold;
+  font-weight: bold;
+}
+
+.md-icon {
+  color: white;
 }
 
 .header {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 img[alt^="typeahead"] {
-    width: 45%;
-    border: 1px solid;
+  width: 45%;
+  border: 1px solid;
 }
 
 img[alt^="poster"] {
@@ -17,33 +21,33 @@ img[alt^="poster"] {
 }
 
 .wrapper-center {
-    text-align: center;
+  text-align: center;
 }
 .wrapper-center p {
-    font-size: 12px;
-    color: grey;
+  font-size: 12px;
+  color: grey;
 }
 
 #alert-2, #alert-1 {
-    height: 62px;
+  height: 62px;
 }
 
 h5 {
-    font-size: 15px !important;
-    color: black !important;
+  font-size: 15px !important;
+  color: black !important;
 }
 
 h6 {
-    font-size: 15px !important;
-    color: black !important;
+  font-size: 15px !important;
+  color: black !important;
 }
 
 .todo p {
-    font-size: 40px;
+  font-size: 40px;
 }
 
 pre .nx {
-    color: #37474f !important;
+  color: #37474f !important;
 }
 
 td {
